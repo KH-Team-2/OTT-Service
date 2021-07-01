@@ -5,33 +5,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원가입</title>
+<title>ID/PW 찾기</title>
 
-<style>
+<style type="text/css">
+		@font-face {
+	    font-family: 'NEXON Lv1 Gothic OTF';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+		}
+		
     #wrap{
-        width:420px;
+        width:550px;
         margin-left:auto; 
         margin-right:auto;
         text-align:center;
     }
+    body{
+        font-family:'NEXON Lv1 Gothic OTF'; font-size: 20px; background-color:black;
+    }
     
-    table{
-        border:3px solid white
-        
+    table {
+    	position: absolute;
+    	left: center;
     }
     
     td{
-        border:1px solid white
-        
+        height:50px;
+        width:500px;
+        font-size: 15px;
+        background-color : black;
+        color : white;
     }
+
     
     #title{
-        color : rgb(248, 211, 28);
-        background-color:black
+        color : white;
     }
     body {
         background: black;
         color: rgb(248, 211, 28);
+    }
+
+    input[type=file] {
+       display: none;
+    }   
+     
+        
+.filebtn {
+       padding: 3px 10px;
+        background-color: #F8D31C;
+        border: none;
+        border-radius: 4px;
+        color: black;
+        font-family:'NEXON Lv1 Gothic OTF';
+        font-size: 15px;
+        cursor: pointer;
+   }
+	.btn{
+	    padding: 3px 10px;
+        background-color: #F8D31C;
+        border: none;
+        border-radius: 4px;
+        color: black;
+        font-family:'NEXON Lv1 Gothic OTF';
+        font-size: 15px;
+        cursor: pointer;
+
+}
+.emailbtn{
+    padding: 4px 3px;
+    background-color: black;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-family:'NEXON Lv1 Gothic OTF';
+    font-size: 16px;
+    cursor: pointer;
+}
+
+	input[type=date]{
+         
+        height:20px;
+        width:180px;
+        border-radius: 5px;
+        font-size: 15px;
+        border:2px solid #f8d31c;
+        background-color : black;
+        color : #A3A3A3;
+    }
+    
+    input[type=text]{
+         
+        height:20px;
+        width:180px;
+        border-radius: 5px;
+        font-size: 15px;
+        border:2px solid #f8d31c;
+        background-color : black;
+        color : white;
+    }
+    
+    input[type=password]{
+         
+        height:20px;
+        width:180px;
+        border-radius: 5px;
+        font-size: 15px;
+        border:2px solid #f8d31c;
+        background-color : black;
+        color : white;
+    }
+    
+    tr > td:nth-child(1) {
+    	width: 200px;
+    }
+    
+    tr > td:nth-child(2) {
+    	text-align:left;
+    	padding-left:30px;
     }
 </style>
 </head>
@@ -39,85 +131,60 @@
 
 <div id="wrap">
     <br><br>
-    <h2>회원가입</h2>
-    <br><br><br>
+    <h2>로그인</h2>
     
     <form>
         <table>
             <tr>
-                <td id="title">아이디</td>
+                <td>아이디</td>
                 <td>
                     <input type="text" name="UserID" maxlength="20">
-                    <input type="button" value="중복확인" >    
+                    <input type="button" value="중복확인" class="btn">    
                 </td>
             </tr>
                     
             <tr>
-                <td id="title">비밀번호</td>
+                <td>비밀번호</td>
                 <td>
                     <input type="password" name="PW" maxlength="15">
                 </td>
             </tr>
             
             <tr>
-                <td id="title">비밀번호 확인</td>
+                <td>비밀번호 확인</td>
                 <td>
                     <input type="password" name="PW" maxlength="15">
                 </td>
             </tr>
 
             <tr>
-                <td id="title">이메일</td>
+                <td>이메일</td>
                 <td>
-                    <input type="text" name="Email" maxlength="30">@
-                    <select name="Email_2">
-                        <option>naver.com</option>
-                        <option>daum.net</option>
-                        <option>gmail.com</option>
-                        <option>nate.com</option>                        
-                    </select>
+                    <input type="text" name="Email" maxlength="30">
                 </td>
             </tr>
 
             <tr>
-                <td id="title">휴대전화</td>
+                <td>휴대전화</td>
                 <td>
                     <input type="text" name="Phone" />
                 </td>
             </tr>
                 
             <tr>
-                <td id="title">이름</td>
+                <td>이름</td>
                 <td>
                     <input type="text" name="Name" maxlength="40">
                 </td>
             </tr>
 
             <tr>
-                <td id="title">생일</td>
-                <td>
-                    <input type="text" name="Birth_yy" maxlength="4" placeholder="년(4자)" size="6" >
-                    <select name="Birth_mm">
-                        <option value="">월</option>
-                        <option value="01" >1</option>
-                        <option value="02" >2</option>
-                        <option value="03" >3</option>
-                        <option value="04" >4</option>
-                        <option value="05" >5</option>
-                        <option value="06" >6</option>
-                        <option value="07" >7</option>
-                        <option value="08" >8</option>
-                        <option value="09" >9</option>
-                        <option value="10" >10</option>
-                        <option value="11" >11</option>
-                        <option value="12" >12</option>
-                    </select>
-                    <input type="text" name="Birth_dd" maxlength="2" placeholder="일" size="4" >
-                </td>
+                <td>생일</td>
+                <td><input type="date" placeholder="YYYY-MM-DD"></td>
             </tr>
                 
             <tr>
-                <td id="title">성별</td>
+                <td>성별</td>
                 <td>
                     <input type="radio" name="Gender" value="남" checked>남
                     <input type="radio" name="Gender" value="여" checked>여
@@ -125,27 +192,24 @@
             </tr>
                 
             <tr>
-                <td id="title">닉네임</td>
+                <td>닉네임</td>
                 <td>
                     <input type="text" name="NickName" maxlength="40">
                 </td>
                 </tr>
                 <tr>
-                    <td id="title">프로필</td>
+                    <td>프로필 사진</td>
                     <td>
-                        <input type="file" name="profile" size=25
-
-                        onfocus="this.style.backgroundcolor='#f0f0fe'; in_profile()"
-                        onblur="this.style.backgroundcolor='#e9e9e9'">
-                    </td>
-                    <td colspan="2">
-                        <img src="" name="profile">
-
+                    <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile">
                     </td>
                 </tr>
+        		<tr>
+        			<td colspan="2">
+			        	<input type="submit" value="가입" class="btn">  <input type="button" value="취소" class="btn" onclick="location.href='login.jsp'">
+        			</td>
+        		</tr>
         </table>
         <br>
-        <input type="submit" value="가입">  <input type="button" value="취소" onclick="location.href='login.jsp'">
     </form>
 </div>
 </body>
