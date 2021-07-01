@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="OTT-Service:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>OTT-Service</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="OTT-Service-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="OTT-Service:war exploded" />
+    </root>
+  </artifact>
+</component>
