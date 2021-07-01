@@ -7,6 +7,12 @@
 <head>
     <title>head</title>
 <style>
+	@font-face {
+	    font-family: 'NEXON Lv1 Gothic OTF';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
     body{
         background: black;
         margin: 50px auto;
@@ -14,92 +20,116 @@
         height: 500px;
         border: rgb(248, 211, 28) solid 1px;
         color: rgb(248, 211, 28);
-       
+       font-family:'NEXON Lv1 Gothic OTF'; font-size: 20px; background-color:black;
     }
+    .Btn{
+        padding: 5px;
+        background-color: #F8D31C;
+        border: none;
+        border-radius: 4px;
+        color: black;
+        font-family:'NEXON Lv1 Gothic OTF';
+        font-size: 15px;
+        margin: 10px 2px;
+        width : 210px;
+        }
     #logo{
-        text-align:center;
-        cursor: pointer;
+    	text-align: center;
+    }
+    #logintb{
+    	margin : 0 auto;
+    }
+    input[type=text]{
+    	height:40px;
+        width:200px;
+        border-radius: 10px;
+        font-size: 15px;
+        border:3px solid #f8d31c;
+        background-color : black;
+        color : white;
+        margin-bottom: 10px;
+    }
+    input[type=submit]{
+    	margin-bottom: 0px;
+    	border-bottom: 1px solid black;
+    	cursor : pointer;
+    }
+    #regist{
+    	margin-bottom: 0px;
+    	margin-top : 0px;
+    	background-color: black;
+    	color: #F8D31C;
+    	cursor : pointer;
+    }
+    #social{
+    	margin-top : 20px;
+    	text-align: center;
+    }
+    #idfind{
+    	margin-left : 38%;
+    }
+    .Btn2{
+    	margin-top : 10px;
+    	color : white;
+    	background : black;
+    	border : none;
+    	cursor: pointer;
+    }
+    .socialimg{
+    	width : 40px;
+    	height : 40px;
+    	cursor : pointer;
     }
     #login{
-        text-align:center;
-    }
-    #socal{
-        text-align:center;
-    }
-    #loginbtn {
-        text-align: center;
-}
-
-    input.img-button {
-        background: url( "../img/KaKaO.png" ) no-repeat;
-        border: none;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-    }
-       input.img-button2 {
-        background: url( "../img/Naver.png" ) no-repeat;
-        border: none;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-    }
-    input.img-button3 {
-        background: url( "../img/Google.png" ) no-repeat;
-        border: none;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
+    	text-align: center;
     }
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#logo").click(function(){
-			location.href="../index/index.jsp";
-		});
-	});
-</script>
 </head>
 
 <body>
     <div id="logo"><h2>로고</h2></div><br>
     <br>
     <div id="login">
-        <tr>
-            <td id="ID">
-                <input type="text" placeholder="ID">
-            </td>
-        </tr>
-        <br>
-        <br>
-        <tr>
-            <td id="PW">
-                <input type="text" placeholder="PW">
-            </td>
-            </tr>
-
+	    <form action="" method="post">
+	    	<table id="logintb">
+		        <tr>
+	    	        <td id="ID">
+	        	        <input type="text" placeholder=" ID">
+	            	</td>
+	       		</tr>
+	        	<tr>
+	            	<td id="PW">
+	                	<input type="text" placeholder=" PW">
+	            	</td>
+	            </tr>
+	            <tr>
+	                <td colspan="3" style="text-align: center;">
+	                    <input type="submit" value="Login" class="Btn"><br>
+				    	<input type="button" value="Join us" class="Btn" id="regist" onclick="location.href='regi.jsp'">
+	                </td>
+	            </tr>
+	    	</table>
+	    </form>
     </div>
-    <br>
-    <div id="loginbtn">
-        <input type="button" value="Login">
-        </div>    
-    <br>
-    <div id="socal">
-        <input type="button" value="회원가입" onclick="location.href='regi.jsp'">
-        <tr>
-            <td id="kakao">
-                <input type="button" class="img-button">
-            </td>
-            <td id="kakao">
-                <input type="button" class="img-button2">
-            </td>
-            <td id="kakao">
-                <input type="button" class="img-button3">
-            </td>
-        </tr>
-
-    </div>
-
+	    <div id="social">
+	    	<span>
+	    		<img src="../img/Naver.png" id="naver" class="socialimg">
+	    	</span>
+	    	<span>
+	    		<img src="../img/Google.png" id="google" class="socialimg">
+	    	</span>
+	    	<span>
+	    		<img src="../img/KaKaO.png" id="kakao" class="socialimg">
+	    	</span>
+	    </div>
+	   	<div id="find">
+	    	<span>
+	    		<input type="button" value=" ID찾기 " class="Btn2" id="idfind" onclick="location.href=''">
+	    	</span>
+	    	<span>
+	    		<input type="button" value="PW찾기" class="Btn2" onclick="location.href=''">
+	    	</span>
+   	</div>
+    
 </body>
 </html>
