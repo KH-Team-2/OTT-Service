@@ -1,6 +1,11 @@
 /build/classes/
 
+/.idea/
+/.settings/
+
 /target/
+
+/.idea/
 
 # Eclipse Core
 .project
