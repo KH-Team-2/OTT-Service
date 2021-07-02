@@ -1,4 +1,4 @@
-package com.contents.dto;
+package com.dto;
 
 public class ContentsDto {
 	private int MoivceNum;

@@ -1,4 +1,4 @@
-package com.alarm.dto;
+package com.dto;
 
 import java.util.Date;
 

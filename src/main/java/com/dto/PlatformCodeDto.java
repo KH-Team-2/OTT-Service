@@ -1,5 +1,5 @@
 
-package com.platformcode.dto;
+package com.dto;
 
 public class PlatformCodeDto {
 	

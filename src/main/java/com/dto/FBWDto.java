@@ -1,4 +1,4 @@
-package com.fbw.dto;
+package com.dto;
 
 public class FBWDto {
 	

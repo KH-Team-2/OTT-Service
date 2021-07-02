@@ -1,5 +1,7 @@
-package com.user.dto;
+package com.dto;
+
 import java.util.Date;
+
 public class UserDto {
 	private int UserNum;
 	private String ID;

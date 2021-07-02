@@ -1,4 +1,4 @@
-package com.Review.dto;
+package com.dto;
 
 import java.util.Date;
 
