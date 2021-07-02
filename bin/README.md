@@ -1,2 +1,0 @@
-# OTT-Service
-Semi Project
