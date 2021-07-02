@@ -1,7 +1,20 @@
-/build/classes/
+/build/
+
+/.idea/
+/.settings/
 
 /target/
 
+/bin/
+
+# Eclipse Core
 .project
 
+# JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+*.eml
+
+*.iml
+
+*.userlibraries
