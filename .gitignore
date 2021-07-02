@@ -10,3 +10,7 @@
 
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+*.eml
+
+*.iml
