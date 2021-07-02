@@ -12,6 +12,8 @@ import java.util.List;
 import com.dto.FBWDto;
 import com.dto.ReviewDto;
 import com.dto.UserDto;
+
+import net.bytebuddy.dynamic.scaffold.MethodRegistry.Prepared;
 public class AdminDao implements AdminDaoImpl{
 
 	@Override
@@ -168,20 +170,93 @@ public class AdminDao implements AdminDaoImpl{
 
 	@Override
 	public List<FBWDto> AdminFBWView(Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		List<FBWDto> list = new ArrayList<FBWDto>();
+		String sql = "SELECT * FROM FORBIDDENWORD";
 		
-		return null;
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				FBWDto dto = new FBWDto();
+				dto.setFBWords(rs.getString(1));
+				dto.setReason(rs.getString(2));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstm);
+		}
+		
+		
+		return list;
 	}
 
 	@Override
 	public boolean AddFBW(FBWDto dto, Connection con) {
+		PreparedStatement pstm = null;
+		int res = 0;
+		boolean result = true;
+		String sql = "INSERT INTO FORBIDDENWORD VALUES(?,?)";
 		
-		return false;
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, dto.getFBWords());
+			pstm.setString(2, dto.getReason());
+			
+			res = pstm.executeUpdate();
+			
+			if(res>0) {
+				result = true;
+			}else {
+				result = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public boolean DeleteFBW(String FBWords, Connection con) {
+		PreparedStatement pstm = null;
+		int res = 0;
+		boolean result = true;
+		String sql = "DELETE FROM FORBIDDENWORD WHERE FBWORDS = ?";
 		
-		return false;
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, FBWords);
+			
+			res = pstm.executeUpdate();
+			
+			if(res>0) {
+				result=true;
+			}else {
+				result = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+		}
+		
+		
+		return result;
 	}
 
+	
+	
+	
+	
+	
+	
 }

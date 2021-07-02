@@ -7,6 +7,10 @@ public class FBWDto {
 	private String FBWords;
 	private String Reason;
 	
+	
+	public FBWDto() {
+		super();
+	}
 	public FBWDto(String fBWords, String reason) {
 		super();
 		FBWords = fBWords;
