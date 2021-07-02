@@ -10,24 +10,8 @@
     <script type="text/javascript">
         var alarmBtn_Count = 0;
         var userBtn_Count = 0;
-
+		var menues_count = 0;
         $(function () {
-            $('.userBtn').hover(function () {
-                if (userBtn_Count == 0) {
-                    $('.userMenu').show('fast');
-                    setTimeout(function () {
-                        userBtn_Count = 1;
-                    }, 300);
-                }
-            }, function () {
-                if (userBtn_Count == 1) {
-                    $('.userMenu').hide('fast');
-                    setTimeout(function () {
-                        userBtn_Count = 0;
-                    }, 300);
-                }
-            });
-
             $('.userAlarmTable tr:odd').find('td:last-child').css('border-bottom', '1px solid rgb(248, 211, 28')
 
             $('.alarmBtn').hover(function () {
@@ -86,9 +70,16 @@
 					}
 				}
 			});
+			
 			$("#logo").click(function(){
 				location.href="../index/index.jsp";
 			});
+			$("#user").hover(function(){
+				$("#menues").show('fast');
+			},function(){
+				$("#menues").hide('fast');
+			});
+			
         });
     </script>
     
@@ -218,15 +209,6 @@
             height: 40px;
             cursor: pointer;
         }
-
-        .userMenu {
-            position: absolute;
-            /*border: 1px solid white;*/
-            top: 45px;
-            right: -5px;
-            display: none;
-        }
-
         .userAlarm {
             position: absolute;
             /*border-bottom: 3px rgb(248, 211, 28) solid;*/
@@ -237,55 +219,6 @@
             display: none;
         }
 
-
-        .userMenuTable {
-            margin-top: 20px;
-            width: 300px;
-            height: 300px;
-            vertical-align: middle;
-            text-align: center;
-            /*border: 3px solid rgb(248, 211, 28);*/
-        }
-
-        .userMenuTable td, .userMenuTable tr {
-            border: 3px solid rgb(248, 211, 28);
-        }
-
-        .userMenuTable tr td {
-            border-bottom: none;
-        }
-
-        .userMenuTable tr:last-child td {
-            border-bottom: 3px solid rgb(248, 211, 28);
-        }
-
-        .userMenuTable tr td:first-child {
-            border-left: 0;
-        }
-
-        .userMenuTable tr td:last-child {
-            border-right: 0;
-        }
-
-        .userMenuSelect {
-            text-decoration: none;
-            /*color: rgb(248, 211, 28);*/
-            color: white;
-            border: none;
-            background: no-repeat;
-            cursor: pointer;
-            font-size: 25px;
-        }
-
-        .userMenu #logout {
-            position: relative;
-            left: 200px;
-            top: 50px;
-        }
-
-        .userMenu #logout:hover {
-            color: rgb(248, 211, 28);
-        }
 
         .alarmConfirm {
             background: no-repeat;
@@ -334,29 +267,6 @@
             text-align: center;
             width: 100px;
         }
-
-        #wishList2, #wishList{
-            width: 130px;
-            height: 60px;
-        }
-
-        .wishImg #wishList2 {
-            display: none
-        }
-
-        .wishImg:hover #wishList {
-            display: none
-        }
-
-        .wishImg:hover #wishList2 {
-            cursor: pointer;
-            display: inline-block
-        }
-
-        .wishImg{
-            top: 10px;
-        }
-
         .alarmCircle {
             position: relative;
             top: -45px;
@@ -388,6 +298,36 @@
         	width : 30px;
         	height : 30px;
         }
+        .menubtn{
+        	width: 180px;
+            height: 50px;
+            border: none;
+            color: rgb(248, 211, 28);
+            text-align: center;
+            background-color: black;
+            border-top: 1px solid rgb(248, 211, 28);
+            font-size: 25px;
+            cursor : pointer;
+        }
+        #adminmenutb{
+        }
+        .Logout{
+	        padding: 2px;
+	        background-color: #F8D31C;
+	        border: none;
+	        border-radius: 4px;
+	        color: black;
+	        font-family:'NEXON Lv1 Gothic OTF';
+	        font-size: 15px;
+	        cursor: pointer;
+	        margin: 20px 2px;
+        }
+        #menues{
+        	position : absolute;
+        	right : 2px;
+        	display: none;
+        	z-index: 5;
+        }
     </style>
 </head>
 <body>
@@ -413,30 +353,30 @@
 			</div>
 			<div class="modalfilter">
 				<span>개봉일자</span><br>
-				<input type="date"> - <input type="date">
+				<input type="date" name="startdate"> - <input type="date" name="enddate">
 			</div>
 			<div class="modalfilter">
 				<span>평점</span><br>
-				<select name="" id="">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6</option>
-                    <option value="">7</option>
-                    <option value="">8</option>
-                    <option value="">9</option>
-                </select> - <select name="" id="">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
-                    <option value="">6</option>
-                    <option value="">7</option>
-                    <option value="">8</option>
-                    <option value="">9</option>
+				<select name="startgrade" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select> - <select name="endgrade" id="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
                 </select>
 			</div>
 			<div class="modalfilter">
@@ -500,30 +440,55 @@
         </div>
         <div class="userBtn" id="user">
             <img id="userBtnImg" src="../img/user.png">
-            <div class="userMenu">
-                <div class="wishImg">
-                    <img src="../img/wish(black).png" id="wishList">
-                    <img src="../img/wish(yellow).png" id="wishList2">
-                </div>
-
-                <!--            <table class="userMenuTable">-->
-                <!--                <tr>-->
-                <!--                    <td class="userMenuSelect" id="userMenu1">-->
-                <!--                        찜-->
-                <!--                    </td>-->
-                <!--                </tr>-->
-                <!--                <tr>-->
-                <!--                    <td class="userMenuSelect" id="userMenu2">-->
-                <!--                        시청기록-->
-                <!--                    </td>-->
-                <!--                </tr>-->
-                <!--                <tr>-->
-                <!--                    <td class="userMenuSelect" id="userMenu3">-->
-                <!--                        정보수정-->
-                <!--                    </td>-->
-                <!--                </tr>-->
-                <!--            </table>-->
-                <!--            <input type="button" class="userMenuSelect" id="logout" value="로그아웃">-->
+            <div id="menues">
+	            <div id="usermenu">
+	            	<table id="usermenutb">
+	                    <tr>
+	                    	<td colspan="3" style="text-align: left">
+	                    		<input type="button" value="찜" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
+	                    	</td>
+	                    </tr>
+	                    <tr>
+		                    <td colspan="3" style="text-align: left">
+		                        <input type="button" value="시청기록" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
+    	                    </td>
+	                    </tr>
+	                    <tr>
+	                        <td colspan="3" style="text-align: left">
+	                            <input type="button" value="정보수정" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
+                            </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="Btn"colspan="3" style="text-align: right;">
+	                            <input type="button" value="로그아웃" class="Logout">
+	                        </td>
+	                    </tr>
+                </table>
+	            </div>
+    	        <div id="adminmenu">
+    	        	<table id="adminmenutb">
+	                    <tr>
+	        	            <td colspan="3" style="text-align: left">
+			                    <input type="button" value="회원리스트" class="menubtn" onclick="location.href='../admin/adminmypage.jsp'">    
+		                    </td>
+	                    </tr>
+	                    <tr>
+	            	        <td colspan="3" style="text-align: left">
+	                	        <input type="button" value="신고리스트" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">    
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td colspan="3" style="text-align: left">
+	                            <input type="button" value="금지어" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">    
+                            </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="Btn"colspan="3" style="text-align: right;">
+	                        	<input type="button" value="로그아웃" class="Logout">
+	                        </td>
+	                    </tr>
+                	</table>
+    	        </div>
             </div>
         </div>
 
