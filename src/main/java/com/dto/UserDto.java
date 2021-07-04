@@ -1,6 +1,6 @@
 package com.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class UserDto {
 	private int UserNum;
@@ -16,10 +16,6 @@ public class UserDto {
 	private String Status;
 	private String Grade;
 	private Date UserDate;
-	
-	public UserDto() {
-		super();
-	}
 	
 	public UserDto(int userNum, String iD, String pW, String email, String phone, String name, Date birth,
 			String gender, String nickName, String imgURL, String status, String grade, Date userDate) {
