@@ -2,9 +2,7 @@
 package com.dto;
 
 public class PlatformCodeDto {
-	
-	// Test
-	
+
 	private String PFCode;
 	private String PFName;
 	private String PFAddr;

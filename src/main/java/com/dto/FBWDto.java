@@ -1,9 +1,7 @@
 package com.dto;
 
 public class FBWDto {
-	
-	// Test
-	
+
 	private String FBWords;
 	private String Reason;
 	
