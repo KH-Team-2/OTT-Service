@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@page import="java.util.List" %>
+<%@page import="com.dto.UserDto" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +11,7 @@
     <script>
         $(function () {
             $("#headers").load("../header.jsp");
+            
         });
     </script>
     <style>
@@ -95,7 +98,7 @@
         <table id="menuTable">
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="$('#iframe_in').attr('src','User_Info.jsp')">
+                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="$('#iframe_in').attr('src','User_Info.jsp'); location.href='admin.do?command=userlist'">
                 </td>
             </tr>
             <tr>
