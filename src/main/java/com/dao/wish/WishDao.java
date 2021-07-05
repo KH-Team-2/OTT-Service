@@ -6,7 +6,7 @@ import java.util.List;
 import com.dto.WishListDto;
 
 public interface WishDao {
-	String WishAddSQL = " INSERT INTO SP_WISHLIST VALUES(SAMPLE_WISH_SQ, ?, ?, SYSDATE, ?)";
+	String WishAddSQL = " INSERT INTO SP_WISHLIST VALUES(SAMPLE_WISH_SQ.NEXTVAL, ?, ?, SYSDATE, ?)";
 	String WishListSQL = " SELECT * FROM SP_WISHLIST WHERE USERNUM=? ORDER BY WISHDATE DESC ";
 	String WishDeleteSQL = " DELETE FROM SP_WISHLIST WHERE USERNUM=? AND MOVIENUM=? ";
 	
