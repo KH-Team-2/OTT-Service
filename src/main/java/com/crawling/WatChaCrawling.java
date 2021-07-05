@@ -93,10 +93,11 @@ public class WatChaCrawling extends JDBCTemplate {
 //        여러 영상을 가져와야 하기 때문에 List에 모든 css-bh4lon을 담는다.
         List<WebElement> mouseImg = driver.findElements(By.className("e1q5rx9q0"));
         try {
-//                시간 딜레이(3초)
+//                시간 딜레이(1초)
             Thread.sleep(1000);
         } catch (InterruptedException e) {
         }
+//        마우스를 맨 처음 div태그로 올린다.
         actions.moveToElement(mouseImg.get(0)).build().perform();
 
 
@@ -239,9 +240,11 @@ public class WatChaCrawling extends JDBCTemplate {
             }
         }
 
+//        영화 정보를 집어 넣는다.
         int result = insertMovie(connection, list);
         if (result > 0) {
             System.out.println("Contents에 저장");
+//            영화 정보가 정상적으로 저장 됐을 때 플랫폼 테이블에도 저장한다.
             boolean res = insertPlatform(connection);
             if (res) {
                 System.out.println("Platform 저장");
@@ -250,6 +253,8 @@ public class WatChaCrawling extends JDBCTemplate {
                 rollback(connection);
             }
         }
+//        크롤링을 해서 가져오기 때문에 중북되는 값이 있을 수 있다.
+//        그 중복되는 값들을 모두 삭제한다.
         boolean delres = overlap(connection);
         if (delres) {
             System.out.println("중복 제거 완료");
@@ -278,7 +283,7 @@ public class WatChaCrawling extends JDBCTemplate {
     private int insertMovie(Connection connection, List<WatchaDto> list) {
         PreparedStatement preparedStatement = null;
         String insertSql = " INSERT INTO SP_CONTENTS VALUES" +
-                " (SAMPLE_MOVIE_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? ) ";
+                " (SAMPLE_MOVIE_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? ) ";
 
 
         int res = 0;
@@ -294,9 +299,10 @@ public class WatChaCrawling extends JDBCTemplate {
                 preparedStatement.setString(3, dto.getDirector());
                 preparedStatement.setString(4, dto.getActor());
                 preparedStatement.setDouble(5, dto.getRate());
-                preparedStatement.setString(6, dto.getSummary());
-                preparedStatement.setString(7, "https://watcha.com/search?q=" + dto.getTitle());
-                preparedStatement.setString(8, dto.getMovieimg());
+                preparedStatement.setString(6, dto.getGenre());
+                preparedStatement.setString(7, dto.getSummary());
+                preparedStatement.setString(8, "https://watcha.com/search?q=" + dto.getTitle());
+                preparedStatement.setString(9, dto.getMovieimg());
 
                 preparedStatement.addBatch();
 
