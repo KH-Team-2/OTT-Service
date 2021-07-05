@@ -14,4 +14,5 @@ public interface AdminBizImpl {
 	public List<FBWDto> AdminFBWView();
 	public boolean AddFBW(FBWDto dto);
 	public boolean DeleteFBW(String FBWords);
+	public UserDto UserSelect(int UserNum);
 }

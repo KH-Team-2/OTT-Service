@@ -81,4 +81,11 @@ public class AdminBiz implements AdminBizImpl{
 		return res;
 	}
 
+	@Override
+	public UserDto UserSelect(int UserNum) {
+		Connection con = getConnection();
+		UserDto dto = dao.UserSelect(UserNum, con);
+		return dto;
+	}
+
 }

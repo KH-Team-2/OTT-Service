@@ -15,4 +15,5 @@ public interface AdminDaoImpl {
 	public List<FBWDto> AdminFBWView(Connection con);
 	public boolean AddFBW(FBWDto dto, Connection con);
 	public boolean DeleteFBW(String FBWords, Connection con);
+	public UserDto UserSelect(int UserNum, Connection con);
 }
