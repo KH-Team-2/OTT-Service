@@ -17,10 +17,12 @@ public class UserDto {
 	private String Grade;
 	private Date UserDate;
 	
+
 	
 	public UserDto() {
 		super();
 	}
+
 	public UserDto(int userNum, String iD, String pW, String email, String phone, String name, Date birth,
 			String gender, String nickName, String imgURL, String status, String grade, Date userDate) {
 		super();
