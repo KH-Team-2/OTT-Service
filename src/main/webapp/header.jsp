@@ -469,7 +469,7 @@
     	        	<table id="adminmenutb">
 	                    <tr>
 	        	            <td colspan="3" style="text-align: left">
-			                    <input type="button" value="회원리스트" class="menubtn" onclick="location.href='../admin/adminmypage.jsp'">    
+			                    <input type="button" value="회원리스트" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">    
 		                    </td>
 	                    </tr>
 	                    <tr>

@@ -53,7 +53,7 @@ public class AdminDao implements AdminDaoImpl{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<UserDto> list = new ArrayList<UserDto>();
-		String sql = "SELECT * FROM USERTB";
+		String sql = "SELECT * FROM SP_USERTB";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -92,7 +92,7 @@ public class AdminDao implements AdminDaoImpl{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<UserDto> list = new ArrayList<UserDto>();
-		String sql = "SELECT * FROM USERTB WHERE ID LIKE %?% OR NAME LIKE %?% OR NICKNAME LIKE %?%";
+		String sql = "SELECT * FROM SP_USERTB WHERE ID LIKE %?% OR NAME LIKE %?% OR NICKNAME LIKE %?%";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class AdminDao implements AdminDaoImpl{
 		PreparedStatement pstm = null;
 		int res = 0;
 		boolean result = true;
-		String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?,IMGURL=?,STATUS=?,GRADE=?,USERDATE=? WHERE USERNUM=?";
+		String sql = "UPDATE SP_USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?,IMGURL=?,STATUS=?,GRADE=?,USERDATE=? WHERE USERNUM=?";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, dto.getID());
@@ -173,7 +173,7 @@ public class AdminDao implements AdminDaoImpl{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<FBWDto> list = new ArrayList<FBWDto>();
-		String sql = "SELECT * FROM FORBIDDENWORD";
+		String sql = "SELECT * FROM SP_FORBIDDENWORD";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -202,7 +202,7 @@ public class AdminDao implements AdminDaoImpl{
 		PreparedStatement pstm = null;
 		int res = 0;
 		boolean result = true;
-		String sql = "INSERT INTO FORBIDDENWORD VALUES(?,?)";
+		String sql = "INSERT INTO SP_FORBIDDENWORD VALUES(?,?)";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -230,7 +230,7 @@ public class AdminDao implements AdminDaoImpl{
 		PreparedStatement pstm = null;
 		int res = 0;
 		boolean result = true;
-		String sql = "DELETE FROM FORBIDDENWORD WHERE FBWORDS = ?";
+		String sql = "DELETE FROM SP_FORBIDDENWORD WHERE FBWORDS = ?";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -251,6 +251,43 @@ public class AdminDao implements AdminDaoImpl{
 		
 		
 		return result;
+	}
+
+	@Override
+	public UserDto UserSelect(int UserNum, Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		UserDto dto = new UserDto();
+		String sql = "SELECT * FROM SP_USERTB WHERE USERNUM=?";
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, UserNum);
+			
+			rs = pstm.executeQuery();
+			if(rs.next()) {
+				dto.setUserNum(rs.getInt(1));
+				dto.setID(rs.getString(2));
+				dto.setPW(rs.getString(3));
+				dto.setEmail(rs.getString(4));
+				dto.setPhone(rs.getString(5));
+				dto.setName(rs.getString(6));
+				dto.setBirth(rs.getDate(7));
+				dto.setGender(rs.getString(8));
+				dto.setNickName(rs.getString(9));
+				dto.setImgURL(rs.getString(10));
+				dto.setStatus(rs.getString(11));
+				dto.setGrade(rs.getString(12));
+				dto.setUserDate(rs.getDate(13));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstm);
+		}
+		
+		return dto;
 	}
 
 	
