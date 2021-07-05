@@ -33,7 +33,6 @@ public class JDBCTemplate {
         return connection;
     }
 
-    //    close()
     public static void close(Connection connection) {
         try {
             connection.close();
@@ -66,7 +65,6 @@ public class JDBCTemplate {
         }
     }
 
-    //    commit, rollback
     public static void commit(Connection connection) {
         try {
             connection.commit();
