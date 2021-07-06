@@ -8,7 +8,7 @@
     <title>Main</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-            $("#headers").load("../header.jsp");
+            $("#headers").load("../index_header.jsp");
     </script>
     <style>
         body {
@@ -56,7 +56,7 @@
             transform: scale(1.2);
             transition: 0.8s;
             z-index: 100;
-            cursor: pointer;
+            cursor: pointee
         }
 
     </style>

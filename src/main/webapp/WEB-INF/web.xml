@@ -9,12 +9,12 @@
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>adminServlet</servlet-name>
-        <servlet-class>com.controller.adminServlet</servlet-class>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.controller.AdminServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>adminServlet</servlet-name>
+        <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin.do</url-pattern>
     </servlet-mapping>
     
