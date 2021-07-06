@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wj
-  Date: 2021/06/28
-  Time: 4:38 오후
-  To change this template use File | Settings | File Templates.
---%>
 <%@ include file="../header.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -16,7 +9,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(function () {
-      $("#headers").load("header.html");
+      $("#headers").load("header.jsp");
     });
   </script>
   <style>
