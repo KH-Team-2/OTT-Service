@@ -10,7 +10,7 @@
 
     <servlet>
         <servlet-name>adminServlet</servlet-name>
-        <servlet-class>com.controller.adminServlet</servlet-class>
+        <servlet-class>com.controller.AdminServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
