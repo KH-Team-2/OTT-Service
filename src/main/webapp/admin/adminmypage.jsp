@@ -115,7 +115,7 @@
         <input type="button" class="menuSelect" id="logout" value="로그아웃">
     </div>
     <div id="iframe">
-        <iframe id="iframe_in" src="admin/User_Info.jsp" title="Manager_Contents" frameborder=0 style="width:850px; height:750px;"></iframe>
+        <iframe id="iframe_in" src="admin.do?command=User_Info" title="Manager_Contents" frameborder=0 style="width:850px; height:750px;"></iframe>
     </div>
 </div>
 </body>

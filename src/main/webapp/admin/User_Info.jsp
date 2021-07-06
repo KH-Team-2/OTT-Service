@@ -132,6 +132,7 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
+					<jsp:useBean id="list" scope="request" type="java.util.List"/>
 					<c:forEach items="${list }" var="dto">
 						<tr>
 							<td>${dto.userNum }</td>
