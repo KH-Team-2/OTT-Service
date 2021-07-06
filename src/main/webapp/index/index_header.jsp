@@ -72,7 +72,7 @@
 			});
 			
 			$("#logo").click(function(){
-				location.href="index.jsp";
+				location.href="../index/index.jsp";
 			});
 			$("#user").hover(function(){
 				$("#menues").show('fast');
