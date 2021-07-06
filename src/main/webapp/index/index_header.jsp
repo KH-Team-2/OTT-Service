@@ -333,7 +333,7 @@
 <body>
 <form action="../search/Search.jsp" method="post">
     <div id="headpart">
-        <div id="logo" class="logoBtn">로고이미지</div>
+        <div id="logo" class="logoBtn">로고이미지2</div>
         <div id="search">
             <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳">
             <button type="submit" name="searchBtn" id="searchBtn" class="searchBtn">
