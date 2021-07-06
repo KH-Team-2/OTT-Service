@@ -7,7 +7,7 @@ import com.dto.UserDto;
 
 public interface UserDao {
 	
-	String CreateAccountSQL = " INSERT INTO SP_USERTB VALUES(SAMPLE_USER_SQ,?,?,?,?,?,?,?,?,?,Y,?,SYSDATE ) ";
+	String CreateAccountSQL = " INSERT INTO SP_USERTB VALUES(SAMPLE_USER_SQ.NEXTVAL,?,?,?,?,?,?,?,?,?,Y,?,SYSDATE ) ";
 	String LoginSQL = " SELECT * FROM SP_USERTB WHERE ID=? AND PW=? AND STATUS=Y ";
 	String UpdateInfoSQL = " UPDATE SP_USERTB SET PW=?, PHONE=?, EMAIL=?, GENDER=?, NICKNAME=?, IMGURL=? WHERE USERNUM=? ";
 	String SearchIDSQL = " SELECT * FROM SP_USERTB WHERE NAME=? AND EMAIL=? AND PHONE=? ";

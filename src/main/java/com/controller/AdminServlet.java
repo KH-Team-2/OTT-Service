@@ -1,11 +1,18 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.biz.admin.AdminBiz;
+import com.biz.admin.AdminBizImpl;
+import com.dto.UserDto;
 
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
@@ -20,7 +27,12 @@ public class AdminServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		String command = request.getParameter("command");
 		System.out.println("command="+command);
+		AdminBiz biz = new AdminBiz();
 		if(command.equals("userlist")) {
+			List<UserDto> list = biz.AdminUserView();
+			request.setAttribute("list", list);
+			RequestDispatcher dispatch = request.getRequestDispatcher("admin/adminmypage.jsp");
+			dispatch.forward(request, response);
 		}
 	}
 

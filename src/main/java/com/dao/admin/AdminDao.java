@@ -57,8 +57,9 @@ public class AdminDao implements AdminDaoImpl{
 		
 		try {
 			pstm = con.prepareStatement(sql);
+			System.out.println("query 준비" + sql);
 			rs = pstm.executeQuery();
-			
+			System.out.println("query 실행 및 리턴");
 			while(rs.next()) {
 				UserDto dto = new UserDto();
 				dto.setUserNum(rs.getInt(1));
