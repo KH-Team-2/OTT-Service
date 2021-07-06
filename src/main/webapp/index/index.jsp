@@ -8,7 +8,7 @@
     <title>Main</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-            $("#headers").load("../index_header.jsp");
+            $("#headers").load("index_header.jsp");
     </script>
     <style>
         body {
