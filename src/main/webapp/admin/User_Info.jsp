@@ -3,7 +3,7 @@
     
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset:UTF-8"); %>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html><html>
 
 <head>
@@ -125,87 +125,25 @@
 				<th>이름</th>
 				<th>성별</th>
 			</tr>
-			
-			<tr>
-				<td>1</td>
-				<td>rlfehd045</td>
-				<td>동에번쩍서에번쩍</td>
-				<td>홍길동</td>
-				<td>남자</td>
-			</tr>
-			
-			<tr>
-				<td>2</td>
-				<td>dhgkgkgk111</td>
-				<td>파란 장미 </td>
-				<td>아이유</td>
-				<td>여자</td>
-			</tr>
-			
-			<tr>
-				<td>3</td>
-				<td>rose123</td>
-				<td>빨간 장미</td>
-				<td>어른유</td>
-				<td>여자</td>
-			</tr>
-			
-			<tr>
-				<td>4</td>
-				<td>white_gold</td>
-				<td>하양이</td>
-				<td>마동석</td>
-				<td>남자</td>
-			</tr>
-			
-			<tr>
-				<td>5</td>
-				<td>rlfehd045</td>
-				<td>동에번쩍서에번쩍</td>
-				<td>홍길동</td>
-				<td>남자</td>
-			</tr>
-			
-			<tr>
-				<td>6</td>
-				<td>dhgkgkgk111</td>
-				<td>파란 장미 </td>
-				<td>아이유</td>
-				<td>여자</td>
-			</tr>
-			
-			<tr>
-				<td>7</td>
-				<td>rose123</td>
-				<td>빨간 장미</td>
-				<td>어른유</td>
-				<td>여자</td>
-			</tr>
-			
-			<tr>
-				<td>8</td>
-				<td>white_gold</td>
-				<td>하양이</td>
-				<td>마동석</td>
-				<td>남자</td>
-			</tr>
-			
-			<tr>
-				<td>9</td>
-				<td>rose123</td>
-				<td>빨간 장미</td>
-				<td>어른유</td>
-				<td>여자</td>
-			</tr>
-			
-			<tr>
-				<td>10</td>
-				<td>white_gold</td>
-				<td>하양이</td>
-				<td>마동석</td>
-				<td>남자</td>
-			</tr>
-			
+			<c:choose>
+				<c:when test="${empty list }">
+					<tr>
+						<td colspan="5">등록된 회원이 없습니다</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<tr>
+							<td>${dto.UserNum }</td>
+							<td>${dto.ID }</td>
+							<td>${dto.NickName }</td>
+							<td>${dto.Name }</td>
+							<td>${dto.Gender }</td>
+							<td><button value="수정" onclick="location.href='/admin.do?command=adminupdate&UserNum=${dto.UserNum}'"></button></td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 	</table>
 	
 	<br><br>

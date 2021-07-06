@@ -7,4 +7,14 @@
     <welcome-file-list>
         <welcome-file>index/index.jsp</welcome-file>
     </welcome-file-list>
+
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.controller.AdminServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin.do</url-pattern>
+    </servlet-mapping>
 </web-app>

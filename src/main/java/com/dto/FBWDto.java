@@ -1,12 +1,14 @@
 package com.dto;
 
 public class FBWDto {
-	
-	// Test
-	
+
 	private String FBWords;
 	private String Reason;
 	
+	
+	public FBWDto() {
+		super();
+	}
 	public FBWDto(String fBWords, String reason) {
 		super();
 		FBWords = fBWords;

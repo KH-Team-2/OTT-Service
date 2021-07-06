@@ -129,6 +129,16 @@
 		    $(".chk").change(function() {
 		        if( !$(this).is(":checked") ){ $("#allchk").prop("checked",false ); }
 		    });
+		    
+		    $(".alarm > img").click(function(){
+                $(this).attr("src", function(index, attr){
+                    if(attr.match("alarm.png")){
+                        return attr.replace("alarm.png","alarm(yellow).png");
+                    } else {
+                        return attr.replace("alarm(yellow).png","alarm.png");
+                    }
+                })
+            });
 		   
 		});
 	
