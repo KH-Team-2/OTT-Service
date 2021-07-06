@@ -9,15 +9,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dto.AlarmDto;
+import com.dto.UserDto;
 import com.dto.WishListDto;
 
 public class AlarmDaoImpl {
 	
-	public List<AlarmDto> AlarmLoading(Connection con) {
+	public List<UserDto> AlarmLoading(Connection con) {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		List<AlarmDto> list = new ArrayList<AlarmDto>();
+		List<UserDto> list = new ArrayList<UserDto>();
 		String sql = "SELECT * FROM Notification";
 		
 		try {
@@ -25,14 +25,21 @@ public class AlarmDaoImpl {
 			rs = pstm.executeQuery();
 			
 			while(rs.next()) {
-				AlarmDto dto = new AlarmDto();
-				dto.setAlarmNum(rs.getInt(1));
-				dto.setUserNum(rs.getInt(2));
-				dto.setContent(rs.getString(3));
-				dto.setStatus(rs.getString(4));
-				dto.setRegDate(rs.getDate(5));
+				UserDto dto = new UserDto();
+				dto.setUserNum(rs.getInt(1));
+				dto.setID(rs.getString(2));
+				dto.setPW(rs.getString(3));
+				dto.setEmail(rs.getString(4));
+				dto.setPhone(rs.getString(5));
+				dto.setBirth(rs.getDate(6));
+				dto.setGender(rs.getString(7));
+				dto.setNickName(rs.getString(8));
+				dto.setImgURL(rs.getString(9));
+				dto.setStatus(rs.getString(10));
+				dto.setGrade(rs.getString(11));
+				dto.setUserDate(rs.getDate(12));
 				
-				list.add(dto);
+			
 			}
 			}catch (SQLException e) {
 				e.printStackTrace();
@@ -48,7 +55,7 @@ public class AlarmDaoImpl {
 public void AlarmSwitch(Connection con, WishListDto dto) {
 	PreparedStatement pstm = null;
 
-	String sql = "UPDATE WishList SET Alarm=?";
+	String sql = "UPDATE SP_WISHLIST SET ALARM = CASE WHEN ALARM='Y' THEN 'N' WHEN ALARM='Y' THEM 'N' WHERE USERNUM=? AND MOVIENUM=?;";
 
 	int res = 0;
 

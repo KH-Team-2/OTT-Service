@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.dao.alarm.AlarmDao;
 import com.dto.AlarmDto;
+import com.dto.UserDto;
 
 public class AlarmBizImpl implements AlarmBiz{
 
@@ -19,9 +20,9 @@ public class AlarmBizImpl implements AlarmBiz{
 	}
 
 	@Override
-	public List<AlarmDto> AlarmLoading() {
+	public List<UserDto> AlarmLoading() {
 		Connection con = getConnection();
-		List<AlarmDto> list = dao.AlarmList(dto, con);
+		List<UserDto> list = AlarmDao.alarmloading(con);
 		
 		
 		close(con);
