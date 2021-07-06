@@ -98,7 +98,7 @@
         <table id="menuTable">
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="location.href='../admin.do'">
+                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="$('#iframe_in').attr('src','admin.do?command=User_Info')">
                 </td>
             </tr>
             <tr>
