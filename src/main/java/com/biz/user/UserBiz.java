@@ -9,5 +9,5 @@ public interface UserBiz {
 	public String SearchID(String name, String email, String phone);
 	public String SearchPW(String ID, String name, String email, String code);
 	public void SendEmailCode(String ID, String name, String email);
-	
+	public boolean UserDel(int usernum);
 }

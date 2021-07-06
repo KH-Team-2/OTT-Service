@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+
 <%@page import="java.util.List" %>
 <%@page import="com.dto.UserDto" %>
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE html><html lang="en">
+
 <head>
     <title>관리자페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
