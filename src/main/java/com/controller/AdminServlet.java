@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.biz.admin.AdminBizImpl;
+import com.dto.DecrationDto;
+import com.dto.FBWDto;
 import com.dto.UserDto;
 
 @WebServlet("/AdminServlet")
@@ -51,7 +53,16 @@ public class AdminServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String gender = request.getParameter("sex");
 			String nickname = request.getParameter("nickname");
-			
+		} else if(command.equals("DecrationList")) {
+			List<DecrationDto> list = biz.AdminDeclarationView();
+			request.setAttribute("list", list);
+			RequestDispatcher dispatch = request.getRequestDispatcher("admin/Decration.jsp");
+			dispatch.forward(request, response);
+		} else if(command.equals("FBWList")) {
+			List<FBWDto> list = biz.AdminFBWView();
+			request.setAttribute("list", list);
+			RequestDispatcher dispatch = request.getRequestDispatcher("admin/Ban_Word.jsp");
+			dispatch.forward(request, response);
 		}
 	}
 

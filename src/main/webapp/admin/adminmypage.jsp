@@ -103,12 +103,12 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin/Decration.jsp')">
+                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin.do?command=DecrationList')">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_3" value="금지어" onclick="$('#iframe_in').attr('src','admin/Ban_Word.jsp')">
+                    <input type="button" class="menuSelect" id="menu_3" value="금지어" onclick="$('#iframe_in').attr('src','admin.do?command=FBWList')">
                 </td>
             </tr>
         </table>

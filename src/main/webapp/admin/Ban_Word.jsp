@@ -3,7 +3,7 @@
     
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset:UTF-8"); %>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html><html>
 
 <head>
@@ -126,6 +126,15 @@
         	font-family:'NEXON Lv1 Gothic OTF';
         	font-weight:bold;
         }
+         #deletebtn{
+        	color:black;
+            background-color:white;
+            border-color:white;
+            
+            border-radius: 10px;
+            font-family:'NEXON Lv1 Gothic OTF';
+            font-weight:bold;
+            padding: 1px 12px;
         
 	</style>
 	
@@ -160,77 +169,24 @@
 				<th>사유</th>
 				<th>삭제</th>
 			</tr>
-			
-			<tr>
-				<td>1</td>
-				<td>게시판</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>2</td>
-				<td>신발</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>3</td>
-				<td>볍씨</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>4</td>
-				<td>M E</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>5</td>
-				<td>게시판</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>6</td>
-				<td>신발</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>7</td>
-				<td>볍씨</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>8</td>
-				<td>M E</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>9</td>
-				<td>게시판</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>10</td>
-				<td>신발</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
+			<c:choose>
+				<c:when test="${empty list }">
+					<tr>
+						<td colspan="4">등록된 금지어가 없습니다</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<tr>
+							<td>123</td>
+							<td>${dto.FBWords }</td>
+							<td>${dto.reason }</td>
+							<td><button id="deletebtn">삭제</button></td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+						
 		</table>
 		
 	

@@ -78,7 +78,7 @@
 </head>
 <body>
 <div>
-	<form action="admin.do" method="post">
+	<form action="admin.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="usernum" value="${dto.userNum }">
 		<input type="hidden" name="command" value="userUpdateform">
     <table>
