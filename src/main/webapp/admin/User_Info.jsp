@@ -4,6 +4,8 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset:UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List" %>
+<%@page import="com.dto.UserDto" %>
 <!DOCTYPE html><html>
 
 <head>
@@ -100,11 +102,9 @@
         td { background-color:white; color:white;  background-color:black; padding:15px; }
             
 	</style>
-	
 </head>
 
 <body>
-
 	<div id="search_area">
 
 		<form action="search_user.jsp" method="post">
@@ -134,12 +134,12 @@
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
 						<tr>
-							<td>${dto.UserNum }</td>
+							<td>${dto.userNum }</td>
 							<td>${dto.ID }</td>
-							<td>${dto.NickName }</td>
-							<td>${dto.Name }</td>
-							<td>${dto.Gender }</td>
-							<td><button value="수정" onclick="location.href='/admin.do?command=adminupdate&UserNum=${dto.UserNum}'"></button></td>
+							<td>${dto.nickName }</td>
+							<td>${dto.name }</td>
+							<td>${dto.gender }</td>
+							<td><button value="수정" onclick="location.href='/admin.do?command=adminupdate&UserNum=${dto.userNum}'"></button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
