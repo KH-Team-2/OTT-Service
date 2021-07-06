@@ -132,14 +132,15 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
+					<jsp:useBean id="list" scope="request" type="java.util.List"/>
 					<c:forEach items="${list }" var="dto">
 						<tr>
-							<td>${dto.UserNum }</td>
+							<td>${dto.userNum }</td>
 							<td>${dto.ID }</td>
-							<td>${dto.NickName }</td>
-							<td>${dto.Name }</td>
-							<td>${dto.Gender }</td>
-							<td><button value="수정" onclick="location.href='/admin.do?command=adminupdate&UserNum=${dto.UserNum}'"></button></td>
+							<td>${dto.nickName }</td>
+							<td>${dto.name }</td>
+							<td>${dto.gender }</td>
+							<td><button value="수정" onclick="location.href='/admin.do?command=adminupdate&UserNum=${dto.userNum}'"></button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
