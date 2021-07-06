@@ -7,9 +7,6 @@
 <head>
     <title>Main</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-            $("#headers").load("header.jsp");
-    </script>
     <style>
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
