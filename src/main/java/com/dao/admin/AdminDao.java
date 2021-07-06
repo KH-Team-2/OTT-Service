@@ -291,8 +291,32 @@ public class AdminDao implements AdminDaoImpl{
 		return dto;
 	}
 
-	
-	
+	@Override
+	public boolean UserSecession (int UserNum, Connection con) {
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		boolean result = true;
+		String sql = "DELETE FROM SP_USERTB WHERE ID = ?";
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, UserNum);
+			
+			res = pstm.executeUpdate();
+			
+			if(res>0) {
+				result=true;
+			}else {
+				result = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+		}	
+		return result;
+	}
 	
 	
 	

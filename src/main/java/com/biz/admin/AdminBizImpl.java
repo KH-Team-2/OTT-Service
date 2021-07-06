@@ -15,4 +15,5 @@ public interface AdminBizImpl {
 	public boolean AddFBW(FBWDto dto);
 	public boolean DeleteFBW(String FBWords);
 	public UserDto UserSelect(int UserNum);
+	public boolean UserSecession(int UserNum);
 }

@@ -9,8 +9,11 @@ import com.dao.admin.AdminDao;
 import com.dto.FBWDto;
 import com.dto.ReviewDto;
 import com.dto.UserDto;
+
 public class AdminBiz implements AdminBizImpl{
+	
 	AdminDao dao = new AdminDao();
+	
 	@Override
 	public List<ReviewDto> AdminDeclarationView() {
 		Connection con = getConnection();
@@ -87,5 +90,18 @@ public class AdminBiz implements AdminBizImpl{
 		UserDto dto = dao.UserSelect(UserNum, con);
 		return dto;
 	}
-
+	
+	@Override
+	public boolean UserSecession ( int UserNum ) {
+		Connection con = getConnection();
+		boolean res = dao.UserSecession(UserNum, con);
+		if(res) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		return res;
+	}
+	
 }

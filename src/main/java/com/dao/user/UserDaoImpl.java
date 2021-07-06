@@ -186,9 +186,30 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public void SendEmailCode(String ID, String name, String email, Connection con) {
 		//aaa
-		
-		
-		
 	}
-
+	
+	@Override
+	public boolean UserDel ( int usernum, Connection con ) {
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(UserDelSQL);
+			pstm.setInt(1, usernum);
+			System.out.println("03. query 준비: "+UserDelSQL);
+			
+			res = pstm.executeUpdate();
+			System.out.println("04. query 실행 및 리턴");
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return (res>0)?true:false;
+	}
 }

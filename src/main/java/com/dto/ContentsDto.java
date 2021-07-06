@@ -1,33 +1,41 @@
 package com.dto;
 
+import java.util.Date;
+
 public class ContentsDto {
-	private int MoivceNum;
+	
+	private int MovieNum;
 	private String Title;
-	private String Year;
+	private String OpenYear;
 	private String Director;
 	private String Actor;
 	private Double Rate;
-	private String Plaform;
 	private String Summary;
+	private String MovieAddr;
+	private Date UpdateYear;
+	private String MovieImg;
 	
-	public ContentsDto(int moivceNum, String title, String year, String director, String actor, Double rate,
-			String plaform, String summary) {
+	public ContentsDto(int movieNum, String title, String openYear, String director, String actor, Double rate,
+			String summary, String movieAddr, Date updateYear, String movieImg) {
 		super();
-		MoivceNum = moivceNum;
+		MovieNum = movieNum;
 		Title = title;
-		Year = year;
+		OpenYear = openYear;
 		Director = director;
 		Actor = actor;
 		Rate = rate;
-		Plaform = plaform;
 		Summary = summary;
-	}
-	public int getMoivceNum() {
-		return MoivceNum;
+		MovieAddr = movieAddr;
+		UpdateYear = updateYear;
+		MovieImg = movieImg;
 	}
 
-	public void setMoivceNum(int moivceNum) {
-		MoivceNum = moivceNum;
+	public int getMovieNum() {
+		return MovieNum;
+	}
+
+	public void setMovieNum(int movieNum) {
+		MovieNum = movieNum;
 	}
 
 	public String getTitle() {
@@ -38,12 +46,12 @@ public class ContentsDto {
 		Title = title;
 	}
 
-	public String getYear() {
-		return Year;
+	public String getOpenYear() {
+		return OpenYear;
 	}
 
-	public void setYear(String year) {
-		Year = year;
+	public void setOpenYear(String openYear) {
+		OpenYear = openYear;
 	}
 
 	public String getDirector() {
@@ -70,14 +78,6 @@ public class ContentsDto {
 		Rate = rate;
 	}
 
-	public String getPlaform() {
-		return Plaform;
-	}
-
-	public void setPlaform(String plaform) {
-		Plaform = plaform;
-	}
-
 	public String getSummary() {
 		return Summary;
 	}
@@ -86,4 +86,27 @@ public class ContentsDto {
 		Summary = summary;
 	}
 
+	public String getMovieAddr() {
+		return MovieAddr;
+	}
+
+	public void setMovieAddr(String movieAddr) {
+		MovieAddr = movieAddr;
+	}
+
+	public Date getUpdateYear() {
+		return UpdateYear;
+	}
+
+	public void setUpdateYear(Date updateYear) {
+		UpdateYear = updateYear;
+	}
+
+	public String getMovieImg() {
+		return MovieImg;
+	}
+
+	public void setMovieImg(String movieImg) {
+		MovieImg = movieImg;
+	}
 }
