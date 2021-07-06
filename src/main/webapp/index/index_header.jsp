@@ -8,10 +8,18 @@
     <title>head</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+        var alarmCheck_Count = 0;
         var alarmBtn_Count = 0;
         var userBtn_Count = 0;
-		var menues_count = 0;
+        var menues_count = 0;
         $(function () {
+            today = new Date();
+            console.log("today.toISOString() >>>" + today.toISOString());
+            today = today.toISOString().slice(0, 10);
+            console.log("today >>>> " + today);
+            bir = document.getElementById("enddate");
+            bir.value = today;
+
             $('.userAlarmTable tr:odd').find('td:last-child').css('border-bottom', '1px solid rgb(248, 211, 28')
 
             $('.alarmBtn').hover(function () {
@@ -38,51 +46,67 @@
             });
 
             $('.alarmConfirm').prop('disabled', true);
-            
-            $("#filter").hover(function(){
-            	$("#modal").show('fast');
-            },function(){
-            	$("#modal").hide('fast');
+
+            $("#filter").hover(function () {
+                $("#modal").show('fast');
+            }, function () {
+                $("#modal").hide('fast');
             });
-            
-            $("#modalalarm").click(function(){
-            	if($("#modalalarm").css("border")=="0px none rgb(248, 211, 28)"){
-	            	$("#modalalarm").css("border","1px solid rgb(248, 211, 28)");
-            	}else{
-            		$("#modalalarm").css("border","none");
-            	}
+
+            /*$("#modalalarm").click(function () {
+                if ($("#modalalarm").css("border") == "0px none rgb(248, 211, 28)") {
+                    $("#modalalarm").css("border", "1px solid rgb(248, 211, 28)");
+                    $('#modalalarm2').css('border', 'none');
+                    $('#alarm1').val('Y');
+                    $('#alarm2').val('N');
+                    console.log($('#alarm1').val());
+                    console.log($('#alarm2').val());
+                } else {
+                    $("#modalalarm").css("border", "none");
+                    $('#alarm1').val('N');
+                    console.log($('#alarm1').val());
+                    console.log($('#alarm2').val());
+                }
             });
-            $("#modalalarm2").click(function(){
-            	if($("#modalalarm2").css("border")=="0px none rgb(248, 211, 28)"){
-	            	$("#modalalarm2").css("border","1px solid rgb(248, 211, 28)");
-            	}else{
-            		$("#modalalarm2").css("border","none");
-            	}
+            $("#modalalarm2").click(function () {
+                if ($("#modalalarm2").css("border") == "0px none rgb(248, 211, 28)") {
+                    $("#modalalarm2").css("border", "1px solid rgb(248, 211, 28)");
+                    $('#modalalarm').css('border', 'none');
+                    $('#alarm2').val('Y');
+                    $('#alarm1').val('N');
+                    console.log($('#alarm1').val());
+                    console.log($('#alarm2').val());
+                } else {
+                    $("#modalalarm2").css("border", "none");
+                    $('#alarm2').val('N');
+                    console.log($('#alarm1').val());
+                    console.log($('#alarm2').val());
+                }
+            });*/
+            $("#userBtnImg").click(function () {
+                if (confirm("임시 확인창 입니다. \n확인 : 로그인 창 / 취소 : 개별 페이지 창")) {
+                    location.href = "../user/login.jsp";
+                } else {
+                    if (confirm("임시 확인창 입니다. \n확인 : 회원 페이지 / 취소 : 어드민 페이지")) {
+                        location.href = "../user/mypage.jsp";
+                    } else {
+                        location.href = "../admin/adminmypage.jsp";
+                    }
+                }
             });
-			$("#userBtnImg").click(function(){
-				if(confirm("임시 확인창 입니다. \n확인 : 로그인 창 / 취소 : 개별 페이지 창")){
-					location.href="../user/login.jsp";
-				}else{
-					if(confirm("임시 확인창 입니다. \n확인 : 회원 페이지 / 취소 : 어드민 페이지")){
-						location.href="../user/mypage.jsp";
-					}else{
-						location.href="../admin/adminmypage.jsp";
-					}
-				}
-			});
-			
-			$("#logo").click(function(){
-				location.href="../index/index.jsp";
-			});
-			$("#user").hover(function(){
-				$("#menues").show('fast');
-			},function(){
-				$("#menues").hide('fast');
-			});
-			
+
+            $("#logo").click(function () {
+                location.href = "../index/index.jsp";
+            });
+            $("#user").hover(function () {
+                $("#menues").show('fast');
+            }, function () {
+                $("#menues").hide('fast');
+            });
+
         });
     </script>
-    
+
     <style type="text/css">
         @font-face {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -90,6 +114,7 @@
             font-weight: normal;
             font-style: normal;
         }
+
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
             background: black;
@@ -209,6 +234,7 @@
             height: 40px;
             cursor: pointer;
         }
+
         .userAlarm {
             position: absolute;
             /*border-bottom: 3px rgb(248, 211, 28) solid;*/
@@ -267,6 +293,7 @@
             text-align: center;
             width: 100px;
         }
+
         .alarmCircle {
             position: relative;
             top: -45px;
@@ -277,29 +304,36 @@
             border-radius: 50%;
             display: none;
         }
-		 #modal{
-        	position: absolute;
-        	top: 50px;
-        	display : none;
-        	border : 1px solid rgb(248, 211, 28);
-        	text-align: center;
-        	font-size : 16px;
-			background :  rgb(5, 5,5);
+
+        #modal {
+            position: absolute;
+            top: 50px;
+            display: none;
+            border: 1px solid rgb(248, 211, 28);
+            text-align: center;
+            font-size: 16px;
+            background: rgb(5, 5, 5);
         }
-        .modalfilter{
-        	margin-top:10px;
-        	margin-bottom: 10px;
+
+        .modalfilter {
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
-        #modalalarm{
-        	width : 30px;
-        	height: 30px;
+
+        /*#modalalarm {
+            width: 30px;
+            height: 30px;
         }
-        #modalalarm2{
-        	width : 30px;
-        	height : 30px;
-        }
-        .menubtn{
-        	width: 180px;
+
+        #modalalarm2 {
+            !*background: url("../img/alarm.png") no-repeat;*!
+
+            width: 30px;
+            height: 30px;
+        }*/
+
+        .menubtn {
+            width: 180px;
             height: 50px;
             border: none;
             color: rgb(248, 211, 28);
@@ -307,26 +341,29 @@
             background-color: black;
             border-top: 1px solid rgb(248, 211, 28);
             font-size: 25px;
-            cursor : pointer;
+            cursor: pointer;
         }
-        #adminmenutb{
+
+        #adminmenutb {
         }
-        .Logout{
-	        padding: 2px;
-	        background-color: #F8D31C;
-	        border: none;
-	        border-radius: 4px;
-	        color: black;
-	        font-family:'NEXON Lv1 Gothic OTF';
-	        font-size: 15px;
-	        cursor: pointer;
-	        margin: 20px 2px;
+
+        .Logout {
+            padding: 2px;
+            background-color: #F8D31C;
+            border: none;
+            border-radius: 4px;
+            color: black;
+            font-family: 'NEXON Lv1 Gothic OTF';
+            font-size: 15px;
+            cursor: pointer;
+            margin: 20px 2px;
         }
-        #menues{
-        	position : absolute;
-        	right : 2px;
-        	display: none;
-        	z-index: 5;
+
+        #menues {
+            position: absolute;
+            right: 2px;
+            display: none;
+            z-index: 5;
         }
     </style>
 </head>
@@ -342,31 +379,35 @@
         </div>
         <div id="filter" class="filterBtn">
             <img id="filterBtnImg" src="../img/filter.png">
-             <div id="modal">
-			<div class="modalfilter">
-				<span>알람</span><br>
-				<div id="modalalarmimg">
-					<img src="../img/alarm.png" id="modalalarm">
-					<img src="../img/alarm2.png" id="modalalarm2">
-				</div>
-			</div>
-			<div class="modalfilter">
-				<span>개봉일자</span><br>
-				<input type="date" name="startdate"> - <input type="date" name="enddate">
-			</div>
-			<div class="modalfilter">
-				<span>평점</span><br>
-				<select name="startgrade" id="">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select> - <select name="endgrade" id="">
+            <div id="modal">
+                <div class="modalfilter">
+                    <%--<span>알람</span><br>
+                    <div id="modalalarmimg">
+                        <img src="../img/alarm.png" id="modalalarm">
+                        <input type="hidden" name="alarm1" id="alarm1">
+                        <img src="../img/alarm2.png" id="modalalarm2">
+                        <input type="hidden" name="alarm2" id="alarm2">
+                    </div>--%>
+                </div>
+                <div class="modalfilter">
+                    <span>개봉일자</span><br>
+                    <input type="date" name="startdate" value="1900-01-01"> - <input type="date" name="enddate" id="enddate">
+                </div>
+                <div class="modalfilter">
+                    <span>평점</span><br>
+                    <select name="startgrade" id="">
+                        <option value="none">--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select> - <select name="endgrade" id="">
+                    <option value="none">--</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -377,10 +418,11 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-			</div>
-			<div class="modalfilter">
-				<span>장르</span><br>
-				<select name="genre" id="">
+                </div>
+                <div class="modalfilter">
+                    <span>장르</span><br>
+                    <select name="genre" id="">
+                        <option value="none">--</option>
                         <option value="">스릴러</option>
                         <option value="">코미디</option>
                         <option value="">SF</option>
@@ -389,9 +431,9 @@
                         <option value="">음악</option>
                         <option value="">스포츠</option>
                         <option value="">멜로</option>
-                </select>
-			</div>
-        </div>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="alarmBtn" id="alarm">
             <img src="../img/alarm.png" id="alarmBtn">
@@ -406,7 +448,8 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="../img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn"
+                                                              src="../img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -424,7 +467,8 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="../img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn"
+                                                              src="../img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -440,54 +484,60 @@
         <div class="userBtn" id="user">
             <img id="userBtnImg" src="../img/user.png">
             <div id="menues">
-	            <div id="usermenu">
-	            	<table id="usermenutb">
-	                    <tr>
-	                    	<td colspan="3" style="text-align: left">
-	                    		<input type="button" value="찜" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
-	                    	</td>
-	                    </tr>
-	                    <tr>
-		                    <td colspan="3" style="text-align: left">
-		                        <input type="button" value="시청기록" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
-    	                    </td>
-	                    </tr>
-	                    <tr>
-	                        <td colspan="3" style="text-align: left">
-	                            <input type="button" value="정보수정" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
+                <div id="usermenu">
+                    <table id="usermenutb">
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="찜" class="menubtn"
+                                       onclick="location.href='../user/mypage.jsp'">
                             </td>
-	                    </tr>
-	                    <tr>
-	                        <td class="Btn"colspan="3" style="text-align: right;">
-	                            <input type="button" value="로그아웃" class="Logout">
-	                        </td>
-	                    </tr>
-                </table>
-	            </div>
-    	        <div id="adminmenu">
-    	        	<table id="adminmenutb">
-	                    <tr>
-	        	            <td colspan="3" style="text-align: left">
-			                    <input type="button" value="회원리스트" class="menubtn" onclick="location.href='../admin.do?command=userlist'">    
-		                    </td>
-	                    </tr>
-	                    <tr>
-	            	        <td colspan="3" style="text-align: left">
-	                	        <input type="button" value="신고리스트" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">    
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td colspan="3" style="text-align: left">
-	                            <input type="button" value="금지어" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">    
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="시청기록" class="menubtn"
+                                       onclick="location.href='../user/mypage.jsp'">
                             </td>
-	                    </tr>
-	                    <tr>
-	                        <td class="Btn"colspan="3" style="text-align: right;">
-	                        	<input type="button" value="로그아웃" class="Logout">
-	                        </td>
-	                    </tr>
-                	</table>
-    	        </div>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="정보수정" class="menubtn"
+                                       onclick="location.href='../user/mypage.jsp'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Btn" colspan="3" style="text-align: right;">
+                                <input type="button" value="로그아웃" class="Logout">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="adminmenu">
+                    <table id="adminmenutb">
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="회원리스트" class="menubtn"
+                                       onclick="location.href='../admin.do?command=userlist'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="신고리스트" class="menubtn"
+                                       onclick="location.href='../user/adminmypage.jsp'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="금지어" class="menubtn"
+                                       onclick="location.href='../user/adminmypage.jsp'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="Btn" colspan="3" style="text-align: right;">
+                                <input type="button" value="로그아웃" class="Logout">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
 

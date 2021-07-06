@@ -169,6 +169,7 @@
 				<th>사유</th>
 				<th>삭제</th>
 			</tr>
+<<<<<<< HEAD
 			<c:choose>
 				<c:when test="${empty list }">
 					<tr>
@@ -187,6 +188,79 @@
 				</c:otherwise>
 			</c:choose>
 						
+=======
+			
+			<tr>
+				<td>1</td>
+				<td>게시판</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>2</td>
+				<td>신발</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>3</td>
+				<td>볍씨</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>4</td>
+				<td>M E</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>5</td>
+				<td>게시판</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>6</td>
+				<td>신발</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>7</td>
+				<td>볍씨</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>8</td>
+				<td>M E</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>9</td>
+				<td>게시판</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+			<tr>
+				<td>10</td>
+				<td>신발</td>
+				<td>비속어</td>
+				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
+			</tr>
+			
+>>>>>>> f7744698d79173c269721a89ee1900af346aaa32
 		</table>
 		
 	

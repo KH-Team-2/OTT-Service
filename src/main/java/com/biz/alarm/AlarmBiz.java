@@ -3,9 +3,9 @@
 
 		import java.util.List;
 
-		import com.dto.AlarmDto;
+import com.dto.UserDto;
 
 		public interface AlarmBiz {
 			public void AlarmSwitch(int num);
-			public List<AlarmDto> AlarmLoading();
+			public List<UserDto> AlarmLoading();
 		}

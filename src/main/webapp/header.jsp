@@ -12,6 +12,13 @@
         var userBtn_Count = 0;
 		var menues_count = 0;
         $(function () {
+            today = new Date();
+            console.log("today.toISOString() >>>" + today.toISOString());
+            today = today.toISOString().slice(0, 10);
+            console.log("today >>>> " + today);
+            bir = document.getElementById("enddate");
+            bir.value = today;
+
             $('.userAlarmTable tr:odd').find('td:last-child').css('border-bottom', '1px solid rgb(248, 211, 28')
 
             $('.alarmBtn').hover(function () {
@@ -38,14 +45,14 @@
             });
 
             $('.alarmConfirm').prop('disabled', true);
-            
+
             $("#filter").hover(function(){
             	$("#modal").show('fast');
             },function(){
             	$("#modal").hide('fast');
             });
-            
-            $("#modalalarm").click(function(){
+
+            /*$("#modalalarm").click(function(){
             	if($("#modalalarm").css("border")=="0px none rgb(248, 211, 28)"){
 	            	$("#modalalarm").css("border","1px solid rgb(248, 211, 28)");
             	}else{
@@ -58,7 +65,7 @@
             	}else{
             		$("#modalalarm2").css("border","none");
             	}
-            });
+            });*/
 			$("#userBtnImg").click(function(){
 				if(confirm("임시 확인창 입니다. \n확인 : 로그인 창 / 취소 : 개별 페이지 창")){
 					location.href="../user/login.jsp";
@@ -70,7 +77,7 @@
 					}
 				}
 			});
-			
+
 			$("#logo").click(function(){
 				location.href="../index/index.jsp";
 			});
@@ -79,10 +86,10 @@
 			},function(){
 				$("#menues").hide('fast');
 			});
-			
+
         });
     </script>
-    
+
     <style type="text/css">
         @font-face {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -290,14 +297,14 @@
         	margin-top:10px;
         	margin-bottom: 10px;
         }
-        #modalalarm{
+        /*#modalalarm{
         	width : 30px;
         	height: 30px;
         }
         #modalalarm2{
         	width : 30px;
         	height : 30px;
-        }
+        }*/
         .menubtn{
         	width: 180px;
             height: 50px;
@@ -345,16 +352,16 @@
             <img id="filterBtnImg" src="img/filter.png">
              <div id="modal">
 			<div class="modalfilter">
-				<span>알람</span><br>
+				<%--<span>알람</span><br>
 				<div id="modalalarmimg">
 					<img src="img/alarm.png" id="modalalarm">
 					<img src="img/alarm2.png" id="modalalarm2">
-				</div>
+				</div>--%>
 			</div>
 			<div class="modalfilter">
 				<span>개봉일자</span><br>
-				<input type="date" name="startdate"> - <input type="date" name="enddate">
-			</div>
+                <input type="date" name="startdate" value="1900-01-01"> - <input type="date" name="enddate" id="enddate">
+            </div>
 			<div class="modalfilter">
 				<span>평점</span><br>
 				<select name="startgrade" id="">
@@ -445,17 +452,17 @@
 	            	<table id="usermenutb">
 	                    <tr>
 	                    	<td colspan="3" style="text-align: left">
-	                    		<input type="button" value="찜" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
+	                    		<input type="button" value="찜" class="menubtn" onclick="location.href='../user/mypage.jsp'">
 	                    	</td>
 	                    </tr>
 	                    <tr>
 		                    <td colspan="3" style="text-align: left">
-		                        <input type="button" value="시청기록" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
+		                        <input type="button" value="시청기록" class="menubtn" onclick="location.href='../user/mypage.jsp'">
     	                    </td>
 	                    </tr>
 	                    <tr>
 	                        <td colspan="3" style="text-align: left">
-	                            <input type="button" value="정보수정" class="menubtn" onclick="location.href='../user/mypage.jsp'">    
+	                            <input type="button" value="정보수정" class="menubtn" onclick="location.href='../user/mypage.jsp'">
                             </td>
 	                    </tr>
 	                    <tr>
@@ -469,17 +476,17 @@
     	        	<table id="adminmenutb">
 	                    <tr>
 	        	            <td colspan="3" style="text-align: left">
-			                    <input type="button" value="회원리스트" class="menubtn" onclick="location.href='../admin.do?command=userlist'">    
+			                    <input type="button" value="회원리스트" class="menubtn" onclick="location.href='../admin.do?command=userlist'">
 		                    </td>
 	                    </tr>
 	                    <tr>
 	            	        <td colspan="3" style="text-align: left">
-	                	        <input type="button" value="신고리스트" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">    
+	                	        <input type="button" value="신고리스트" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">
 	                        </td>
 	                    </tr>
 	                    <tr>
 	                        <td colspan="3" style="text-align: left">
-	                            <input type="button" value="금지어" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">    
+	                            <input type="button" value="금지어" class="menubtn" onclick="location.href='../user/adminmypage.jsp'">
                             </td>
 	                    </tr>
 	                    <tr>

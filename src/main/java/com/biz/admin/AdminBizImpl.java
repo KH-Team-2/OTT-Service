@@ -8,12 +8,16 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
+import com.dao.admin.AdminDao;
 import com.dao.admin.AdminDaoImpl;
 import com.dto.DecrationDto;
 import com.dto.FBWDto;
 import com.dto.UserDto;
+
 public class AdminBizImpl implements AdminBiz{
-	AdminDaoImpl dao = new AdminDaoImpl();
+	
+	private AdminDao dao = new AdminDaoImpl();
+	
 	@Override
 	public List<DecrationDto> AdminDeclarationView() {
 		Connection con = getConnection();
@@ -104,5 +108,4 @@ public class AdminBizImpl implements AdminBiz{
 	      
 	      return res;
 	}
-
 }

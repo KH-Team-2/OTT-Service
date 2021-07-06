@@ -2,10 +2,10 @@ package com.dao.alarm;
 
 import java.sql.Connection;
 import java.util.List;
-import com.dto.AlarmDto;
+import com.dto.UserDto;
 	
 public interface AlarmDao {
 	public void AlarmSwitch(Connection con, int alarm);
-	public List<AlarmDto> AlarmLoading(Connection con,AlarmDto dto);
+	public List<UserDto> AlarmLoading(Connection con,UserDto dto);
 
 }

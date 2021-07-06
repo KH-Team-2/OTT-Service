@@ -8,7 +8,12 @@ import com.dto.FBWDto;
 import com.dto.UserDto;
 
 public interface AdminDao {
+<<<<<<< HEAD
 	public List<DecrationDto> AdminDeclarationView(Connection con);
+=======
+	
+	public List<ReviewDto> AdminDeclarationView(Connection con);
+>>>>>>> f7744698d79173c269721a89ee1900af346aaa32
 	public List<UserDto> AdminUserView(Connection con);
 	public List<UserDto> AdminUserSearch(String info, Connection con);
 	public boolean AdminUpdateInfo(UserDto dto, Connection con);
@@ -17,4 +22,5 @@ public interface AdminDao {
 	public boolean DeleteFBW(String FBWords, Connection con);
 	public UserDto UserSelect(int UserNum, Connection con);
 	public boolean UserSecession(int UserNum, Connection con);
+
 }

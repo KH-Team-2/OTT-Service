@@ -13,7 +13,12 @@ import com.dto.DecrationDto;
 import com.dto.FBWDto;
 import com.dto.ReviewDto;
 import com.dto.UserDto;
+<<<<<<< HEAD
 public class AdminDaoImpl implements AdminDao{
+=======
+
+public class AdminDaoImpl implements AdminDao {
+>>>>>>> f7744698d79173c269721a89ee1900af346aaa32
 
 	@Override
 	public List<DecrationDto> AdminDeclarationView(Connection con) {
@@ -314,11 +319,4 @@ public class AdminDaoImpl implements AdminDao{
 	      return result;
 
 	}
-
-	
-	
-	
-	
-	
-	
 }
