@@ -84,9 +84,20 @@ public class UserBizImpl implements UserBiz{
 	public void SendEmailCode(String ID, String name, String email) {
 		
 		
+		// 이후 추가
 		
 		
+	}
+	
+	@Override
+	public boolean UserDel(int usernum) {
+		Connection con = getConnection();
 		
+		boolean res = dao.UserDel(usernum, con);
+		
+		close(con);
+		
+		return res;
 	}
 
 }

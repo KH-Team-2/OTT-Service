@@ -3,7 +3,6 @@ package com.biz.review;
 import java.util.List;
 
 import com.dto.ReviewDto;
-import com.dto.UserDto;
 
 public interface ReviewBiz {
 	

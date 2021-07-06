@@ -78,8 +78,8 @@
 </head>
 <body>
 <div>
-	<form action="" method="post">
-		<input type="hidden" name="usernum" value="${dto.UserNum }">
+	<form action="admin.do" method="post">
+		<input type="hidden" name="usernum" value="${dto.userNum }">
 		<input type="hidden" name="command" value="userUpdateform">
     <table>
         <tr>
@@ -92,27 +92,27 @@
         </tr>
         <tr>
             <td>이름</td>
-            <td><input type="text" name="name" value="${dto.Name }"></td>
+            <td><input type="text" name="name" value="${dto.name }"></td>
         </tr>
         <tr>
             <td>생년월일</td>
-            <td><input type="date" name="birth" value="${dto.Birth }"></td>
+            <td><input type="date" name="birth" value="${dto.birth }"></td>
         </tr>
         <tr>
             <td>휴대전화</td>
-            <td><input type="text" name="phone" value="${dto.Phone }"></td>
+            <td><input type="text" name="phone" value="${dto.phone }"></td>
         </tr>
         <tr>
             <td>EMAIL</td>
-            <td><input type="text" name="email" value="${dto.Email }"></td>
+            <td><input type="text" name="email" value="${dto.email }"></td>
         </tr>
         <tr>
             <td>성별</td>
-            <td><input type="radio" name="sex" value="남">남 <input type="radio" name="sex" value="여">여</td>
+            <td><input type="radio" name="sex" value="M">남 <input type="radio" name="sex" value="F">여</td>
         </tr>
         <tr>
             <td>닉네임</td>
-            <td><input type="text" name="nickname" value="${dto.NickName }"></td>
+            <td><input type="text" name="nickname" value="${dto.nickName }"></td>
         </tr>
         <tr>
             <td>프로필 사진</td>
@@ -122,10 +122,10 @@
         </tr>
         <tr>
             <td>
-                <input type="button" value="회원탈퇴" onclick="">
+                <input type="button" value="회원추방" onclick="">
             </td>
             <td style="text-align:right">
-                <input type="submit" value="완료"> <input type="button" value="취소" onclick="location.href='admin.do?command=userlist'">
+                <input type="submit" value="완료"> <input type="button" value="취소" onclick="location.href='admin.do?command=User_Info'">
             </td>
         </tr>
     </table>

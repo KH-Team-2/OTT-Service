@@ -6,7 +6,6 @@ import java.util.List;
 import com.dao.review.ReviewDao;
 import com.dao.review.ReviewDaoImpl;
 import com.dto.ReviewDto;
-import com.dto.UserDto;
 
 import static common.JDBCTemplate.*;
 

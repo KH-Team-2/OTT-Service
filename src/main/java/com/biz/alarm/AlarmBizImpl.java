@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.biz.alarm;
 
 
@@ -30,3 +31,5 @@ public class AlarmBizImpl implements AlarmBiz{
 	}
 	
 }
+=======
+>>>>>>> fa4189d58eea6de74884f79ddc4c74f46aa3869a
