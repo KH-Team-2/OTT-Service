@@ -1,100 +1,100 @@
 package com.dto;
 
 public class WatchaDto {
-    private int movienum;
-    private String title;
-    private String year;
-    private String director;
-    private String actor;
-    private double rate;
-    private String genre;
-    private String summary;
-    private String movieimg;
+    private int MovieNum;
+    private String Title;
+    private String Year;
+    private String Director;
+    private String Actor;
+    private double Rate;
+    private String Genre;
+    private String Summary;
+    private String MovieImg;
 
     public WatchaDto() {
     }
 
-    public WatchaDto(int movienum, String title, String year, String director, String actor, double rate, String genre, String summary, String movieimg) {
-        this.movienum = movienum;
-        this.title = title;
-        this.year = year;
-        this.director = director;
-        this.actor = actor;
-        this.rate = rate;
-        this.genre = genre;
-        this.summary = summary;
-        this.movieimg = movieimg;
+    public WatchaDto(int movieNum, String title, String year, String director, String actor, double rate, String genre, String summary, String movieImg) {
+        MovieNum = movieNum;
+        Title = title;
+        Year = year;
+        Director = director;
+        Actor = actor;
+        Rate = rate;
+        Genre = genre;
+        Summary = summary;
+        MovieImg = movieImg;
     }
 
-    public int getMovienum() {
-        return movienum;
+    public int getMovieNum() {
+        return MovieNum;
     }
 
-    public void setMovienum(int movienum) {
-        this.movienum = movienum;
+    public void setMovieNum(int movieNum) {
+        MovieNum = movieNum;
     }
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        Title = title;
     }
 
     public String getYear() {
-        return year;
+        return Year;
     }
 
     public void setYear(String year) {
-        this.year = year;
+        Year = year;
     }
 
     public String getDirector() {
-        return director;
+        return Director;
     }
 
     public void setDirector(String director) {
-        this.director = director;
+        Director = director;
     }
 
     public String getActor() {
-        return actor;
+        return Actor;
     }
 
     public void setActor(String actor) {
-        this.actor = actor;
+        Actor = actor;
     }
 
     public double getRate() {
-        return rate;
+        return Rate;
     }
 
     public void setRate(double rate) {
-        this.rate = rate;
+        Rate = rate;
     }
 
     public String getGenre() {
-        return genre;
+        return Genre;
     }
 
     public void setGenre(String genre) {
-        this.genre = genre;
+        Genre = genre;
     }
 
     public String getSummary() {
-        return summary;
+        return Summary;
     }
 
     public void setSummary(String summary) {
-        this.summary = summary;
+        Summary = summary;
     }
 
-    public String getMovieimg() {
-        return movieimg;
+    public String getMovieImg() {
+        return MovieImg;
     }
 
-    public void setMovieimg(String movieimg) {
-        this.movieimg = movieimg;
+    public void setMovieImg(String movieImg) {
+        MovieImg = movieImg;
     }
 }

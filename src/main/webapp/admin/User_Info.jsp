@@ -4,6 +4,8 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset:UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List" %>
+<%@page import="com.dto.UserDto" %>
 <!DOCTYPE html><html>
 
 <head>
@@ -98,13 +100,20 @@
         }
         th { background-color:#A3A3A3; color:black;  padding:5px; }
         td { background-color:white; color:white;  background-color:black; padding:15px; }
+        #updatebtn{
+        	color:black;
+            background-color:white;
+            border-color:white;
             
+            border-radius: 10px;
+            font-family:'NEXON Lv1 Gothic OTF';
+            font-weight:bold;
+            padding: 1px 12px;
+        }
 	</style>
-	
 </head>
 
 <body>
-
 	<div id="search_area">
 
 		<form action="search_user.jsp" method="post">
@@ -124,6 +133,7 @@
 				<th>닉네임</th>
 				<th>이름</th>
 				<th>성별</th>
+				<th></th>
 			</tr>
 			<c:choose>
 				<c:when test="${empty list }">
@@ -132,14 +142,15 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
+					<jsp:useBean id="list" scope="request" type="java.util.List"/>
 					<c:forEach items="${list }" var="dto">
 						<tr>
-							<td>${dto.UserNum }</td>
+							<td>${dto.userNum }</td>
 							<td>${dto.ID }</td>
-							<td>${dto.NickName }</td>
-							<td>${dto.Name }</td>
-							<td>${dto.Gender }</td>
-							<td><button value="수정" onclick="location.href='/admin.do?command=adminupdate&UserNum=${dto.UserNum}'"></button></td>
+							<td>${dto.nickName }</td>
+							<td>${dto.name }</td>
+							<td>${dto.gender }</td>
+							<td><button id="updatebtn"onclick="location.href='admin.do?command=adminupdate&UserNum=${dto.userNum}'">수정</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

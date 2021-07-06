@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+
 <%@page import="java.util.List" %>
 <%@page import="com.dto.UserDto" %>
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE html><html lang="en">
+
 <head>
     <title>관리자페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -98,7 +101,7 @@
         <table id="menuTable">
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="$('#iframe_in').attr('src','../admin.do')">
+                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="$('#iframe_in').attr('src','admin.do?command=User_Info')">
                 </td>
             </tr>
             <tr>
@@ -115,7 +118,7 @@
         <input type="button" class="menuSelect" id="logout" value="로그아웃">
     </div>
     <div id="iframe">
-        <iframe id="iframe_in" src="admin/User_Info.jsp" title="Manager_Contents" frameborder=0 style="width:850px; height:750px;"></iframe>
+        <iframe id="iframe_in" src="admin.do?command=User_Info" title="Manager_Contents" frameborder=0 style="width:850px; height:750px;"></iframe>
     </div>
 </div>
 </body>
