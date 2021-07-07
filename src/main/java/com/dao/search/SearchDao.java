@@ -1,12 +1,10 @@
 package com.dao.search;
 
+import com.dto.ContentsDto;
+
 import java.sql.Connection;
 import java.util.List;
 
-import com.dto.ContentsDto;
-
 public interface SearchDao {
-	
-	public List<ContentsDto> SearchList ( Connection con, String searchname );
-
+    List<ContentsDto> SearchList(Connection con, String searchBar, String startdate, String enddate, double startgrade, double endgrade, String genre);
 }

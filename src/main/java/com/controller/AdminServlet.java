@@ -55,7 +55,7 @@ public class AdminServlet extends HttpServlet {
 				dispatch.forward(request, response);
 				break;
 			}
-			case "userUpdateform":{
+			case "userUpdateform": {
 				int userNum = Integer.parseInt(request.getParameter("usernum"));
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
