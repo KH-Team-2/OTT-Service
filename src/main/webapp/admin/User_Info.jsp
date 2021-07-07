@@ -150,7 +150,7 @@
 							<td>${dto.nickName }</td>
 							<td>${dto.name }</td>
 							<td>${dto.gender }</td>
-							<td><button id="updatebtn"onclick="location.href='admin.do?command=adminupdate&UserNum=${dto.userNum}'">수정</button></td>
+							<td><button id="updatebtn" onclick="location.href='admin.do?command=adminupdate&UserNum=${dto.userNum}'">수정</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

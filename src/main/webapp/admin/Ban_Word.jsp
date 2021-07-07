@@ -181,7 +181,7 @@
 							<td>123</td>
 							<td>${dto.FBWords }</td>
 							<td>${dto.reason }</td>
-							<td><button id="deletebtn">삭제</button></td>
+							<td><button id="deletebtn" onclick="location.href='admin.do?command=FBWorddelete&FBWords=${dto.FBWords}'">삭제</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

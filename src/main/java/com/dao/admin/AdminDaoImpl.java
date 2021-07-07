@@ -50,7 +50,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<UserDto> list = new ArrayList<UserDto>();
-		String sql = "SELECT * FROM SP_USERTB";
+		String sql = "SELECT * FROM SP_USERTB WHERE STATUS='Y'";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -293,11 +293,12 @@ public class AdminDaoImpl implements AdminDao{
 		 PreparedStatement pstm = null;
 	      int res = 0;
 	      boolean result = true;
-	      String sql = "DELETE FROM SP_USERTB WHERE ID = ?";
+	      String sql = "UPDATE SP_USERTB SET STATUS=? WHERE USERNUM=?";
 	      
 	      try {
 	         pstm = con.prepareStatement(sql);
-	         pstm.setInt(1, UserNum);
+	         pstm.setString(1, "N");
+	         pstm.setInt(2, UserNum);
 	         
 	         res = pstm.executeUpdate();
 	         

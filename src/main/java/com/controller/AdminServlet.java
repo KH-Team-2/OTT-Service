@@ -1,9 +1,8 @@
 package com.controller;
 
-import com.biz.admin.AdminBizImpl;
-import com.dto.UserDto;
-import com.dto.DecrationDto;
-import com.dto.FBWDto;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
+
+import com.biz.admin.AdminBizImpl;
+import com.dto.DecrationDto;
+import com.dto.FBWDto;
+import com.dto.UserDto;
 
 
 
@@ -31,7 +33,7 @@ public class AdminServlet extends HttpServlet {
 		System.out.println("command="+command);
 		AdminBizImpl biz = new AdminBizImpl();
 		switch (command) {
-			case "userlist": {
+			case "adminlist": {
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/adminmypage.jsp");
 				dispatch.forward(request, response);
 				break;
@@ -51,7 +53,7 @@ public class AdminServlet extends HttpServlet {
 				dispatch.forward(request, response);
 				break;
 			}
-			case "userUpdateform":
+			case "userUpdateform":{
 				int userNum = Integer.parseInt(request.getParameter("usernum"));
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
@@ -62,6 +64,7 @@ public class AdminServlet extends HttpServlet {
 				String gender = request.getParameter("sex");
 				String nickname = request.getParameter("nickname");
 				break;
+			}
 			case "DecrationList": {
 				List<DecrationDto> list = biz.AdminDeclarationView();
 				request.setAttribute("list", list);
@@ -75,6 +78,29 @@ public class AdminServlet extends HttpServlet {
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/Ban_Word.jsp");
 				dispatch.forward(request, response);
 				break;
+			}
+			case "userSecession" : {
+				int usernum = Integer.parseInt(request.getParameter("usernum"));
+				boolean result = biz.UserSecession(usernum);
+				if(result) {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('회원이 추방되었습니다'); location.href='"+"admin.do?command=User_Info';"+"</script>");
+				}else {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=User_Info';"+"</script>");
+				}
+				break;
+			}
+			case "FBWorddelete" : {
+				String fbwords = request.getParameter("FBWords");
+				boolean result = biz.DeleteFBW(fbwords);
+				if(result) {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('금지어가 삭제되었습니다'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+				}else {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+				}
 			}
 		}
 	}

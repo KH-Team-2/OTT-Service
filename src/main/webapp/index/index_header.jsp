@@ -516,19 +516,19 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="회원리스트" class="menubtn"
-                                       onclick="location.href='../admin.do?command=userlist'">
+                                       onclick="location.href='../admin.do?command=adminlist'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="신고리스트" class="menubtn"
-                                       onclick="location.href='../user/adminmypage.jsp'">
+                                       onclick="location.href='../admin.do?command=adminlist'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="금지어" class="menubtn"
-                                       onclick="location.href='../user/adminmypage.jsp'">
+                                       onclick="location.href='../admin.do?command=userlist'">
                             </td>
                         </tr>
                         <tr>
