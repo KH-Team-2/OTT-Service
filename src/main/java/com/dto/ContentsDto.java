@@ -10,20 +10,23 @@ public class ContentsDto {
 	private String Director;
 	private String Actor;
 	private Double Rate;
+	private String Genre;
 	private String Summary;
 	private String MovieAddr;
 	private Date UpdateYear;
 	private String MovieImg;
-	
-	public ContentsDto(int movieNum, String title, String openYear, String director, String actor, Double rate,
-			String summary, String movieAddr, Date updateYear, String movieImg) {
-		super();
+
+	public ContentsDto() {
+	}
+
+	public ContentsDto(int movieNum, String title, String openYear, String director, String actor, Double rate, String genre, String summary, String movieAddr, Date updateYear, String movieImg) {
 		MovieNum = movieNum;
 		Title = title;
 		OpenYear = openYear;
 		Director = director;
 		Actor = actor;
 		Rate = rate;
+		Genre = genre;
 		Summary = summary;
 		MovieAddr = movieAddr;
 		UpdateYear = updateYear;
@@ -76,6 +79,14 @@ public class ContentsDto {
 
 	public void setRate(Double rate) {
 		Rate = rate;
+	}
+
+	public String getGenre() {
+		return Genre;
+	}
+
+	public void setGenre(String genre) {
+		Genre = genre;
 	}
 
 	public String getSummary() {
