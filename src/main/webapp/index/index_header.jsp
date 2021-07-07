@@ -96,7 +96,7 @@
             });
 
             $("#logo").click(function () {
-                location.href = "search.do?command=main";
+                location.href = "../search.do?command=main";
             });
             $("#user").hover(function () {
                 $("#menues").show('fast');

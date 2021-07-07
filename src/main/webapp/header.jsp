@@ -475,6 +475,19 @@
                                        onclick="location.href='../user/mypage.jsp'">
                             </td>
 	                    </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="시청기록" class="menubtn"
+                                       onclick="location.href='../user/mypage.jsp'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="정보수정" class="menubtn"
+                                       onclick="location.href='../user/mypage.jsp'">
+                            </td>
+                        </tr>
+	                    
 	                    <tr>
 	                        <td class="Btn"colspan="3" style="text-align: right;">
 	                            <input type="button" value="로그아웃" class="Logout">
@@ -497,45 +510,6 @@
 	                    <tr>
 	                        <td colspan="3" style="text-align: left">
 	                            <input type="button" value="금지어" class="menubtn" onclick="location.href='admin.do?command=adminlist&page=3'">
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="text-align: left">
-                                <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="text-align: left">
-                                <input type="button" value="정보수정" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Btn" colspan="3" style="text-align: right;">
-                                <input type="button" value="로그아웃" class="Logout">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div id="adminmenu">
-                    <table id="adminmenutb">
-                        <tr>
-                            <td colspan="3" style="text-align: left">
-                                <input type="button" value="회원리스트" class="menubtn"
-                                       onclick="location.href='../admin.do?command=userlist'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="text-align: left">
-                                <input type="button" value="신고리스트" class="menubtn"
-                                       onclick="location.href='../user/adminmypage.jsp'">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="text-align: left">
-                                <input type="button" value="금지어" class="menubtn"
-                                       onclick="location.href='../user/adminmypage.jsp'">
-                            </td>
                         </tr>
                         <tr>
                             <td class="Btn" colspan="3" style="text-align: right;">
