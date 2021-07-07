@@ -34,6 +34,8 @@ public class AdminServlet extends HttpServlet {
 		AdminBizImpl biz = new AdminBizImpl();
 		switch (command) {
 			case "adminlist": {
+				int page = Integer.parseInt(request.getParameter("page"));
+				request.setAttribute("page", page);
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/adminmypage.jsp");
 				dispatch.forward(request, response);
 				break;
