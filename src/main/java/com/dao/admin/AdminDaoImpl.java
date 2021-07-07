@@ -20,7 +20,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<DecrationDto> list = new ArrayList<DecrationDto>();
-		String sql ="SELECT REVIEWNUM,NAME,REVIEWINFO,COUNT FROM SP_REVIEW JOIN SP_USERTB USING(USERNUM) WHERE COUNT>1";
+		String sql ="SELECT REVIEWNUM,NAME,REVIEWINFO,COUNT FROM REVIEW JOIN USERTB USING(USERNUM) WHERE COUNT>1";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -50,7 +50,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<UserDto> list = new ArrayList<UserDto>();
-		String sql = "SELECT * FROM SP_USERTB WHERE STATUS='Y'";
+		String sql = "SELECT * FROM USERTB WHERE STATUS='Y'";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -90,16 +90,16 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<UserDto> list = new ArrayList<UserDto>();
-		String sql = "SELECT * FROM SP_USERTB WHERE ID LIKE %?% OR NAME LIKE %?% OR NICKNAME LIKE %?%";
+		String sql = "SELECT * FROM USERTB WHERE (ID LIKE '%' || ? || '%' OR NAME LIKE '%' || ? || '%' OR NICKNAME LIKE '%' || ? || '%') AND STATUS='Y'";
 		
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, info);
 			pstm.setString(2, info);
 			pstm.setString(3, info);
-			
+			System.out.println("03.query 준비" + sql);
 			rs = pstm.executeQuery();
-			
+			System.out.println("04.query 실행 및 리턴");
 			while(rs.next()) {
 				UserDto dto = new UserDto();
 				
@@ -135,7 +135,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		int res = 0;
 		boolean result = true;
-		String sql = "UPDATE SP_USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?,IMGURL=?,STATUS=?,GRADE=?,USERDATE=? WHERE USERNUM=?";
+		String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?,IMGURL=?,STATUS=?,GRADE=?,USERDATE=? WHERE USERNUM=?";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, dto.getID());
@@ -171,7 +171,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<FBWDto> list = new ArrayList<FBWDto>();
-		String sql = "SELECT * FROM SP_FORBIDDENWORD";
+		String sql = "SELECT * FROM FORBIDDENWORD";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -200,7 +200,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		int res = 0;
 		boolean result = true;
-		String sql = "INSERT INTO SP_FORBIDDENWORD VALUES(?,?)";
+		String sql = "INSERT INTO FORBIDDENWORD VALUES(?,?)";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -228,7 +228,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		int res = 0;
 		boolean result = true;
-		String sql = "DELETE FROM SP_FORBIDDENWORD WHERE FBWORDS = ?";
+		String sql = "DELETE FROM FORBIDDENWORD WHERE FBWORDS = ?";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -256,7 +256,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		UserDto dto = new UserDto();
-		String sql = "SELECT * FROM SP_USERTB WHERE USERNUM=?";
+		String sql = "SELECT * FROM USERTB WHERE USERNUM=?";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -293,7 +293,7 @@ public class AdminDaoImpl implements AdminDao{
 		 PreparedStatement pstm = null;
 	      int res = 0;
 	      boolean result = true;
-	      String sql = "UPDATE SP_USERTB SET STATUS=? WHERE USERNUM=?";
+	      String sql = "UPDATE USERTB SET STATUS=? WHERE USERNUM=?";
 	      
 	      try {
 	         pstm = con.prepareStatement(sql);
@@ -315,4 +315,38 @@ public class AdminDaoImpl implements AdminDao{
 	      return result;
 
 	}
+
+	@Override
+	public boolean DeleteDeclaration(int reviewNum, Connection con) {
+		PreparedStatement pstm = null;
+		boolean result = true;
+		int res = 0;
+		String sql = "DELETE FROM REVIEW WHERE REVIEWNUM=?";
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, reviewNum);
+			
+			res=pstm.executeUpdate();
+			if(res>0) {
+				result = true;
+			}else {
+				result = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

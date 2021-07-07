@@ -107,4 +107,17 @@ public class AdminBizImpl implements AdminBiz{
 	      
 	      return res;
 	}
+
+	@Override
+	public boolean DeleteDeclaration(int reviewNum) {
+		Connection con = getConnection();
+		boolean result = dao.DeleteDeclaration(reviewNum, con);
+		if(result) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 }

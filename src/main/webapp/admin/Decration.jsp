@@ -90,7 +90,7 @@
 							<td>${dto.name }</td>
 							<td>${dto.reviewInfo }</td>
 							<td>${dto.count }</td>
-							<td><img src="img/Yet.png" class="deletebtn" ></td>
+							<td><img src="img/confirm.png" class="deletebtn" onclick="location.href='admin.do?command=deleteDecration&reviewnum=${dto.reviewNum}'"></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

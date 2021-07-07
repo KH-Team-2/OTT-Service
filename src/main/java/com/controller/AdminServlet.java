@@ -101,6 +101,41 @@ public class AdminServlet extends HttpServlet {
 					PrintWriter writer = response.getWriter();
 					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=FBWList';"+"</script>");
 				}
+				break;
+			}
+			case "adminusersearch" : {
+				String info = request.getParameter("info");
+				List<UserDto> list = biz.AdminUserSearch(info);
+				request.setAttribute("list", list);
+				RequestDispatcher dispatch = request.getRequestDispatcher("admin/User_Info.jsp");
+				dispatch.forward(request, response);
+				break;
+			}
+			case "addFBWord" : {
+				String FBWords = request.getParameter("FBWords");
+				String reason = request.getParameter("reason");
+				FBWDto dto = new FBWDto(FBWords,reason);
+				boolean result = biz.AddFBW(dto);
+				if(result) {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('금지어가 추가되었습니다'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+				}else {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+				}
+				break;
+			}
+			case "deleteDecration" : {
+				int reviewnum = Integer.parseInt(request.getParameter("reviewnum"));
+				boolean result = biz.DeleteDeclaration(reviewnum);
+				if(result) {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('확인완료'); location.href='"+"admin.do?command=DecrationList';"+"</script>");
+				}else {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('확인실패'); location.href='"+"admin.do?command=DecrationList';"+"</script>");
+				}
+				break;
 			}
 		}
 	}

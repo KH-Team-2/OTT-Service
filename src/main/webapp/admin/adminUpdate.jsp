@@ -125,7 +125,7 @@
         <tr>
             <td>프로필 사진</td>
             <td>
-            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">
+            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">${dto.imgURL }
             </td>
         </tr>
         <tr>

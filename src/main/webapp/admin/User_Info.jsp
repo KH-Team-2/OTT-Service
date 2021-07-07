@@ -116,9 +116,9 @@
 <body>
 	<div id="search_area">
 
-		<form action="search_user.jsp" method="post">
-			<input type="text" placeholder="  Search !!"> &nbsp;&nbsp;
-			<input type="button" value="검색" class="btn-blue-eft">
+		<form action="admin.do?command=adminusersearch" method="post">
+			<input type="text" placeholder="  Search !!" name="info"> &nbsp;&nbsp;
+			<input type="submit" value="검색" class="btn-blue-eft">
 		</form>
 		
 		<br><br>
