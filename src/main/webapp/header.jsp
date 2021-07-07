@@ -414,7 +414,7 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="../img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
