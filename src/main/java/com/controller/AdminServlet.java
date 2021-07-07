@@ -1,7 +1,7 @@
 package com.controller;
 
-import java.io.IOException;
-import java.util.List;
+import com.biz.admin.AdminBizImpl;
+import com.dto.UserDto;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.biz.admin.AdminBizImpl;
-import com.dto.UserDto;
+import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
@@ -51,7 +50,6 @@ public class AdminServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String gender = request.getParameter("sex");
 			String nickname = request.getParameter("nickname");
-			
 		}
 	}
 

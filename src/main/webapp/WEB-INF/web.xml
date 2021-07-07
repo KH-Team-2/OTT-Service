@@ -17,4 +17,14 @@
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin.do</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.controller.SearchServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search.do</url-pattern>
+    </servlet-mapping>
 </web-app>
