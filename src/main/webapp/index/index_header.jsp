@@ -96,7 +96,7 @@
             });
 
             $("#logo").click(function () {
-                location.href = "../index/index.jsp";
+                location.href = "search.do?command=main";
             });
             $("#user").hover(function () {
                 $("#menues").show('fast');
@@ -368,11 +368,12 @@
     </style>
 </head>
 <body>
-<form action="../search/Search.jsp" method="post">
+<form action="search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지2</div>
         <div id="search">
-            <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳">
+            <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳"
+                   value="">
             <button type="submit" name="searchBtn" id="searchBtn" class="searchBtn">
                 <img src="../img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
             </button>
@@ -391,12 +392,14 @@
                 </div>
                 <div class="modalfilter">
                     <span>개봉일자</span><br>
-                    <input type="date" name="startdate" value="1900-01-01"> - <input type="date" name="enddate" id="enddate">
+                    <input type="date" name="startdate" value="1900-01-01" max="9999-12-31"> - <input type="date"
+                                                                                                      name="enddate"
+                                                                                                      id="enddate"
+                                                                                                      max="9999-12-31">
                 </div>
                 <div class="modalfilter">
                     <span>평점</span><br>
-                    <select name="startgrade" id="">
-                        <option value="none">--</option>
+                    <select name="startgrade">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -406,8 +409,7 @@
                         <option value="7">7</option>
                         <option value="8">8</option>
                         <option value="9">9</option>
-                    </select> - <select name="endgrade" id="">
-                    <option value="none">--</option>
+                    </select> - <select name="endgrade">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -417,20 +419,21 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                     <option value="9">9</option>
+                    <option value="10" selected="selected">10</option>
                 </select>
                 </div>
                 <div class="modalfilter">
                     <span>장르</span><br>
-                    <select name="genre" id="">
+                    <select name="genre">
                         <option value="none">--</option>
-                        <option value="">스릴러</option>
-                        <option value="">코미디</option>
-                        <option value="">SF</option>
-                        <option value="">액션</option>
-                        <option value="">범죄</option>
-                        <option value="">음악</option>
-                        <option value="">스포츠</option>
-                        <option value="">멜로</option>
+                        <option value="스릴러">스릴러</option>
+                        <option value="코미디">코미디</option>
+                        <option value="SF">SF</option>
+                        <option value="액션">액션</option>
+                        <option value="범죄">범죄</option>
+                        <option value="음악">음악</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="멜로">멜로</option>
                     </select>
                 </div>
             </div>

@@ -51,7 +51,7 @@ public class AdminServlet extends HttpServlet {
 				dispatch.forward(request, response);
 				break;
 			}
-			case "userUpdateform":
+			case "userUpdateform": {
 				int userNum = Integer.parseInt(request.getParameter("usernum"));
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
@@ -62,6 +62,7 @@ public class AdminServlet extends HttpServlet {
 				String gender = request.getParameter("sex");
 				String nickname = request.getParameter("nickname");
 				break;
+			}
 			case "DecrationList": {
 				List<DecrationDto> list = biz.AdminDeclarationView();
 				request.setAttribute("list", list);
