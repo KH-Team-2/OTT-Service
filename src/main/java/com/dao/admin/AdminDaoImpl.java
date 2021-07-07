@@ -9,31 +9,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dto.DecrationDto;
 import com.dto.FBWDto;
 import com.dto.ReviewDto;
 import com.dto.UserDto;
-
-public class AdminDaoImpl implements AdminDao {
+public class AdminDaoImpl implements AdminDao{
 
 	@Override
-	public List<ReviewDto> AdminDeclarationView(Connection con) {
+	public List<DecrationDto> AdminDeclarationView(Connection con) {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		List<ReviewDto> list = new ArrayList<ReviewDto>();
-		String sql ="SELECT * FROM REVIEW WHERE COUNT>=1";
+		List<DecrationDto> list = new ArrayList<DecrationDto>();
+		String sql ="SELECT REVIEWNUM,NAME,REVIEWINFO,COUNT FROM SP_REVIEW JOIN SP_USERTB USING(USERNUM) WHERE COUNT>1";
 		
 		try {
 			pstm = con.prepareStatement(sql);
 			rs= pstm.executeQuery();
 			
 			while(rs.next()) {
-				ReviewDto dto = new ReviewDto();
+				DecrationDto dto = new DecrationDto();
 				dto.setReviewNum(rs.getInt(1));
-				dto.setUserNum(rs.getInt(2));
-				dto.setMovieNum(rs.getInt(3));
-				dto.setReviewInfo(rs.getString(4));
-				dto.setDate(rs.getDate(5));
-				dto.setCount(rs.getInt(6));
+				dto.setName(rs.getString(2));
+				dto.setReviewInfo(rs.getString(3));
+				dto.setCount(rs.getInt(4));
 				
 				list.add(dto);
 			}

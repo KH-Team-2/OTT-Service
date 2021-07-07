@@ -2,13 +2,12 @@ package com.biz.admin;
 
 import java.util.List;
 
+import com.dto.DecrationDto;
 import com.dto.FBWDto;
-import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 public interface AdminBiz {
-	
-	public List<ReviewDto> AdminDeclarationView();
+	public List<DecrationDto> AdminDeclarationView();
 	public List<UserDto> AdminUserView();
 	public List<UserDto> AdminUserSearch(String info);
 	public boolean AdminUpdateInfo(UserDto dto);

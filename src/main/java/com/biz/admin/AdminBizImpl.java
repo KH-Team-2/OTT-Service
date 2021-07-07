@@ -1,14 +1,17 @@
 package com.biz.admin;
 
-import static common.JDBCTemplate.*;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
 import com.dao.admin.AdminDao;
 import com.dao.admin.AdminDaoImpl;
+import com.dto.DecrationDto;
 import com.dto.FBWDto;
-import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 public class AdminBizImpl implements AdminBiz{
@@ -16,9 +19,9 @@ public class AdminBizImpl implements AdminBiz{
 	private AdminDao dao = new AdminDaoImpl();
 	
 	@Override
-	public List<ReviewDto> AdminDeclarationView() {
+	public List<DecrationDto> AdminDeclarationView() {
 		Connection con = getConnection();
-		List<ReviewDto> list = dao.AdminDeclarationView(con);
+		List<DecrationDto> list = dao.AdminDeclarationView(con);
 		return list;
 	}
 

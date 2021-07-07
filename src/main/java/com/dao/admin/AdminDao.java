@@ -3,13 +3,12 @@ package com.dao.admin;
 import java.sql.Connection;
 import java.util.List;
 
+import com.dto.DecrationDto;
 import com.dto.FBWDto;
-import com.dto.ReviewDto;
 import com.dto.UserDto;
 
 public interface AdminDao {
-	
-	public List<ReviewDto> AdminDeclarationView(Connection con);
+	public List<DecrationDto> AdminDeclarationView(Connection con);
 	public List<UserDto> AdminUserView(Connection con);
 	public List<UserDto> AdminUserSearch(String info, Connection con);
 	public boolean AdminUpdateInfo(UserDto dto, Connection con);
