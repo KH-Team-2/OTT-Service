@@ -178,7 +178,7 @@
 			</div>
 			<div id="writediv">
 				<span id="reviewwrite">
-					<form action="" method="post">
+					<form action="review.do?command=write&movieNum=${dto.movieNum}"  method="post">
 						<textarea cols="110" rows="6" name="reviewinfo" id="reviewinfo"></textarea>
 						<input type="submit" value="ÀÛ¼º" class="btn" id="reviewsubmit">
 					</form>
