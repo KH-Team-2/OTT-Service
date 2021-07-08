@@ -96,7 +96,7 @@
             });
 
             $("#logo").click(function () {
-                location.href = "../search.do?command=main";
+                location.href = "search.do?command=main";
             });
             $("#user").hover(function () {
                 $("#menues").show('fast');
@@ -368,7 +368,7 @@
     </style>
 </head>
 <body>
-<form action="../search.do?command=search" method="post">
+<form action="search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지2</div>
         <div id="search">
@@ -519,19 +519,19 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="회원리스트" class="menubtn"
-                                       onclick="location.href='../admin.do?command=adminlist&page=1'">
+                                       onclick="location.href='admin.do?command=adminlist&page=1'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="신고리스트" class="menubtn"
-                                       onclick="location.href='../admin.do?command=adminlist&page=2'">
+                                       onclick="location.href='admin.do?command=adminlist&page=2'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="금지어" class="menubtn"
-                                       onclick="location.href='../admin.do?command=adminlist&page=3'">
+                                       onclick="location.href='admin.do?command=adminlist&page=3'">
                             </td>
                         </tr>
                         <tr>

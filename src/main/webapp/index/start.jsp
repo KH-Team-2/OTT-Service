@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:forward page="../search.do?command=main"></jsp:forward>
+	<a href="../search.do?command=main">눌러</a>
 </body>
 </html>
