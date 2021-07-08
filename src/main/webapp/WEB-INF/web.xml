@@ -5,7 +5,7 @@
          version="4.0">
 
     <welcome-file-list>
-        <welcome-file>/index/index.jsp</welcome-file>
+        <welcome-file>index/start.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
