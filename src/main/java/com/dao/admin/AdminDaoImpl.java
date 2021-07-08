@@ -136,8 +136,8 @@ public class AdminDaoImpl implements AdminDao{
 	public boolean AdminUpdateInfo(UserDto dto, Connection con) {
 		PreparedStatement pstm = null;
 		int res = 0;
-		boolean result = true;
-		String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?,IMGURL=?,STATUS=?,GRADE=?,USERDATE=? WHERE USERNUM=?";
+		boolean result = false;
+		String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?,IMGURL=?,USERDATE=? WHERE USERNUM=?";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, dto.getID());
@@ -149,9 +149,8 @@ public class AdminDaoImpl implements AdminDao{
 			pstm.setString(7, dto.getGender());
 			pstm.setString(8, dto.getNickName());
 			pstm.setString(9, dto.getImgURL());
-			pstm.setString(10, dto.getGrade());
-			pstm.setDate(11, dto.getUserDate());
-			pstm.setInt(12, dto.getUserNum());
+			pstm.setDate(10, dto.getUserDate());
+			pstm.setInt(11, dto.getUserNum());
 			
 			res = pstm.executeUpdate();
 			

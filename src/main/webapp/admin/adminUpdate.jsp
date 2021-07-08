@@ -75,6 +75,7 @@
     }
 
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function UserSecession(){
 		var num= confirm("추방하시겠습니까?");
@@ -82,12 +83,14 @@
 			location.href="admin.do?command=userSecession&usernum="+${dto.userNum};
 		}
 	}
+	
 </script>
 </head>
 <body>
 <div>
-	<form action="admin.do" method="post" enctype="multipart/form-data">
+	<form action="adminUpdate.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="usernum" value="${dto.userNum }">
+		<input type="hidden" name="userdate" value="${dto.userDate }">
 		<input type="hidden" name="command" value="userUpdateform">
     <table>
         <tr>
@@ -116,7 +119,7 @@
         </tr>
         <tr>
             <td>성별</td>
-            <td><input type="radio" name="sex" value="M">남 <input type="radio" name="sex" value="F">여</td>
+            <td><input type="radio" name="sex" value="M">남 <input type="radio" name="sex" value="W">여</td>
         </tr>
         <tr>
             <td>닉네임</td>
