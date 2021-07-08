@@ -17,4 +17,21 @@
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin.do</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>com.controller.RegServlet</servlet-class>
+        <multipart-config>
+            <location>C:\Temp</location>
+            <max-file-size>-1</max-file-size>
+            <max-request-size>-1</max-request-size>
+            <file-size-threshold>1024</file-size-threshold>
+        </multipart-config>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/reg.do</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
