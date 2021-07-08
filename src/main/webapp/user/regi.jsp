@@ -133,7 +133,8 @@
     <br><br>
     <h2>로그인</h2>
     
-    <form>
+    <form action="../user.do" method="post">
+    	<input type="hidden" name="command" value="regi">
         <table>
             <tr>
                 <td>아이디</td>
@@ -180,7 +181,7 @@
 
             <tr>
                 <td>생일</td>
-                <td><input type="date" placeholder="YYYY-MM-DD"></td>
+                <td><input type="date" name="Date" placeholder="YYYY-MM-DD"></td>
             </tr>
                 
             <tr>
