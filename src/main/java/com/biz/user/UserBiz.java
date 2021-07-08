@@ -10,4 +10,5 @@ public interface UserBiz {
 	public String SearchPW(String ID, String name, String email, String code);
 	public void SendEmailCode(String ID, String name, String email);
 	public boolean UserDel(int usernum);
+	public boolean IDCheck(String id);
 }

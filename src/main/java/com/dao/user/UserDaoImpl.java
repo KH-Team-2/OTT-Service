@@ -3,6 +3,7 @@ package com.dao.user;
 import static common.JDBCTemplate.close;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +18,9 @@ public class UserDaoImpl implements UserDao{
 		int res = 0;
 
 		try {
+		
 			pstm = con.prepareStatement(CreateAccountSQL);
-			pstm.setString(1, dto.getID());
+			pstm.setString(1, dto.getID()); 
 			pstm.setString(2, dto.getPW());
 			pstm.setString(3, dto.getEmail());
 			pstm.setString(4, dto.getPhone());
@@ -27,8 +29,7 @@ public class UserDaoImpl implements UserDao{
 			pstm.setString(7, dto.getGender());
 			pstm.setString(8, dto.getNickName());
 			pstm.setString(9, dto.getImgURL());
-			pstm.setString(10, dto.getGrade());
-			
+
 			System.out.println("03. query 준비: "+ CreateAccountSQL);
 			
 			res = pstm.executeUpdate();
@@ -40,7 +41,6 @@ public class UserDaoImpl implements UserDao{
 			close(pstm);
 			System.out.println("05. db 종료\n");
 		}
-		
 		
 		return (res>0)?true:false;
 	}
@@ -211,5 +211,36 @@ public class UserDaoImpl implements UserDao{
 		}
 		
 		return (res>0)?true:false;
+	}
+	
+	@Override
+	public boolean IDCheck ( String id, Connection con ) {
+		
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(IDCheckSQL);
+			pstm.setString(1, id);
+			System.out.println("03. query 준비: "+ IDCheckSQL);
+			
+			rs = pstm.executeQuery();
+			System.out.println("04. query 실행 및 리턴");
+			
+			while(rs.next()) {
+				res = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return res>=1?true:false;
 	}
 }
