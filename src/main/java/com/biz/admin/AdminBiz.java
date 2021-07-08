@@ -16,5 +16,4 @@ public interface AdminBiz {
 	public boolean DeleteFBW(String FBWords);
 	public UserDto UserSelect(int UserNum);
 	public boolean UserSecession(int UserNum);
-	public boolean DeleteDeclaration(int reviewNum);
 }

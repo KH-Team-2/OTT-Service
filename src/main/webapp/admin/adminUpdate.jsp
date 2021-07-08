@@ -75,14 +75,6 @@
     }
 
 </style>
-<script type="text/javascript">
-	function UserSecession(){
-		var num= confirm("추방하시겠습니까?");
-		if(num){
-			location.href="admin.do?command=userSecession&usernum="+${dto.userNum};
-		}
-	}
-</script>
 </head>
 <body>
 <div>
@@ -125,12 +117,12 @@
         <tr>
             <td>프로필 사진</td>
             <td>
-            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">${dto.imgURL }
+            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">
             </td>
         </tr>
         <tr>
             <td>
-                <input type="button" value="회원추방" onclick="UserSecession();">
+                <input type="button" value="회원추방" onclick="">
             </td>
             <td style="text-align:right">
                 <input type="submit" value="완료"> <input type="button" value="취소" onclick="location.href='admin.do?command=User_Info'">

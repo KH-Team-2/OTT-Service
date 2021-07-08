@@ -40,7 +40,6 @@ public class UserDto {
 		Grade = grade;
 		UserDate = userDate;
 	}
-	
 	public int getUserNum() {
 		return UserNum;
 	}
@@ -143,20 +142,5 @@ public class UserDto {
 
 	public void setUserDate(Date userDate) {
 		UserDate = userDate;
-	}
-
-	public void setBirth(java.util.Date birth) {
-		Birth = (Date)birth;	
-	}
-
-	public void setUserDate(java.util.Date userDate) {
-		UserDate = (Date)userDate;
-	}
-
-	@Override
-	public String toString() {
-		return "UserDto [UserNum=" + UserNum + ", ID=" + ID + ", PW=" + PW + ", Email=" + Email + ", Phone=" + Phone
-				+ ", Name=" + Name + ", Birth=" + Birth + ", Gender=" + Gender + ", NickName=" + NickName + ", ImgURL="
-				+ ImgURL + ", Status=" + Status + ", Grade=" + Grade + ", UserDate=" + UserDate + "]";
 	}
 }
