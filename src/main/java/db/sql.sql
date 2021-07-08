@@ -5,5 +5,4 @@ SELECT * FROM REVIEW;
 select * from user_sequences;
                   
 SELECT MAX(MovieNum) FROM SP_PLATFORM WHERE PFCODE IN 'WC';
-djpowa;
 SELECT MovieNum FROM SP_CONTENTS SC WHERE SC.MovieNum > 2;
