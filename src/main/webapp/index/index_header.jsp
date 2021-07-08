@@ -368,14 +368,14 @@
     </style>
 </head>
 <body>
-<form action="search.do?command=search" method="post">
+<form action="../search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지2</div>
         <div id="search">
             <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳"
                    value="">
             <button type="submit" name="searchBtn" id="searchBtn" class="searchBtn">
-                <img src="../img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
+                <img src="img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
             </button>
         </div>
         <div id="filter" class="filterBtn">
@@ -434,8 +434,6 @@
                         <option value="음악">음악</option>
                         <option value="스포츠">스포츠</option>
                         <option value="멜로">멜로</option>
-                        <option value="공포">공포</option>
-                        <option value="드라마">드라마</option>
                     </select>
                 </div>
             </div>
