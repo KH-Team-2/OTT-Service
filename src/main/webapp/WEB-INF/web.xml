@@ -17,7 +17,23 @@
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin.do</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>com.controller.RegServlet</servlet-class>
+        <multipart-config>
+            <location>C:\Temp</location>
+            <max-file-size>-1</max-file-size>
+            <max-request-size>-1</max-request-size>
+            <file-size-threshold>1024</file-size-threshold>
+        </multipart-config>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/reg.do</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>com.controller.SearchServlet</servlet-class>
@@ -26,6 +42,16 @@
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReviewServlet</servlet-name>
+        <servlet-class>com.controller.ReviewServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ReviewServlet</servlet-name>
+        <url-pattern>/review.do</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -37,4 +63,5 @@
     	<servlet-name>UserServlet</servlet-name>
     	<url-pattern>/user.do</url-pattern>
     </servlet-mapping>
+
 </web-app>

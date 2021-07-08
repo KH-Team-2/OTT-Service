@@ -46,15 +46,11 @@ public class SearchServlet extends HttpServlet {
                 double endgrade = Double.parseDouble(request.getParameter("endgrade"));
                 String genre = request.getParameter("genre");
                 request.setAttribute("searchBar", searchBar);
-                System.out.println(searchBar + " + " + startdate + " + " + enddate + " + " +
-                        startgrade + " + " + endgrade + " + " + genre);
                 /*if (genre.equals("none")) {
                     genre = "";
                 }*/
                 List<ContentsDto> list = biz.SearchList(searchBar, startdate, enddate, startgrade, endgrade, genre);
-                for (int i = 0; i < list.size(); i++) {
-                    System.out.println(list.get(i).getTitle());
-                }
+                System.out.println(list.get(0).getPfimgurl());
                 request.setAttribute("list", list);
                 RequestDispatcher dispatch = request.getRequestDispatcher("search/Search.jsp");
                 dispatch.forward(request, response);
@@ -63,7 +59,12 @@ public class SearchServlet extends HttpServlet {
             }
             case "detail":{
                 String title = request.getParameter("title");
-                System.out.println("title 값이 궁금하다 " + title);
+                ContentsDto dto = biz.SearchDetail(title);
+
+                request.setAttribute("dto", dto);
+                RequestDispatcher dispatch = request.getRequestDispatcher("search/SearchDetail.jsp");
+                dispatch.forward(request, response);
+
             }
 
         }

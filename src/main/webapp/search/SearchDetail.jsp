@@ -1,3 +1,5 @@
+<jsp:useBean id="dto" scope="request" type="com.dto.ContentsDto"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -158,27 +160,25 @@
 		<div id="header"></div>
 		<div id="contentDetail">
 			<div id="imgdiv">
-				<img id="contentimage" src="" alt="">
+				<img id="contentimage" src="${dto.movieImg}" alt="${dto.title}">
 			</div>
 			<div id="titlediv">
-				<span id="title" class="content">킬러의 보디가드(2017)</span>
+				<span id="title" class="content">${dto.title}(${dto.openYear})</span>
 				<br><br>
-				<span id="genre" class="content">스릴러, 범죄, 액션, 코미디, Made in Europe</span>
+				<span id="genre" class="content">장르  ${dto.genre}</span>
 				<br><br>
-				<span id="actor" class="content">Ryan Reynolds</span>
+				<span id="actor" class="content">배우  ${dto.actor}</span>
 				<br><br>
-				<span id="director" class="content">Patrick Hughes</span>
-				<br><br>
-				<span id="writer" class="content">작가1 작가2</span>
+				<span id="director" class="content">감독  ${dto.director}</span>
 			</div>
 			<div id="detaildiv">
 				<span id="detail">
-					영국 최고 실력을 자랑하는 사설 경호원 마이클 브라이스(라이언 레이놀즈)는 어이없는 실수로 의뢰인을 죽게 만든 후 하루아침에 일감이 뚝 끊긴다. 한편 역사상 최악의 독재자로 악명을 떨치던 벨라루스의 두코비치 대통령(게리 올드먼)이 인터폴에 체포되어 헤이그에서 국제사법재판을 받게 된다. 재판 시효가 다가올 때마다 범죄를 증명할 증인이 하나둘 죽어나가자, 사태의 심각성을 파악한 인터폴은 두코비치 대통령의 민간인 학살 범행을 증명할 희대의 킬러 다리우스(새뮤얼 L. 잭슨)를 교도소에서 빼내와 법정에 세울 계획을 세우는데...
+					${dto.summary}
 				</span>
 			</div>
 			<div id="writediv">
 				<span id="reviewwrite">
-					<form action="" method="post">
+					<form action="review.do?command=write&movieNum=${dto.movieNum}"  method="post">
 						<textarea cols="110" rows="6" name="reviewinfo" id="reviewinfo"></textarea>
 						<input type="submit" value="작성" class="btn" id="reviewsubmit">
 					</form>

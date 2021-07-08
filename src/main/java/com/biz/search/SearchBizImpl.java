@@ -23,4 +23,12 @@ public class SearchBizImpl implements SearchBiz {
 		return list;
 	}
 
+	@Override
+	public ContentsDto SearchDetail(String title) {
+		Connection con = getConnection();
+		ContentsDto dto = dao.SearchDetail(con, title);
+		close(con);
+		return dto;
+	}
+
 }

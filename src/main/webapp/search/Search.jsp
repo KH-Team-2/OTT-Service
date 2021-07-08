@@ -11,7 +11,7 @@
     String startgrade = request.getParameter("startgrade");
     String endgrade = request.getParameter("endgrade");
     String genre = request.getParameter("genre");
-%>
+%></>
 <jsp:include page="../header.jsp">
     <jsp:param name="searchBar1" value="<%=searchBar%>"/>
     <jsp:param name="startdate" value="<%=startdate%>"/>
@@ -34,11 +34,16 @@
             background: black;
             position: relative;
         }
+        .pfimg {
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+        }
 
         .imgdiv {
             border: 1px solid rgb(248, 211, 28);
             width: 250px;
-            height: 350px;
+            height: 300px;
             float: left;
             margin-left: 50px;
             margin-top: 50px;
@@ -50,30 +55,37 @@
             margin-left: 40px;
             margin-top: 50px;
             width: 800px;
-            height: 350px;
+            height: 300px;
             color: rgb(248, 211, 28);
         }
 
         .image {
             width: 250px;
-            height: 350px;
+            height: 300px;
         }
 
         .title {
-            font-size: 48px;
+            font-size: 35px;
         }
 
         .genrediv {
-            font-size: 20px;
+            color: white;
+            font-size: 15px;
         }
 
         .detaildiv {
-            font-size: 32px;
+            color: #A3A3A3;
+            font-size: 20px;
         }
 
         .content {
-            margin-left: 20px;
+            /*margin-left: 20px;*/
             margin-bottom: 20px;
+            /*font-size: 30px;*/
+        }
+
+        .title:hover {
+            cursor: pointer;
         }
 
     </style>
@@ -81,10 +93,15 @@
     <script type="text/javascript">
         $(function () {
             // $("#header").load("header.jsp");
+            $('.title').hover(function () {
+                $(this).css("cursor", "pointer");
+                $(this).css('text-decoration', 'underline');
+            }, function () {
+                $(this).css('text-decoration', 'none');
+            });
 
             $(".title").click(function () {
-                location.href = 'search.do?command=detail&title='+$(this).text();
-                console.log($(this).text());
+                location.href = 'search.do?command=detail&title=' + $(this).text();
             });
             console.log($('#header').children());
         });
@@ -95,53 +112,53 @@
 </div>
 <div id="wrap">
     <div class="contentwrap">
-        <div class="imgdiv">
-            <img class="image" src="" alt="">
-        </div>
-        <div class="content contentdiv">
-            <div class="content titlediv">
-                <span class="title">제목</span>
-            </div>
-            <div class="content genrediv">
-                <span class="date">연도</span>
-                <span class="director">감독</span>
-                <span class="actor">배우</span>
-                <span class="genre">장르</span>
-                <span class="score">평점</span>
-            </div>
-            <div class="content detaildiv">
-                <span class="content content">내용</span>
-            </div>
-        </div>
-        <c:choose>
-            <c:when test="${empty list }">
-                <h1 style="color: white">영상이 없습니다.</h1>
-            </c:when>
-            <c:otherwise>
-                <jsp:useBean id="list" scope="request" type="java.util.List"/>
-                <c:forEach items="${list }" var="list">
-                    <div class="imgdiv">
-                        <img class="image" src="${list.movieImg}" alt="">
-                    </div>
-                    <div class="content contentdiv">
-                        <div class="content titlediv">
-                            <span class="title">제목 : ${list.title}</span>
-                        </div>
-                        <div class="content genrediv">
-                            <span class="date">개봉일 : ${list.openYear}</span>
-                            <span class="director">감독 : ${list.director}</span>
-                            <span class="actor">배우 : ${list.actor}</span>
-                            <span class="genre">장르 : ${list.genre}</span>
-                            <span class="score">평점 : ${list.rate}</span>
-                        </div>
-                        <div class="content detaildiv">
-                            <span class="content content">줄거리 : ${list.summary}</span>
-                        </div>
-                    </div>
-                </c:forEach>
-            </c:otherwise>
-        </c:choose>
+        <%--        <div class="imgdiv">--%>
+        <%--            <img class="image" src="" alt="">--%>
+        <%--        </div>--%>
+        <%--        <div class="content contentdiv">--%>
+        <%--            <div class="content titlediv">--%>
+        <%--                <span class="title">제목</span>--%>
+        <%--            </div>--%>
+        <%--            <div class="content genrediv">--%>
+        <%--                <span class="date">연도</span>--%>
+        <%--                <span class="director">감독</span>--%>
+        <%--                <span class="actor">배우</span>--%>
+        <%--                <span class="genre">장르</span>--%>
+        <%--                <span class="score">평점</span>--%>
+        <%--            </div>--%>
+        <%--            <div class="content detaildiv">--%>
+        <%--                <span class="content content">내용</span>--%>
+        <%--            </div>--%>
     </div>
+    <c:choose>
+        <c:when test="${empty list }">
+            <h1 style="color: white">영상이 없습니다.</h1>
+        </c:when>
+        <c:otherwise>
+            <jsp:useBean id="list" scope="request" type="java.util.List"/>
+            <c:forEach items="${list }" var="list">
+                <div class="imgdiv">
+                    <img class="image" src="${list.movieImg}" alt="">
+                </div>
+                <div class="content contentdiv">
+                    <div class="content titlediv">
+                        <span class="title">${list.title}</span><span class="date">(${list.openYear})</span>
+                        <img src="${list.pfimgurl}" alt="" style="margin-bottom:-5px;"class="pfimg">
+                    </div>
+                    <div class="content genrediv">
+                        <span>감독   <span class="director">${list.director}</span></span><br>
+                        <span>배우   </span><span class="actor">${list.actor}</span><br>
+                        <span>장르   </span><span class="genre">${list.genre}</span><br>
+                        <span>평점   </span><span class="score">${list.rate}</span>
+                    </div>
+                    <div class="content detaildiv">
+                        <span>줄거리</span><br><span class="content content">${list.summary}</span>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+</div>
 </div>
 
 </body>
