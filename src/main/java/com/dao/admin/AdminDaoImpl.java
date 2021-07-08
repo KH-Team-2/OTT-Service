@@ -90,7 +90,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<UserDto> list = new ArrayList<UserDto>();
-		String sql = "SELECT * FROM USERTB WHERE (ID LIKE '%' || ? || '%' OR NAME LIKE '%' || ? || '%' OR NICKNAME LIKE '%' || ? || '%') AND STATUS='Y'";
+		String sql = "SELECT * FROM USERTB WHERE (LOWER(ID) LIKE ('%' || ? || '%') OR LOWER(NAME) LIKE LOWER('%' || ? || '%') OR LOWER(NICKNAME) LIKE LOWER('%' || ? || '%')) AND STATUS='Y'";
 		
 		try {
 			pstm = con.prepareStatement(sql);

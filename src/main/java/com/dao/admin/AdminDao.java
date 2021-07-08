@@ -1,11 +1,11 @@
 package com.dao.admin;
 
-import java.sql.Connection;
-import java.util.List;
-
 import com.dto.DecrationDto;
 import com.dto.FBWDto;
 import com.dto.UserDto;
+
+import java.sql.Connection;
+import java.util.List;
 
 public interface AdminDao {
 	public List<DecrationDto> AdminDeclarationView(Connection con);
