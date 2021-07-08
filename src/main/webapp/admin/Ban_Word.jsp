@@ -135,7 +135,7 @@
             font-family:'NEXON Lv1 Gothic OTF';
             font-weight:bold;
             padding: 1px 12px;
-        
+        }
 	</style>
 	
 </head>
@@ -144,17 +144,17 @@
 
 	<div id="ban_area">
 	
-		<form action="ban_word_input.jsp" method="post">
-			<input type="text" placeholder="  금지어 입력"> &nbsp;&nbsp;
+		<form action="admin.do?command=addFBWord" method="post">
+			<input type="text" placeholder="  금지어 입력" name="FBWords"> &nbsp;&nbsp;
 
-			<select>
-				<option>비속어</option>
-				<option>성인</option>
-				<option>저작권</option>
-				<option>기타</option>
+			<select name="reason">
+				<option value="비속어">비속어</option>
+				<option value="성인">성인</option>
+				<option value="저작권">저작권</option>
+				<option value="기타">기타</option>
 			</select> &nbsp;&nbsp;
 			
-			<input type="button" value="등록" id="temp22" class="btn-blue-eft">
+			<input type="submit" value="등록" id="temp22" class="btn-blue-eft">
 		</form>
 		
 		<br><br>
@@ -164,8 +164,7 @@
 			<col width="70"> <col width="160"> <col width="160"> <col width="110">
 			
 			<tr>
-				<th>번호</th>
-				<th>금지어</th>
+				<th colspan="2">금지어</th>
 				<th>사유</th>
 				<th>삭제</th>
 			</tr>
@@ -178,10 +177,9 @@
 				<c:otherwise>
 					<c:forEach items="${list }" var="dto">
 						<tr>
-							<td>123</td>
-							<td>${dto.FBWords }</td>
+							<td colspan="2">${dto.FBWords }</td>
 							<td>${dto.reason }</td>
-							<td><button id="deletebtn">삭제</button></td>
+							<td><button id="deletebtn" onclick="location.href='admin.do?command=FBWorddelete&FBWords=${dto.FBWords}'">삭제</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

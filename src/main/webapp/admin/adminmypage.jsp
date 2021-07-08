@@ -14,9 +14,9 @@
     <script>
         $(function () {
             $("#headers").load("header.jsp");
-            
         });
     </script>
+    
     <style>
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -95,6 +95,37 @@
     </style>
 </head>
 <body>
+<%
+    	int num = (int)request.getAttribute("page"); 
+    	if(num == 1){
+%>
+    	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		 <script type="text/javascript">
+    	 	$(function(){
+	    	 	$('#iframe_in').attr('src','admin.do?command=User_Info');
+    	 	});
+    	 </script>
+<%
+    	}else if(num==2){
+%>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#iframe_in').attr('src','admin.do?command=DecrationList');
+			});
+	 	</script>
+<%
+    	}else if(num == 3){
+%>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#iframe_in').attr('src','admin.do?command=FBWList');
+			});
+	 	</script>
+<%
+    	}
+%>
 <div id="headers"></div>
 <div id="menu">
     <div id="menuBar">

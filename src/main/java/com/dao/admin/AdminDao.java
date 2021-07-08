@@ -17,5 +17,6 @@ public interface AdminDao {
 	public boolean DeleteFBW(String FBWords, Connection con);
 	public UserDto UserSelect(int UserNum, Connection con);
 	public boolean UserSecession(int UserNum, Connection con);
+	public boolean DeleteDeclaration(int reviewNum,Connection con);
 
 }
