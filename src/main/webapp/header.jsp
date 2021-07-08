@@ -1,19 +1,68 @@
 <%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Enumeration" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
-<% String searchBar1 = request.getParameter("searchBar1");
+<%
+    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+    Date time = new Date();
+
+    String time1 = format1.format(time);
+
+//    Enumeration<String> e = request.getParameterNames();
+
+    String searchBar1 = null;
+    String startdate = null;
+    String enddate = null;
+    String startgrade = null;
+    String endgrade = null;
+    String genre = null;
+
+    searchBar1 = request.getParameter("searchBar1");
     if (searchBar1 == null) {
         searchBar1 = "";
     }
-    String startdate = request.getParameter("startdate");
+    startdate = request.getParameter("startdate");
+    if (startdate == null) {
+        startdate = "1900-01-01";
+    }
     startdate = startdate.replace("-", ".");
-    String enddate = request.getParameter("enddate");
+    enddate = request.getParameter("enddate");
+    if (enddate == null) {
+        enddate = time1;
+    }
     enddate = enddate.replace("-", ".");
-    String startgrade = request.getParameter("startgrade");
-    String endgrade = request.getParameter("endgrade");
-    String genre = request.getParameter("genre");
+    startgrade = request.getParameter("startgrade");
+    if (startgrade == null) {
+        startgrade = "1";
+    }
+    endgrade = request.getParameter("endgrade");
+    if (endgrade == null) {
+        endgrade = "10";
+    }
+    genre = request.getParameter("genre");
+    if (genre == null) {
+        genre = "none";
+    }
+
+    /*if (e == null) {
+        System.out.println("비어이씀");
+        searchBar1 = "";
+        startdate = "1900-01-01";
+        startdate = startdate.replace("-", ".");
+        enddate = time1;
+        enddate = enddate.replace("-", ".");
+        startgrade = "1";
+        endgrade = "10";
+        genre = "none";
+    } else {*/
+
+//    }
+
+
 %>
 
 <!DOCTYPE html><html lang="kor">
