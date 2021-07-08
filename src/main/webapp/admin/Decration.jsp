@@ -52,7 +52,14 @@
         img { width : 80px; heigth : 30px; }
             
 	</style>
-	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".deletebtn").click(function(){
+				$(this).attr("src","img/Done.png");
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -83,7 +90,7 @@
 							<td>${dto.name }</td>
 							<td>${dto.reviewInfo }</td>
 							<td>${dto.count }</td>
-							<td><img src="..\img\Yet.png?ver=1"></td>
+							<td><img src="img/confirm.png" class="deletebtn" onclick="location.href='admin.do?command=deleteDecration&reviewnum=${dto.reviewNum}'"></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>

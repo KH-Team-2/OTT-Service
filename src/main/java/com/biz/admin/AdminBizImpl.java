@@ -8,7 +8,6 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
-import com.dao.admin.AdminDao;
 import com.dao.admin.AdminDaoImpl;
 import com.dto.DecrationDto;
 import com.dto.FBWDto;
@@ -16,7 +15,7 @@ import com.dto.UserDto;
 
 public class AdminBizImpl implements AdminBiz{
 	
-	private AdminDao dao = new AdminDaoImpl();
+	private AdminDaoImpl dao = new AdminDaoImpl();
 	
 	@Override
 	public List<DecrationDto> AdminDeclarationView() {
@@ -107,5 +106,18 @@ public class AdminBizImpl implements AdminBiz{
 	      close(con);
 	      
 	      return res;
+	}
+
+	@Override
+	public boolean DeleteDeclaration(int reviewNum) {
+		Connection con = getConnection();
+		boolean result = dao.DeleteDeclaration(reviewNum, con);
+		if(result) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		return result;
 	}
 }

@@ -39,7 +39,7 @@
     #logintb{
     	margin : 0 auto;
     }
-    input[type=text], input[type=password]{
+    input[type=text]{
     	height:40px;
         width:200px;
         border-radius: 10px;
@@ -84,44 +84,27 @@
     	text-align: center;
     }
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#submit").click(function(){
-			var id = $("#id").val();
-			var pw = $("#pw").val();
-			
-			if( id == "" || id == null || pw == "" || pw == null) {
-				alert("아이디/비밀번호를 입력하세요")
-				
-				return false;
-			}
-		});
-	});
-	
-</script>
 </head>
 
 <body>
     <div id="logo"><h2>로고</h2></div><br>
     <br>
     <div id="login">
-	    <form action="../user.do" method="post">
-	    	<input type="hidden" name="command" value="login">
+	    <form action="" method="post">
 	    	<table id="logintb">
 		        <tr>
-	    	        <td>
-	        	        <input type="text" placeholder=" ID" name="id" id="id">
+	    	        <td id="ID">
+	        	        <input type="text" placeholder=" ID">
 	            	</td>
 	       		</tr>
 	        	<tr>
-	            	<td>
-	                	<input type="password" placeholder=" PW" name="pw" id="pw">
+	            	<td id="PW">
+	                	<input type="text" placeholder=" PW">
 	            	</td>
 	            </tr>
 	            <tr>
 	                <td colspan="3" style="text-align: center;">
-	                    <input type="submit" value="Login" class="Btn" id="submit"><br>
+	                    <input type="submit" value="Login" class="Btn"><br>
 				    	<input type="button" value="Join us" class="Btn" id="regist" onclick="location.href='regi.jsp'">
 	                </td>
 	            </tr>

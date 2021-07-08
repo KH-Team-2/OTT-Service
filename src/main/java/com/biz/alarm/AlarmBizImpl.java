@@ -1,17 +1,15 @@
-<<<<<<< HEAD
-package com.biz.alarm;
-
-
-import static common.JDBCTemplate.*;
+package com.biz.alarm;/*
+import com.biz.alarm.AlarmBiz;
+import com.dao.alarm.AlarmDao;
+import com.dto.UserDto;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.dao.alarm.AlarmDao;
-import com.dto.AlarmDto;
-import com.dto.UserDto;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.getConnection;
 
-public class AlarmBizImpl implements AlarmBiz{
+public class AlarmBizImpl implements AlarmBiz {
 
 	@Override
 	public void AlarmSwitch(int num) {
@@ -31,5 +29,5 @@ public class AlarmBizImpl implements AlarmBiz{
 	}
 	
 }
-=======
->>>>>>> fa4189d58eea6de74884f79ddc4c74f46aa3869a
+
+*/

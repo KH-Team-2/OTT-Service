@@ -2,7 +2,6 @@ package com.crawling;
 
 import com.dto.WatchaDto;
 import common.JDBCTemplate;
-import oracle.jdbc.OracleCallableStatement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -69,7 +68,7 @@ public class WatChaCrawling extends JDBCTemplate {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 //        영상을 여러 개 불러오기 위해 스크롤을 미리 i번 내린다.
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             jse.executeScript("window.scrollBy(0,2000)", "");
             try {
 //                시간 딜레이(3초)
@@ -103,7 +102,7 @@ public class WatChaCrawling extends JDBCTemplate {
 
 //        영상 i개를 가져온다.
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 1; i++) {
             try {
 //                시간 딜레이(3초)
                 Thread.sleep(1000);
@@ -228,6 +227,7 @@ public class WatChaCrawling extends JDBCTemplate {
                     System.out.println("이미지주소 : " + imgurl);*/
                 }
             }
+            System.out.println(list.get(i).getTitle());
 
             //1초 대기
             try {
@@ -243,19 +243,24 @@ public class WatChaCrawling extends JDBCTemplate {
 //        영화 정보를 집어 넣는다.
         int result = insertMovie(connection, list);
         if (result > 0) {
+            commit(connection);
             System.out.println("Contents에 저장");
 //            영화 정보가 정상적으로 저장 됐을 때 플랫폼 테이블에도 저장한다.
             boolean res = insertPlatform(connection);
+            System.out.println(res);
             if (res) {
                 System.out.println("Platform 저장");
                 commit(connection);
             } else {
                 rollback(connection);
             }
+        } else {
+            rollback(connection);
         }
 //        크롤링을 해서 가져오기 때문에 중북되는 값이 있을 수 있다.
 //        그 중복되는 값들을 모두 삭제한다.
         boolean delres = overlap(connection);
+        System.out.println(delres);
         if (delres) {
             System.out.println("중복 제거 완료");
             commit(connection);
@@ -282,8 +287,8 @@ public class WatChaCrawling extends JDBCTemplate {
 
     private int insertMovie(Connection connection, List<WatchaDto> list) {
         PreparedStatement preparedStatement = null;
-        String insertSql = " INSERT INTO SP_CONTENTS VALUES" +
-                " (SAMPLE_MOVIE_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? ) ";
+        String insertSql = " INSERT INTO CONTENTS VALUES " +
+                " (MOVIE_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? ) ";
 
 
         int res = 0;
@@ -332,37 +337,36 @@ public class WatChaCrawling extends JDBCTemplate {
     }
 
     private boolean insertPlatform(Connection connection) {
-        OracleCallableStatement callableStatement = null;
-        boolean res = false;
+        PreparedStatement preparedStatement = null;
+        int res = 0;
 
         String platformsql = " DECLARE\n" +
                 "    NUM1 NUMBER;\n" +
                 "    NUM2 NUMBER;\n" +
                 "BEGIN\n" +
-                "    SELECT MAX(MOVIENUM) INTO NUM1 FROM SP_Contents;\n" +
-                "    SELECT MAX(MOVIENUM) INTO NUM2 FROM SP_PLATFORM;\n" +
+                "    SELECT MAX(MOVIENUM) INTO NUM1 FROM CONTENTS;\n" +
+                "    SELECT MAX(MOVIENUM)+1 INTO NUM2 FROM PLATFORM;\n" +
                 "    IF NUM2 IS NULL THEN\n" +
-                "    SELECT MIN(MOVIENUM) INTO NUM2 FROM SP_CONTENTS;\n\n" +
+                "        SELECT MIN(MOVIENUM) INTO NUM2 FROM CONTENTS;\n" +
                 "    end if;\n" +
-                "\n" +
                 "    for i in NUM2 .. NUM1\n" +
                 "        loop\n" +
-                "            insert into SP_PLATFORM VALUES ('WC', i);\n" +
+                "            insert into PLATFORM VALUES ('WC', i);\n" +
                 "        end loop;\n" +
                 "end; ";
 
 
 
         try {
-            callableStatement = (OracleCallableStatement) connection.prepareCall(platformsql);
+            preparedStatement = connection.prepareStatement(platformsql);
 
-            res = callableStatement.execute();
+            res = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(callableStatement);
+            close(preparedStatement);
         }
-        return res;
+        return res>0;
     }
 
     private boolean overlap(Connection connection) {
@@ -370,19 +374,19 @@ public class WatChaCrawling extends JDBCTemplate {
         int result = 0;
 
         String delplatformsql = " DELETE\n" +
-                "FROM SP_PlatForm C\n" +
-                "WHERE C.MovieNum IN  (SELECT MovieNum\n" +
-                "       FROM SP_Contents A\n" +
+                "   FROM PlatForm C\n" +
+                "   WHERE C.MovieNum IN  (SELECT MovieNum\n" +
+                "       FROM Contents A\n" +
                 "       WHERE ROWID >\n" +
                 "             (SELECT MIN(ROWID)\n" +
-                "              FROM SP_Contents B\n" +
-                "              WHERE b.TITLE = a.TITLE)); ";
+                "              FROM Contents B\n" +
+                "              WHERE b.TITLE = a.TITLE)) ";
 
         String delcontentssql = " DELETE\n" +
-                "FROM SP_Contents A\n" +
-                "WHERE ROWID > (SELECT MIN(ROWID)\n" +
-                "               FROM SP_Contents B\n" +
-                "               WHERE b.TITLE = a.TITLE); ";
+                "   FROM Contents A\n" +
+                "   WHERE ROWID > (SELECT MIN(ROWID)\n" +
+                "               FROM Contents B\n" +
+                "               WHERE b.TITLE = a.TITLE) ";
 
         try {
             preparedStatement = connection.prepareStatement(delplatformsql);
