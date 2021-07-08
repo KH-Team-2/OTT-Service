@@ -26,7 +26,6 @@ public class UserBizImpl implements UserBiz{
 		
 		close(con);
 		
-		
 		return res;
 	}
 
@@ -94,6 +93,17 @@ public class UserBizImpl implements UserBiz{
 		Connection con = getConnection();
 		
 		boolean res = dao.UserDel(usernum, con);
+		
+		close(con);
+		
+		return res;
+	}
+	
+	@Override
+	public boolean IDCheck(String id) {
+		Connection con = getConnection();
+		
+		boolean res = dao.IDCheck(id, con);
 		
 		close(con);
 		

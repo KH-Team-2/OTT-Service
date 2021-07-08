@@ -116,9 +116,9 @@
 <body>
 	<div id="search_area">
 
-		<form action="admin.do?command=adminusersearch" method="post">
-			<input type="text" placeholder="  Search !!" name="info"> &nbsp;&nbsp;
-			<input type="submit" value="검색" class="btn-blue-eft">
+		<form action="search_user.jsp" method="post">
+			<input type="text" placeholder="  Search !!"> &nbsp;&nbsp;
+			<input type="button" value="검색" class="btn-blue-eft">
 		</form>
 		
 		<br><br>
@@ -150,7 +150,7 @@
 							<td>${dto.nickName }</td>
 							<td>${dto.name }</td>
 							<td>${dto.gender }</td>
-							<td><button id="updatebtn" onclick="location.href='admin.do?command=adminupdate&UserNum=${dto.userNum}'">수정</button></td>
+							<td><button id="updatebtn"onclick="location.href='admin.do?command=adminupdate&UserNum=${dto.userNum}'">수정</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
