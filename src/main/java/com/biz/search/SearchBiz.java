@@ -8,4 +8,6 @@ public interface SearchBiz {
 	
 
     List<ContentsDto> SearchList(String searchBar, String startdate, String enddate, double startgrade, double endgrade, String genre);
+
+    ContentsDto SearchDetail(String title);
 }
