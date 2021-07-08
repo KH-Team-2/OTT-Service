@@ -3,7 +3,7 @@
     
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset:UTF-8"); %>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html><html>
 
 <head>
@@ -126,7 +126,16 @@
         	font-family:'NEXON Lv1 Gothic OTF';
         	font-weight:bold;
         }
-        
+         #deletebtn{
+        	color:black;
+            background-color:white;
+            border-color:white;
+            
+            border-radius: 10px;
+            font-family:'NEXON Lv1 Gothic OTF';
+            font-weight:bold;
+            padding: 1px 12px;
+        }
 	</style>
 	
 </head>
@@ -135,17 +144,17 @@
 
 	<div id="ban_area">
 	
-		<form action="ban_word_input.jsp" method="post">
-			<input type="text" placeholder="  금지어 입력"> &nbsp;&nbsp;
+		<form action="admin.do?command=addFBWord" method="post">
+			<input type="text" placeholder="  금지어 입력" name="FBWords"> &nbsp;&nbsp;
 
-			<select>
-				<option>비속어</option>
-				<option>성인</option>
-				<option>저작권</option>
-				<option>기타</option>
+			<select name="reason">
+				<option value="비속어">비속어</option>
+				<option value="성인">성인</option>
+				<option value="저작권">저작권</option>
+				<option value="기타">기타</option>
 			</select> &nbsp;&nbsp;
 			
-			<input type="button" value="등록" id="temp22" class="btn-blue-eft">
+			<input type="submit" value="등록" id="temp22" class="btn-blue-eft">
 		</form>
 		
 		<br><br>
@@ -155,82 +164,26 @@
 			<col width="70"> <col width="160"> <col width="160"> <col width="110">
 			
 			<tr>
-				<th>번호</th>
-				<th>금지어</th>
+				<th colspan="2">금지어</th>
 				<th>사유</th>
 				<th>삭제</th>
 			</tr>
-			
-			<tr>
-				<td>1</td>
-				<td>게시판</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>2</td>
-				<td>신발</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>3</td>
-				<td>볍씨</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>4</td>
-				<td>M E</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>5</td>
-				<td>게시판</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>6</td>
-				<td>신발</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>7</td>
-				<td>볍씨</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>8</td>
-				<td>M E</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>9</td>
-				<td>게시판</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png" width="25px" height="25px" ></td>
-			</tr>
-			
-			<tr>
-				<td>10</td>
-				<td>신발</td>
-				<td>비속어</td>
-				<td><img src="../img/delete.png"  width="25px" height="25px" ></td>
-			</tr>
-			
+			<c:choose>
+				<c:when test="${empty list }">
+					<tr>
+						<td colspan="4">등록된 금지어가 없습니다</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<tr>
+							<td colspan="2">${dto.FBWords }</td>
+							<td>${dto.reason }</td>
+							<td><button id="deletebtn" onclick="location.href='admin.do?command=FBWorddelete&FBWords=${dto.FBWords}'">삭제</button></td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</table>
 		
 	

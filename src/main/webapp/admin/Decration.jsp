@@ -3,7 +3,7 @@
     
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset:UTF-8"); %>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html><html>
 
 <head>
@@ -52,7 +52,14 @@
         img { width : 80px; heigth : 30px; }
             
 	</style>
-	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".deletebtn").click(function(){
+				$(this).attr("src","img/Done.png");
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -70,86 +77,24 @@
 				<th>신고 횟수</th>
 				<th>처리 판별</th>
 			</tr>
-			
-			<tr>
-				<td>1</td>
-				<td>박명수</td>
-				<td>1000원 버는 법 빨리 오세요 !!</td>
-				<td>4</td>
-				<td> <img src="..\img\Yet.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>2</td>
-				<td>정형돈</td>
-				<td>재미있음</td>
-				<td>7</td>
-				<td> <img src="..\img\Yet.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>3</td>
-				<td>박명수</td>
-				<td>1000원 버는 법 빨리 오세요 !!</td>
-				<td>4</td>
-				<td> <img src="..\img\Yet.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>4</td>
-				<td>유재석</td>
-				<td>1500원 버는 법 빨리 오세요 !!</td>
-				<td>6</td>
-				<td> <img src="..\img\Yet.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>5</td>
-				<td>정준하</td>
-				<td>이어폰 팝니다.</td>
-				<td>7</td>
-				<td> <img src="..\img\Done.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>6</td>
-				<td>하하</td>
-				<td>ㅋㅋㅋㅋㅋ 앜ㅋㅋㅋ아컹캌ㅋㅋㅋㅋㅋ하핳핳핳ㅎㅎㅎ</td>
-				<td>6</td>
-				<td> <img src="..\img\Done.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>7</td>
-				<td>정형돈</td>
-				<td>한국 뱀이랑 일본 뱀이 싸워서 일본뱀이 진 이유는 ?<br>독도 없고 제주도 없어섴ㅋㅋㅋㅋㅋㅋ엌ㅋㅋㅋㅋ</td>
-				<td>91</td>
-				<td> <img src="..\img\Done.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>8</td>
-				<td>노홍철</td>
-				<td>대충 광고라는 내용</td>
-				<td>8</td>
-				<td> <img src="..\img\Done.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>9</td>
-				<td>정형돈</td>
-				<td>신발 게시판 신발끈</td>
-				<td>5</td>
-				<td> <img src="..\img\Done.png?ver=1"></td>
-			</tr>
-			
-			<tr>
-				<td>10</td>
-				<td>유재석</td>
-				<td>도배 배도 도배 배도 도배 배도</td>
-				<td>1</td>
-				<td> <img src="..\img\Done.png?ver=1"></td>
-			</tr>
+			<c:choose>
+				<c:when test="${empty list }">
+					<tr>
+						<td colspan="5">등록된 신고글이 없습니다</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list }" var="dto">
+						<tr>
+							<td>${dto.reviewNum }</td>
+							<td>${dto.name }</td>
+							<td>${dto.reviewInfo }</td>
+							<td>${dto.count }</td>
+							<td><img src="img/confirm.png" class="deletebtn" onclick="location.href='admin.do?command=deleteDecration&reviewnum=${dto.reviewNum}'"></td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 			
 		</table>
 

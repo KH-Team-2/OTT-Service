@@ -1,4 +1,3 @@
-<%@ include file="../header.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
@@ -9,7 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(function () {
-      $("#headers").load("header.jsp");
+      $("#headers").load("../index/index_header.jsp");
     });
   </script>
   <style>

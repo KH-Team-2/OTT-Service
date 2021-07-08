@@ -1,15 +1,15 @@
-package com.biz.alarm;
-
-
-import static common.JDBCTemplate.*;
+/*
+import com.biz.alarm.AlarmBiz;
+import com.dao.alarm.AlarmDao;
+import com.dto.UserDto;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.dao.alarm.AlarmDao;
-import com.dto.AlarmDto;
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.getConnection;
 
-public class AlarmBizImpl implements AlarmBiz{
+public class AlarmBizImpl implements AlarmBiz {
 
 	@Override
 	public void AlarmSwitch(int num) {
@@ -19,9 +19,9 @@ public class AlarmBizImpl implements AlarmBiz{
 	}
 
 	@Override
-	public List<AlarmDto> AlarmLoading() {
+	public List<UserDto> AlarmLoading() {
 		Connection con = getConnection();
-		List<AlarmDto> list = dao.AlarmList(dto, con);
+		List<UserDto> list = AlarmDao.alarmloading(con);
 		
 		
 		close(con);
@@ -29,3 +29,5 @@ public class AlarmBizImpl implements AlarmBiz{
 	}
 	
 }
+
+*/

@@ -14,9 +14,9 @@
     <script>
         $(function () {
             $("#headers").load("header.jsp");
-            
         });
     </script>
+    
     <style>
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -95,6 +95,37 @@
     </style>
 </head>
 <body>
+<%
+    	int num = (int)request.getAttribute("page"); 
+    	if(num == 1){
+%>
+    	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		 <script type="text/javascript">
+    	 	$(function(){
+	    	 	$('#iframe_in').attr('src','admin.do?command=User_Info');
+    	 	});
+    	 </script>
+<%
+    	}else if(num==2){
+%>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#iframe_in').attr('src','admin.do?command=DecrationList');
+			});
+	 	</script>
+<%
+    	}else if(num == 3){
+%>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#iframe_in').attr('src','admin.do?command=FBWList');
+			});
+	 	</script>
+<%
+    	}
+%>
 <div id="headers"></div>
 <div id="menu">
     <div id="menuBar">
@@ -106,12 +137,12 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin/Decration.jsp')">
+                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin.do?command=DecrationList')">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_3" value="금지어" onclick="$('#iframe_in').attr('src','admin/Ban_Word.jsp')">
+                    <input type="button" class="menuSelect" id="menu_3" value="금지어" onclick="$('#iframe_in').attr('src','admin.do?command=FBWList')">
                 </td>
             </tr>
         </table>

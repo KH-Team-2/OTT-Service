@@ -1,4 +1,4 @@
-<%@ include file="../index/index_header.jsp"%>
+<%@ include file="../header.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>

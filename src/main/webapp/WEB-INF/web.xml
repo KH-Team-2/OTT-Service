@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    
+
     <welcome-file-list>
-        <welcome-file>/index/index.jsp</welcome-file>
+        <welcome-file>index/start.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -34,4 +34,24 @@
         <url-pattern>/reg.do</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.controller.SearchServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    	<servlet-name>UserServlet</servlet-name>
+    	<servlet-class>com.controller.UserServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>UserServlet</servlet-name>
+    	<url-pattern>/user.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>
