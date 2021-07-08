@@ -38,6 +38,7 @@ public class SearchServlet extends HttpServlet {
             case "search": {
                 String searchBar = request.getParameter("searchBar");
                 String startdate = request.getParameter("startdate");
+                searchBar = searchBar.trim();
 //                startdate = startdate.substring(0, 4);
                 String enddate = request.getParameter("enddate");
 //                enddate = enddate.substring(0, 4);

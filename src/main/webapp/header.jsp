@@ -1,8 +1,21 @@
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
-<% String searchBar1 = request.getParameter("searchBar1");%>
+<% String searchBar1 = request.getParameter("searchBar1");
+    if (searchBar1 == null) {
+        searchBar1 = "";
+    }
+    String startdate = request.getParameter("startdate");
+    startdate = startdate.replace("-", ".");
+    String enddate = request.getParameter("enddate");
+    enddate = enddate.replace("-", ".");
+    String startgrade = request.getParameter("startgrade");
+    String endgrade = request.getParameter("endgrade");
+    String genre = request.getParameter("genre");
+%>
+
 <!DOCTYPE html><html lang="kor">
 <head>
     <title>head</title>
@@ -12,11 +25,29 @@
         var userBtn_Count = 0;
         var menues_count = 0;
         $(function () {
-            today = new Date();
-            today = today.toISOString().slice(0, 10);
-            bir = document.getElementById("enddate");
-            bir.value = today;
+            var startdate = "<%=startdate%>";
+            var startyyyy = startdate.substr(0, 4);
+            var startmm = startdate.substr(5, 2);
+            var startdd = startdate.substr(8, 2);
 
+
+            var restartdate = startyyyy + "-" + startmm + "-" + startdd;
+            startdatedoc = document.getElementById("startdate");
+            startdatedoc.value = restartdate;
+
+            var enddate = "<%=enddate%>";
+            var endyyyy = enddate.substr(0, 4);
+            var endmm = enddate.substr(5, 2);
+            var enddd = enddate.substr(8, 2);
+
+
+            var reenddate = endyyyy + "-" + endmm + "-" + enddd;
+            enddatedoc = document.getElementById("enddate");
+            enddatedoc.value = reenddate;
+
+            $('#startgrade').val('<%=startgrade%>').prop("selected", true);
+            $('#endgrade').val('<%=endgrade%>').prop("selected", true);
+            $('#genre').val('<%=genre%>').prop("selected", true);
 
             $('.userAlarmTable tr:odd').find('td:last-child').css('border-bottom', '1px solid rgb(248, 211, 28')
 
@@ -349,7 +380,6 @@
     </style>
 </head>
 <body>
-
 <form action="search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지</div>
@@ -373,10 +403,11 @@
                 </div>
                 <div class="modalfilter">
                     <span>개봉일자</span><br>
-                    <input type="date" id="startdate" name="startdate" max="9999-12-31" value="1900-01-01"> - <input type="date"
-                                                                                                  name="enddate"
-                                                                                                  id="enddate"
-                                                                                                  max="9999-12-31">
+                    <input type="date" id="startdate" name="startdate" max="9999-12-31" value="1900-01-01"> - <input
+                        type="date"
+                        name="enddate"
+                        id="enddate"
+                        max="9999-12-31">
                 </div>
                 <div class="modalfilter">
                     <span>평점</span><br>
@@ -408,14 +439,16 @@
                     <span>장르</span><br>
                     <select name="genre" id="genre">
                         <option value="none">--</option>
-                        <option value="">스릴러</option>
-                        <option value="">코미디</option>
-                        <option value="">SF</option>
-                        <option value="">액션</option>
-                        <option value="">범죄</option>
-                        <option value="">음악</option>
-                        <option value="">스포츠</option>
-                        <option value="">멜로</option>
+                        <option value="스릴러">스릴러</option>
+                        <option value="코미디">코미디</option>
+                        <option value="SF">SF</option>
+                        <option value="액션">액션</option>
+                        <option value="범죄">범죄</option>
+                        <option value="음악">음악</option>
+                        <option value="스포츠">스포츠</option>
+                        <option value="멜로">멜로</option>
+                        <option value="공포">공포</option>
+                        <option value="드라마">드라마</option>
                     </select>
                 </div>
             </div>
@@ -474,7 +507,7 @@
                                 <input type="button" value="찜" class="menubtn"
                                        onclick="location.href='../user/mypage.jsp'">
                             </td>
-	                    </tr>
+                        </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
@@ -487,29 +520,32 @@
                                        onclick="location.href='../user/mypage.jsp'">
                             </td>
                         </tr>
-	                    
-	                    <tr>
-	                        <td class="Btn"colspan="3" style="text-align: right;">
-	                            <input type="button" value="로그아웃" class="Logout">
-	                        </td>
-	                    </tr>
-                </table>
-	            </div>
-    	        <div id="adminmenu">
-    	        	<table id="adminmenutb">
-	                    <tr>
-	        	            <td colspan="3" style="text-align: left">
-			                    <input type="button" value="회원리스트" class="menubtn" onclick="location.href='admin.do?command=adminlist&page=1'">
-		                    </td>
-	                    </tr>
-	                    <tr>
-	            	        <td colspan="3" style="text-align: left">
-	                	        <input type="button" value="신고리스트" class="menubtn" onclick="location.href='admin.do?command=adminlist&page=2'">
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td colspan="3" style="text-align: left">
-	                            <input type="button" value="금지어" class="menubtn" onclick="location.href='admin.do?command=adminlist&page=3'">
+
+                        <tr>
+                            <td class="Btn" colspan="3" style="text-align: right;">
+                                <input type="button" value="로그아웃" class="Logout">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="adminmenu">
+                    <table id="adminmenutb">
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="회원리스트" class="menubtn"
+                                       onclick="location.href='admin.do?command=adminlist&page=1'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="신고리스트" class="menubtn"
+                                       onclick="location.href='admin.do?command=adminlist&page=2'">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: left">
+                                <input type="button" value="금지어" class="menubtn"
+                                       onclick="location.href='admin.do?command=adminlist&page=3'">
                         </tr>
                         <tr>
                             <td class="Btn" colspan="3" style="text-align: right;">

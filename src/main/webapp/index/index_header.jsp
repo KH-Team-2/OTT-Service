@@ -434,6 +434,8 @@
                         <option value="음악">음악</option>
                         <option value="스포츠">스포츠</option>
                         <option value="멜로">멜로</option>
+                        <option value="공포">공포</option>
+                        <option value="드라마">드라마</option>
                     </select>
                 </div>
             </div>
