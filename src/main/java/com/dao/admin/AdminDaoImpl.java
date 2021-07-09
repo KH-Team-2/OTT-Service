@@ -137,7 +137,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		int res = 0;
 		boolean result = false;
-		String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?,IMGURL=?,USERDATE=? WHERE USERNUM=?";
+		String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=? WHERE USERNUM=?";
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, dto.getID());
@@ -148,9 +148,7 @@ public class AdminDaoImpl implements AdminDao{
 			pstm.setDate(6, dto.getBirth());
 			pstm.setString(7, dto.getGender());
 			pstm.setString(8, dto.getNickName());
-			pstm.setString(9, dto.getImgURL());
-			pstm.setDate(10, dto.getUserDate());
-			pstm.setInt(11, dto.getUserNum());
+			pstm.setInt(9, dto.getUserNum());
 			
 			res = pstm.executeUpdate();
 			
@@ -338,6 +336,29 @@ public class AdminDaoImpl implements AdminDao{
 			e.printStackTrace();
 		} finally {
 			close(pstm);
+		}
+		return result;
+	}
+
+	@Override
+	public boolean UserImgUdate(UserDto dto, Connection con) {
+		PreparedStatement pstm = null;
+		boolean result = false;
+		int res = 0;
+		String sql = "UPDATE USERTB SET IMGURL=? WHERE USERNUM=?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, dto.getImgURL());
+			pstm.setInt(2, dto.getUserNum());
+			
+			res = pstm.executeUpdate();
+			if(res>0) {
+				result = true;
+			}else {
+				result = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}

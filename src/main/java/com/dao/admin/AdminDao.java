@@ -18,5 +18,6 @@ public interface AdminDao {
 	public UserDto UserSelect(int UserNum, Connection con);
 	public boolean UserSecession(int UserNum, Connection con);
 	public boolean DeleteDeclaration(int reviewNum,Connection con);
+	public boolean UserImgUdate(UserDto dto,Connection con);
 
 }
