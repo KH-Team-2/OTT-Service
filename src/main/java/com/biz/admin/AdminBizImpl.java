@@ -120,4 +120,17 @@ public class AdminBizImpl implements AdminBiz{
 		close(con);
 		return result;
 	}
+
+	@Override
+	public boolean UserImgUdate(UserDto dto) {
+		Connection con = getConnection();
+		boolean result = dao.UserImgUdate(dto, con);
+		if(result) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 }
