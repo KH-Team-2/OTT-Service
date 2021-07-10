@@ -10,8 +10,10 @@ public class ReviewDto {
 	private String ReviewInfo;
 	private Date Date;
 	private int Count;
+	private String NickName;
 	
 	public ReviewDto() { super(); }
+
 
 	public ReviewDto(int reviewNum, int userNum, int movieNum, String reviewInfo, java.util.Date date, int count) {
 		super();
@@ -21,6 +23,29 @@ public class ReviewDto {
 		ReviewInfo = reviewInfo;
 		Date = date;
 		Count = count;
+	}
+
+	public ReviewDto(int reviewNum, String reviewInfo) {
+		ReviewNum = reviewNum;
+		ReviewInfo = reviewInfo;
+	}
+
+	public ReviewDto(int reviewNum, int userNum, int movieNum, String reviewInfo, java.util.Date date, int count, String nickName) {
+		ReviewNum = reviewNum;
+		UserNum = userNum;
+		MovieNum = movieNum;
+		ReviewInfo = reviewInfo;
+		Date = date;
+		Count = count;
+		NickName = nickName;
+	}
+
+	public String getNickName() {
+		return NickName;
+	}
+
+	public void setNickName(String nickName) {
+		NickName = nickName;
 	}
 
 	public int getReviewNum() {

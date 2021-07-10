@@ -1,12 +1,12 @@
 package com.biz.review;
 
-import java.util.List;
-
 import com.dto.ReviewDto;
+
+import java.util.List;
 
 public interface ReviewBiz {
 	
-	public boolean ReviewWrite ( ReviewDto rdto );
+	public boolean ReviewWrite ( int usernum, int movienum, String reviewinfo );
 	public boolean ReviewUpdate ( ReviewDto rdto );
 	public boolean ReviewDelete ( int reviewnum ) ;
 	public List<ReviewDto> ReviewList ( int movienum );
