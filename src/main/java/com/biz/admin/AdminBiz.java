@@ -17,4 +17,5 @@ public interface AdminBiz {
 	public UserDto UserSelect(int UserNum);
 	public boolean UserSecession(int UserNum);
 	public boolean DeleteDeclaration(int reviewNum);
+	public boolean UserImgUdate(UserDto dto);
 }

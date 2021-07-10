@@ -1,7 +1,12 @@
 package com.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,8 +15,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import org.json.simple.JSONObject;
 
 import com.biz.admin.AdminBizImpl;
+import com.biz.user.UserBiz;
+import com.biz.user.UserBizImpl;
 import com.dto.DecrationDto;
 import com.dto.FBWDto;
 import com.dto.UserDto;
@@ -21,7 +31,7 @@ import com.dto.UserDto;
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final String ATTACHES_DIR = "C:\\Temp";
     public AdminServlet() {
         super();
     }
@@ -55,18 +65,7 @@ public class AdminServlet extends HttpServlet {
 				dispatch.forward(request, response);
 				break;
 			}
-			case "userUpdateform": {
-				int userNum = Integer.parseInt(request.getParameter("usernum"));
-				String id = request.getParameter("id");
-				String pw = request.getParameter("pw");
-				String name = request.getParameter("name");
-				String birth = request.getParameter("birth");
-				String phone = request.getParameter("phone");
-				String email = request.getParameter("email");
-				String gender = request.getParameter("sex");
-				String nickname = request.getParameter("nickname");
-				break;
-			}
+			
 			case "DecrationList": {
 				List<DecrationDto> list = biz.AdminDeclarationView();
 				request.setAttribute("list", list);
