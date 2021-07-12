@@ -138,7 +138,7 @@
     <table id="menuTable">
       <tr>
         <td>
-          <input type="button" class="menuSelect" id="menu_1" value="찜" onclick="$('#iframe_in').attr('src','WishListViewPage.jsp')">
+          <input type="button" class="menuSelect" id="menu_1" value="찜" onclick="$('#iframe_in').attr('src','wish.do?command=list&page=1')">
         </td>
       </tr>
       <tr>

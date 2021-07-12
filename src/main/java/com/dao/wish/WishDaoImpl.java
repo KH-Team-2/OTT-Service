@@ -104,5 +104,25 @@ public class WishDaoImpl implements WishDao{
 		}
 		return (res>0)?true:false;
 	}
+	
+	public int WishCount(Connection con, int usernum) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int count = 0;
+
+		try {
+			pstm = con.prepareStatement(WishCountSQL);
+			pstm.setInt(1, usernum);
+			
+			rs = pstm.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
 
 }
