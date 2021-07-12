@@ -149,11 +149,18 @@
             $('.delete').click(function () {
                 var hsnum = $(this).prev().children('.hsnum').text();
 
-                var params = "?command=viewdel"
+                var params = "?command=viewdel&historynum=" + hsnum;
 
                 $.ajax({
                     type: "post",
-                    url: "viewlist.do"
+                    url: "viewlist.do" + params,
+                    success: function () {
+                        alert("성공");
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("실패");
+                    }
                 })
             });
 

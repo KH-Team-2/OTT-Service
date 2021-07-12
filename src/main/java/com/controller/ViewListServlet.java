@@ -61,6 +61,13 @@ public class ViewListServlet extends HttpServlet {
                 }
                 break;
             }
+            case "viewdel": {
+                int historynum = Integer.parseInt(request.getParameter("historynum"));
+
+                biz.ViewListDelete(historynum);
+
+                break;
+            }
         }
     }
 
