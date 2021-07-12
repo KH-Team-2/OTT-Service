@@ -11,7 +11,7 @@ public interface ViewListDao {
 			"FROM WATCHHISTORY A\n" +
 			"JOIN CONTENTS C2 on A.MovieNum = C2.MOVIENUM\n" +
 			"WHERE USERNUM = ? AND A.STATUS = 'F' ORDER BY A.HistoryNum DESC ";
-	String ViewListDeleteSQL = " UPDATE FROM WATCHHISTORY SET STATUS='T' WHERE HISTORYNUM=? ";
+	String ViewListDeleteSQL = " UPDATE WATCHHISTORY SET STATUS='T' WHERE HISTORYNUM=? ";
 	String ViewListAddSQL = " INSERT INTO WATCHHISTORY VALUES( WATCH_SQ.NEXTVAL, ?, ?, SYSDATE, 'F') ";
 	String ViewOverlapSQL = " DELETE\n" +
 			"FROM WatchHistory a\n" +
