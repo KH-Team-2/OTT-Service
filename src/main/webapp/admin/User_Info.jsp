@@ -158,9 +158,14 @@
 	</table>
 	
 	<br><br>
+	<jsp:include page="../admin/UserInfo_paging.jsp">
+			<jsp:param value="${paging.page }" name="page"/>
+			<jsp:param value="${paging.beginPage }" name="beginPage"/>
+			<jsp:param value="${paging.endPage }" name="endPage"/>
+			<jsp:param value="${paging.prev }" name="prev"/>
+			<jsp:param value="${paging.next }" name="next"/>
+		</jsp:include>	
 	
-	<span style="font-size:20px; color:white;">&lt;&lt; &nbsp;&nbsp; <b>1</b> &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp;&nbsp; 5  &nbsp;&nbsp; &gt;&gt;</span>
-		
 	</div>
 	
 </body>

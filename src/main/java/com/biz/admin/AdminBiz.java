@@ -11,7 +11,7 @@ public interface AdminBiz {
 	public List<UserDto> AdminUserView();
 	public List<UserDto> AdminUserSearch(String info);
 	public boolean AdminUpdateInfo(UserDto dto);
-	public List<FBWDto> AdminFBWView();
+	public List<FBWDto> AdminFBWView(int page);
 	public boolean AddFBW(FBWDto dto);
 	public boolean DeleteFBW(String FBWords);
 	public UserDto UserSelect(int UserNum);
