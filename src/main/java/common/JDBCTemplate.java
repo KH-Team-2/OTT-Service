@@ -13,7 +13,7 @@ public class JDBCTemplate {
             e.printStackTrace();
         }
 
-        String url = "jdbc:oracle:thin:@192.168.219.100:1521:xe";
+        String url = "jdbc:oracle:thin:@wjwan.hopto.org:1521:xe";
         String id = "SEMI";
         String pw = "SEMI";
 
