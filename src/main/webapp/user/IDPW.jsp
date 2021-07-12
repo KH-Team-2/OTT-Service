@@ -99,6 +99,23 @@ body{
         color : white;
     }
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		$("#searchbtn").click(function(){
+			if($("#name").val() == null || $("#name").val() == "" || $("#email").val() == null || $("#email").val() == "" || 
+				$("#phone").val() == null || $("#phone").val() == ""){
+				alert("빈칸을 전부 입력하세요");
+				
+				return false;
+			}
+			
+		});
+		
+	});
+</script>
+
 </head>
 <body>
 
@@ -113,13 +130,13 @@ body{
             <tr>
                 <td id="title">이름</td>
                 <td>
-                    <input type="text" name="Name" maxlength="40" class="textbox">
+                    <input type="text" name="Name" maxlength="40" class="textbox" id="name">
                 </td>
             </tr>
             <tr>
                 <td id="title">Email</td>
                 <td>
-                    <input type="text" name="Email" maxlength="30" class="textbox">
+                    <input type="text" name="Email" maxlength="30" class="textbox" id="email">
 
                 </td>
             </tr>
@@ -127,13 +144,13 @@ body{
             <tr>
                 <td id="title">휴대전화</td>
                 <td>
-                    <input type="text" name="Phone" class="textbox">
+                    <input type="text" name="Phone" class="textbox" id="phone">
                 </td>
             </tr>
             <tr>
                 <br>
                 <td colspan="3">
-                    <input type="submit" value="확인" class="Btn">
+                    <input type="submit" value="확인" class="Btn" id="searchbtn">
                     <input type="button" value="취소" class="Btn">
                     <br>
 			</table>
