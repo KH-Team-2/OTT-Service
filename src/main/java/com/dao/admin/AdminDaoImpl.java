@@ -20,7 +20,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<DecrationDto> list = new ArrayList<DecrationDto>();
-		String sql ="SELECT REVIEWNUM,NAME,REVIEWINFO,COUNT FROM REVIEW JOIN USERTB USING(USERNUM) WHERE COUNT>1";
+		String sql ="SELECT REVIEWNUM,NAME,REVIEWINFO,COUNT FROM REVIEW JOIN USERTB USING(USERNUM) WHERE COUNT>=1";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -405,7 +405,22 @@ public class AdminDaoImpl implements AdminDao{
 		
 		return count;
 	}
-	
+	public int DecrationCount(Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int count = 0;
+		String sql = "SELECT COUNT(*) as count FROM REVIEW WHERE COUNT>=1";
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 	
 	
 	

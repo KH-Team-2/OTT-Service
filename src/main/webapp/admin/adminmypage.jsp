@@ -111,7 +111,7 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$('#iframe_in').attr('src','admin.do?command=DecrationList');
+				$('#iframe_in').attr('src','admin.do?command=DecrationList&page=1');
 			});
 	 	</script>
 <%
@@ -137,7 +137,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin.do?command=DecrationList')">
+                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin.do?command=DecrationList&page=1')">
                 </td>
             </tr>
             <tr>
