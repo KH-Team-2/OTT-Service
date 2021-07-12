@@ -139,7 +139,7 @@
 	    </div>
 	   	<div id="find">
 	    	<span>
-	    		<input type="button" value=" ID찾기 " class="Btn2" id="idfind" onclick="location.href=''">
+	    		<input type="button" value=" ID찾기 " class="Btn2" id="idfind" onclick="location.href='IDPW.jsp'">
 	    	</span>
 	    	<span>
 	    		<input type="button" value="PW찾기" class="Btn2" onclick="location.href=''">

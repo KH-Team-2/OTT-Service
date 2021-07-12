@@ -65,8 +65,16 @@ public class AdminServlet extends HttpServlet {
 			}
 			
 			case "DecrationList": {
+				int page = 1;
+				if(request.getParameter("page")!=null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				paging.setPage(page);
+				paging.setTotalCount(biz.DecrationCount());
 				List<DecrationDto> list = biz.AdminDeclarationView();
 				request.setAttribute("list", list);
+				request.setAttribute("paging", paging);
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/Decration.jsp");
 				dispatch.forward(request, response);
 				break;
