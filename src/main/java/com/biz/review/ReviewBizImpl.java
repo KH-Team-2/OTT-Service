@@ -1,11 +1,11 @@
 package com.biz.review;
 
-import java.sql.Connection;
-import java.util.List;
-
 import com.dao.review.ReviewDao;
 import com.dao.review.ReviewDaoImpl;
 import com.dto.ReviewDto;
+
+import java.sql.Connection;
+import java.util.List;
 
 import static common.JDBCTemplate.*;
 
@@ -14,10 +14,10 @@ public class ReviewBizImpl implements ReviewBiz {
 	private ReviewDao dao = new ReviewDaoImpl();
 
 	@Override
-	public boolean ReviewWrite( ReviewDto rdto ) {
+	public boolean ReviewWrite( int usernum, int movienum, String reviewinfo ) {
 			
 		Connection con = getConnection();
-		boolean res = dao.ReviewWrite(con, rdto );
+		boolean res = dao.ReviewWrite(con, usernum, movienum, reviewinfo );
 		
 		if(res) { commit(con); }
 		else { rollback(con); }
@@ -47,9 +47,8 @@ public class ReviewBizImpl implements ReviewBiz {
 		Connection con = getConnection();
 		boolean res = dao.ReviewDelete(con, reviewnum);
 		
-		if(res) { commit(con); }
-		else { rollback(con); }
-		
+		if(!res) { rollback(con); }
+
 		close(con);
 		
 		return res;
@@ -69,7 +68,7 @@ public class ReviewBizImpl implements ReviewBiz {
 	public boolean ReviewReport(int reviewnum) {
 
 		Connection con = getConnection();
-		boolean res = dao.ReviewDelete(con, reviewnum);
+		boolean res = dao.ReviewReport(con, reviewnum);
 		
 		if(res) { commit(con); }
 		else { rollback(con); }

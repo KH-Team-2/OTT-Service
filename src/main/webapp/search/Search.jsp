@@ -4,7 +4,7 @@
          pageEncoding="EUC-KR" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-<% response.setContentType("text/html; charset=UTF-8"); %></>
+<% response.setContentType("text/html; charset=UTF-8"); %>
 <% String searchBar = request.getParameter("searchBar");
     String startdate = request.getParameter("startdate");
     String enddate = request.getParameter("enddate");
@@ -101,7 +101,8 @@
             });
 
             $(".title").click(function () {
-                location.href = 'search.do?command=detail&title=' + $(this).text();
+                var str = "?command=detail&title=" + $(this).text()+"&movienum="+ $(this).children('.movienum').val();
+                location.href = 'search.do'+str;
             });
             console.log($('#header').children());
         });
@@ -142,7 +143,7 @@
                 </div>
                 <div class="content contentdiv">
                     <div class="content titlediv">
-                        <span class="title">${list.title}</span><span class="date">(${list.openYear})</span>
+                        <span class="title">${list.title}<input type="hidden" class="movienum" value="${list.movieNum}"></span><span class="date">(${list.openYear})</span>
                         <img src="${list.pfimgurl}" alt="" style="margin-bottom:-5px;"class="pfimg">
                     </div>
                     <div class="content genrediv">
