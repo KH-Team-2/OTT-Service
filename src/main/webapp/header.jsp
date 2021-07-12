@@ -436,7 +436,7 @@
 		UserDto dto = (UserDto)session.getAttribute("dto");
 	
 		if(dto == null) {  %> <script>alert("로그인 안되어있음");</script> <%  }
-		else { %>  <script>alert("<%=dto.getName()%>"); </script> <% }
+		else { %>  <% }
 
 	%>
 	
@@ -571,7 +571,7 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='viewlist.do?command=viewlist&page=2&usernum='+<%=dto.getUserNum()%>">
                             </td>
                         </tr>
                         <tr>
