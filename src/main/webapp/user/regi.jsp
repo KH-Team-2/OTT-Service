@@ -161,7 +161,7 @@
 		function overlapcheck() {
 			
 			$.ajax({ 
-				url:"../reg.do?command=idcheck&id=" + $("#UserID").val(),
+				url:"../reg.do?command=idcheck&id=" + $("#UserID").val(), // session.getval(UserID);
 				dataType:"json",
 				success:function(msg) {
 					if(msg.check == true) { 
@@ -271,6 +271,26 @@
         </table>
         <br>
     </form>
+    
+    <% 
+		HttpSession dto = request.getSession(true); 
+	
+		dto.setAttribute("USERNUM", 1);
+		dto.setAttribute("ID", "thisisid");
+		dto.setAttribute("PW", "pwissecret");
+		dto.setAttribute("EMAIL", "aaaa@gmail.com");
+		dto.setAttribute("PHONE", "01065559222");
+		dto.setAttribute("NAME", "이름이다요");
+		dto.setAttribute("BIRTH", "1999-09-09");
+		dto.setAttribute("GENDER", "W");
+		dto.setAttribute("NICKNAME", "닉네임이다요");
+		dto.setAttribute("IMGURL", "IMGURL이다요");
+		dto.setAttribute("STATUS", "Y");
+		dto.setAttribute("GRADE", "USER");
+		dto.setAttribute("USERDATE", "2021-07-08");
+	%>
+    
+    <script> alert("<%=dto.getAttribute("ID")%>") </script>
 </div>
 </body>
 </html>
