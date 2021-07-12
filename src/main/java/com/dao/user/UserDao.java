@@ -1,14 +1,13 @@
 package com.dao.user;
 
-import java.sql.Connection;
-import java.sql.Date;
-
 import com.dto.UserDto;
+
+import java.sql.Connection;
 
 public interface UserDao {
 	
 	String CreateAccountSQL = " INSERT INTO USERTB VALUES(USER_SQ.NEXTVAL,?,?,?,?,?,?,?,?,?,'Y','USER', SYSDATE ) ";
-	String LoginSQL = " SELECT * FROM SP_USERTB WHERE ID=? AND PW=? AND STATUS=Y ";
+	String LoginSQL = " SELECT * FROM USERTB WHERE ID=? AND PW=? AND STATUS='Y' ";
 	String UpdateInfoSQL = " UPDATE SP_USERTB SET PW=?, PHONE=?, EMAIL=?, GENDER=?, NICKNAME=?, IMGURL=? WHERE USERNUM=? ";
 	String SearchIDSQL = " SELECT * FROM SP_USERTB WHERE NAME=? AND EMAIL=? AND PHONE=? ";
 	String SearchPWSQL = " SELECT * FROM SP_USERTB WHERE ID=? AND NAME=? AND EMAIL=? ";

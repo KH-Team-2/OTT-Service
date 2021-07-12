@@ -90,16 +90,16 @@
     <div id="logo"><h2>로고</h2></div><br>
     <br>
     <div id="login">
-	    <form action="" method="post">
+	    <form action="../user.do?command=login" method="post">
 	    	<table id="logintb">
 		        <tr>
 	    	        <td id="ID">
-	        	        <input type="text" placeholder=" ID">
+	        	        <input type="text" name="id" placeholder=" ID">
 	            	</td>
 	       		</tr>
 	        	<tr>
 	            	<td id="PW">
-	                	<input type="text" placeholder=" PW">
+	                	<input type="text" name="pw" placeholder=" PW">
 	            	</td>
 	            </tr>
 	            <tr>

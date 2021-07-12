@@ -45,7 +45,7 @@ public class RegServlet extends HttpServlet {
 		
 		String fileName = null;
 		
-		if (contentType != null &&  contentType.toLowerCase().startsWith("multipart/")) {
+		if (contentType != null && contentType.toLowerCase().startsWith("multipart/")) {
 			
 			Collection<Part> parts = request.getParts();
 

@@ -63,5 +63,12 @@
     	<servlet-name>UserServlet</servlet-name>
     	<url-pattern>/user.do</url-pattern>
     </servlet-mapping>
-
+	<servlet>
+		<servlet-name>AdminUpdateServlet</servlet-name>
+		<servlet-class>com.controller.AdminUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminUpdateServlet</servlet-name>
+		<url-pattern>/adminUpdate.do</url-pattern>
+	</servlet-mapping>
 </web-app>

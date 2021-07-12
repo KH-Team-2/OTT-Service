@@ -3,6 +3,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.dto.UserDto" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,8 +74,13 @@
         background-color : black;
         color : white;
     }
-
+	#profileimg{
+		border : 1px solid white;
+		width : 150px;
+		height : 150px;
+	}
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function UserSecession(){
 		var num= confirm("추방하시겠습니까?");
@@ -82,51 +88,80 @@
 			location.href="admin.do?command=userSecession&usernum="+${dto.userNum};
 		}
 	}
+	$(function(){
+		$("#updateform").submit( function() {
+			
+			var count = 0;
+			
+			$(".updateval").each( function() {
+				if( $(this).val()=="" || $(this).val() == null ) {
+					count++;
+					alert("빈 항목이 존재합니다.");
+					$(this).focus();
+					return;
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body>
 <div>
-	<form action="admin.do" method="post" enctype="multipart/form-data">
+	<form action="adminUpdate.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="usernum" value="${dto.userNum }">
+		<table>
+		    <tr>
+	            <td>프로필 사진</td>
+	            <td>
+	    	        <img src="" alt="" id="profileimg">
+	            </td>
+	        	<td style="vertical-align: bottom">
+		            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">
+	        	</td>
+	        </tr>
+	        <tr>
+	        	<td></td>
+		        <td align="center">
+		        	<input type="submit" value="프로필 사진 변경">
+		        </td>
+	        </tr>
+		</table>
+	</form>
+	<form action="adminUpdate.do" method="post" id="updateform">
 		<input type="hidden" name="usernum" value="${dto.userNum }">
 		<input type="hidden" name="command" value="userUpdateform">
     <table>
         <tr>
             <td>ID</td>
-            <td><input type="text" value="${dto.ID }" name="id"></td>
+            <td><input type="text" value="${dto.ID }" name="id" class="updateval"></td>
         </tr>
         <tr>
             <td>PW</td>
-            <td><input type="password" name="pw" value="${dto.PW }"></td>
+            <td><input type="password" name="pw" value="${dto.PW }" class="updateval"></td>
         </tr>
         <tr>
             <td>이름</td>
-            <td><input type="text" name="name" value="${dto.name }"></td>
+            <td><input type="text" name="name" value="${dto.name }" class="updateval"></td>
         </tr>
         <tr>
             <td>생년월일</td>
-            <td><input type="date" name="birth" value="${dto.birth }"></td>
+            <td><input type="date" name="birth" value="${dto.birth }" class="updateval"></td>
         </tr>
         <tr>
             <td>휴대전화</td>
-            <td><input type="text" name="phone" value="${dto.phone }"></td>
+            <td><input type="text" name="phone" value="${dto.phone }" class="updateval"></td>
         </tr>
         <tr>
             <td>EMAIL</td>
-            <td><input type="text" name="email" value="${dto.email }"></td>
+            <td><input type="text" name="email" value="${dto.email }" class="updateval"></td>
         </tr>
         <tr>
             <td>성별</td>
-            <td><input type="radio" name="sex" value="M">남 <input type="radio" name="sex" value="F">여</td>
+            <td><input type="radio" name="gender" value="M" <c:if test="${dto.gender eq 'M'}">checked</c:if>>남 <input type="radio" name="gender" value="W" <c:if test="${dto.gender eq 'W'}">checked</c:if>>여</td>
         </tr>
         <tr>
             <td>닉네임</td>
-            <td><input type="text" name="nickname" value="${dto.nickName }"></td>
-        </tr>
-        <tr>
-            <td>프로필 사진</td>
-            <td>
-            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">${dto.imgURL }
-            </td>
+            <td><input type="text" name="nickname" value="${dto.nickName }" class="updateval"></td>
         </tr>
         <tr>
             <td>
