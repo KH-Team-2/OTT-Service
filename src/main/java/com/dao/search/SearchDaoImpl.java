@@ -76,7 +76,7 @@ public class SearchDaoImpl implements SearchDao {
 
 
                 while (rs.next()) {
-                    System.out.println("2번");
+//                    System.out.println("2번");
                     ContentsDto temp = new ContentsDto(
                             rs.getInt(1), // num
                             rs.getString(2), // title

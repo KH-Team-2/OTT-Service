@@ -151,17 +151,20 @@
 
                 var params = "?command=viewdel&historynum=" + hsnum;
 
-                $.ajax({
-                    type: "post",
-                    url: "viewlist.do" + params,
-                    success: function () {
-                        alert("성공");
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("실패");
-                    }
-                })
+                if (confirm("삭제하시겠습니까?")) {
+                    $.ajax({
+                        type: "post",
+                        url: "viewlist.do" + params,
+                        success: function () {
+                            // alert("성공");
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("실패");
+                        }
+                    });
+                }
+
             });
 
             $('.title').hover(function () {
@@ -179,7 +182,27 @@
             });
 
             $('#delbtn').click(function () {
-                console.log($(this));
+                var num = "";
+                $('.chk:checked').each(function () {
+                    num = num + $(this).val() + ",";
+                });
+                num = num.substring(0, num.lastIndexOf(","));
+                if (confirm("삭제하시겠습니까?")) {
+                    var params = "?command=chkdel&num=" + num;
+
+                    $.ajax({
+                        type: "post",
+                        url: "viewlist.do" + params,
+                        success: function () {
+                            // alert("성공");
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("실패");
+                        }
+                    })
+
+                }
             });
 
         });
@@ -187,7 +210,6 @@
     </script>
 </head>
 <body>
-<form>
     <div class="area">
 
         <table>
@@ -210,13 +232,20 @@
                     <jsp:useBean id="list" scope="request" type="java.util.List"/>
                     <c:forEach items="${list }" var="list">
                         <tr>
-                            <td class="select"><input type="checkbox" class="chk"></td>
+                            <td class="select"><input type="checkbox" class="chk" value="${list.historyNum}"></td>
                             <td class="title"><span class="sptitle">${list.movieTitle}</span><span
                                     class="movienum" style="display: none">${list.movieNum}</span>
                                 <span class="hsnum" style="display: none">${list.historyNum}</span></td>
                             <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
                         </tr>
                     </c:forEach>
+                    <tr>
+                        <td colspan="3">
+
+                            <input type="image" src="../img/delete.png" id="delbtn">
+                            <input type="button" id="delshow" value="선택" onclick="">
+                        </td>
+                    </tr>
                 </c:otherwise>
             </c:choose>
             <%--<tr>
@@ -225,14 +254,6 @@
                 <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
             </tr>--%>
 
-
-            <tr>
-                <td colspan="3">
-                    <input type="image" src="../img/delete.png" id="delbtn">
-                    <input type="button" id="delshow" value="선택" onclick="">
-                </td>
-            </tr>
-            </td>
             </tbody>
         </table>
 
@@ -248,7 +269,5 @@
         </ul>
 
     </div>
-</form>
-
 </body>
 </html>
