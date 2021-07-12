@@ -2,7 +2,6 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,10 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.biz.user.UserBiz;
 import com.biz.user.UserBizImpl;
-import com.biz.viewlist.ViewListBiz;
-import com.biz.viewlist.ViewListBizImpl;
 import com.dto.UserDto;
-import com.dto.WHDto;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -33,9 +29,8 @@ public class UserServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		UserBiz biz = new UserBizImpl();
-		ViewListBiz viewlistbiz = new ViewListBizImpl();
+
 		String command = request.getParameter("command");
-		HttpSession session = request.getSession();
 
 		switch (command) {
 			case "login":{
@@ -47,6 +42,7 @@ public class UserServlet extends HttpServlet {
 				System.out.println(dto.getUserNum());
 				
 				if(dto.getID() != null){
+					HttpSession session = request.getSession();
 					session.setAttribute("dto", dto);
 					session.setMaxInactiveInterval(60*60);
 					
@@ -59,7 +55,7 @@ public class UserServlet extends HttpServlet {
 				
 			}
 			case "userlist": {
-				int page = Integer.parseInt(request.getParameter("pages"));
+				int page = Integer.parseInt(request.getParameter("page"));
 				
 				request.setAttribute("page", page);
 				
@@ -67,19 +63,20 @@ public class UserServlet extends HttpServlet {
 				
 				break;
 			}
-			case "View_History":{
-				UserDto dto = (UserDto)session.getAttribute("dto");
-				List<WHDto> list = viewlistbiz.ViewListLoading(dto.getUserNum());
-				request.setAttribute("list", list);
-				dispatch("user/View_History.jsp", request, response);
-				break;
-			}
-			case "Update":{
-				UserDto dto = (UserDto)session.getAttribute("dto");
+			case "Update": {
+				
+				int userNum = Integer.parseInt(request.getParameter("userNum"));
+				
+				UserDto dto = biz.selectOne(userNum);
+				
 				request.setAttribute("dto", dto);
-				dispatch("user/Update.jsp", request, response);
+				dispatch("user/Update.jsp",request,response);
+				
+						
 				break;
 			}
+			 
+
 		}
 
     }
