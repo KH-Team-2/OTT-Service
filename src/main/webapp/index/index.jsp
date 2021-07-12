@@ -2,6 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+
+<%@ page import="com.dto.UserDto" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +61,9 @@
     </style>
 </head>
 <body>
+<%
+	UserDto dto = (UserDto)session.getAttribute("dto");
+%>
 <div id="headers"></div>
 <br>
 <div id="videoselect">

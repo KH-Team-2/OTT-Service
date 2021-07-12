@@ -101,6 +101,37 @@
   </style>
 </head>
 <body>
+<%
+    	int num = (int)request.getAttribute("page"); 
+    	if(num == 1){
+%>
+    	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		 <script type="text/javascript">
+    	 	$(function(){
+	    	 	$('#iframe_in').attr('src','user.do?command=WishListViewPage');
+    	 	});
+    	 </script>
+<%
+    	}else if(num==2){
+%>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#iframe_in').attr('src','user.do?command=View_History');
+			});
+	 	</script>
+<%
+    	}else if(num == 3){
+%>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#iframe_in').attr('src','user.do?command=Update');
+			});
+	 	</script>
+<%
+    	}
+%>
 <div id="headers"></div>
 <div id="menu">
   <div id="menuBar">

@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,13 +78,13 @@
 </head>
 <body>
 <div>
-	<form>
-		<input type="hidden" name="ID" value="">
-	
+	<form action="user.do" method="post">
+  		<input type="hidden" name="usernum" value="${dto.userNum }">
+		<input type="hidden" name="command" value="Update">
     <table>
         <tr>
             <td>ID</td>
-            <td>아이디아이디</td>
+            <td>${dto.ID }</td>
         </tr>
         <tr>
             <td>PW</td>
@@ -91,11 +92,11 @@
         </tr>
         <tr>
             <td>이름</td>
-            <td>이름잉ㄹ므</td>
+            <td>${dto.Name }</td>
         </tr>
         <tr>
             <td>생년월일</td>
-            <td><input type="date" placeholder="YYYY-MM-DD"></td>
+            <td>${dto.birth }</td>
         </tr>
         <tr>
             <td>휴대전화</td>
@@ -107,7 +108,7 @@
         </tr>
         <tr>
             <td>성별</td>
-            <td><input type="radio" name="sex" value="남">남 <input type="radio" name="sex" value="여">여</td>
+            <td><input type="radio" name="gender" value="남">남 <input type="radio" name="gender" value="여">여</td>
         </tr>
         <tr>
             <td>닉네임</td>
@@ -116,7 +117,7 @@
         <tr>
             <td>프로필 사진</td>
             <td>
-            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile">
+            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="imgurl">
             </td>
         </tr>
         <tr>
