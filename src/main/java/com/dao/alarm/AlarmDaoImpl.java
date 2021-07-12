@@ -14,6 +14,7 @@ import com.dto.WishListDto;
 
 public class AlarmDaoImpl {
 	
+	
 	public List<UserDto> AlarmLoading(Connection con) {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -51,7 +52,7 @@ public class AlarmDaoImpl {
 		return list;
 	}
 
-
+	
 public void AlarmSwitch(Connection con, WishListDto dto) {
 	PreparedStatement pstm = null;
 
