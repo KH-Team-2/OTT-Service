@@ -104,45 +104,46 @@
 <body>
 <%
     int usernum = Integer.parseInt(request.getParameter("usernum"));
-
-    int num = (int) request.getAttribute("page");
-    if (num == 1) {
-%>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#iframe_in').attr('src', 'user.do?command=WishListViewPage');
-    });
-</script>
-<%
-} else if (num == 2) {
-%>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#iframe_in').attr('src', 'viewlist.do?command=viewhistory&page=2&usernum=<%=usernum%>');
-    });
-</script>
-<%
-} else if (num == 3) {
-%>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#iframe_in').attr('src', 'user.do?command=Update');
-    });
-</script>
-<%
-    }
 %>
 <div id="headers"></div>
 <div id="menu">
     <div id="menuBar">
         <table id="menuTable">
+            <%
+                int num = (int) request.getAttribute("page");
+                if (num == 1) {
+            %>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $('#iframe_in').attr('src', '');
+                });
+            </script>
+            <%
+            } else if (num == 2) {
+            %>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $('#iframe_in').attr('src', 'viewlist.do?command=viewhistory&page=2&usernum=<%=usernum%>');
+                });
+            </script>
+            <%
+            } else if (num == 3) {
+            %>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $('#iframe_in').attr('src', '');
+                });
+            </script>
+            <%
+                }
+            %>
             <tr>
                 <td>
                     <input type="button" class="menuSelect" id="menu_1" value="찜"
-                           onclick="$('#iframe_in').attr('src','wish.do?command=list&page=1')">
+                           onclick="$('#iframe_in').attr('src','WishListViewPage.jsp')">
                 </td>
             </tr>
             <tr>
@@ -159,6 +160,10 @@
             </tr>
         </table>
         <input type="button" class="menuSelect" id="logout" value="로그아웃">
+    </div>
+    <div id="iframe">
+        <iframe id="iframe_in" src="WishListViewPage.jsp" width="100%" height="100%" frameborder="0"
+                allowfullscreen></iframe>
     </div>
 </div>
 </body>
