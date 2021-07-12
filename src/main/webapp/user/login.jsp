@@ -84,6 +84,21 @@
     	text-align: center;
     }
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#loginbtn").click(function(){
+			if($("#ID").val() == null || $("#ID").val() == "" || $("#PW").val() == null || $("#PW").val() == ""){
+				alert("아이디/비밀번호를 입력하세요");
+				
+				return false;
+			}
+		});
+		
+		
+		
+	});
+</script>
 </head>
 
 <body>
@@ -93,18 +108,18 @@
 	    <form action="../user.do?command=login" method="post">
 	    	<table id="logintb">
 		        <tr>
-	    	        <td id="ID">
-	        	        <input type="text" name="id" placeholder=" ID">
+	    	        <td>
+	        	        <input type="text" name="id" placeholder=" ID" id="ID">
 	            	</td>
 	       		</tr>
 	        	<tr>
-	            	<td id="PW">
-	                	<input type="text" name="pw" placeholder=" PW">
+	            	<td>
+	                	<input type="text" name="pw" placeholder=" PW" id="PW">
 	            	</td>
 	            </tr>
 	            <tr>
 	                <td colspan="3" style="text-align: center;">
-	                    <input type="submit" value="Login" class="Btn"><br>
+	                    <input type="submit" value="Login" class="Btn" id="loginbtn"><br>
 				    	<input type="button" value="Join us" class="Btn" id="regist" onclick="location.href='regi.jsp'">
 	                </td>
 	            </tr>

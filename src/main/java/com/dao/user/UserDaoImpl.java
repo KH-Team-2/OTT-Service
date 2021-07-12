@@ -243,4 +243,37 @@ public class UserDaoImpl implements UserDao{
 		
 		return res>=1?true:false;
 	}
+
+	@Override
+	public UserDto selectOne(int userNum, Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		UserDto res = null;
+		
+		try {
+			pstm = con.prepareStatement(selectOneSql);
+			pstm.setInt(1,userNum);
+			System.out.println("03. query 준비: " + selectOneSql);
+			
+			rs = pstm.executeQuery();
+			System.out.println("04. query 실행 밀 리턴");
+			
+			if(rs.next()) {
+				res = new UserDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
+								rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), 
+								rs.getString(12), rs.getDate(13));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return res;
+	}
 }

@@ -110,4 +110,16 @@ public class UserBizImpl implements UserBiz{
 		return res;
 	}
 
+	@Override
+	public UserDto selectOne(int userNum) {
+		Connection con = getConnection();
+
+		UserDto dto = dao.selectOne(userNum, con);
+			
+		close(con);
+
+		
+		return dto;
+	}
+
 }
