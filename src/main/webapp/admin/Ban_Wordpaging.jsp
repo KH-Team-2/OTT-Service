@@ -21,7 +21,7 @@
 	<div id="paging">
 	<c:url var="action" value="admin.do?command=FBWList"/>
 	<c:if test="${param.prev }">
-		<a href="${action }&page=${param.beginPage-1}">prev</a>
+		<a href="${action }&page=${param.beginPage-1}">&lt;&lt;</a>
 	</c:if>
 	<c:forEach begin="${param.beginPage }" end="${param.endPage }" step="1" var="index">
 		<c:choose>
