@@ -96,9 +96,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			boolean res = biz.AdminUpdateInfo(dto);
 			
 			if(res) {
-				jsResponse("성공", "admin.do?command=User_Info", response);
+				jsResponse("성공", "admin.do?command=User_Info&page=1", response);
 			}else {
-				jsResponse("실패", "admin.do?command=User_Info", response);
+				jsResponse("실패", "admin.do?command=User_Info&page=1", response);
 			}
 		}
 	}
