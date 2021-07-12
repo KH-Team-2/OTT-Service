@@ -178,6 +178,10 @@
                 window.open("search.do?command=detail&title=" + title + "&movienum=" + movienum);
             });
 
+            $('#delbtn').click(function () {
+                console.log($(this));
+            });
+
         });
 
     </script>
@@ -224,7 +228,7 @@
 
             <tr>
                 <td colspan="3">
-                    <input type="image" src="img/delete.png" id="delbtn" class="delete">
+                    <input type="image" src="../img/delete.png" id="delbtn">
                     <input type="button" id="delshow" value="선택" onclick="">
                 </td>
             </tr>
