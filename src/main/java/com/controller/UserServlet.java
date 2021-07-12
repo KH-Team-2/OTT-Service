@@ -32,6 +32,8 @@ public class UserServlet extends HttpServlet {
 
 		String command = request.getParameter("command");
 
+		HttpSession session = request.getSession();
+		
 		switch (command) {
 			case "login":{
 				String id = request.getParameter("id");
@@ -42,7 +44,6 @@ public class UserServlet extends HttpServlet {
 				System.out.println(dto.getUserNum());
 				
 				if(dto.getID() != null){
-					HttpSession session = request.getSession();
 					session.setAttribute("dto", dto);
 					session.setMaxInactiveInterval(60*60);
 					
@@ -52,29 +53,21 @@ public class UserServlet extends HttpServlet {
 					jsResponse("로그인 실패", "../search.do?command=main", response);
 				}
 				
-				
+				break;
 			}
-			case "userlist": {
-				int page = Integer.parseInt(request.getParameter("page"));
+			
+			case "searchID": {
+				String name = request.getParameter("Name");
+				String email = request.getParameter("Email");
+				String phone = request.getParameter("Phone");
 				
-				request.setAttribute("page", page);
+				String ID = biz.SearchID(name, email, phone);
 				
-				dispatch("user/mypage.jsp",request, response);
+				
 				
 				break;
 			}
-			case "Update": {
-				
-				int userNum = Integer.parseInt(request.getParameter("userNum"));
-				
-				UserDto dto = biz.selectOne(userNum);
-				
-				request.setAttribute("dto", dto);
-				dispatch("user/Update.jsp",request,response);
-				
-						
-				break;
-			}
+			
 			 
 
 		}
