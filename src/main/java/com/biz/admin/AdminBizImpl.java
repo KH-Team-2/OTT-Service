@@ -146,4 +146,11 @@ public class AdminBizImpl implements AdminBiz{
 		close(con);
 		return res;
 	}
+	public int DecrationCount() {
+		Connection con = getConnection();
+		int res = dao.DecrationCount(con);
+		close(con);
+		
+		return res;
+	}
 }

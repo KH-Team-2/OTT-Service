@@ -58,5 +58,17 @@ public class WishBizImpl implements WishBiz{
 		return res;
 	}
 	
+	@Override
+	public int WishCount(int usernum) {
+		
+		Connection con = getConnection();
+		
+		int res = dao.WishCount(con, usernum);
+		
+		close(con);
+
+		return res;
+		
+	}
 
 }
