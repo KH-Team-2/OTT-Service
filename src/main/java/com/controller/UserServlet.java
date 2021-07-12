@@ -62,8 +62,13 @@ public class UserServlet extends HttpServlet {
 				String phone = request.getParameter("Phone");
 				
 				String ID = biz.SearchID(name, email, phone);
+				System.out.println(ID);
 				
-				
+				if( ID != null) {
+					jsResponse("아이디: "+ID, "user/login.jsp", response);
+				} else {
+					jsResponse("일치하는 아이디가 존재하지 않습니다.", "user/IDPW.jsp",response);
+				}
 				
 				break;
 			}
