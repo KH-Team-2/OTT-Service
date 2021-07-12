@@ -1,6 +1,7 @@
 SELECT * FROM SP_CONTENTS;
 SELECT * FROM SP_PLATFORM;
 SELECT * FROM REVIEW;
+SELECT * FROM USERTB;
 
 select * from user_sequences;
                   
