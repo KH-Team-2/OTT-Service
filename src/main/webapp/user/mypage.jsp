@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@page import="java.util.List" %>
+<%@page import="com.dto.UserDto" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +10,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(function () {
-      $("#headers").load("../index/index_header.jsp");
+    	 $("#headers").load("header.jsp");
     });
   </script>
   <style>
@@ -102,7 +104,7 @@
 </head>
 <body>
 <%
-    	int num = (int)request.getAttribute("page"); 
+    	int num = (int)request.getAttribute("pages"); 
     	if(num == 1){
 %>
     	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

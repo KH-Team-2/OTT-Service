@@ -3,6 +3,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.dto.UserDto" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,59 +74,101 @@
         background-color : black;
         color : white;
     }
-
+	#profileimg{
+		border : 1px solid white;
+		width : 150px;
+		height : 150px;
+	}
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function UserSecession(){
+		var num= confirm("추방하시겠습니까?");
+		if(num){
+			location.href="admin.do?command=userSecession&usernum="+${dto.userNum};
+		}
+	}
+	$(function(){
+		$("#updateform").submit( function() {
+			
+			var count = 0;
+			
+			$(".updateval").each( function() {
+				if( $(this).val()=="" || $(this).val() == null ) {
+					count++;
+					alert("빈 항목이 존재합니다.");
+					$(this).focus();
+					return;
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 <div>
-	<form action="user.do" method="post">
-  		<input type="hidden" name="usernum" value="${dto.userNum }">
-		<input type="hidden" name="command" value="Update">
+	<form action="userUpdate.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="usernum" value="${dto.userNum }">
+		<table>
+		    <tr>
+	            <td>프로필 사진</td>
+	            <td>
+	    	        <img src="" alt="" id="profileimg">
+	            </td>
+	        	<td style="vertical-align: bottom">
+		            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">
+	        	</td>
+	        </tr>
+	        <tr>
+	        	<td></td>
+		        <td align="center">
+		        	<input type="submit" value="프로필 사진 변경">
+		        </td>
+	        </tr>
+		</table>
+	</form>
+	<form action="userUpdate.do" method="post" id="updateform">
+		<input type="hidden" name="usernum" value="${dto.userNum }">
+		<input type="hidden" name="command" value="userUpdateform">
     <table>
         <tr>
             <td>ID</td>
-            <td>${dto.ID }</td>
+            <td><input type="text" value="${dto.ID }" name="id" class="updateval" readonly="readonly"></td>
         </tr>
         <tr>
             <td>PW</td>
-            <td><input type="password" name="pw" placeholder="비밀번호"></td>
+            <td><input type="password" name="pw" value="${dto.PW }" class="updateval"></td>
         </tr>
         <tr>
             <td>이름</td>
-            <td>${dto.Name }</td>
+            <td><input type="text" name="name" value="${dto.name }" class="updateval" readonly="readonly"></td>
         </tr>
         <tr>
             <td>생년월일</td>
-            <td>${dto.birth }</td>
+            <td><input type="date" name="birth" value="${dto.birth }" class="updateval" readonly="readonly"></td>
         </tr>
         <tr>
             <td>휴대전화</td>
-            <td><input type="text" name="phone" placeholder="핸드폰 번호를 입력하세요."></td>
+            <td><input type="text" name="phone" value="${dto.phone }" class="updateval"></td>
         </tr>
         <tr>
             <td>EMAIL</td>
-            <td><input type="text" name="email" placeholder="이메일 주소를 입력하세요."></td>
+            <td><input type="text" name="email" value="${dto.email }" class="updateval"></td>
         </tr>
         <tr>
             <td>성별</td>
-            <td><input type="radio" name="gender" value="남">남 <input type="radio" name="gender" value="여">여</td>
+            <td><input type="radio" name="gender" value="M" <c:if test="${dto.gender eq 'M'}">checked</c:if>>남 <input type="radio" name="gender" value="W" <c:if test="${dto.gender eq 'W'}">checked</c:if>>여</td>
         </tr>
         <tr>
             <td>닉네임</td>
-            <td><input type="text" name="nickname" placeholder="닉네임을 입력하세요."></td>
-        </tr>
-        <tr>
-            <td>프로필 사진</td>
-            <td>
-            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="imgurl">
-            </td>
+            <td><input type="text" name="nickname" value="${dto.nickName }" class="updateval"></td>
         </tr>
         <tr>
             <td>
-                <input type="button" value="회원탈퇴" onclick="">
+                <input type="button" value="회원탈퇴" onclick="UserSecession();">
             </td>
             <td style="text-align:right">
-                <input type="submit" value="완료"> <input type="button" value="취소" onclick="">
+                <input type="submit" value="완료"> <input type="button" value="취소" onclick="location.href='admin.do?command=User_Info&page=1'">
             </td>
         </tr>
     </table>

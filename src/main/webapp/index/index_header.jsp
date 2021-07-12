@@ -496,19 +496,19 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="찜" class="menubtn"
-                                       onclick="location.href='user.do?command=userlist&page=1'">
+                                       onclick="location.href='user.do?command=userlist&pages=1'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='user.do?command=userlist&page=2'">
+                                       onclick="location.href='user.do?command=userlist&pages=2'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="정보수정" class="menubtn"
-                                       onclick="location.href='user.do?command=userlist&page=3'">
+                                       onclick="location.href='user.do?command=userlist&pages=3'">
                             </td>
                         </tr>
                         <tr>
