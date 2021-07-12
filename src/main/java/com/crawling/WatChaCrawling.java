@@ -102,7 +102,7 @@ public class WatChaCrawling extends JDBCTemplate {
 
 //        영상 i개를 가져온다.
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             try {
 //                시간 딜레이(3초)
                 Thread.sleep(1000);
@@ -135,7 +135,7 @@ public class WatChaCrawling extends JDBCTemplate {
 //            img주소를 가져오기 위한 div태그이다.
             WebElement imgel = driver.findElement(By.className("e1q5rx9q0"));
 //            img주소를 가지고있는 span태그이다.
-            WebElement imgurlel = imgel.findElement(By.className("e1q5rx9q1"));
+            WebElement imgurlel = mouseImg.get(i).findElement(By.className("e1q5rx9q1"));
 //            영상에 대한 정보를 가지고있는 div 태그이다.
             WebElement movieContents = driver.findElement(By.className("e1la0pie8"));
 
@@ -380,13 +380,13 @@ public class WatChaCrawling extends JDBCTemplate {
                 "       WHERE ROWID >\n" +
                 "             (SELECT MIN(ROWID)\n" +
                 "              FROM Contents B\n" +
-                "              WHERE b.TITLE = a.TITLE)) ";
+                "              WHERE b.SUMMARY = a.SUMMARY)) ";
 
         String delcontentssql = " DELETE\n" +
                 "   FROM Contents A\n" +
                 "   WHERE ROWID > (SELECT MIN(ROWID)\n" +
                 "               FROM Contents B\n" +
-                "               WHERE b.TITLE = a.TITLE) ";
+                "               WHERE b.SUMMARY = a.SUMMARY) ";
 
         try {
             preparedStatement = connection.prepareStatement(delplatformsql);

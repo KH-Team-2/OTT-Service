@@ -1,13 +1,12 @@
 package com.biz.viewlist;
 
-import static common.JDBCTemplate.getConnection;
+import com.dao.viewlist.ViewListDao;
+import com.dao.viewlist.ViewListDaoImpl;
+import com.dto.WHDto;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.dao.viewlist.ViewListDao;
-import com.dao.viewlist.ViewListDaoImpl;
-import com.dto.WHDto;
 import static common.JDBCTemplate.*;
 
 public class ViewListBizImpl implements ViewListBiz{	
@@ -27,10 +26,10 @@ public class ViewListBizImpl implements ViewListBiz{
 	}
 
 	@Override
-	public boolean ViewListDelete(WHDto dto) {
+	public boolean ViewListDelete(int historynum) {
 		Connection con = getConnection();
 		
-		boolean res = dao.ViewListDelete(dto, con);
+		boolean res = dao.ViewListDelete(historynum, con);
 		
 		if(res) {
 			commit(con);
@@ -40,6 +39,22 @@ public class ViewListBizImpl implements ViewListBiz{
 		
 		close(con);
 		
+		return res;
+	}
+
+	@Override
+	public boolean ViewListAdd(int movienum, int usernum) {
+		Connection connection = getConnection();
+
+		boolean res = dao.ViewListAdd(movienum, usernum, connection);
+
+		if (res) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		close(connection);
+
 		return res;
 	}
 

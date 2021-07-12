@@ -1,11 +1,14 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Enumeration" %>
+<%@ page import="com.dto.UserDto" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%
+    UserDto dto = (UserDto) session.getAttribute("dto");
+
     SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
     Date time = new Date();
@@ -560,7 +563,7 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='viewlist.do?command=viewlist&page=2&usernum=<%=dto.getUserNum()%>'">
                             </td>
                         </tr>
                         <tr>

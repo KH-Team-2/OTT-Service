@@ -146,12 +146,12 @@
                     $(this).next().next('.reviewupdatesubmit').show();
                     $(this).next().next().next('.reviewupdatecancel').show();
                 } else if (num != $(this).parent().parent().attr('class')) {
-                    $('.'+num).children('.reviewinfotd').hide();
-                    $('.'+num).children('.onereviewinfo').show();
-                    $('.'+num).children('.btns').children('.reviewupdate').show();
-                    $('.'+num).children('.btns').children('.reviewupdate').next().show();
-                    $('.'+num).children('.btns').children('.reviewupdate').next().next('.reviewupdatesubmit').hide();
-                    $('.'+num).children('.btns').children('.reviewupdate').next().next().next('.reviewupdatecancel').hide();
+                    $('.' + num).children('.reviewinfotd').hide();
+                    $('.' + num).children('.onereviewinfo').show();
+                    $('.' + num).children('.btns').children('.reviewupdate').show();
+                    $('.' + num).children('.btns').children('.reviewupdate').next().show();
+                    $('.' + num).children('.btns').children('.reviewupdate').next().next('.reviewupdatesubmit').hide();
+                    $('.' + num).children('.btns').children('.reviewupdate').next().next().next('.reviewupdatecancel').hide();
 
                     $(this).parent().parent().children('.reviewinfotd').show();
                     $(this).parent().parent().children('.onereviewinfo').hide();
@@ -178,7 +178,7 @@
                 var reviewinfo = $(this).parent().parent().children('.reviewinfotd').children('.reviewinfo').val()
                 var reviewnum = Number($(this).parent().parent().attr('class'));
 
-                var params = "?command=updatereview"+
+                var params = "?command=updatereview" +
                     "&reviewnum=" + reviewnum +
                     "&reviewinfo=" + reviewinfo;
 
@@ -237,6 +237,26 @@
 
 
         });
+
+        function addviewlist() {
+            var movienum = ${dto.movieNum};
+            var usernum = <%=udto.getUserNum()%>;
+
+            var params = "?command=viewlistadd" +
+                "&movienum=" + ${dto.movieNum} +
+                "&usernum=" + <%=udto.getUserNum()%>;
+
+            $.ajax({
+                type: "post",
+                url: "viewlist.do" + params,
+                success: function () {
+                    // alert("등록 완료");
+                },
+                error:function(request,status,error){
+                    // alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            })
+        }
 
     </script>
     <style type="text/css">
@@ -401,6 +421,12 @@
             border-bottom: 1px solid rgb(248, 211, 28);
         }
 
+        .pfimg {
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+        }
+
         .reviewbtn {
             width: 50px;
             height: 30px;
@@ -422,7 +448,12 @@
             <img id="contentimage" src="${dto.movieImg}" alt="${dto.title}">
         </div>
         <div id="titlediv">
-            <span id="title" class="content">${dto.title}(${dto.openYear})</span>
+            <span id="title" class="content">${dto.title}(${dto.openYear})</span><a class="movieaddr"
+                                                                                    onclick="addviewlist();"
+                                                                                    href="${dto.movieAddr}"><img
+                class="pfimg" src="${dto.pfimgurl}"
+                alt="${dto.title}"
+                style="margin-bottom:-5px;"></a>
             <br><br>
             <span id="genre" class="content">장르 ${dto.genre}</span>
             <br><br>
