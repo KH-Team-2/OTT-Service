@@ -71,4 +71,14 @@
 		<servlet-name>AdminUpdateServlet</servlet-name>
 		<url-pattern>/adminUpdate.do</url-pattern>
 	</servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewListServlet</servlet-name>
+        <servlet-class>com.controller.ViewListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewListServlet</servlet-name>
+        <url-pattern>/viewlist.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

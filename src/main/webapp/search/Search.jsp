@@ -144,7 +144,7 @@
                 <div class="content contentdiv">
                     <div class="content titlediv">
                         <span class="title">${list.title}<input type="hidden" class="movienum" value="${list.movieNum}"></span><span class="date">(${list.openYear})</span>
-                        <img src="${list.pfimgurl}" alt="" style="margin-bottom:-5px;"class="pfimg">
+                        <img src="${list.pfimgurl}" alt="" style="margin-bottom:-5px;" class="pfimg">
                     </div>
                     <div class="content genrediv">
                         <span>°¨µ¶   <span class="director">${list.director}</span></span><br>

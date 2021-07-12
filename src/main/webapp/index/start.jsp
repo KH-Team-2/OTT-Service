@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-	<a href="../search.do?command=main">눌러</a>
+	<a href="../user.do?command=login">눌러</a>
 </body>
 </html>
