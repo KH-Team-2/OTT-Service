@@ -435,13 +435,9 @@
 	<%
 		UserDto dto = (UserDto)session.getAttribute("dto");
 	
-	if(dto == null) {  %> <script>alert("없음 ㅋ");</script> <%  }
-	else { %>  <script>alert("<%=dto.getName()%>"); </script> <% }
-	
-		//try {
-		//	if(dto == null) {  }
+		if(dto == null) {  %> <script>alert("로그인 안되어있음");</script> <%  }
+		else { %>  <script>alert("<%=dto.getName()%>"); </script> <% }
 
-		//} catch (Exception e) { e.printStackTrace(); }
 	%>
 	
 <form action="search.do?command=search" method="post">

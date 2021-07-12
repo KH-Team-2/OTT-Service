@@ -8,18 +8,27 @@ public class WHDto {
 	private int MovieNum;
 	private Date ViewDate;
 	private String Status;
+	private String MovieTitle;
 	
 	public WHDto() {
 		super();
 	}
 
-	public WHDto(int historyNum, int userNum, int movieNum, Date viewDate, String status) {
-		super();
+	public WHDto(int historyNum, int userNum, int movieNum, Date viewDate, String status, String movieTitle) {
 		HistoryNum = historyNum;
 		UserNum = userNum;
 		MovieNum = movieNum;
 		ViewDate = viewDate;
 		Status = status;
+		MovieTitle = movieTitle;
+	}
+
+	public String getMovieTitle() {
+		return MovieTitle;
+	}
+
+	public void setMovieTitle(String movieTitle) {
+		MovieTitle = movieTitle;
 	}
 
 	public int getHistoryNum() {

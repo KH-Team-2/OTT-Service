@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 
-<!DOCTYPE html> <html lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -105,9 +105,8 @@
 	    }
 	
 	</style>
-	
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
 	
 		$(function(){
 			
@@ -140,60 +139,16 @@
                     }
                 })
             });
-		    
-		    for(int i=0; i<list.length; i++) {
-		    	
-		    	
-		    }
+		   
 		});
-		
-		function add_wish(title) {
-			
-			var html_txt = '<tr><td class="select"><input type="checkbox" class="chk"></td>';
-			html_txt += '<td class="title"><span>' + title + '</span></td>';';
-			html_txt += '<td class="alarm"><img src="../img/alarm.png" alt="알림"></td>';
-			html_txt += '<td class="delete"><img src="../img/delete.png" alt="삭제"></td></tr>';
-			
-			$("wish_input").append(html_txt);
-		}
-		
-		function add_wish_foot() {
-			
-			var html_txt = '<tr> <td colspan="3"> <img src="img/delete.png" id="delbtn" class="delete"> <button id="delshow">선택</button> </td> </tr>';
-			$("wish_input").append(html_txt);
-
-		}
-
-	</script>
+	
+</script>
 </head>
-
 <body>
-
-	<% 
-		HttpSession dto = request.getSession(true); 
-	
-		dto.setAttribute("USERNUM", 1);
-		dto.setAttribute("ID", "thisisid");
-		dto.setAttribute("PW", "pwissecret");
-		dto.setAttribute("EMAIL", "aaaa@gmail.com");
-		dto.setAttribute("PHONE", "01065559222");
-		dto.setAttribute("NAME", "이름이다요");
-		dto.setAttribute("BIRTH", "1999-09-09");
-		dto.setAttribute("GENDER", "W");
-		dto.setAttribute("NICKNAME", "닉네임이다요");
-		dto.setAttribute("IMGURL", "IMGURL이다요");
-		dto.setAttribute("STATUS", "Y");
-		dto.setAttribute("GRADE", "USER");
-		dto.setAttribute("USERDATE", "2021-07-08");
-	%>
-	
-	
     <div class="area">
         
         <table>
-        
             <col width="10"><col width="300"><col width="25">
-            
             <thead>
                 <tr>
                     <th class="select"><input type="checkbox" id="allchk"></th>
@@ -202,9 +157,77 @@
                     <th class="delete"><span class="blind"></span></th>
                 </tr>
             </thead>
+            <tbody>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE2</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE3</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE4</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE5</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE6</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE7</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE8</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE9</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                <tr>
+                    <td class="select"><input type="checkbox" class="chk"></td>
+                    <td class="title"><span>HOME ALONE10</span></td>
+                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
+                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                </tr>
+                
+               
             
-            <tbody id="wish_input"></tbody>
-            
+                <tr>
+                    <td colspan="3">
+                        <img src="img/delete.png" id="delbtn" class="delete">
+                        <button id="delshow">선택</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         
         <ul class="pagination">
@@ -219,6 +242,7 @@
         </ul>
     
     </div>
+
 
 </body>
 </html>
