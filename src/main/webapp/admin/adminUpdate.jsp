@@ -168,7 +168,7 @@
                 <input type="button" value="회원추방" onclick="UserSecession();">
             </td>
             <td style="text-align:right">
-                <input type="submit" value="완료"> <input type="button" value="취소" onclick="location.href='admin.do?command=User_Info'">
+                <input type="submit" value="완료"> <input type="button" value="취소" onclick="location.href='admin.do?command=User_Info&page=1'">
             </td>
         </tr>
     </table>

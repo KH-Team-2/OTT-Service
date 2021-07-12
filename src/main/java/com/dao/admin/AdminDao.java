@@ -12,7 +12,7 @@ public interface AdminDao {
 	public List<UserDto> AdminUserView(Connection con);
 	public List<UserDto> AdminUserSearch(String info, Connection con);
 	public boolean AdminUpdateInfo(UserDto dto, Connection con);
-	public List<FBWDto> AdminFBWView(Connection con);
+	public List<FBWDto> AdminFBWView(Connection con,int page);
 	public boolean AddFBW(FBWDto dto, Connection con);
 	public boolean DeleteFBW(String FBWords, Connection con);
 	public UserDto UserSelect(int UserNum, Connection con);
