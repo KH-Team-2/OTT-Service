@@ -11,4 +11,5 @@ public interface UserBiz {
 	public void SendEmailCode(String ID, String name, String email);
 	public boolean UserDel(int usernum);
 	public boolean IDCheck(String id);
+	public UserDto selectOne(int userNum);
 }

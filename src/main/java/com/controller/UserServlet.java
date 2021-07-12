@@ -1,16 +1,19 @@
 package com.controller;
 
-import com.biz.user.UserBiz;
-import com.biz.user.UserBizImpl;
-import com.dto.UserDto;
+import java.io.IOException;
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+
+import com.biz.user.UserBiz;
+import com.biz.user.UserBizImpl;
+import com.dto.UserDto;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -24,6 +27,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
 		UserBiz biz = new UserBizImpl();
 
 		String command = request.getParameter("command");
@@ -32,17 +36,67 @@ public class UserServlet extends HttpServlet {
 			case "login":{
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
+				
 				UserDto dto = biz.Login(id, pw);
+				
 				System.out.println(dto.getUserNum());
-				HttpSession session = request.getSession();
-				session.setAttribute("dto", dto);
-
-				response.sendRedirect("../search.do?command=main");
+				
+				if(dto.getID() != null){
+					HttpSession session = request.getSession();
+					session.setAttribute("dto", dto);
+					session.setMaxInactiveInterval(60*60);
+					
+					response.sendRedirect("../search.do?command=main");
+					
+				} else {
+					jsResponse("로그인 실패", "../search.do?command=main", response);
+				}
+				
+				
 			}
+			case "userlist": {
+				int page = Integer.parseInt(request.getParameter("page"));
+				
+				request.setAttribute("page", page);
+				
+				dispatch("user/mypage.jsp",request, response);
+				
+				break;
+			}
+			case "Update": {
+				
+				int userNum = Integer.parseInt(request.getParameter("userNum"));
+				
+				UserDto dto = biz.selectOne(userNum);
+				
+				request.setAttribute("dto", dto);
+				dispatch("user/Update.jsp",request,response);
+				
+						
+				break;
+			}
+			 
 
 		}
 
     }
+    
+	private void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
+		String s = "<script type='text/javascript'>"
+				 + "alert('"+msg+"');"
+				 + "location.href='"+url+"';"
+				 + "</script>";
+		PrintWriter out = response.getWriter();
+		out.print(s);
+		
+	}
+	
+	
+	private void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatch = request.getRequestDispatcher(url);
+		dispatch.forward(request, response);
+		
+	}
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
