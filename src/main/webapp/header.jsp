@@ -3,6 +3,8 @@
 <%@ page import="java.util.Enumeration" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%@ page import="com.dto.UserDto" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%
@@ -147,7 +149,7 @@
             });*/
             $("#userBtnImg").click(function () {
                 if (confirm("임시 확인창 입니다. \n확인 : 로그인 창 / 취소 : 개별 페이지 창")) {
-                    location.href = "../user/login.jsp";
+                    location.href = "user/login.jsp";
                 } else {
                     if (confirm("임시 확인창 입니다. \n확인 : 회원 페이지 / 취소 : 어드민 페이지")) {
                         location.href = "../user/mypage.jsp";
@@ -429,6 +431,19 @@
     </style>
 </head>
 <body>
+
+	<%
+		UserDto dto = (UserDto)session.getAttribute("dto");
+	
+	if(dto == null) {  %> <script>alert("없음 ㅋ");</script> <%  }
+	else { %>  <script>alert("<%=dto.getName()%>"); </script> <% }
+	
+		//try {
+		//	if(dto == null) {  }
+
+		//} catch (Exception e) { e.printStackTrace(); }
+	%>
+	
 <form action="search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지</div>
@@ -554,7 +569,7 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="찜" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='user/mypage.jsp?page=1'">
                             </td>
                         </tr>
                         <tr>

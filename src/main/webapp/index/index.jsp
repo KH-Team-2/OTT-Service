@@ -61,9 +61,7 @@
     </style>
 </head>
 <body>
-<%
-	UserDto dto = (UserDto)session.getAttribute("dto");
-%>
+
 <div id="headers"></div>
 <br>
 <div id="videoselect">
@@ -106,5 +104,7 @@
     <br>
     <div class="fastest">여기엔 영화 이미지가 들어갑니다.</div>
 </div>
+
+    
 </body>
 </html>

@@ -32,7 +32,6 @@ public class UserServlet extends HttpServlet {
 
 		String command = request.getParameter("command");
 
-		HttpSession session = request.getSession();
 		
 		switch (command) {
 			case "login":{
@@ -44,13 +43,15 @@ public class UserServlet extends HttpServlet {
 				System.out.println(dto.getUserNum());
 				
 				if(dto.getID() != null){
+					HttpSession session = request.getSession();
+					
 					session.setAttribute("dto", dto);
 					session.setMaxInactiveInterval(60*60);
 					
-					response.sendRedirect("../search.do?command=main");
+					response.sendRedirect("search.do?command=main");
 					
 				} else {
-					jsResponse("로그인 실패", "../search.do?command=main", response);
+					jsResponse("로그인 실패", "search.do?command=main", response);
 				}
 				
 				break;
@@ -62,16 +63,10 @@ public class UserServlet extends HttpServlet {
 				String phone = request.getParameter("Phone");
 				
 				String ID = biz.SearchID(name, email, phone);
-				
-				
-				
+
 				break;
 			}
-			
-			 
-
 		}
-
     }
     
 	private void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
