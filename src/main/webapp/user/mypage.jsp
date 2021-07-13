@@ -4,8 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>마이페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#headers").load("header.jsp");
+        });
+    </script>
     <style>
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -193,37 +197,37 @@
 </head>
 <body>
 <%
-    	int usernum = Integer.parseInt(request.getParameter("usernum"));
-        int num = (int) request.getAttribute("page");
-             if (num == 1) {
+    int usernum = Integer.parseInt(request.getParameter("usernum"));
+    int num = (int) request.getAttribute("pages");
+    if (num == 1) {
 %>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script>
-                $(function () {
-                    $('#iframe_in').attr('src', 'user.do?command=wishlist&usernum=<%=usernum%>');
-                });
-            </script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#iframe_in').attr('src', 'user.do?command=wishlist&usernum=<%=usernum%>');
+    });
+</script>
 <%
-            } else if (num == 2) {
+} else if (num == 2) {
 %>
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script type="text/javascript">
-                $(function () {
-                    $('#iframe_in').attr('src', 'viewlist.do?command=viewhistory&page=2&usernum=<%=usernum%>');
-                });
-            </script>
-            <%
-            } else if (num == 3) {
-            %>
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script type="text/javascript">
-                $(function () {
-                    $('#iframe_in').attr('src', 'user.do?command=updateuser&usernum=<%=usernum%>');
-                });
-            </script>
-            <%
-                }
-            %>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#iframe_in').attr('src', 'viewlist.do?command=viewhistory&page=1&usernum=<%=usernum%>');
+    });
+</script>
+<%
+} else if (num == 3) {
+%>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#iframe_in').attr('src', 'user.do?command=updateuser&usernum=<%=usernum%>');
+    });
+</script>
+<%
+    }
+%>
 <div id="headers"></div>
 <div id="menu">
     <div id="menuBar">
@@ -237,7 +241,7 @@
             <tr>
                 <td>
                     <input type="button" class="menuSelect" id="menu_2" value="시청기록"
-                           onclick="$('#iframe_in').attr('src','viewlist.do?command=viewhistory&page=2&usernum=<%=usernum%>')">
+                           onclick="$('#iframe_in').attr('src','viewlist.do?command=viewhistory&page=1&usernum=<%=usernum%>')">
                 </td>
             </tr>
             <tr>
@@ -250,7 +254,8 @@
         <input type="button" class="menuSelect" id="logout" value="로그아웃">
     </div>
     <div id="iframe">
-        <iframe id="iframe_in" src="user.do?command=wishlist&usernum=<%=usernum%>" width="100%" height="100%" frameborder="0"
+        <iframe id="iframe_in" src="user.do?command=wishlist&usernum=<%=usernum%>" width="100%" height="100%"
+                frameborder="0"
                 allowfullscreen></iframe>
     </div>
 </div>

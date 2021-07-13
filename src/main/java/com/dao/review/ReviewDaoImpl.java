@@ -145,4 +145,30 @@ public class ReviewDaoImpl implements ReviewDao {
         return res > 0;
     }
 
+    @Override
+    public int ReviewCount(Connection con, int movienum) {
+        int res = 0;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String sql = " SELECT COUNT(*) as count FROM REVIEW WHERE MovieNum = ? ";
+
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, movienum);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                res = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+        }
+
+        return res;
+    }
+
 }
