@@ -14,9 +14,18 @@ import javax.servlet.http.HttpSession;
 
 import com.biz.user.UserBiz;
 import com.biz.user.UserBizImpl;
+<<<<<<< HEAD
 import com.biz.wish.WishBiz;
 import com.biz.wish.WishBizImpl;
 import com.dto.UserDto;
+=======
+import com.biz.viewlist.ViewListBiz;
+import com.biz.viewlist.ViewListBizImpl;
+import com.biz.wish.WishBiz;
+import com.biz.wish.WishBizImpl;
+import com.dto.UserDto;
+import com.dto.WHDto;
+>>>>>>> feature/회원페이지
 import com.dto.WishListDto;
 
 @WebServlet("/UserServlet")
@@ -31,13 +40,25 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession();
 		
 		UserBiz biz = new UserBizImpl();
 		WishBiz wishbiz = new WishBizImpl();
+<<<<<<< HEAD
+=======
+		ViewListBiz viewbiz = new ViewListBizImpl();
+>>>>>>> feature/회원페이지
 		String command = request.getParameter("command");
 
 		
 		switch (command) {
+		
+			case "loginpage":{
+				
+				response.sendRedirect("user/login.jsp");
+				break;
+			}
+		
 			case "login":{
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
@@ -47,8 +68,11 @@ public class UserServlet extends HttpServlet {
 				System.out.println(dto.getUserNum());
 				
 				if(dto.getID() != null){
+<<<<<<< HEAD
 					HttpSession session = request.getSession();
 					
+=======
+>>>>>>> feature/회원페이지
 					session.setAttribute("dto", dto);
 					session.setMaxInactiveInterval(60*60);
 					
@@ -78,6 +102,7 @@ public class UserServlet extends HttpServlet {
 				
 				break;
 			}
+<<<<<<< HEAD
 			case "userlist":{
 				int page = Integer.parseInt(request.getParameter("page"));
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
@@ -91,6 +116,20 @@ public class UserServlet extends HttpServlet {
 				request.setAttribute("usernum",usernum);
 				request.setAttribute("list", list);
 				dispatch("user/WishListViewPage.jsp",request,response);
+=======
+			case "WishListViewPage" :{
+				UserDto dto = (UserDto)session.getAttribute("dto");
+				List<WishListDto> list = wishbiz.WishList(dto.getUserNum());
+				request.setAttribute("list", list);
+				dispatch("user/WishListViewPage.jsp",request, response);
+				break;
+			}
+			case "Update": {
+				
+				int userNum = Integer.parseInt(request.getParameter("userNum"));
+				
+				UserDto dto = biz.selectOne(userNum);
+>>>>>>> feature/회원페이지
 				
 				break;
 			}
@@ -99,7 +138,15 @@ public class UserServlet extends HttpServlet {
 				UserDto dto = biz.selectOne(usernum);
 				request.setAttribute("dto", dto);
 				dispatch("user/Update.jsp",request,response);
+				break;
+			}
+			case "View_History" : {
+				UserDto dto = (UserDto)session.getAttribute("dto");
+				List<WHDto> list = viewbiz.ViewListLoading(dto.getUserNum());
+				request.setAttribute("list", list);
+				dispatch("user/View_History.jsp",request, response);
 				
+<<<<<<< HEAD
 			}
 			case "userSecession" : {
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
@@ -112,6 +159,8 @@ public class UserServlet extends HttpServlet {
 					PrintWriter writer = response.getWriter();
 					writer.println("<script>alert('다시 시도해주세요'); window.parent.location.href='user/login.jsp'"+"</script>");
 				}
+=======
+>>>>>>> feature/회원페이지
 				break;
 			}
 		}
