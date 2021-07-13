@@ -254,12 +254,12 @@
                 <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
             </tr>--%>
 
-            <tr>
-                <td colspan="3">
-                    <input type="image" src="img/delete.png" id="delbtn" class="delete">
-                    <input type="button" id="delshow" value="선택" onclick="">
-                </td>
-            </tr>
+<%--            <tr>--%>
+<%--                <td colspan="3">--%>
+<%--                    <input type="image" src="img/delete.png" id="delbtn" class="delete">--%>
+<%--                    <input type="button" id="delshow" value="선택" onclick="">--%>
+<%--                </td>--%>
+<%--            </tr>--%>
             
             </tbody>
         </table>

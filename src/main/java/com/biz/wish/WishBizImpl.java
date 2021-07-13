@@ -1,5 +1,6 @@
 package com.biz.wish;
 
+import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.commit;
 import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
@@ -7,10 +8,9 @@ import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
-import static common.JDBCTemplate.*;
 import com.dao.wish.WishDao;
 import com.dao.wish.WishDaoImpl;
-import com.dto.WishListDto;
+import com.dto.WishDto;
 
 public class WishBizImpl implements WishBiz{
 	private WishDao dao = new WishDaoImpl();
@@ -32,10 +32,10 @@ public class WishBizImpl implements WishBiz{
 	}
 
 	@Override
-	public List<WishListDto> WishList(int usernum) {
+	public List<WishDto> WishList(int usernum,int page) {
 		Connection con = getConnection();
 		
-		List<WishListDto> list = dao.WishList(con, usernum);
+		List<WishDto> list = dao.WishList(con, usernum,page);
 		
 		close(con);
 		

@@ -3,12 +3,13 @@ package com.dao.wish;
 import static common.JDBCTemplate.close;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
-import com.dto.WishListDto;
+import java.util.ArrayList;
+import java.util.List;import com.dto.Paging;
+import com.dto.WishDto;
 
 public class WishDaoImpl implements WishDao{
 //String WishAddSQL = " INSERT INTO SP_WISHLIST VALUES(SAMPLE_WISH_SQ, ?, ?, SYSDATE, ?)";
@@ -48,22 +49,32 @@ public class WishDaoImpl implements WishDao{
 	
 
 	@Override
-	public List<WishListDto> WishList(Connection con, int usernum) {
+	public List<WishDto> WishList(Connection con, int usernum,int page) {
+		int startNum = (page-1)*10+1;
+		int endNum = page*10;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		List<WishListDto> list = null;
-		
+		List<WishDto> list = new ArrayList<WishDto>();
+		String sql = "SELECT * FROM(SELECT ROWNUM AS rnum,WISHNUM,USERNUM,TITLE,MOVIEADDR,WISHDATE,ALARM FROM WISHLIST JOIN CONTENTS USING(MOVIENUM) WHERE USERNUM=? ORDER BY WISHNUM DESC) WHERE rnum>=? AND rnum<=?";
 		try {
-			pstm = con.prepareStatement(WishListSQL);
+			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, usernum);
-			System.out.println("03. query 준비: "+WishListSQL);
+			pstm.setInt(2, startNum);
+			pstm.setInt(3, endNum);
+			System.out.println("03. query 준비: "+sql);
 			
 			rs = pstm.executeQuery();
 			System.out.println("04. query 실행 및 리턴");
 			
 			while(rs.next()) {
-				WishListDto dto = new WishListDto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5));
-				
+				System.out.println(rs.getDate(5));
+				WishDto dto = new WishDto();
+				dto.setWishnum(rs.getInt(1));
+				dto.setUsernum(rs.getInt(2));
+				dto.setTitle(rs.getString(3));
+				dto.setMovieaddr(rs.getString(4));
+				dto.setWishdate(rs.getDate(5));
+				dto.setAlarm(rs.getString(6));
 				list.add(dto);
 			}
 			
@@ -124,5 +135,6 @@ public class WishDaoImpl implements WishDao{
 		
 		return count;
 	}
+	
 
 }

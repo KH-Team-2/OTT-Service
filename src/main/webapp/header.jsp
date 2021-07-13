@@ -565,19 +565,20 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="찜" class="menubtn"
-                                       onclick="location.href='user.do?command=userlist&page=1&usernum=<%=dto.getUserNum()%>'">
+                                       onclick="location.href='user.do?command=userlist&pages=1&usernum=<%=dto.getUserNum()%>'">
+
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='viewlist.do?command=viewlist&page=2&usernum='+<%=dto.getUserNum()%>">
+                                       onclick="location.href='viewlist.do?command=viewlist&pages=2&usernum='+<%=dto.getUserNum()%>">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="정보수정" class="menubtn"
-                                       onclick="location.href='user.do?command=userlist&page=3&usernum=<%=dto.getUserNum()%>'">
+                                       onclick="location.href='user.do?command=userlist&pages=3&usernum=<%=dto.getUserNum()%>'">
                             </td>
                         </tr>
 

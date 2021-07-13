@@ -18,9 +18,10 @@ import com.biz.viewlist.ViewListBiz;
 import com.biz.viewlist.ViewListBizImpl;
 import com.biz.wish.WishBiz;
 import com.biz.wish.WishBizImpl;
+import com.dto.Paging;
 import com.dto.UserDto;
 import com.dto.WHDto;
-import com.dto.WishListDto;
+import com.dto.WishDto;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -89,25 +90,26 @@ public class UserServlet extends HttpServlet {
 				break;
 			}
 			case "userlist":{
-				int page = Integer.parseInt(request.getParameter("page"));
+				int page = Integer.parseInt(request.getParameter("pages"));
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
-				request.setAttribute("page", page);
+				request.setAttribute("pages", page);
 				request.setAttribute("usernum", usernum);
 				dispatch("user/mypage.jsp",request,response);
 			}
 			case "wishlist" :{
+				int page = 1;
+				if(request.getParameter("page")!=null){
+					page = Integer.parseInt(request.getParameter("page"));
+				}
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
-				List<WishListDto> list = wishbiz.WishList(usernum);
+				Paging paging = new Paging();
+				paging.setPage(page);
+				paging.setTotalCount(wishbiz.WishCount(usernum));
+				System.out.println(paging.getTotalCount());
+				List<WishDto> list = wishbiz.WishList(usernum,page);
 				request.setAttribute("usernum",usernum);
 				request.setAttribute("list", list);
 				dispatch("user/WishListViewPage.jsp",request,response);
-				break;
-			}
-			case "WishListViewPage" :{
-				UserDto dto = (UserDto)session.getAttribute("dto");
-				List<WishListDto> list = wishbiz.WishList(dto.getUserNum());
-				request.setAttribute("list", list);
-				dispatch("user/WishListViewPage.jsp",request, response);
 				break;
 			}
 			case "Update": {

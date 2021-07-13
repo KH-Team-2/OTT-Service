@@ -31,9 +31,9 @@ public class ViewListServlet extends HttpServlet {
         System.out.println("command=" + command);
         switch (command) {
             case "viewlist": {
-                int page = Integer.parseInt(request.getParameter("page"));
+                int page = Integer.parseInt(request.getParameter("pages"));
                 int usernum = Integer.parseInt(request.getParameter("usernum"));
-                request.setAttribute("page", page);
+                request.setAttribute("pages", page);
                 request.setAttribute("usernum", usernum);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("user/mypage.jsp");
                 dispatcher.forward(request, response);

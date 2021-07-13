@@ -161,16 +161,16 @@
                 <c:choose>
 					<c:when test="${empty list }">
 					<tr>
-						<td colspan="4">등록된 금지어가 없습니다</td>
+						<td colspan="4">찜한 영상이 없습니다</td>
 					</tr>
 					</c:when> 
 					<c:otherwise>
 						<c:forEach items="${list }" var="dto">
 						<tr>
 							<td class="select"><input type="checkbox" class="chk"></td>
-							<td>${dto.movieNum }</td>
-							<td class="alarm"><img src="img/alarm.png" alt="알림"></td>
-							<td class="delete"><img src="img/delete.png" alt="삭제"></td>
+							<td>${dto.title }</td>
+							<td class="alarm"><img src="http://www.khproject.kr/OTT_Service/img/alarm.png" alt="알림"></td>
+							<td class="delete"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></td>
 						</tr>
 						</c:forEach>
 					</c:otherwise>               
@@ -187,16 +187,13 @@
             </tbody>
         </table>
         
-        <ul class="pagination">
-            <li><a href="">&laquo;</a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href="">5</a></li>
-            <li><a href="">6</a></li>
-            <li><a href="">&raquo;</a></li>
-        </ul>
+        <jsp:include page="../user/WishList_paging.jsp">
+			<jsp:param value="${paging.page }" name="page"/>
+			<jsp:param value="${paging.beginPage }" name="beginPage"/>
+			<jsp:param value="${paging.endPage }" name="endPage"/>
+			<jsp:param value="${paging.prev }" name="prev"/>
+			<jsp:param value="${paging.next }" name="next"/>
+		</jsp:include>
     
     </div>
 

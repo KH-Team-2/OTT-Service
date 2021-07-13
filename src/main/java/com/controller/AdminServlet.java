@@ -41,7 +41,7 @@ public class AdminServlet extends HttpServlet {
 				break;
 			}
 			case "User_Info": {
-				int page = Integer.parseInt(request.getParameter("page"));
+				int page = 1;
 				if(request.getParameter("page")!=null){
 					page = Integer.parseInt(request.getParameter("page"));
 				}

@@ -16,7 +16,7 @@
             $("#headers").load("header.jsp");
         });
     </script>
-    
+
     <style>
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -96,7 +96,7 @@
 </head>
 <body>
 <%
-    	int num = (int)request.getAttribute("pages"); 
+    	int num = (int)request.getAttribute("pages");
     	if(num == 1){
 %>
     	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
