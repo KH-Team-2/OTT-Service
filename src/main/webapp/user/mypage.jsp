@@ -1,11 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
-<jsp:include page="../header.jsp"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
     <title>마이페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
@@ -97,7 +95,6 @@
         }
 
     </style>
-=======
   <title>마이페이지</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -193,7 +190,6 @@
     }
 
   </style>
->>>>>>> feature/회원페이지
 </head>
 <body>
 <%

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dto.WishListDto;
@@ -51,7 +52,7 @@ public class WishDaoImpl implements WishDao{
 	public List<WishListDto> WishList(Connection con, int usernum) {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		List<WishListDto> list = null;
+		List<WishListDto> list = new ArrayList<WishListDto>();
 		
 		try {
 			pstm = con.prepareStatement(WishListSQL);

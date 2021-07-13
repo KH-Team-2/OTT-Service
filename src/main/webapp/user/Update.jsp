@@ -170,7 +170,7 @@
                 <input type="button" value="È¸¿øÅ»Åð" onclick="UserSecession();">
             </td>
             <td style="text-align:right">
-                <input type="submit" value="¿Ï·á"> <input type="button" value="Ãë¼Ò" onclick="location.href='admin.do?command=User_Info&page=1'">
+                <input type="submit" value="¿Ï·á">
             </td>
         </tr>
     </table>
