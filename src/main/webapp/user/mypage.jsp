@@ -4,12 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(function () {
-            $("#headers").load("header.jsp");
-        });
-    </script>
     <style>
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -235,7 +229,7 @@
             <tr>
                 <td>
                     <input type="button" class="menuSelect" id="menu_1" value="찜"
-                           onclick="$('#iframe_in').attr('src','user.do?command=wishlist&usernum=<%=usernum%>')">
+                           onclick="$('#iframe_in').attr('src','user.do?command=wishlist&usernum=<%=usernum%>&page=1')">
                 </td>
             </tr>
             <tr>
@@ -254,7 +248,7 @@
         <input type="button" class="menuSelect" id="logout" value="로그아웃">
     </div>
     <div id="iframe">
-        <iframe id="iframe_in" src="user.do?command=wishlist&usernum=<%=usernum%>" width="100%" height="100%"
+        <iframe id="iframe_in" src="user.do?command=wishlist&usernum=<%=usernum%>&page=1" width="100%" height="100%"
                 frameborder="0"
                 allowfullscreen></iframe>
     </div>

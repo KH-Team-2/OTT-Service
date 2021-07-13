@@ -1,14 +1,8 @@
 package com.controller;
 
-import com.biz.user.UserBiz;
-import com.biz.user.UserBizImpl;
-import com.biz.viewlist.ViewListBiz;
-import com.biz.viewlist.ViewListBizImpl;
-import com.biz.wish.WishBiz;
-import com.biz.wish.WishBizImpl;
-import com.dto.UserDto;
-import com.dto.WHDto;
-import com.dto.WishListDto;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,9 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+
+import com.biz.user.UserBiz;
+import com.biz.user.UserBizImpl;
+import com.biz.viewlist.ViewListBiz;
+import com.biz.viewlist.ViewListBizImpl;
+import com.biz.wish.WishBiz;
+import com.biz.wish.WishBizImpl;
+import com.dto.Paging;
+import com.dto.UserDto;
+import com.dto.WHDto;
+import com.dto.WishDto;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -95,18 +97,19 @@ public class UserServlet extends HttpServlet {
 				dispatch("user/mypage.jsp",request,response);
 			}
 			case "wishlist" :{
+				int page = 1;
+				if(request.getParameter("page")!=null){
+					page = Integer.parseInt(request.getParameter("page"));
+				}
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
-				List<WishListDto> list = wishbiz.WishList(usernum);
+				Paging paging = new Paging();
+				paging.setPage(page);
+				paging.setTotalCount(wishbiz.WishCount(usernum));
+				System.out.println(paging.getTotalCount());
+				List<WishDto> list = wishbiz.WishList(usernum,page);
 				request.setAttribute("usernum",usernum);
 				request.setAttribute("list", list);
 				dispatch("user/WishListViewPage.jsp",request,response);
-				break;
-			}
-			case "WishListViewPage" :{
-				UserDto dto = (UserDto)session.getAttribute("dto");
-				List<WishListDto> list = wishbiz.WishList(dto.getUserNum());
-				request.setAttribute("list", list);
-				dispatch("user/WishListViewPage.jsp",request, response);
 				break;
 			}
 			case "Update": {
