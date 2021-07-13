@@ -70,7 +70,11 @@ public class SearchServlet extends HttpServlet {
                 break;
             }
             case "detail": {
-                int page = Integer.parseInt(request.getParameter("page"));
+                int page = 1;
+                if(request.getParameter("page")!=null) {
+                    page = Integer.parseInt(request.getParameter("page"));
+                }
+
                 String title = request.getParameter("title");
 
                 ContentsDto dto = biz.SearchDetail(title);
@@ -80,10 +84,10 @@ public class SearchServlet extends HttpServlet {
                 Paging paging = new Paging();
                 paging.setPage(page);
                 paging.setTotalCount(count);
-                List<ReviewDto> dtos = biz1.ReviewList(movienum);
+                List<ReviewDto> list = biz1.ReviewPagingList(movienum, page);
 
                 request.setAttribute("dto", dto);
-                request.setAttribute("list", dtos);
+                request.setAttribute("list", list);
                 request.setAttribute("paging", paging);
                 RequestDispatcher dispatch = request.getRequestDispatcher("search/SearchDetail.jsp");
                 dispatch.forward(request, response);

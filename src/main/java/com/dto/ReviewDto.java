@@ -3,7 +3,8 @@ package com.dto;
 import java.util.Date;
 
 public class ReviewDto {
-	
+
+	private int rnum;
 	private int ReviewNum;
 	private int UserNum;
 	private int MovieNum;
@@ -14,6 +15,16 @@ public class ReviewDto {
 	
 	public ReviewDto() { super(); }
 
+	public ReviewDto(int rnum, int reviewNum, int userNum, int movieNum, String reviewInfo, java.util.Date date, int count, String nickName) {
+		this.rnum = rnum;
+		ReviewNum = reviewNum;
+		UserNum = userNum;
+		MovieNum = movieNum;
+		ReviewInfo = reviewInfo;
+		Date = date;
+		Count = count;
+		NickName = nickName;
+	}
 
 	public ReviewDto(int reviewNum, int userNum, int movieNum, String reviewInfo, java.util.Date date, int count) {
 		super();

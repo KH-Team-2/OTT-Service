@@ -13,4 +13,6 @@ public interface ReviewDao {
 	public List<ReviewDto> ReviewList ( Connection con, int movienum );
 	public boolean ReviewReport ( Connection con, int reviewnum );
     int ReviewCount(Connection con, int movienum);
+	public List<ReviewDto> ReviewPagingList ( Connection con, int movienum, int page );
+
 }

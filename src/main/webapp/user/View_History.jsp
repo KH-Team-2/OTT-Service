@@ -210,6 +210,9 @@
     </script>
 </head>
 <body>
+<%
+    String usernum = request.getParameter("usernum");
+%>
     <div class="area">
 
         <table>
@@ -236,7 +239,7 @@
                             <td class="title"><span class="sptitle">${list.movieTitle}</span><span
                                     class="movienum" style="display: none">${list.movieNum}</span>
                                 <span class="hsnum" style="display: none">${list.historyNum}</span></td>
-                            <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
+                            <td class="delete"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></td>
                         </tr>
                     </c:forEach>
                     <tr>
@@ -248,32 +251,22 @@
                     </tr>
                 </c:otherwise>
             </c:choose>
-            <%--<tr>
-                <td class="select"><input type="checkbox" class="chk"></td>
-                <td class="title"><span>HOME ALONE</span></td>
-                <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-            </tr>--%>
-
-<%--            <tr>--%>
-<%--                <td colspan="3">--%>
-<%--                    <input type="image" src="img/delete.png" id="delbtn" class="delete">--%>
-<%--                    <input type="button" id="delshow" value="선택" onclick="">--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-            
+            <tr style="height: 38px">
+                <td colspan="3">
+                    <jsp:include page="../user/ViewHistoryPaging.jsp">
+                        <jsp:param name="usernum" value="<%=usernum%>"/>
+                        <jsp:param value="${paging.page }" name="page"/>
+                        <jsp:param value="${paging.beginPage }" name="beginPage"/>
+                        <jsp:param value="${paging.endPage }" name="endPage"/>
+                        <jsp:param value="${paging.prev }" name="prev"/>
+                        <jsp:param value="${paging.next }" name="next"/>
+                    </jsp:include>
+                </td>
+            </tr>
             </tbody>
         </table>
 
-        <ul class="pagination">
-            <li><a href="">&laquo;</a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href="">5</a></li>
-            <li><a href="">6</a></li>
-            <li><a href="">&raquo;</a></li>
-        </ul>
+
 
     </div>
 </body>
