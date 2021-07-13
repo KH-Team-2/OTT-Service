@@ -1,12 +1,7 @@
 package com.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,15 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-
-import org.json.simple.JSONObject;
 
 import com.biz.admin.AdminBizImpl;
-import com.biz.user.UserBiz;
-import com.biz.user.UserBizImpl;
 import com.dto.DecrationDto;
 import com.dto.FBWDto;
+import com.dto.Paging;
 import com.dto.UserDto;
 
 
@@ -31,7 +22,6 @@ import com.dto.UserDto;
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String ATTACHES_DIR = "C:\\Temp";
     public AdminServlet() {
         super();
     }
@@ -44,15 +34,23 @@ public class AdminServlet extends HttpServlet {
 		AdminBizImpl biz = new AdminBizImpl();
 		switch (command) {
 			case "adminlist": {
-				int page = Integer.parseInt(request.getParameter("page"));
-				request.setAttribute("page", page);
+				int pages = Integer.parseInt(request.getParameter("pages"));
+				request.setAttribute("pages", pages);
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/adminmypage.jsp");
 				dispatch.forward(request, response);
 				break;
 			}
 			case "User_Info": {
+				int page = Integer.parseInt(request.getParameter("page"));
+				if(request.getParameter("page")!=null){
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				paging.setPage(page);
+				paging.setTotalCount(biz.UserCount());
 				List<UserDto> list = biz.AdminUserView();
 				request.setAttribute("list", list);
+				request.setAttribute("paging", paging);
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/User_Info.jsp");
 				dispatch.forward(request, response);
 				break;
@@ -67,15 +65,31 @@ public class AdminServlet extends HttpServlet {
 			}
 			
 			case "DecrationList": {
+				int page = 1;
+				if(request.getParameter("page")!=null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				paging.setPage(page);
+				paging.setTotalCount(biz.DecrationCount());
 				List<DecrationDto> list = biz.AdminDeclarationView();
 				request.setAttribute("list", list);
+				request.setAttribute("paging", paging);
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/Decration.jsp");
 				dispatch.forward(request, response);
 				break;
 			}
 			case "FBWList": {
-				List<FBWDto> list = biz.AdminFBWView();
+				int page = 1;
+				if(request.getParameter("page")!=null){
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				Paging paging = new Paging();
+				paging.setPage(page);
+				paging.setTotalCount(biz.FBWCount());
+				List<FBWDto> list = biz.AdminFBWView(page);
 				request.setAttribute("list", list);
+				request.setAttribute("paging", paging);
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/Ban_Word.jsp");
 				dispatch.forward(request, response);
 				break;

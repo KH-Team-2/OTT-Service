@@ -3,6 +3,8 @@
 <%@ page import="java.util.Enumeration" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%@ page import="com.dto.UserDto" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%
@@ -147,7 +149,7 @@
             });*/
             $("#userBtnImg").click(function () {
                 if (confirm("임시 확인창 입니다. \n확인 : 로그인 창 / 취소 : 개별 페이지 창")) {
-                    location.href = "../user/login.jsp";
+                    location.href = "user/login.jsp";
                 } else {
                     if (confirm("임시 확인창 입니다. \n확인 : 회원 페이지 / 취소 : 어드민 페이지")) {
                         location.href = "../user/mypage.jsp";
@@ -429,6 +431,15 @@
     </style>
 </head>
 <body>
+
+	<%
+		UserDto dto = (UserDto)session.getAttribute("dto");
+	
+		if(dto == null) {  %> <script>alert("로그인이 필요한 서비스입니다.");</script> <%  }
+		else { %>  <% }
+	%>
+
+	
 <form action="search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지</div>
@@ -436,12 +447,12 @@
             <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳"
                    value="<%=searchBar1%>">
             <button type="submit" name="searchBtn" id="searchBtn" class="searchBtn">
-                <img src="img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
+                <img src="http://www.khproject.kr/OTT_Service/img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
             </button>
             <!--        <img src="img/select.png" class="searchBtn" id="searchBtn" alt="no">-->
         </div>
         <div id="filter" class="filterBtn">
-            <img id="filterBtnImg" src="img/filter.png">
+            <img id="filterBtnImg" src="http://www.khproject.kr/OTT_Service/img/filter.png">
             <div id="modal">
                 <div class="modalfilter">
                     <%--<span>알람</span><br>
@@ -503,7 +514,7 @@
             </div>
         </div>
         <div class="alarmBtn" id="alarm">
-            <img src="img/alarm.png" id="alarmBtn">
+            <img src="http://www.khproject.kr/OTT_Service/img/alarm.png" id="alarmBtn">
             <div class="alarmCircle"></div>
             <div class="userAlarm">
                 <table class="userAlarmTable">
@@ -515,7 +526,7 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -533,7 +544,7 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -547,26 +558,27 @@
             </div>
         </div>
         <div class="userBtn" id="user">
-            <img id="userBtnImg" src="img/user.png">
+            <img id="userBtnImg" src="http://www.khproject.kr/OTT_Service/img/user.png">
             <div id="menues">
                 <div id="usermenu">
                     <table id="usermenutb">
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="찜" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='user.do?command=userlist&pages=1&usernum=<%=dto.getUserNum()%>'">
+
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='viewlist.do?command=viewlist&pages=2&usernum='+<%=dto.getUserNum()%>">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="정보수정" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='user.do?command=userlist&pages=3&usernum=<%=dto.getUserNum()%>'">
                             </td>
                         </tr>
 
@@ -582,19 +594,19 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="회원리스트" class="menubtn"
-                                       onclick="location.href='admin.do?command=adminlist&page=1'">
+                                       onclick="location.href='admin.do?command=adminlist&pages=1'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="신고리스트" class="menubtn"
-                                       onclick="location.href='admin.do?command=adminlist&page=2'">
+                                       onclick="location.href='admin.do?command=adminlist&pages=2'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="금지어" class="menubtn"
-                                       onclick="location.href='admin.do?command=adminlist&page=3'">
+                                       onclick="location.href='admin.do?command=adminlist&pages=3'">
                         </tr>
                         <tr>
                             <td class="Btn" colspan="3" style="text-align: right;">

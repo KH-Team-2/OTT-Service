@@ -56,7 +56,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$(".deletebtn").click(function(){
-				$(this).attr("src","img/Done.png");
+				$(this).attr("src","http://www.khproject.kr/OTT_Service/img/Done.png");
 			});
 		});
 	</script>
@@ -90,7 +90,7 @@
 							<td>${dto.name }</td>
 							<td>${dto.reviewInfo }</td>
 							<td>${dto.count }</td>
-							<td><img src="img/confirm.png" class="deletebtn" onclick="location.href='admin.do?command=deleteDecration&reviewnum=${dto.reviewNum}'"></td>
+							<td><img src="http://www.khproject.kr/OTT_Service/img/confirm.png" class="deletebtn" onclick="location.href='admin.do?command=deleteDecration&reviewnum=${dto.reviewNum}'"></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
@@ -100,8 +100,13 @@
 
 		<br><br>
 	
-		<span style="font-size:20px; color:white;">&lt;&lt; &nbsp;&nbsp; <b>1</b> &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp;&nbsp; 5  &nbsp;&nbsp; &gt;&gt;</span>
-		
+		<jsp:include page="../admin/Decration_paging.jsp">
+			<jsp:param value="${paging.page }" name="page"/>
+			<jsp:param value="${paging.beginPage }" name="beginPage"/>
+			<jsp:param value="${paging.endPage }" name="endPage"/>
+			<jsp:param value="${paging.prev }" name="prev"/>
+			<jsp:param value="${paging.next }" name="next"/>
+		</jsp:include>	
 	</div>
 	
 </body>

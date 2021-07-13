@@ -34,6 +34,7 @@
             background: black;
             position: relative;
         }
+
         .pfimg {
             margin-left: 10px;
             width: 40px;
@@ -101,10 +102,9 @@
             });
 
             $(".title").click(function () {
-                var str = "?command=detail&title=" + $(this).text()+"&movienum="+ $(this).children('.movienum').val();
-                location.href = 'search.do'+str;
+                var str = "?command=detail&page=1&title=" + $(this).text() + "&movienum=" + $(this).children('.movienum').val();
+                location.href = 'search.do' + str;
             });
-            console.log($('#header').children());
         });
     </script>
 </head>
@@ -113,23 +113,6 @@
 </div>
 <div id="wrap">
     <div class="contentwrap">
-        <%--        <div class="imgdiv">--%>
-        <%--            <img class="image" src="" alt="">--%>
-        <%--        </div>--%>
-        <%--        <div class="content contentdiv">--%>
-        <%--            <div class="content titlediv">--%>
-        <%--                <span class="title">제목</span>--%>
-        <%--            </div>--%>
-        <%--            <div class="content genrediv">--%>
-        <%--                <span class="date">연도</span>--%>
-        <%--                <span class="director">감독</span>--%>
-        <%--                <span class="actor">배우</span>--%>
-        <%--                <span class="genre">장르</span>--%>
-        <%--                <span class="score">평점</span>--%>
-        <%--            </div>--%>
-        <%--            <div class="content detaildiv">--%>
-        <%--                <span class="content content">내용</span>--%>
-        <%--            </div>--%>
     </div>
     <c:choose>
         <c:when test="${empty list }">
@@ -143,8 +126,9 @@
                 </div>
                 <div class="content contentdiv">
                     <div class="content titlediv">
-                        <span class="title">${list.title}<input type="hidden" class="movienum" value="${list.movieNum}"></span><span class="date">(${list.openYear})</span>
-                        <img src="${list.pfimgurl}" alt="" style="margin-bottom:-5px;"class="pfimg">
+                        <span class="title">${list.title}<input type="hidden" class="movienum" value="${list.movieNum}"></span><span
+                            class="date">(${list.openYear})</span>
+                        <img src="${list.pfimgurl}" alt="" style="margin-bottom:-5px;" class="pfimg">
                     </div>
                     <div class="content genrediv">
                         <span>감독   <span class="director">${list.director}</span></span><br>

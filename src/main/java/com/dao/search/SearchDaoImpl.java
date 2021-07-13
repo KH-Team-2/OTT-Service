@@ -76,7 +76,7 @@ public class SearchDaoImpl implements SearchDao {
 
 
                 while (rs.next()) {
-                    System.out.println("2번");
+//                    System.out.println("2번");
                     ContentsDto temp = new ContentsDto(
                             rs.getInt(1), // num
                             rs.getString(2), // title
@@ -103,6 +103,78 @@ public class SearchDaoImpl implements SearchDao {
         }
 
         return res;
+    }
+
+    @Override
+    public List<ContentsDto> SearchNewList(Connection con) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<ContentsDto> list = new ArrayList<>();
+        String sql = " SELECT *\n" +
+                "FROM CONTENTS\n" +
+                "WHERE ROWNUM <= 10\n" +
+                "ORDER BY MovieNum DESC  ";
+
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                ContentsDto dto = new ContentsDto(
+                        resultSet.getInt(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4),
+                        resultSet.getString(5), resultSet.getDouble(6),
+                        resultSet.getString(7), resultSet.getString(8),
+                        resultSet.getString(9), resultSet.getDate(10),
+                        resultSet.getString(11)
+                );
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+        }
+
+
+        return list;
+    }
+
+    @Override
+    public List<ContentsDto> SearchPopList(Connection con) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<ContentsDto> list = new ArrayList<>();
+        String sql = " SELECT *\n" +
+                "FROM CONTENTS\n" +
+                "WHERE ROWNUM <= 10\n" +
+                "ORDER BY Rate DESC ";
+
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                ContentsDto dto = new ContentsDto(
+                        resultSet.getInt(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4),
+                        resultSet.getString(5), resultSet.getDouble(6),
+                        resultSet.getString(7), resultSet.getString(8),
+                        resultSet.getString(9), resultSet.getDate(10),
+                        resultSet.getString(11)
+                );
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+        }
+
+
+        return list;
     }
 
     @Override

@@ -54,9 +54,9 @@ public class AdminBizImpl implements AdminBiz{
 	}
 
 	@Override
-	public List<FBWDto> AdminFBWView() {
+	public List<FBWDto> AdminFBWView(int page) {
 		Connection con = getConnection();
-		List<FBWDto> list = dao.AdminFBWView(con);
+		List<FBWDto> list = dao.AdminFBWView(con,page);
 		close(con);
 		return list;
 	}
@@ -132,5 +132,25 @@ public class AdminBizImpl implements AdminBiz{
 		}
 		close(con);
 		return result;
+	}
+	public int FBWCount() {
+		Connection con= getConnection();
+		int res = dao.FBWCount(con);
+		close(con);
+		return res;
+		
+	}
+	public int UserCount() {
+		Connection con = getConnection();
+		int res = dao.UserCount(con);
+		close(con);
+		return res;
+	}
+	public int DecrationCount() {
+		Connection con = getConnection();
+		int res = dao.DecrationCount(con);
+		close(con);
+		
+		return res;
 	}
 }

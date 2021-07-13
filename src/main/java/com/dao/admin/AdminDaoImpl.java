@@ -20,7 +20,7 @@ public class AdminDaoImpl implements AdminDao{
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<DecrationDto> list = new ArrayList<DecrationDto>();
-		String sql ="SELECT REVIEWNUM,NAME,REVIEWINFO,COUNT FROM REVIEW JOIN USERTB USING(USERNUM) WHERE COUNT>1";
+		String sql ="SELECT REVIEWNUM,NAME,REVIEWINFO,COUNT FROM REVIEW JOIN USERTB USING(USERNUM) WHERE COUNT>=1";
 		
 		try {
 			pstm = con.prepareStatement(sql);
@@ -166,16 +166,24 @@ public class AdminDaoImpl implements AdminDao{
 	}
 
 	@Override
-	public List<FBWDto> AdminFBWView(Connection con) {
+	public List<FBWDto> AdminFBWView(Connection con,int page) {
+		int startNum = (page-1)*10+1;
+		int endNum = page*10;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		List<FBWDto> list = new ArrayList<FBWDto>();
-		String sql = "SELECT * FROM FORBIDDENWORD";
+		System.out.println(page +"+"+startNum+"+"+endNum);
+		String sql = "SELECT * FROM("
+					+"SELECT * FROM("
+					+"SELECT ROWNUM as rnum,FORBIDDENWORD.* FROM FORBIDDENWORD"
+					+ ") WHERE rnum>=?"
+					+ ") WHERE rnum<=?";
 		
 		try {
 			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, startNum);
+			pstm.setInt(2, endNum);
 			rs = pstm.executeQuery();
-			
 			while(rs.next()) {
 				FBWDto dto = new FBWDto();
 				dto.setFBWords(rs.getString(1));
@@ -189,7 +197,9 @@ public class AdminDaoImpl implements AdminDao{
 			close(rs);
 			close(pstm);
 		}
-		
+		for(int i = 0; i<list.size();i++) {
+			System.out.println(list.get(i));
+		}
 		
 		return list;
 	}
@@ -362,9 +372,55 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		return result;
 	}
-	
-	
-	
+	public int FBWCount(Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int count = 0;
+		String sql = "SELECT COUNT(*) as count FROM FORBIDDENWORD";
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	public int UserCount(Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int count = 0;
+		String sql = "SELECT COUNT(*) as count FROM USERTB";
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	public int DecrationCount(Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int count = 0;
+		String sql = "SELECT COUNT(*) as count FROM REVIEW WHERE COUNT>=1";
+		try {
+			pstm = con.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 	
 	
 	

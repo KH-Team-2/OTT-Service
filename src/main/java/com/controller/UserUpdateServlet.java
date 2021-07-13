@@ -1,21 +1,16 @@
 package com.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Enumeration;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-
-import org.json.simple.JSONObject;
 
 import com.biz.admin.AdminBiz;
 import com.biz.admin.AdminBizImpl;
@@ -23,15 +18,15 @@ import com.dto.UserDto;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/AdminUpdateServlet")
-public class AdminUpdateServlet extends HttpServlet {
+@WebServlet("/UserUpdateServlet")
+public class UserUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String ATTACHES_DIR = "C:\\Temp";
-    public AdminUpdateServlet() {
+       
+    public UserUpdateServlet() {
         super();
     }
 
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		AdminBiz biz = new AdminBizImpl();
@@ -64,9 +59,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				boolean res = biz.UserImgUdate(dto);
 				
 				if(res) {
-					jsResponse("이미지 변경성공", "admin.do?command=User_Info", response);
+					jsResponse("이미지 변경성공", "user.do?command=updateuser&usernum="+dto.getUserNum(), response);
 				}else {
-					jsResponse("이미지 변경실패", "admin.do?command=User_Info", response);
+					jsResponse("이미지 변경실패", "user.do?command=updateuser&usernum="+dto.getUserNum(), response);
 				}
 			}catch(Exception e){
 				e.printStackTrace();
@@ -96,13 +91,12 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			boolean res = biz.AdminUpdateInfo(dto);
 			
 			if(res) {
-				jsResponse("성공", "admin.do?command=User_Info&page=1", response);
+				jsResponse("성공", "user.do?command=updateuser&usernum="+dto.getUserNum(), response);
 			}else {
-				jsResponse("실패", "admin.do?command=User_Info&page=1", response);
+				jsResponse("실패", "user.do?command=updateuser&usernum="+dto.getUserNum(), response);
 			}
 		}
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

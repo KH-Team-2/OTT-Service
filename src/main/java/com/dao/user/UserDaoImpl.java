@@ -184,8 +184,37 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public void SendEmailCode(String ID, String name, String email, Connection con) {
-		//aaa
+	public boolean SendEmailCode(String ID, String name, String email, Connection con) {
+		
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(SendEmailSQL);
+			pstm.setString(1, ID);
+			pstm.setString(2, name);
+			pstm.setString(3, email);
+			System.out.println("03. query 준비: "+ SendEmailSQL );
+			
+			rs = pstm.executeQuery();
+			System.out.println("04. query 실행 및 리턴");
+			
+			while(rs.next()) {
+				System.out.println(rs.getInt(1));
+				res = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+
+		return res>=1?true:false;
 	}
 	
 	@Override
@@ -193,6 +222,7 @@ public class UserDaoImpl implements UserDao{
 		
 		PreparedStatement pstm = null;
 		int res = 0;
+		boolean result = false;
 		
 		try {
 			pstm = con.prepareStatement(UserDelSQL);
@@ -201,6 +231,11 @@ public class UserDaoImpl implements UserDao{
 			
 			res = pstm.executeUpdate();
 			System.out.println("04. query 실행 및 리턴");
+			if(res>0) {
+				result=true;
+			}else {
+				result = false;
+			}
 			
 		} catch (SQLException e) {
 			System.out.println("3/4단계 에러");
@@ -210,7 +245,7 @@ public class UserDaoImpl implements UserDao{
 			System.out.println("05. db 종료\n");
 		}
 		
-		return (res>0)?true:false;
+		return result;
 	}
 	
 	@Override
@@ -243,4 +278,65 @@ public class UserDaoImpl implements UserDao{
 		
 		return res>=1?true:false;
 	}
+
+	@Override
+	public UserDto selectOne(int userNum, Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		UserDto res = null;
+		
+		try {
+			pstm = con.prepareStatement(selectOneSql);
+			pstm.setInt(1,userNum);
+			System.out.println("03. query 준비: " + selectOneSql);
+			
+			rs = pstm.executeQuery();
+			System.out.println("04. query 실행 밀 리턴");
+			
+			if(rs.next()) {
+				res = new UserDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
+								rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), 
+								rs.getString(12), rs.getDate(13));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public boolean ChangePW(String id, String pw, Connection con) {
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(ChangePWSQL);
+			pstm.setString(1, pw);
+			pstm.setString(2, id);
+
+			System.out.println("03. query 준비: "+ ChangePWSQL);
+			
+			res = pstm.executeUpdate();
+			System.out.println("04. query 실행 및 리턴");
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return (res>0)?true:false;
+	}
+	
 }

@@ -16,7 +16,7 @@
             $("#headers").load("header.jsp");
         });
     </script>
-    
+
     <style>
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
@@ -96,13 +96,13 @@
 </head>
 <body>
 <%
-    	int num = (int)request.getAttribute("page"); 
+    	int num = (int)request.getAttribute("pages");
     	if(num == 1){
 %>
     	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		 <script type="text/javascript">
     	 	$(function(){
-	    	 	$('#iframe_in').attr('src','admin.do?command=User_Info');
+	    	 	$('#iframe_in').attr('src','admin.do?command=User_Info&page=1');
     	 	});
     	 </script>
 <%
@@ -111,7 +111,7 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$('#iframe_in').attr('src','admin.do?command=DecrationList');
+				$('#iframe_in').attr('src','admin.do?command=DecrationList&page=1');
 			});
 	 	</script>
 <%
@@ -120,7 +120,7 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$('#iframe_in').attr('src','admin.do?command=FBWList');
+				$('#iframe_in').attr('src','admin.do?command=FBWList&page=1');
 			});
 	 	</script>
 <%
@@ -132,24 +132,24 @@
         <table id="menuTable">
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="$('#iframe_in').attr('src','admin.do?command=User_Info')">
+                    <input type="button" class="menuSelect" id="menu_1" value="회원리스트" onclick="$('#iframe_in').attr('src','admin.do?command=User_Info&page=1')">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin.do?command=DecrationList')">
+                    <input type="button" class="menuSelect" id="menu_2" value="신고리스트" onclick="$('#iframe_in').attr('src','admin.do?command=DecrationList&page=1')">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" class="menuSelect" id="menu_3" value="금지어" onclick="$('#iframe_in').attr('src','admin.do?command=FBWList')">
+                    <input type="button" class="menuSelect" id="menu_3" value="금지어" onclick="$('#iframe_in').attr('src','admin.do?command=FBWList&page=1')">
                 </td>
             </tr>
         </table>
         <input type="button" class="menuSelect" id="logout" value="로그아웃">
     </div>
     <div id="iframe">
-        <iframe id="iframe_in" src="admin.do?command=User_Info" title="Manager_Contents" frameborder=0 style="width:850px; height:750px;"></iframe>
+        <iframe id="iframe_in" src="admin.do?command=User_Info&page=1" title="Manager_Contents" frameborder=0 style="width:850px; height:750px;"></iframe>
     </div>
 </div>
 </body>

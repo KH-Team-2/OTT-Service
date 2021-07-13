@@ -5,6 +5,7 @@ import com.biz.review.ReviewBizImpl;
 import com.biz.search.SearchBiz;
 import com.biz.search.SearchBizImpl;
 import com.dto.ContentsDto;
+import com.dto.Paging;
 import com.dto.ReviewDto;
 
 import javax.servlet.RequestDispatcher;
@@ -34,6 +35,13 @@ public class SearchServlet extends HttpServlet {
         System.out.println("command=" + command);
         switch (command) {
             case "main": {
+                List<ContentsDto> newList = biz.SearchNewList();
+                List<ContentsDto> popList = biz.SearchPopList();
+
+                request.setAttribute("newList", newList);
+                request.setAttribute("popList", popList);
+
+
                 RequestDispatcher dispatch = request.getRequestDispatcher("index/index.jsp");
                 dispatch.forward(request, response);
                 break;
@@ -41,6 +49,9 @@ public class SearchServlet extends HttpServlet {
 
             case "search": {
                 String searchBar = request.getParameter("searchBar");
+                if (searchBar.equals("") || searchBar == null) {
+                    searchBar = "asd";
+                }
                 String startdate = request.getParameter("startdate");
                 searchBar = searchBar.trim();
 //                startdate = startdate.substring(0, 4);
@@ -49,30 +60,31 @@ public class SearchServlet extends HttpServlet {
                 double startgrade = Double.parseDouble(request.getParameter("startgrade"));
                 double endgrade = Double.parseDouble(request.getParameter("endgrade"));
                 String genre = request.getParameter("genre");
-                request.setAttribute("searchBar", searchBar);
                 List<ContentsDto> list = biz.SearchList(searchBar, startdate, enddate, startgrade, endgrade, genre);
+                searchBar = "";
                 request.setAttribute("list", list);
+                request.setAttribute("searchBar", searchBar);
                 RequestDispatcher dispatch = request.getRequestDispatcher("search/Search.jsp");
                 dispatch.forward(request, response);
 
                 break;
             }
             case "detail": {
-                /*String title = request.getParameter("title");
-                ContentsDto dto = biz.SearchDetail(title);
-
-                request.setAttribute("dto", dto);
-                RequestDispatcher dispatch = request.getRequestDispatcher("search/SearchDetail.jsp");
-                dispatch.forward(request, response);*/
+                int page = Integer.parseInt(request.getParameter("page"));
                 String title = request.getParameter("title");
-//                int movienum = Integer.parseInt(request.getParameter("movienum"));
-                ContentsDto dto = biz.SearchDetail(title);
-                int movienum1 = dto.getMovieNum();
 
-                List<ReviewDto> dtos = biz1.ReviewList(movienum1);
+                ContentsDto dto = biz.SearchDetail(title);
+                int movienum = dto.getMovieNum();
+
+                int count = biz1.RiviewCount(movienum);
+                Paging paging = new Paging();
+                paging.setPage(page);
+                paging.setTotalCount(count);
+                List<ReviewDto> dtos = biz1.ReviewList(movienum);
 
                 request.setAttribute("dto", dto);
                 request.setAttribute("list", dtos);
+                request.setAttribute("paging", paging);
                 RequestDispatcher dispatch = request.getRequestDispatcher("search/SearchDetail.jsp");
                 dispatch.forward(request, response);
 

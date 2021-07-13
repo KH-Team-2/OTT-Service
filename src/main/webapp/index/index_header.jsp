@@ -3,6 +3,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 
+<%@ page import="com.dto.UserDto" %>
 <!DOCTYPE html><html lang="kor">
 <head>
     <title>head</title>
@@ -368,6 +369,9 @@
     </style>
 </head>
 <body>
+<%
+	UserDto dto = (UserDto)session.getAttribute("dto");
+%>
 <form action="search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지2</div>
@@ -492,19 +496,19 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="찜" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='user.do?command=userlist&page=1'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='user.do?command=userlist&page=2'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="정보수정" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='user.do?command=userlist&page=3'">
                             </td>
                         </tr>
                         <tr>
@@ -519,19 +523,19 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="회원리스트" class="menubtn"
-                                       onclick="location.href='admin.do?command=adminlist&page=1'">
+                                       onclick="location.href='admin.do?command=adminlist&pages=1'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="신고리스트" class="menubtn"
-                                       onclick="location.href='admin.do?command=adminlist&page=2'">
+                                       onclick="location.href='admin.do?command=adminlist&pages=2'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="금지어" class="menubtn"
-                                       onclick="location.href='admin.do?command=adminlist&page=3'">
+                                       onclick="location.href='admin.do?command=adminlist&pages=3'">
                             </td>
                         </tr>
                         <tr>

@@ -11,4 +11,5 @@ public interface ReviewBiz {
 	public boolean ReviewDelete ( int reviewnum ) ;
 	public List<ReviewDto> ReviewList ( int movienum );
 	public boolean ReviewReport ( int reviewnum );
+	int RiviewCount(int movienum);
 }
