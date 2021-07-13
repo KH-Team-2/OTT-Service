@@ -447,12 +447,12 @@
             <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳"
                    value="<%=searchBar1%>">
             <button type="submit" name="searchBtn" id="searchBtn" class="searchBtn">
-                <img src="img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
+                <img src="http://www.khproject.kr/OTT_Service/img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
             </button>
             <!--        <img src="img/select.png" class="searchBtn" id="searchBtn" alt="no">-->
         </div>
         <div id="filter" class="filterBtn">
-            <img id="filterBtnImg" src="img/filter.png">
+            <img id="filterBtnImg" src="http://www.khproject.kr/OTT_Service/img/filter.png">
             <div id="modal">
                 <div class="modalfilter">
                     <%--<span>알람</span><br>
@@ -514,7 +514,7 @@
             </div>
         </div>
         <div class="alarmBtn" id="alarm">
-            <img src="img/alarm.png" id="alarmBtn">
+            <img src="http://www.khproject.kr/OTT_Service/img/alarm.png" id="alarmBtn">
             <div class="alarmCircle"></div>
             <div class="userAlarm">
                 <table class="userAlarmTable">
@@ -526,7 +526,7 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -544,7 +544,7 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -558,7 +558,7 @@
             </div>
         </div>
         <div class="userBtn" id="user">
-            <img id="userBtnImg" src="img/user.png">
+            <img id="userBtnImg" src="http://www.khproject.kr/OTT_Service/img/user.png">
             <div id="menues">
                 <div id="usermenu">
                     <table id="usermenutb">

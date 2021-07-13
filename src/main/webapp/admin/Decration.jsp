@@ -56,7 +56,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$(".deletebtn").click(function(){
-				$(this).attr("src","img/Done.png");
+				$(this).attr("src","http://www.khproject.kr/OTT_Service/img/Done.png");
 			});
 		});
 	</script>
@@ -90,7 +90,7 @@
 							<td>${dto.name }</td>
 							<td>${dto.reviewInfo }</td>
 							<td>${dto.count }</td>
-							<td><img src="img/confirm.png" class="deletebtn" onclick="location.href='admin.do?command=deleteDecration&reviewnum=${dto.reviewNum}'"></td>
+							<td><img src="http://www.khproject.kr/OTT_Service/img/confirm.png" class="deletebtn" onclick="location.href='admin.do?command=deleteDecration&reviewnum=${dto.reviewNum}'"></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
