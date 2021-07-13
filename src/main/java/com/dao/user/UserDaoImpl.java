@@ -184,8 +184,37 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public void SendEmailCode(String ID, String name, String email, Connection con) {
-		//aaa
+	public boolean SendEmailCode(String ID, String name, String email, Connection con) {
+		
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(SendEmailSQL);
+			pstm.setString(1, ID);
+			pstm.setString(2, name);
+			pstm.setString(3, email);
+			System.out.println("03. query 준비: "+ SendEmailSQL );
+			
+			rs = pstm.executeQuery();
+			System.out.println("04. query 실행 및 리턴");
+			
+			while(rs.next()) {
+				System.out.println(rs.getInt(1));
+				res = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+
+		return res>=1?true:false;
 	}
 	
 	@Override
@@ -276,4 +305,32 @@ public class UserDaoImpl implements UserDao{
 		
 		return res;
 	}
+	
+	@Override
+	public boolean ChangePW(String id, String pw, Connection con) {
+		
+		PreparedStatement pstm = null;
+		int res = 0;
+		
+		try {
+			pstm = con.prepareStatement(ChangePWSQL);
+			pstm.setString(1, pw);
+			pstm.setString(2, id);
+
+			System.out.println("03. query 준비: "+ ChangePWSQL);
+			
+			res = pstm.executeUpdate();
+			System.out.println("04. query 실행 및 리턴");
+			
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return (res>0)?true:false;
+	}
+	
 }

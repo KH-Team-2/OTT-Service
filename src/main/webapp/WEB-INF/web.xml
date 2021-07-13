@@ -103,8 +103,6 @@
     
     <!--    ///////////////////////////////////////////////     -->
 	
-
-
     <servlet>
         <servlet-name>ViewListServlet</servlet-name>
         <servlet-class>com.controller.ViewListServlet</servlet-class>
@@ -113,6 +111,18 @@
         <servlet-name>ViewListServlet</servlet-name>
         <url-pattern>/viewlist.do</url-pattern>
     </servlet-mapping>
-
+    
+    <!--    ///////////////////////////////////////////////     -->
+    
+    <servlet>
+        <servlet-name>SearchPWServlet</servlet-name>
+        <servlet-class>com.controller.SearchPWServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchPWServlet</servlet-name>
+        <url-pattern>/searchpw.do</url-pattern>
+    </servlet-mapping>
+    
+     <!--    ///////////////////////////////////////////////     -->
 
 </web-app>

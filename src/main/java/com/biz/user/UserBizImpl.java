@@ -80,12 +80,14 @@ public class UserBizImpl implements UserBiz{
 	}
 
 	@Override
-	public void SendEmailCode(String ID, String name, String email) {
+	public boolean SendEmailCode(String ID, String name, String email) {
+		Connection con = getConnection();
 		
+		boolean res = dao.SendEmailCode(ID, name, email, con);
 		
-		// 이후 추가
+		close(con);
 		
-		
+		return res;
 	}
 	
 	@Override
@@ -120,6 +122,17 @@ public class UserBizImpl implements UserBiz{
 
 		
 		return dto;
+	}
+	
+	@Override
+	public boolean ChangePW(String id, String pw) {
+		Connection con = getConnection();
+		
+		boolean res = dao.ChangePW(id, pw, con);
+		
+		close(con);
+		
+		return res;
 	}
 
 }

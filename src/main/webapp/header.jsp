@@ -432,13 +432,7 @@
 </head>
 <body>
 
-	<%
-		UserDto dto = (UserDto)session.getAttribute("dto");
-	
-		if(dto == null) {  %> <script>alert("로그인 안되어있음");</script> <%  }
-		else { %>  <script>alert("<%=dto.getName()%>"); </script> <% }
-
-	%>
+	<% UserDto dto = (UserDto)session.getAttribute("dto"); %>
 	
 <form action="search.do?command=search" method="post">
     <div id="headpart">

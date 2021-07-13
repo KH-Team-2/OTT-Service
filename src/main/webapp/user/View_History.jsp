@@ -228,7 +228,7 @@
                     <input type="button" id="delshow" value="선택" onclick="">
                 </td>
             </tr>
-            </td>
+            
             </tbody>
         </table>
 
