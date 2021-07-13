@@ -88,15 +88,19 @@
 <script type="text/javascript">
 
 	$(function(){
-		$("#loginbtn").click(function(){
-			if($("#ID").val() == null || $("#ID").val() == "" || $("#PW").val() == null || $("#PW").val() == ""){
-				alert("아이디/비밀번호를 입력하세요");
-				
-				return false;
-			}
-			
+		
+		$("#loginbtn").click(function(){	
+			if ( $("#ID").val() == null || $("#ID").val() == "" || $("#PW").val() == null || $("#PW").val() == "" )
+			{ alert("아이디/비밀번호를 입력하세요"); return false; }
 		});
 		
+		$("#google").click(function(){
+			location.href="https://accounts.google.com/o/oauth2/auth?client_id="+
+			"348827184821-njga1dt2kpens8d8kvj6u5kcn3h5omi2.apps.googleusercontent.com"+
+			"&redirect_uri="+
+			"http://localhost:8381/OTT-Service/GoogleRedirect.do" +
+			"&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=offline";
+		});	
 	});
 </script>
 </head>

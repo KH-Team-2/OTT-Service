@@ -107,6 +107,7 @@
         <servlet-name>ViewListServlet</servlet-name>
         <servlet-class>com.controller.ViewListServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>ViewListServlet</servlet-name>
         <url-pattern>/viewlist.do</url-pattern>
@@ -118,6 +119,7 @@
         <servlet-name>SearchPWServlet</servlet-name>
         <servlet-class>com.controller.SearchPWServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>SearchPWServlet</servlet-name>
         <url-pattern>/searchpw.do</url-pattern>
@@ -129,9 +131,12 @@
 		<servlet-name>UserUpdateServlet</servlet-name>
 		<servlet-class>com.controller.UserUpdateServlet</servlet-class>
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>UserUpdateServlet</servlet-name>
 		<url-pattern>/userUpdate.do</url-pattern>
 	</servlet-mapping>
-
+	
+	<!--    ///////////////////////////////////////////////     -->
+	
 </web-app>
