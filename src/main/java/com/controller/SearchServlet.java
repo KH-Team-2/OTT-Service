@@ -5,6 +5,7 @@ import com.biz.review.ReviewBizImpl;
 import com.biz.search.SearchBiz;
 import com.biz.search.SearchBizImpl;
 import com.dto.ContentsDto;
+import com.dto.Paging;
 import com.dto.ReviewDto;
 
 import javax.servlet.RequestDispatcher;
@@ -69,21 +70,21 @@ public class SearchServlet extends HttpServlet {
                 break;
             }
             case "detail": {
-                /*String title = request.getParameter("title");
-                ContentsDto dto = biz.SearchDetail(title);
-
-                request.setAttribute("dto", dto);
-                RequestDispatcher dispatch = request.getRequestDispatcher("search/SearchDetail.jsp");
-                dispatch.forward(request, response);*/
+                int page = Integer.parseInt(request.getParameter("page"));
                 String title = request.getParameter("title");
-//                int movienum = Integer.parseInt(request.getParameter("movienum"));
-                ContentsDto dto = biz.SearchDetail(title);
-                int movienum1 = dto.getMovieNum();
 
-                List<ReviewDto> dtos = biz1.ReviewList(movienum1);
+                ContentsDto dto = biz.SearchDetail(title);
+                int movienum = dto.getMovieNum();
+
+                int count = biz1.RiviewCount(movienum);
+                Paging paging = new Paging();
+                paging.setPage(page);
+                paging.setTotalCount(count);
+                List<ReviewDto> dtos = biz1.ReviewList(movienum);
 
                 request.setAttribute("dto", dto);
                 request.setAttribute("list", dtos);
+                request.setAttribute("paging", paging);
                 RequestDispatcher dispatch = request.getRequestDispatcher("search/SearchDetail.jsp");
                 dispatch.forward(request, response);
 

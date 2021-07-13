@@ -565,13 +565,13 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="찜" class="menubtn"
-                                       onclick="location.href='user/mypage.jsp?page=1'">
+                                       onclick="location.href='user/mypage.jsp?pages=1'">
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="시청기록" class="menubtn"
-                                       onclick="location.href='viewlist.do?command=viewlist&page=2&usernum='+<%=dto.getUserNum()%>">
+                                       onclick="location.href='viewlist.do?command=viewlist&pages=2&usernum='+<%=dto.getUserNum()%>">
                             </td>
                         </tr>
                         <tr>

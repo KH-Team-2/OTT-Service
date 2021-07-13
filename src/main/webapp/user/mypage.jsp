@@ -106,7 +106,7 @@
     <div id="menuBar">
         <table id="menuTable">
             <%
-                int num = (int) request.getAttribute("page");
+                int num = (int) request.getAttribute("pages");
                 if (num == 1) {
             %>
             <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -121,7 +121,7 @@
             <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript">
                 $(function () {
-                    $('#iframe_in').attr('src', 'viewlist.do?command=viewhistory&page=2&usernum=<%=usernum%>');
+                    $('#iframe_in').attr('src', 'viewlist.do?command=viewhistory&page=1&usernum=<%=usernum%>');
                 });
             </script>
             <%
@@ -145,7 +145,7 @@
             <tr>
                 <td>
                     <input type="button" class="menuSelect" id="menu_2" value="시청기록"
-                           onclick="$('#iframe_in').attr('src','viewlist.do?command=viewhistory&page=2&usernum=<%=usernum%>')">
+                           onclick="$('#iframe_in').attr('src','viewlist.do?command=viewhistory&page=1&usernum=<%=usernum%>')">
                 </td>
             </tr>
             <tr>
