@@ -102,6 +102,10 @@
 			"&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=offline";
 		});	
 	});
+	
+	function KakaoLogin(){
+		location.href = "https://kauth.kakao.com/oauth/authorize?client_id=528930d4a41bf7c7d8a4a5c8306eabec&redirect_uri=http://localhost:8989/kakao.do&response_type=code";
+	}
 </script>
 </head>
 
@@ -138,7 +142,7 @@
 	    		<img src="http://www.khproject.kr/OTT_Service/img/Google.png" id="google" class="socialimg">
 	    	</span>
 	    	<span>
-	    		<img src="http://www.khproject.kr/OTT_Service/img/KaKaO.png" id="kakao" class="socialimg">
+	    		<img src="http://www.khproject.kr/OTT_Service/img/KaKaO.png" id="kakao" class="socialimg" onclick="KakaoLogin();">
 	    	</span>
 	    </div>
 	   	<div id="find">
