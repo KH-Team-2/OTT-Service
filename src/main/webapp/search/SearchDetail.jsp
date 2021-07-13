@@ -248,7 +248,7 @@
         }
 
         #title {
-            font-size: 48px;
+            font-size: 40px;
             margin-left: 60px;
             margin-top: 50px;
         }
