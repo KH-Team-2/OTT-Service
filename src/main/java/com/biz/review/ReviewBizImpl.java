@@ -65,6 +65,15 @@ public class ReviewBizImpl implements ReviewBiz {
 	}
 
 	@Override
+	public List<ReviewDto> ReviewPagingList(int movienum, int page) {
+		Connection con = getConnection();
+		List<ReviewDto> list = dao.ReviewPagingList(con, movienum, page);
+		close(con);
+
+		return list;
+	}
+
+	@Override
 	public boolean ReviewReport(int reviewnum) {
 
 		Connection con = getConnection();

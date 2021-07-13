@@ -2,6 +2,7 @@ package com.controller;
 
 import com.biz.viewlist.ViewListBiz;
 import com.biz.viewlist.ViewListBizImpl;
+import com.dto.Paging;
 import com.dto.WHDto;
 
 import javax.servlet.RequestDispatcher;
@@ -42,10 +43,19 @@ public class ViewListServlet extends HttpServlet {
             case "viewhistory": {
                 int page = Integer.parseInt(request.getParameter("page"));
                 int usernum = Integer.parseInt(request.getParameter("usernum"));
-                List<WHDto> list = biz.ViewListLoading(usernum);
+                int count = 0;
+                count = biz.ViewListCount(usernum);
+
+                Paging paging = new Paging();
+                paging.setPage(page);
+                paging.setTotalCount(count);
+
+//                List<WHDto> list = biz.ViewListLoading(usernum);
+                List<WHDto> list = biz.ViewListPaging(usernum, page);
+
                 request.setAttribute("list", list);
-                request.setAttribute("page", page);
                 request.setAttribute("usernum", usernum);
+                request.setAttribute("paging", paging);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("user/View_History.jsp");
                 dispatcher.forward(request, response);
                 break;

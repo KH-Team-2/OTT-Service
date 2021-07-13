@@ -171,4 +171,48 @@ public class ReviewDaoImpl implements ReviewDao {
         return res;
     }
 
+    @Override
+    public List<ReviewDto> ReviewPagingList(Connection con, int movienum, int page) {
+        int startNum = (page - 1) * 10 + 1;
+        int endNum = page * 10;
+        String sql = " SELECT A.*, u.Nickname\n" +
+                "FROM (\n" +
+                "         SELECT *\n" +
+                "         FROM (\n" +
+                "                  SELECT ROWNUM as rnum, REVIEW.*\n" +
+                "                  FROM REVIEW\n" +
+                "              )\n" +
+                "         WHERE rnum >= ? AND MOVIENUM = ?  \n" +
+                "     ) A\n" +
+                "JOIN USERTB u on A.UserNum = u.USERNUM\n" +
+                "WHERE rnum <= ? ";
+
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<ReviewDto> res = new ArrayList<ReviewDto>();
+
+        try {
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1, startNum);
+            pstm.setInt(2, movienum);
+            pstm.setInt(3, endNum);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                ReviewDto temp = new ReviewDto(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4), rs.getString(5),
+                        rs.getDate(6), rs.getInt(7), rs.getString(8));
+
+                res.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rs);
+            close(pstm);
+        }
+
+        return res;
+    }
+
 }

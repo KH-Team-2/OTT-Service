@@ -96,4 +96,67 @@ public class ViewListDaoImpl implements ViewListDao {
         return res > 0;
     }
 
+    @Override
+    public int ViewListCount(int usernum, Connection con) {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        int res = 0;
+
+        try {
+            pstm = con.prepareStatement(ViewListCntSQL);
+            pstm.setInt(1, usernum);
+            System.out.println("03. query 준비: " + ViewListCntSQL);
+
+            rs = pstm.executeQuery();
+            System.out.println("04. query 실행 및 리턴");
+
+            while (rs.next()) {
+                res = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("3/4단계 에러");
+            e.printStackTrace();
+        } finally {
+            close(rs);
+            close(pstm);
+            System.out.println("05. db 종료\n");
+        }
+
+        return res;
+    }
+
+    @Override
+    public List<WHDto> ViewListPaging(int usernum, int page, Connection con) {
+        int startNum = (page - 1) * 10 + 1;
+        int endNum = page * 10;
+
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<WHDto> res = new ArrayList<WHDto>();
+
+        try {
+            pstm = con.prepareStatement(ViewListPagingSQL);
+            pstm.setInt(1, usernum);
+            pstm.setInt(2, startNum);
+            pstm.setInt(3, endNum);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                WHDto temp = new WHDto(rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4), rs.getDate(5), rs.getString(6),
+                        rs.getString(7));
+
+                res.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rs);
+            close(pstm);
+        }
+
+        return res;
+    }
+
 }

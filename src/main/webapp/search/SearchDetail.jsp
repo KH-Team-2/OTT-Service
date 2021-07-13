@@ -43,7 +43,6 @@
             });
 
 
-
             $('.reviewupdate').click(function () {
                 if (num === undefined || num == $(this).parent().parent().attr('class')) {
                     $(this).parent().parent().children('.reviewinfotd').show();
@@ -158,7 +157,7 @@
 
             var params = "?command=viewlistadd" +
                 "&movienum=" + ${dto.movieNum} +
-                "&usernum=" + <%=udto.getUserNum()%>;
+                    "&usernum=" + <%=udto.getUserNum()%>;
 
             $.ajax({
                 type: "post",
@@ -166,7 +165,7 @@
                 success: function () {
                     // alert("등록 완료");
                 },
-                error:function(request,status,error){
+                error: function (request, status, error) {
                     // alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                 }
             })
@@ -386,7 +385,7 @@
                         <input type="hidden" id="command" name="command" value="write">
                         <input type="hidden" id="movienum" name="movienum" value="${dto.movieNum}">
                         <input type="hidden" id="usernum" name="usernum" value="<%=udto.getUserNum()%>">
-                        <input type="hidden" id="movietitle" name="movietitle" value="<%=dto.getTitle()%>">
+                        <input type="hidden" id="movietitle" name="movietitle" value="<%=dto.getTitle()%></>">
 						<input type="button" value="작성" class="btn" id="reviewsubmit">
 				</span>
         </div>
@@ -441,6 +440,19 @@
                         </c:forEach>
                     </c:otherwise>
                 </c:choose>
+                <tr>
+                    <td colspan="4">
+                        <jsp:include page="../search/ReviewPaging.jsp">
+                            <jsp:param name="movienum" value="${dto.movieNum}"/>
+                            <jsp:param name="title" value="${dto.title}"/>
+                            <jsp:param value="${paging.page }" name="page"/>
+                            <jsp:param value="${paging.beginPage }" name="beginPage"/>
+                            <jsp:param value="${paging.endPage }" name="endPage"/>
+                            <jsp:param value="${paging.prev }" name="prev"/>
+                            <jsp:param value="${paging.next }" name="next"/>
+                        </jsp:include>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>

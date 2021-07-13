@@ -26,6 +26,17 @@ public class ViewListBizImpl implements ViewListBiz{
 	}
 
 	@Override
+	public List<WHDto> ViewListPaging(int usernum, int page) {
+		Connection con = getConnection();
+
+		List<WHDto> list = dao.ViewListPaging(usernum, page, con);
+
+		close(con);
+
+		return list;
+	}
+
+	@Override
 	public boolean ViewListDelete(int historynum) {
 		Connection con = getConnection();
 		
@@ -54,6 +65,17 @@ public class ViewListBizImpl implements ViewListBiz{
 			rollback(connection);
 		}
 		close(connection);
+
+		return res;
+	}
+
+	@Override
+	public int ViewListCount(int usernum) {
+		Connection con = getConnection();
+
+		int res = dao.ViewListCount(usernum, con);
+
+		close(con);
 
 		return res;
 	}
