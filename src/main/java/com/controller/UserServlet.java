@@ -1,17 +1,5 @@
 package com.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.biz.user.UserBiz;
 import com.biz.user.UserBizImpl;
 import com.biz.viewlist.ViewListBiz;
@@ -21,6 +9,17 @@ import com.biz.wish.WishBizImpl;
 import com.dto.UserDto;
 import com.dto.WHDto;
 import com.dto.WishListDto;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -89,9 +88,9 @@ public class UserServlet extends HttpServlet {
 				break;
 			}
 			case "userlist":{
-				int page = Integer.parseInt(request.getParameter("page"));
+				int page = Integer.parseInt(request.getParameter("pages"));
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
-				request.setAttribute("page", page);
+				request.setAttribute("pages", page);
 				request.setAttribute("usernum", usernum);
 				dispatch("user/mypage.jsp",request,response);
 			}
