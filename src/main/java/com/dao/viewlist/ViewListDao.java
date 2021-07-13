@@ -44,7 +44,7 @@ public interface ViewListDao {
 
     public boolean ViewListAdd(int movienum, int usernum, Connection con);
 
-    int ViewListCount(int usernum, Connection con);
+    public int ViewListCount(int usernum, Connection con);
 
-    List<WHDto> ViewListPaging(int usernum, int page, Connection con);
+    public List<WHDto> ViewListPaging(int usernum, int page, Connection con);
 }

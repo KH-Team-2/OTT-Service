@@ -6,8 +6,8 @@ import java.sql.Connection;
 import java.util.List;
 
 public interface SearchDao {
-    List<ContentsDto> SearchList(Connection con, String searchBar, String startdate, String enddate, double startgrade, double endgrade, String genre);
-    List<ContentsDto> SearchNewList(Connection con);
-    List<ContentsDto> SearchPopList(Connection con);
-    ContentsDto SearchDetail(Connection con, String title);
+    public List<ContentsDto> SearchList(Connection con, String searchBar, String startdate, String enddate, double startgrade, double endgrade, String genre);
+    public List<ContentsDto> SearchNewList(Connection con);
+    public List<ContentsDto> SearchPopList(Connection con);
+    public ContentsDto SearchDetail(Connection con, String title);
 }
