@@ -68,6 +68,14 @@ public class ViewListServlet extends HttpServlet {
 
                 break;
             }
+            case "chkdel": {
+                String num = request.getParameter("num");
+                String[] nums = num.split(",");
+                for (int i = 0; i < nums.length; i++) {
+                    biz.ViewListDelete(Integer.parseInt(nums[i]));
+                }
+                break;
+            }
         }
     }
 

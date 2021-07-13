@@ -95,7 +95,11 @@ public class UserBizImpl implements UserBiz{
 		Connection con = getConnection();
 		
 		boolean res = dao.UserDel(usernum, con);
-		
+		if(res) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
 		close(con);
 		
 		return res;

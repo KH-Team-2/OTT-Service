@@ -34,6 +34,13 @@ public class SearchServlet extends HttpServlet {
         System.out.println("command=" + command);
         switch (command) {
             case "main": {
+                List<ContentsDto> newList = biz.SearchNewList();
+                List<ContentsDto> popList = biz.SearchPopList();
+
+                request.setAttribute("newList", newList);
+                request.setAttribute("popList", popList);
+
+
                 RequestDispatcher dispatch = request.getRequestDispatcher("index/index.jsp");
                 dispatch.forward(request, response);
                 break;
@@ -41,6 +48,9 @@ public class SearchServlet extends HttpServlet {
 
             case "search": {
                 String searchBar = request.getParameter("searchBar");
+                if (searchBar.equals("") || searchBar == null) {
+                    searchBar = "asd";
+                }
                 String startdate = request.getParameter("startdate");
                 searchBar = searchBar.trim();
 //                startdate = startdate.substring(0, 4);
@@ -49,9 +59,10 @@ public class SearchServlet extends HttpServlet {
                 double startgrade = Double.parseDouble(request.getParameter("startgrade"));
                 double endgrade = Double.parseDouble(request.getParameter("endgrade"));
                 String genre = request.getParameter("genre");
-                request.setAttribute("searchBar", searchBar);
                 List<ContentsDto> list = biz.SearchList(searchBar, startdate, enddate, startgrade, endgrade, genre);
+                searchBar = "";
                 request.setAttribute("list", list);
+                request.setAttribute("searchBar", searchBar);
                 RequestDispatcher dispatch = request.getRequestDispatcher("search/Search.jsp");
                 dispatch.forward(request, response);
 

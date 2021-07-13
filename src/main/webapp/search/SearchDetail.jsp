@@ -18,51 +18,7 @@
         $(function () {
             $("#header").load("../header.jsp");
 
-            // var title = $('#movietitle').val();
-            // var movienum = $('#movienum').val();
-
-
-            <%--$.ajax({--%>
-            <%--    url: "review.do?command=detail&title=" + title + "&movienum=" + movienum,--%>
-            <%--    dataType: "json",--%>
-            <%--    success: function (data) {--%>
-            <%--        $.each(data, function (key, val) {--%>
-            <%--            if (key == "reviewlist") {--%>
-            <%--                var list = val;--%>
-
-            <%--                for (let i = 0; i < list.length; i++) {--%>
-            <%--                    var str = list[i];--%>
-            <%--                    var reviewnum = str.reviewnum;--%>
-            <%--                    var body = '';--%>
-            <%--                    body += '<tr>';--%>
-            <%--                    body += '<td>' + str.nickname + '</td>';--%>
-            <%--                    body += '<td>' + str.date + '</td>';--%>
-            <%--                    body += '<td>' + str.reviewinfo + '</td>';--%>
-            <%--                    body += '<td class="btns" align="right">';--%>
-            <%--                    if (str.usernum == <%=udto.getUserNum()%>) {--%>
-            <%--                        body += '<button class="reviewbtn reviewupdate" onclick="update(this);">수정</button>';--%>
-            <%--                        body += '<button class="reviewbtn reviewdelete">삭제</button>';--%>
-            <%--                        body += '</td>';--%>
-            <%--                    } else {--%>
-            <%--                        body += '<button class="reviewbtn">신고</button>';--%>
-            <%--                        body += '</td>';--%>
-            <%--                    }--%>
-            <%--                    body += '</tr>';--%>
-            <%--                    body += "<input type = 'hidden' name='reviewtest' value='" +--%>
-            <%--                        str.reviewnum + "/" + str.reviewinfo + "'/>";--%>
-            <%--                    $('#reviewtb > tbody:last').append(body);--%>
-            <%--                }--%>
-            <%--            }--%>
-            <%--        });--%>
-            <%--    },--%>
-            <%--    error: function (request, status, error) {--%>
-            <%--        alert("code:" + request.style + "message = " + request.responseText + "error : " + error);--%>
-            <%--    }--%>
-            <%--})--%>
-
             let num;
-            let text;
-            let count = 0;
 
             $('#reviewsubmit').click(function () {
                 var params = "command=" + $('#command').val()
@@ -71,70 +27,22 @@
                     + "&movietitle=" + $('#movietitle').val()
                     + "&reviewinfo=" + $('#reviewinfo').val();
 
-                $.ajax({
-                    type: "post",
-                    url: "review.do?" + params,
-                    success: function (data) {
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("실패");
-                    }
-                })
+                if (confirm("작성하시겠습니까?")) {
+                    $.ajax({
+                        type: "post",
+                        url: "review.do?" + params,
+                        success: function (data) {
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("실패");
+                        }
+                    });
+                }
+
             });
 
-            /*$('.reviewupdate').click(function () {
-                var a = $(this);
-                const area = '<td><textarea style="resize: none" cols="70" rows="3" name="reviewinfo" class="reviewinfo"></textarea></td>';
-                if (num === undefined || num == $(this).parent().parent().attr('class')) {
-                    text = $(this).parent().parent().children('.onereviewinfo').text();
-                    $(this).parent().parent().children('.onereviewinfo').html(area);
-                    $('.reviewinfo').val(text);
-                    $(this).html('완료');
-                    $(this).next().html('취소');
-                    a.addClass('reviewupdatesubmit');
-                    a.next().addClass('reviewupdatecancel');
-                    if ($(this).text() == "완료") {
-                        $('.reviewupdatesubmit').click(function (e) {
-                            e.stopImmediatePropagation();
-                            console.log(num);
-                            console.log($(this).parent().parent().children('.reviewinfo').text())
-                        });
-                    }
 
-                } else if (num != $(this).parent().parent().attr('class')) {
-                    $('.' + num).children('.onereviewinfo').html(text);
-                    $('.' + num).children('.btns').children('.reviewupdatecancel').html('삭제');
-                    $('.' + num).children('.btns').children('.reviewupdatecancel').prev().html('수정');
-                    $('.' + num).children('.btns').children('.reviewupdatecancel').prev().removeClass('reviewupdatesubmit');
-                    $('.' + num).children('.btns').children('.reviewupdatecancel').removeClass('reviewupdatecancel');
-                    text = $(this).parent().parent().children('.onereviewinfo').text();
-                    $(this).parent().parent().children('.onereviewinfo').html(area);
-                    $('.reviewinfo').val(text);
-                    $(this).html('완료');
-                    $(this).addClass('reviewupdatesubmit');
-                    $(this).next().html('취소');
-                    $(this).next().addClass('reviewupdatecancel');
-                    if ($(this).text() == "완료") {
-                        $('.reviewupdatesubmit').click(function (e) {
-                            e.stopImmediatePropagation();
-                            console.log(num);
-                        });
-                    }
-                }
-                num = $(this).parent().parent().attr('class');
-
-                $('.reviewupdatecancel').click(function () {
-                    $(this).parent().parent().children('.onereviewinfo').html(text);
-                    $(this).html('삭제');
-                    $(this).prev().html('수정');
-                    $(this).prev().removeClass('reviewupdatesubmit');
-                    $(this).removeClass('reviewupdatecancel');
-                });
-
-                // $(this).parent().parent().children('.reviewdate').append(area);
-                // $(this).parent().parent().children('.reviewinfo').val(text);
-            });*/
 
             $('.reviewupdate').click(function () {
                 if (num === undefined || num == $(this).parent().parent().attr('class')) {
@@ -182,20 +90,20 @@
                     "&reviewnum=" + reviewnum +
                     "&reviewinfo=" + reviewinfo;
 
-                $.ajax({
-                    type: "post",
-                    url: "review.do" + params,
-                    success: function () {
-                        alert("수정 완료");
-                        location.reload();
-                        $(this).focus();
-                    },
-                    error: function () {
-                        alert("실패");
-                    }
-                })
-
-                console.log(reviewinfo, reviewnum);
+                if (confirm("수정하시겠습니까?")) {
+                    $.ajax({
+                        type: "post",
+                        url: "review.do" + params,
+                        success: function () {
+                            alert("수정 완료");
+                            location.reload();
+                            $(this).focus();
+                        },
+                        error: function () {
+                            alert("실패");
+                        }
+                    });
+                }
             });
 
             $('.reviewdelete').click(function () {
@@ -204,17 +112,20 @@
                 const params = "?command=deletereview" +
                     "&reviewnum=" + reviewnum;
 
-                $.ajax({
-                    type: "post",
-                    url: "review.do" + params,
-                    success: function () {
-                        alert("삭제 완료");
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("실패");
-                    }
-                })
+                if (confirm("삭제하시겠습니까?")) {
+                    $.ajax({
+                        type: "post",
+                        url: "review.do" + params,
+                        success: function () {
+                            alert("삭제 완료");
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("실패");
+                        }
+                    });
+                }
+
             });
 
             $('.reviewreport').click(function () {
@@ -222,17 +133,20 @@
 
                 var params = "?command=reportreview" +
                     "&reviewnum=" + reviewnum;
-                $.ajax({
-                    type: "post",
-                    url: "review.do" + params,
-                    success: function () {
-                        alert("신고 완료");
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("실패");
-                    }
-                })
+                if (confirm("신고하시겠습니까?")) {
+                    $.ajax({
+                        type: "post",
+                        url: "review.do" + params,
+                        success: function () {
+                            alert("신고 완료");
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("실패");
+                        }
+                    });
+                }
+
             });
 
 

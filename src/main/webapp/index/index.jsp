@@ -1,4 +1,4 @@
-<%@ include file="../header.jsp"%>
+<%@ include file="../header.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
@@ -14,6 +14,7 @@
             font-family: 'NEXON Lv1 Gothic OTF';
             background: black;
         }
+
         #videoselect {
             margin: 0 auto;
             width: 1200px;
@@ -68,36 +69,41 @@
     <div class="videooption">최 신 순</div>
     <br>
     <div class="fastest">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
-        <img class="movieimg"
-             src="https://occ-0-3077-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABelTq5aZu1lyg7xMxNT1CriD16-EBoMGl9ZdcgbwqgDYGfbWCSjGYzhCs6hkGKBUZfZgvqsEyqdLTxeF7UAiEk5NTnM.jpg?r=6b7"
-             alt="">
+        <div class="w3-content w3-section" style="max-width:500px">
+
+            <img class="mySlides w3-animate-top movieimg"
+                 src="https://an2-img.amz.wtchn.net/image/v2/08ace33ede39f0ce84b35b90af711e2a.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPakkyTkN3aWNHRjBhQ0k2SWk5Mk1pOXpkRzl5WlM5cGJXRm5aUzh4TmpFMk16ZzBOVGsyT1RJME16azNNall3SWl3aWNYVmhiR2wwZVNJNk9EQXNJbmRwWkhSb0lqbzBOekI5LnltN3BBeG1uWmFwMV9wZ3I3cU9ZbEpMei00TzdMNVlnTkxVWU9ySHdseGc"
+                 >
+            <img class="mySlides w3-animate-bottom movieimg"
+                 src="https://an2-img.amz.wtchn.net/image/v2/cd867798dc5cd23d8db57f9cc52ceb38.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPakkyTkN3aWNHRjBhQ0k2SWk5Mk1TOTRhVEJ6T0RadFozcG1aR0ZuWVRCeU1HOXVNaUlzSW5GMVlXeHBkSGtpT2pnd0xDSjNhV1IwYUNJNk5EY3dmUS5OYVRvV0JZeTVLUVBiTDF1RjF3eV9PN2dMR2wtcGpXM21HMUs5WlVBeXJB"
+                 >
+            <img class="mySlides w3-animate-top movieimg"
+                 src="https://an2-img.amz.wtchn.net/image/v2/08ace33ede39f0ce84b35b90af711e2a.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPakkyTkN3aWNHRjBhQ0k2SWk5Mk1pOXpkRzl5WlM5cGJXRm5aUzh4TmpFMk16ZzBOVGsyT1RJME16azNNall3SWl3aWNYVmhiR2wwZVNJNk9EQXNJbmRwWkhSb0lqbzBOekI5LnltN3BBeG1uWmFwMV9wZ3I3cU9ZbEpMei00TzdMNVlnTkxVWU9ySHdseGc"
+                 >
+            <img class="mySlides w3-animate-bottom movieimg"
+                 src="https://an2-img.amz.wtchn.net/image/v2/cd867798dc5cd23d8db57f9cc52ceb38.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPakkyTkN3aWNHRjBhQ0k2SWk5Mk1TOTRhVEJ6T0RadFozcG1aR0ZuWVRCeU1HOXVNaUlzSW5GMVlXeHBkSGtpT2pnd0xDSjNhV1IwYUNJNk5EY3dmUS5OYVRvV0JZeTVLUVBiTDF1RjF3eV9PN2dMR2wtcGpXM21HMUs5WlVBeXJB"
+                 >
+
+        </div>
+
+        <script>
+            var myIndex = 0;
+            carousel();
+
+            function carousel() {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                myIndex++;
+                if (myIndex > x.length) {
+                    myIndex = 1
+                }
+                x[myIndex - 1].style.display = "block";
+                setTimeout(carousel, 3000);
+            }
+        </script>
     </div>
     <br><br>
     <div class="videooption">인 기 순</div>
@@ -105,6 +111,6 @@
     <div class="fastest">여기엔 영화 이미지가 들어갑니다.</div>
 </div>
 
-    
+
 </body>
 </html>
