@@ -435,10 +435,10 @@
 	<%
 		UserDto dto = (UserDto)session.getAttribute("dto");
 	
-		if(dto == null) {  %> <script>alert("로그인 안되어있음");</script> <%  }
+		if(dto == null) {  %> <script>alert("로그인이 필요한 서비스입니다.");</script> <%  }
 		else { %>  <% }
-
 	%>
+
 	
 <form action="search.do?command=search" method="post">
     <div id="headpart">

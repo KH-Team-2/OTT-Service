@@ -7,3 +7,5 @@ select * from user_sequences;
                   
 SELECT MAX(MovieNum) FROM SP_PLATFORM WHERE PFCODE IN 'WC';
 SELECT MovieNum FROM SP_CONTENTS SC WHERE SC.MovieNum > 2;
+
+SELECT COUNT(*) FROM USERTB WHERE ID = 'RT' AND NAME = 'hello' AND EMAIL = 'wnehdwlswn@naver.com';
