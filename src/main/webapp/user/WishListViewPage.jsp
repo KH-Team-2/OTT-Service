@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 
@@ -158,66 +158,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE2</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE3</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE4</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE5</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE6</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE7</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE8</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE9</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
-                <tr>
-                    <td class="select"><input type="checkbox" class="chk"></td>
-                    <td class="title"><span>HOME ALONE10</span></td>
-                    <td class="alarm"><img src="../img/alarm.png" alt="알림"></td>
-                    <td class="delete"><img src="../img/delete.png" alt="삭제"></td>
-                </tr>
+                <c:choose>
+					<c:when test="${empty list }">
+					<tr>
+						<td colspan="4">등록된 금지어가 없습니다</td>
+					</tr>
+					</c:when> 
+					<c:otherwise>
+						<c:forEach items="${list }" var="dto">
+						<tr>
+							<td class="select"><input type="checkbox" class="chk"></td>
+							<td>${dto.movieNum }</td>
+							<td class="alarm"><img src="img/alarm.png" alt="알림"></td>
+							<td class="delete"><img src="img/delete.png" alt="삭제"></td>
+						</tr>
+						</c:forEach>
+					</c:otherwise>               
+                </c:choose>
                 
                
             

@@ -11,7 +11,7 @@ public interface UserDao {
 	String UpdateInfoSQL = " UPDATE SP_USERTB SET PW=?, PHONE=?, EMAIL=?, GENDER=?, NICKNAME=?, IMGURL=? WHERE USERNUM=? ";
 	String SearchIDSQL = " SELECT * FROM USERTB WHERE NAME=? AND EMAIL=? AND PHONE=? ";
 	String SearchPWSQL = " SELECT * FROM USERTB WHERE ID=? AND NAME=? AND EMAIL=? ";
-	String UserDelSQL = " DELETE FROM SP_USERTB WHERE ID = ? ";
+	String UserDelSQL = " DELETE FROM USERTB WHERE USERNUM = ? ";
 	String IDCheckSQL = " SELECT COUNT(*) FROM USERTB WHERE ID = ? ";
 	String selectOneSql = " SELECT * FROM SP_USERTB WHERE USERNUM=? ";
 	

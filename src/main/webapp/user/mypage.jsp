@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            $("#headers").load("../index/index_header.jsp");
+            $("#headers").load("index/index_header.jsp");
         });
     </script>
     <style>
@@ -103,25 +103,19 @@
 </head>
 <body>
 <%
-    int usernum = Integer.parseInt(request.getParameter("usernum"));
+    	int usernum = Integer.parseInt(request.getParameter("usernum"));
+        int num = (int) request.getAttribute("page");
+             if (num == 1) {
 %>
-<div id="headers"></div>
-<div id="menu">
-    <div id="menuBar">
-        <table id="menuTable">
-            <%
-                int num = (int) request.getAttribute("page");
-                if (num == 1) {
-            %>
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script type="text/javascript">
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
                 $(function () {
-                    $('#iframe_in').attr('src', '');
+                    $('#iframe_in').attr('src', 'user.do?command=wishlist&usernum=<%=usernum%>');
                 });
             </script>
-            <%
+<%
             } else if (num == 2) {
-            %>
+%>
             <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript">
                 $(function () {
@@ -134,16 +128,20 @@
             <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script type="text/javascript">
                 $(function () {
-                    $('#iframe_in').attr('src', '');
+                    $('#iframe_in').attr('src', 'user.do?command=updateuser&usernum=<%=usernum%>');
                 });
             </script>
             <%
                 }
             %>
+<div id="headers"></div>
+<div id="menu">
+    <div id="menuBar">
+        <table id="menuTable">
             <tr>
                 <td>
                     <input type="button" class="menuSelect" id="menu_1" value="찜"
-                           onclick="$('#iframe_in').attr('src','WishListViewPage.jsp')">
+                           onclick="$('#iframe_in').attr('src','user.do?command=wishlist&usernum=<%=usernum%>')">
                 </td>
             </tr>
             <tr>
@@ -155,14 +153,14 @@
             <tr>
                 <td>
                     <input type="button" class="menuSelect" id="menu_3" value="정보수정"
-                           onclick="$('#iframe_in').attr('src','Update.jsp')">
+                           onclick="$('#iframe_in').attr('src','user.do?command=updateuser&usernum=<%=usernum%>')">
                 </td>
             </tr>
         </table>
         <input type="button" class="menuSelect" id="logout" value="로그아웃">
     </div>
     <div id="iframe">
-        <iframe id="iframe_in" src="WishListViewPage.jsp" width="100%" height="100%" frameborder="0"
+        <iframe id="iframe_in" src="user.do?command=wishlist&usernum=<%=usernum%>" width="100%" height="100%" frameborder="0"
                 allowfullscreen></iframe>
     </div>
 </div>

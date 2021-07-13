@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import com.biz.user.UserBiz;
 import com.biz.user.UserBizImpl;
+import com.biz.wish.WishBiz;
+import com.biz.wish.WishBizImpl;
 import com.dto.UserDto;
+import com.dto.WishListDto;
 
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
@@ -29,7 +33,7 @@ public class UserServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		UserBiz biz = new UserBizImpl();
-
+		WishBiz wishbiz = new WishBizImpl();
 		String command = request.getParameter("command");
 
 		
@@ -72,6 +76,42 @@ public class UserServlet extends HttpServlet {
 					jsResponse("일치하는 아이디가 존재하지 않습니다.", "user/IDPW.jsp",response);
 				}
 				
+				break;
+			}
+			case "userlist":{
+				int page = Integer.parseInt(request.getParameter("page"));
+				int usernum = Integer.parseInt(request.getParameter("usernum"));
+				request.setAttribute("page", page);
+				request.setAttribute("usernum", usernum);
+				dispatch("user/mypage.jsp",request,response);
+			}
+			case "wishlist" :{
+				int usernum = Integer.parseInt(request.getParameter("usernum"));
+				List<WishListDto> list = wishbiz.WishList(usernum);
+				request.setAttribute("usernum",usernum);
+				request.setAttribute("list", list);
+				dispatch("user/WishListViewPage.jsp",request,response);
+				
+				break;
+			}
+			case "updateuser":{
+				int usernum = Integer.parseInt(request.getParameter("usernum"));
+				UserDto dto = biz.selectOne(usernum);
+				request.setAttribute("dto", dto);
+				dispatch("user/Update.jsp",request,response);
+				
+			}
+			case "userSecession" : {
+				int usernum = Integer.parseInt(request.getParameter("usernum"));
+				boolean result = biz.UserDel(usernum);
+				System.out.println(result);
+				if(result) {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('탈퇴 성공'); window.parent.location.href='user/login.jsp'"+"</script>");
+				}else {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('다시 시도해주세요'); window.parent.location.href='user/login.jsp'"+"</script>");
+				}
 				break;
 			}
 		}

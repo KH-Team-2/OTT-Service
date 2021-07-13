@@ -115,4 +115,13 @@
     </servlet-mapping>
 
 
+	<servlet>
+		<servlet-name>UserUpdateServlet</servlet-name>
+		<servlet-class>com.controller.UserUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserUpdateServlet</servlet-name>
+		<url-pattern>/userUpdate.do</url-pattern>
+	</servlet-mapping>
+
 </web-app>

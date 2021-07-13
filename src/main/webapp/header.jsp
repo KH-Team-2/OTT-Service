@@ -565,7 +565,7 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="찜" class="menubtn"
-                                       onclick="location.href='user/mypage.jsp?page=1'">
+                                       onclick="location.href='user.do?command=userlist&page=1&usernum=<%=dto.getUserNum()%>'">
                             </td>
                         </tr>
                         <tr>
@@ -577,7 +577,7 @@
                         <tr>
                             <td colspan="3" style="text-align: left">
                                 <input type="button" value="정보수정" class="menubtn"
-                                       onclick="location.href='../user/mypage.jsp'">
+                                       onclick="location.href='user.do?command=userlist&page=3&usernum=<%=dto.getUserNum()%>'">
                             </td>
                         </tr>
 

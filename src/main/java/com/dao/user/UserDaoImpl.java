@@ -193,6 +193,7 @@ public class UserDaoImpl implements UserDao{
 		
 		PreparedStatement pstm = null;
 		int res = 0;
+		boolean result = false;
 		
 		try {
 			pstm = con.prepareStatement(UserDelSQL);
@@ -201,6 +202,11 @@ public class UserDaoImpl implements UserDao{
 			
 			res = pstm.executeUpdate();
 			System.out.println("04. query 실행 및 리턴");
+			if(res>0) {
+				result=true;
+			}else {
+				result = false;
+			}
 			
 		} catch (SQLException e) {
 			System.out.println("3/4단계 에러");
@@ -210,7 +216,7 @@ public class UserDaoImpl implements UserDao{
 			System.out.println("05. db 종료\n");
 		}
 		
-		return (res>0)?true:false;
+		return result;
 	}
 	
 	@Override
