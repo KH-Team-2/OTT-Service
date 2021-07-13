@@ -78,4 +78,14 @@ public class ReviewBizImpl implements ReviewBiz {
 		return res;
 	}
 
+	@Override
+	public int RiviewCount(int movienum) {
+		Connection connection = getConnection();
+		int res = dao.ReviewCount(connection, movienum);
+
+		close(connection);
+
+		return res;
+	}
+
 }
