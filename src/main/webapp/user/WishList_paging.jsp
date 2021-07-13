@@ -29,9 +29,9 @@
 %>
 <body>
 	<div id="paging">
-	<c:url var="action" value="user.do?command=wishlist&usernum=<%=usernum%>"/>
+	<c:url var="action" value="user.do?command=wishlist"/>
 	<c:if test="${param.prev }">
-		<a href="${action }&page=${param.beginPage-1}">&lt;&lt;</a>
+		<a href="${action }&page=${param.beginPage-1}&usernum=<%=usernum%>">&lt;&lt;</a>
 	</c:if>
 	<c:forEach begin="${param.beginPage }" end="${param.endPage }" step="1" var="index">
 		<c:choose>
@@ -39,12 +39,12 @@
 				${index }
 			</c:when>
 			<c:otherwise>
-				<a href="${action}&page=${index}">${index}</a>
+				<a href="${action}&page=${index}&usernum=<%=usernum%>">${index}</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	<c:if test="${param.next }">
-		<a href="${action}&page=${param.endPage+1}">&gt;&gt;</a>
+		<a href="${action}&page=${param.endPage+1}&usernum=<%=usernum%>">&gt;&gt;</a>
 	</c:if>
 	</div>
 </body>

@@ -90,11 +90,12 @@ public class UserServlet extends HttpServlet {
 				break;
 			}
 			case "userlist":{
-				int page = Integer.parseInt(request.getParameter("pages"));
+				int pages = Integer.parseInt(request.getParameter("pages"));
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
-				request.setAttribute("pages", page);
+				request.setAttribute("pages", pages);
 				request.setAttribute("usernum", usernum);
 				dispatch("user/mypage.jsp",request,response);
+				break;
 			}
 			case "wishlist" :{
 				int page = 1;
@@ -109,15 +110,8 @@ public class UserServlet extends HttpServlet {
 				List<WishDto> list = wishbiz.WishList(usernum,page);
 				request.setAttribute("usernum",usernum);
 				request.setAttribute("list", list);
+				request.setAttribute("paging", paging);
 				dispatch("user/WishListViewPage.jsp",request,response);
-				break;
-			}
-			case "Update": {
-				
-				int userNum = Integer.parseInt(request.getParameter("userNum"));
-				
-				UserDto dto = biz.selectOne(userNum);
-				
 				break;
 			}
 			case "updateuser":{
@@ -140,13 +134,15 @@ public class UserServlet extends HttpServlet {
 				System.out.println(result);
 				if(result) {
 					PrintWriter writer = response.getWriter();
+					session.invalidate();
 					writer.println("<script>alert('탈퇴 성공'); window.parent.location.href='user/login.jsp'"+"</script>");
 				}else {
 					PrintWriter writer = response.getWriter();
-					writer.println("<script>alert('다시 시도해주세요'); window.parent.location.href='user/login.jsp'"+"</script>");
+					writer.println("<script>alert('다시 시도해주세요'); location.href='user.do?command=updateuser&usernum='"+usernum+"</script>");
 				}
 				break;
 			}
+			
 		}
     }
     
