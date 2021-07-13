@@ -24,6 +24,25 @@ public class SearchBizImpl implements SearchBiz {
 	}
 
 	@Override
+	public List<ContentsDto> SearchNewList() {
+		Connection con = getConnection();
+		List<ContentsDto> list = dao.SearchNewList(con);
+		close(con);
+
+		return list;
+	}
+
+	@Override
+	public List<ContentsDto> SearchPopList() {
+		Connection con = getConnection();
+		List<ContentsDto> list = dao.SearchPopList(con);
+		close(con);
+
+		return list;
+	}
+
+
+	@Override
 	public ContentsDto SearchDetail(String title) {
 		Connection con = getConnection();
 		ContentsDto dto = dao.SearchDetail(con, title);
