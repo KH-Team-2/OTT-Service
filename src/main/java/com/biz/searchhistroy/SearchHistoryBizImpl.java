@@ -18,19 +18,19 @@ public class SearchHistoryBizImpl implements SearchHistoryBiz {
 
 
 	@Override
-	public List<FBWDto> SearchHistoryView(String FBWords, String Reason, int FBWordsNum) {
+	public List<FBWDto> SearchHistoryView() {
 		Connection con = getConnection();
-		List<FBWDto> list = dao.SearchHistoryView(con, FBWords, Reason, FBWordsNum)
+		List<FBWDto> list = dao.SearchHistoryView(con);
 				
 		close(con);
 		return list;
 	}
 
 	@Override
-	public boolean SearchHistoryDelete(String FBWords, String Reason, int FBWordsNum) {
+	public boolean SearchHistoryDelete() {
 		Connection con = getConnection();
 		
-		boolean res = dao.SearchHistroyDelete(con, FBWords, Reason, FBWordsNum);
+		boolean res = dao.SearchHistroyDelete(con);
 		
 		if(res) {
 			commit(con);

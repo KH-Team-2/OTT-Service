@@ -6,6 +6,6 @@
 import com.dto.UserDto;
 
 		public interface AlarmBiz {
-			public void AlarmSwitch(int num);
-			public List<UserDto> AlarmLoading(int alarmnum);
+			public boolean AlarmSwitch(int num);
+			 public List<UserDto> AlarmLoading();
 		}
