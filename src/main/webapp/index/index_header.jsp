@@ -134,11 +134,18 @@
         #logo {
             position: relative;
             display: inline-block;
-            top: 15px;
+            width: 200px;
+            height: 60px;
+            top: 30px;
             left: 30px;
-            color: rgb(248, 211, 28);
-            font-size: 20pt;
             cursor: pointer;
+        }
+        
+        #logoImg{
+        	width: 100%;
+        	height: 100%;
+        	object-fit: cover;
+        	
         }
 
         #search {
@@ -374,7 +381,7 @@
 %>
 <form action="search.do?command=search" method="post">
     <div id="headpart">
-        <div id="logo" class="logoBtn">로고이미지2</div>
+        <div id="logo" class="logoBtn"><img src="http://www.khproject.kr/OTT_Service/img/logo.png" id="logoImg"></div>
         <div id="search">
             <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳"
                    value="">
