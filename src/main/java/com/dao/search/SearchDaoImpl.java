@@ -1,6 +1,7 @@
 package com.dao.search;
 
 import com.dto.ContentsDto;
+import com.dto.FBWDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -215,6 +216,38 @@ public class SearchDaoImpl implements SearchDao {
             e.printStackTrace();
         }
         return dto;
+    }
+
+    @Override
+    public List<FBWDto> SearchFBW(Connection con, String title) {
+        List<FBWDto> list = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String sql = " SELECT *\n" +
+                "FROM ForbiddenWord\n" +
+                "WHERE FBWords LIKE '%' || ? || '%' ";
+
+        try {
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, title);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                FBWDto dto = new FBWDto(resultSet.getString(1), resultSet.getString(2));
+
+                list.add(dto);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+        }
+
+        return list;
     }
 
 }

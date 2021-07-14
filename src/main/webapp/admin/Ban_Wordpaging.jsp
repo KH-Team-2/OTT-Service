@@ -15,13 +15,8 @@
 		font-size : 20pt;
 		color : white;
 	}
-	a:visited {
+	a {
 	text-decoration: none;
-		color: white;
-	}
-	a:active {
-	text-decoration: none;
-		color: white;
 }
 </style>
 </head>

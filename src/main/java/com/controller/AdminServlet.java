@@ -1,8 +1,10 @@
 package com.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import com.biz.admin.AdminBizImpl;
+import com.dto.DecrationDto;
+import com.dto.FBWDto;
+import com.dto.Paging;
+import com.dto.UserDto;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,12 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.biz.admin.AdminBizImpl;
-import com.dto.DecrationDto;
-import com.dto.FBWDto;
-import com.dto.Paging;
-import com.dto.UserDto;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 
 
@@ -129,15 +128,15 @@ public class AdminServlet extends HttpServlet {
 			case "addFBWord" : {
 				String FBWords = request.getParameter("FBWords");
 				String reason = request.getParameter("reason");
-				FBWDto dto = new FBWDto(FBWords,reason);
-				boolean result = biz.AddFBW(dto);
-				if(result) {
-					PrintWriter writer = response.getWriter();
-					writer.println("<script>alert('금지어가 추가되었습니다'); location.href='"+"admin.do?command=FBWList';"+"</script>");
-				}else {
-					PrintWriter writer = response.getWriter();
-					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=FBWList';"+"</script>");
-				}
+//				FBWDto dto = new FBWDto(FBWords,reason);
+//				boolean result = biz.AddFBW(dto);
+//				if(result) {
+//					PrintWriter writer = response.getWriter();
+//					writer.println("<script>alert('금지어가 추가되었습니다'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+//				}else {
+//					PrintWriter writer = response.getWriter();
+//					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+//				}
 				break;
 			}
 			case "deleteDecration" : {

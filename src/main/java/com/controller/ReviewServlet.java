@@ -5,6 +5,7 @@ import com.biz.review.ReviewBizImpl;
 import com.biz.search.SearchBiz;
 import com.biz.search.SearchBizImpl;
 import com.dto.ContentsDto;
+import com.dto.FBWDto;
 import com.dto.ReviewDto;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -40,11 +41,18 @@ public class ReviewServlet extends HttpServlet {
 
         switch (command) {
             case "write": {
+                boolean res = false;
                 int movienum = Integer.parseInt(request.getParameter("movienum"));
                 String reviewinfo = request.getParameter("reviewinfo");
                 int usernum = Integer.parseInt(request.getParameter("usernum"));
-
-                biz1.ReviewWrite(usernum, movienum, reviewinfo);
+                List<FBWDto> list = biz.SearchFBW(reviewinfo);
+                if (!list.isEmpty()) {
+                    res = false;
+                } else {
+                   res  = biz1.ReviewWrite(usernum, movienum, reviewinfo);
+                }
+                PrintWriter out = response.getWriter();
+                out.println(res);
 
                 break;
             }

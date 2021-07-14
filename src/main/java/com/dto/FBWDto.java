@@ -11,7 +11,7 @@ public class FBWDto {
 	public FBWDto() {
 		super();
 	}
-	public FBWDto(String fBWords, String reason, int fBWordsNum) {
+	public FBWDto(String fBWords, String reason) {
 		super();
 		FBWords = fBWords;
 		Reason = reason;

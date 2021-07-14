@@ -136,6 +136,10 @@
             font-weight:bold;
             padding: 1px 12px;
         }
+        a{
+        	text-decoration: none;
+        	color : white;
+        }
 	</style>
 	
 </head>

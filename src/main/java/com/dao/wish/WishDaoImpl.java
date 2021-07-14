@@ -153,6 +153,7 @@ public class WishDaoImpl implements WishDao{
 			rs = pstm.executeQuery();
 			
 			if(rs.next()) {
+				dto = new WishListDto();
 				dto.setWishNium(rs.getInt(1));
 				dto.setUserNum(rs.getInt(2));
 				dto.setMovieNum(rs.getInt(3));
@@ -164,6 +165,30 @@ public class WishDaoImpl implements WishDao{
 		}
 		
 		return dto;
+	}
+
+
+
+	@Override
+	public boolean WishNumDel(int wishnum, Connection con) {
+		PreparedStatement pstm = null;
+		int res = 0;
+		boolean result = false;
+		String sql = "DELETE FROM WISHLIST WHERE WISHNUM =?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, wishnum);
+			
+			res = pstm.executeUpdate();
+			if(res>0) {
+				result = true;
+			}else {
+				result = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 

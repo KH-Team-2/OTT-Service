@@ -186,8 +186,8 @@ public class AdminDaoImpl implements AdminDao{
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				FBWDto dto = new FBWDto();
-				dto.setFBWords(rs.getString(1));
-				dto.setReason(rs.getString(2));
+				dto.setFBWords(rs.getString(2));
+				dto.setReason(rs.getString(3));
 				
 				list.add(dto);
 			}

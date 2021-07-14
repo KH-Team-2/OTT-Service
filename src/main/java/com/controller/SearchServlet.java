@@ -5,6 +5,7 @@ import com.biz.review.ReviewBizImpl;
 import com.biz.search.SearchBiz;
 import com.biz.search.SearchBizImpl;
 import com.dto.ContentsDto;
+import com.dto.FBWDto;
 import com.dto.Paging;
 import com.dto.ReviewDto;
 
@@ -14,7 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/SearchServlet")
@@ -54,24 +57,30 @@ public class SearchServlet extends HttpServlet {
                 }
                 String startdate = request.getParameter("startdate");
                 searchBar = searchBar.trim();
-//                startdate = startdate.substring(0, 4);
                 String enddate = request.getParameter("enddate");
-//                enddate = enddate.substring(0, 4);
                 double startgrade = Double.parseDouble(request.getParameter("startgrade"));
                 double endgrade = Double.parseDouble(request.getParameter("endgrade"));
                 String genre = request.getParameter("genre");
-                List<ContentsDto> list = biz.SearchList(searchBar, startdate, enddate, startgrade, endgrade, genre);
-                searchBar = "";
-                request.setAttribute("list", list);
-                request.setAttribute("searchBar", searchBar);
-                RequestDispatcher dispatch = request.getRequestDispatcher("search/Search.jsp");
-                dispatch.forward(request, response);
+                List<FBWDto> fbwDtos = biz.SearchFBW(searchBar);
+//                System.out.println(fbwDtos.get(0).getFBWords());
+                if (!fbwDtos.isEmpty()) {
+                    PrintWriter writer = response.getWriter();
+                    writer.println("<script>alert('금지어가 입력되었습니다.'); location.href='" + "search.do?command=main" + "';</script>");
+                    writer.close();
 
+                } else {
+                    List<ContentsDto> list = biz.SearchList(searchBar, startdate, enddate, startgrade, endgrade, genre);
+                    searchBar = "";
+                    request.setAttribute("list", list);
+                    request.setAttribute("searchBar", searchBar);
+                    RequestDispatcher dispatch = request.getRequestDispatcher("search/Search.jsp");
+                    dispatch.forward(request, response);
+                }
                 break;
             }
             case "detail": {
                 int page = 1;
-                if(request.getParameter("page")!=null) {
+                if (request.getParameter("page") != null) {
                     page = Integer.parseInt(request.getParameter("page"));
                 }
 
@@ -95,6 +104,13 @@ public class SearchServlet extends HttpServlet {
                 break;
             }
 
+            case "logout": {
+                HttpSession session = request.getSession();
+                session.removeAttribute("dto");
+
+                response.sendRedirect("../user/login.jsp");
+                break;
+            }
         }
     }
 

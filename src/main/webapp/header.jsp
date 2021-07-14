@@ -7,55 +7,66 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
-<%
-    UserDto dto = (UserDto) session.getAttribute("dto");
+<% response.setHeader("Pragma", "no-cache");
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setDateHeader("Expires", 0L); %>
 
-    if (dto == null) { %>
-<script>alert("로그인이 필요한 서비스입니다.");</script>
-<% } else { %>  <% }
+
+<!DOCTYPE html><html lang="kor">
+<head>
+    <title>head</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <%
+        UserDto dto = (UserDto) session.getAttribute("dto");
+
+        if (dto.getGrade() == null) { %>
+    <script>alert("로그인이 필요한 서비스입니다.");</script>
+    <% } else { %>  <% }
 %>
-<%
-    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+    <%
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
-    Date time = new Date();
+        Date time = new Date();
 
-    String time1 = format1.format(time);
+        String time1 = format1.format(time);
 
 //    Enumeration<String> e = request.getParameterNames();
 
-    String searchBar1 = null;
-    String startdate = null;
-    String enddate = null;
-    String startgrade = null;
-    String endgrade = null;
-    String genre = null;
+        String searchBar1 = null;
+        String startdate = null;
+        String enddate = null;
+        String startgrade = null;
+        String endgrade = null;
+        String genre = null;
 
-    searchBar1 = request.getParameter("searchBar1");
-    if (searchBar1 == null) {
-        searchBar1 = "";
-    }
-    startdate = request.getParameter("startdate");
-    if (startdate == null) {
-        startdate = "1900-01-01";
-    }
-    startdate = startdate.replace("-", ".");
-    enddate = request.getParameter("enddate");
-    if (enddate == null) {
-        enddate = time1;
-    }
-    enddate = enddate.replace("-", ".");
-    startgrade = request.getParameter("startgrade");
-    if (startgrade == null) {
-        startgrade = "1";
-    }
-    endgrade = request.getParameter("endgrade");
-    if (endgrade == null) {
-        endgrade = "10";
-    }
-    genre = request.getParameter("genre");
-    if (genre == null) {
-        genre = "none";
-    }
+        searchBar1 = request.getParameter("searchBar1");
+        if (searchBar1 == null) {
+            searchBar1 = "";
+        }
+        startdate = request.getParameter("startdate");
+        if (startdate == null) {
+            startdate = "1900-01-01";
+        }
+        startdate = startdate.replace("-", ".");
+        enddate = request.getParameter("enddate");
+        if (enddate == null) {
+            enddate = time1;
+        }
+        enddate = enddate.replace("-", ".");
+        startgrade = request.getParameter("startgrade");
+        if (startgrade == null) {
+            startgrade = "1";
+        }
+        endgrade = request.getParameter("endgrade");
+        if (endgrade == null) {
+            endgrade = "10";
+        }
+        genre = request.getParameter("genre");
+        if (genre == null) {
+            genre = "none";
+        }
 
     /*if (e == null) {
         System.out.println("비어이씀");
@@ -72,13 +83,10 @@
 //    }
 
 
-%>
-
-<!DOCTYPE html><html lang="kor">
-<head>
-    <title>head</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    %>
     <script type="text/javascript">
+        // window.history.forward(1);
+
         var alarmBtn_Count = 0;
         var userBtn_Count = 0;
         var menues_count = 0;
@@ -107,7 +115,11 @@
             $('#endgrade').val('<%=endgrade%>').prop("selected", true);
             $('#genre').val('<%=genre%>').prop("selected", true);
 
-            $('.userAlarmTable tr:odd').find('td:last-child').css('border-bottom', '1px solid rgb(248, 211, 28')
+            $('.userAlarmTable tr:odd').find('td:last-child').css('border-bottom', '1px solid rgb(248, 211, 28');
+
+            $('.Logout').click(function () {
+                location.href = 'search.do?command=logout';
+            });
 
             $('.alarmBtn').hover(function () {
                 if (alarmBtn_Count == 0) {
@@ -253,7 +265,7 @@
             border: none;
             /*border-right: 4px solid #A3A3A3;*/
             background: black;
-            color: rgb(248, 211, 28);
+            color: white;
         }
 
         #searchBar:focus {

@@ -1,6 +1,7 @@
 package com.biz.search;
 
 import com.dto.ContentsDto;
+import com.dto.FBWDto;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface SearchBiz {
     List<ContentsDto> SearchPopList();
 
     ContentsDto SearchDetail(String title);
+
+    List<FBWDto> SearchFBW(String title);
 }
