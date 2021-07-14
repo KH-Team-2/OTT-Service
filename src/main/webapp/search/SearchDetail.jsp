@@ -10,7 +10,9 @@
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%
     UserDto udto = (UserDto) session.getAttribute("dto");
+	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,6 +152,12 @@
                 }
 
             });
+            $("#wishdelbtn").click(function(){
+            	wishdel()
+            });
+            $("#wishaddbtn").click(function(){
+            	wishadd()
+            });
   		  });
 		 	
 
@@ -172,7 +180,47 @@
                 }
             })
         }
-       
+        
+        function wishadd(){
+        	 var movienum = ${dto.movieNum};
+             var usernum = <%=udto.getUserNum()%>;
+
+             var params = "?command=wishadd"+"&movienum=" + ${dto.movieNum} +
+             "&usernum=" + <%=udto.getUserNum()%>;
+             
+             $.ajax({
+            	 type : "post",
+            	 url : "user.do"+params,
+            	 success : function(data){
+            		 $("#wishaddbtn").remove();
+            		 $("#imgdiv").append('<button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>');
+            		 location.reload();
+            	 },
+            	 error : function(){
+            		 
+            	 }
+             })
+        }
+        function wishdel(){
+       	 var movienum = ${dto.movieNum};
+            var usernum = <%=udto.getUserNum()%>;
+
+            var params = "?command=wishdel"+"&movienum=" + ${dto.movieNum} +
+            "&usernum=" + <%=udto.getUserNum()%>;
+            
+            $.ajax({
+           	 type : "post",
+           	 url : "user.do"+params,
+           	 success : function(data){
+           		 $("#wishdelbtn").remove();
+           		 $("#imgdiv").append('<button id="wishaddbtn"><img src="img/wish2.png" id="wishimg"></button>');
+           		location.reload();
+           	 },
+           	 error : function(){
+           		 
+           	 }
+            })
+       }
 
     </script>
     <style type="text/css">
@@ -356,13 +404,24 @@
         }
         #wishaddbtn{
         	position: absolute;
-        	left: 180px;
+        	top : 300px;
+        	right : 5px;
         	background: none;
         	border: none;
+        	cursor: pointer;
+        }
+        #wishdelbtn{
+        	position: absolute;
+        	top : 300px;
+        	right : 5px;
+        	background: none;
+        	border: none;
+        	cursor: pointer;
         }
        	#wishimg{
-       		width: 70px;
-       		height: 70px;
+       		width: 40px;
+       		height: 40px;
+       		
        	
        	}
     </style>
@@ -373,6 +432,15 @@
     <div id="contentDetail">
         <div id="imgdiv">
             <img id="contentimage" src="${dto.movieImg}" alt="${dto.title}">
+            <%
+            	WishBiz biz = new WishBizImpl();
+            	WishListDto wishdto = biz.wishfound(udto.getUserNum(),dto.getMovieNum());
+            	if(wishdto==null){%>
+            <button id="wishaddbtn"><img src="img/wish2.png" id="wishimg"></button>
+            <%
+            	}else{%>
+             <button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>
+             <%} %>
         </div>
         <div id="titlediv">
             <span id="title" class="content">${dto.title}(${dto.openYear})</span><a class="movieaddr"

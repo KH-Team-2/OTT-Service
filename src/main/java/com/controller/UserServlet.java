@@ -142,6 +142,32 @@ public class UserServlet extends HttpServlet {
 				}
 				break;
 			}
+			case "wishadd":{
+				int movienum = Integer.parseInt(request.getParameter("movienum"));
+				int usernum = Integer.parseInt(request.getParameter("usernum"));
+				
+				boolean res = wishbiz.WishAdd(usernum, movienum);
+				PrintWriter writer = response.getWriter();
+				if(res) {
+					writer.print("성공");
+				}else {
+					writer.print("실패");
+				}
+				break;
+			}
+			case "wishdel":{
+				int movienum = Integer.parseInt(request.getParameter("movienum"));
+				int usernum = Integer.parseInt(request.getParameter("usernum"));
+				
+				boolean res = wishbiz.WishDelete(usernum, movienum);
+				PrintWriter writer = response.getWriter();
+				if(res) {
+					writer.print("성공");
+				}else {
+					writer.print("실패");
+				}
+				break;
+			}
 			
 		}
     }

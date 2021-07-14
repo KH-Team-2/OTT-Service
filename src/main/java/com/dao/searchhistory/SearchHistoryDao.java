@@ -11,4 +11,3 @@ public interface SearchHistoryDao {
 	List<FBWDto> SearchHistoryView(Connection con, String FBWords, String Reason, int FBWordsNum);
 	boolean SearchHistroyDelete(Connection con, String FBWords, String Reason, int FBWordsNum);
 }
-S

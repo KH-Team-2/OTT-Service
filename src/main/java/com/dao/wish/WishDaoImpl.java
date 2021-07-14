@@ -153,6 +153,7 @@ public class WishDaoImpl implements WishDao{
 			rs = pstm.executeQuery();
 			
 			if(rs.next()) {
+				dto = new WishListDto();
 				dto.setWishNium(rs.getInt(1));
 				dto.setUserNum(rs.getInt(2));
 				dto.setMovieNum(rs.getInt(3));

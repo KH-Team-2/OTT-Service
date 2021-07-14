@@ -6,17 +6,15 @@ public class FBWDto {
 
 	private String FBWords;
 	private String Reason;
-	private int FBWordsNum;
 	
 	
 	public FBWDto() {
 		super();
 	}
-	public FBWDto(String fBWords, String reason, int fBWordsNum) {
+	public FBWDto(String fBWords, String reason) {
 		super();
 		FBWords = fBWords;
 		Reason = reason;
-		FBWordsNum = fBWordsNum;
 	}
 	public String getFBWords() {
 		return FBWords;
@@ -29,12 +27,6 @@ public class FBWDto {
 	}
 	public void setReason(String reason) {
 		Reason = reason;
-	}
-	public int getFBWordsNum() {
-		return FBWordsNum;
-	}
-	public void setFBWordsNum(int fBWordsNum) {
-		FBWordsNum = fBWordsNum;
 	}
 
 }
