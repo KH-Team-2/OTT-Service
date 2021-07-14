@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;import com.dto.Paging;
 import com.dto.WishDto;
+import com.dto.WishListDto;
 
 public class WishDaoImpl implements WishDao{
 //String WishAddSQL = " INSERT INTO SP_WISHLIST VALUES(SAMPLE_WISH_SQ, ?, ?, SYSDATE, ?)";
@@ -74,6 +75,7 @@ public class WishDaoImpl implements WishDao{
 				dto.setMovieaddr(rs.getString(5));
 				dto.setWishdate(rs.getDate(6));
 				dto.setAlarm(rs.getString(7));
+				System.out.println(rs.getString(5));
 				list.add(dto);
 			}
 			
@@ -133,6 +135,35 @@ public class WishDaoImpl implements WishDao{
 		}
 		
 		return count;
+	}
+
+
+
+	@Override
+	public WishListDto wishfound(int usernum, int movinum, Connection con) {
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		WishListDto dto = null;
+		String sql = "SELECT * FROM WISHLIST WHERE USERNUM=? AND MOVIENUM=?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, usernum);
+			pstm.setInt(2, movinum);
+			
+			rs = pstm.executeQuery();
+			
+			if(rs.next()) {
+				dto.setWishNium(rs.getInt(1));
+				dto.setUserNum(rs.getInt(2));
+				dto.setMovieNum(rs.getInt(3));
+				dto.setDate(rs.getDate(4));
+				dto.setAlarm(rs.getString(5));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
 	}
 	
 

@@ -8,6 +8,13 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%
+    UserDto dto = (UserDto) session.getAttribute("dto");
+
+    if (dto == null) { %>
+<script>alert("로그인이 필요한 서비스입니다.");</script>
+<% } else { %>  <% }
+%>
+<%
     SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
     Date time = new Date();
@@ -162,12 +169,28 @@
             $("#logo").click(function () {
                 location.href = "search.do?command=main";
             });
-            $("#user").hover(function () {
-                $("#menues").show('fast');
-            }, function () {
-                $("#menues").hide('fast');
-            });
 
+            <%
+                  assert dto != null;
+                  if(dto.getGrade().equals("USER")){
+            %>
+            $("#user").hover(function () {
+                $("#usermenues").show('fast');
+            }, function () {
+                $("#usermenues").hide('fast');
+            });
+            <%
+            } else{
+                                  %>
+            $("#user").hover(function () {
+                $("#adminmenues").show('fast');
+            }, function () {
+                $("#adminmenues").hide('fast');
+            });
+            <%
+}
+
+%>
         });
     </script>
 
@@ -182,6 +205,10 @@
         body {
             font-family: 'NEXON Lv1 Gothic OTF';
             background: black;
+        }
+
+        .menues {
+            display: none;
         }
 
         #headpart {
@@ -422,7 +449,7 @@
             margin: 20px 2px;
         }
 
-        #menues {
+        .menues {
             position: absolute;
             right: 2px;
             display: none;
@@ -431,15 +458,6 @@
     </style>
 </head>
 <body>
-
-	<%
-		UserDto dto = (UserDto)session.getAttribute("dto");
-	
-		if(dto == null) {  %> <script>alert("로그인이 필요한 서비스입니다.");</script> <%  }
-		else { %>  <% }
-	%>
-
-	
 <form action="search.do?command=search" method="post">
     <div id="headpart">
         <div id="logo" class="logoBtn">로고이미지</div>
@@ -447,7 +465,8 @@
             <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳"
                    value="<%=searchBar1%>">
             <button type="submit" name="searchBtn" id="searchBtn" class="searchBtn">
-                <img src="http://www.khproject.kr/OTT_Service/img/select.png" class="searchBtnImg" id="searchBtnImg" alt="no">
+                <img src="http://www.khproject.kr/OTT_Service/img/select.png" class="searchBtnImg" id="searchBtnImg"
+                     alt="no">
             </button>
             <!--        <img src="img/select.png" class="searchBtn" id="searchBtn" alt="no">-->
         </div>
@@ -526,7 +545,8 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn"
+                                                              src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -544,7 +564,8 @@
                             <input type="text" value="신작 알림" class="userAlarmTitle" disabled="disabled">
                         </td>
                         <td class="userAlarmSelect">
-                            <button class="alarmConfirm"><img class="alarmConfirmBtn" src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
+                            <button class="alarmConfirm"><img class="alarmConfirmBtn"
+                                                              src="http://www.khproject.kr/OTT_Service/img/alarm(yellow).png"></img>
                             </button>
                         </td>
                     </tr>
@@ -559,7 +580,7 @@
         </div>
         <div class="userBtn" id="user">
             <img id="userBtnImg" src="http://www.khproject.kr/OTT_Service/img/user.png">
-            <div id="menues">
+            <div class="menues" id="usermenues">
                 <div id="usermenu">
                     <table id="usermenutb">
                         <tr>
@@ -589,6 +610,8 @@
                         </tr>
                     </table>
                 </div>
+            </div>
+            <div class="menues" id="adminmenues">
                 <div id="adminmenu">
                     <table id="adminmenutb">
                         <tr>
