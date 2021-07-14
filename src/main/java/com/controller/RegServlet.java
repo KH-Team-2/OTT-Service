@@ -158,6 +158,34 @@ public class RegServlet extends HttpServlet {
      			if(res) { session.setAttribute("dto", dto); jsResponse("회원가입 성공", "search.do?command=main", response); }
 				else { jsResponse("회원가입 실패", "search.do?command=main", response); }
 			}
+				else if(command.contentEquals("kakaoreg")) {
+					
+					UserDto dto = new UserDto();
+					HttpSession session = request.getSession();
+					
+					dto.setID((String)session.getAttribute("kakaoid"));
+					dto.setPW((String)session.getAttribute("kakaopw"));
+					dto.setEmail((String)session.getAttribute("kakaoid"));
+					dto.setPhone(request.getParameter("Phone"));
+					dto.setName(request.getParameter("Name"));
+					dto.setNickName((String)session.getAttribute("kakaonickname"));
+					dto.setImgURL(request.getParameter("profile"));
+					
+					String gender = request.getParameter("Gender");
+					if(gender.contentEquals("남")) { gender="M"; } else { gender="W"; }
+					dto.setGender(gender);
+					
+					java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("Birth"));
+					dto.setBirth(userbirth);
+					
+					boolean res = biz.CreateAccount(dto);
+					
+					if(res) { session.setAttribute("dto", dto); jsResponse("회원가입 성공", "search.do?command=main", response); }
+					else { jsResponse("회원가입 실패", "search.do?command=main", response); }
+					
+					
+				}
+				
 		}
 	}        
 
