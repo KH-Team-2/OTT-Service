@@ -148,6 +148,11 @@
 	  	<servlet-name>KakaoLogin</servlet-name>
 	  	<url-pattern>/kakao.do</url-pattern>
   	</servlet-mapping>
+
+    <!--<error-page>
+        <error-code>500</error-code>
+        <location>/loginerror.jsp</location>
+    </error-page>-->
   	
 	<!--    ///////////////////////////////////////////////     -->
 	

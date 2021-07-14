@@ -152,5 +152,6 @@
         <iframe id="iframe_in" src="admin.do?command=User_Info&page=1" title="Manager_Contents" frameborder=0 style="width:850px; height:750px;"></iframe>
     </div>
 </div>
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

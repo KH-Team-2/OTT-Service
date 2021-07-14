@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class SearchServlet extends HttpServlet {
             }
             case "detail": {
                 int page = 1;
-                if(request.getParameter("page")!=null) {
+                if (request.getParameter("page") != null) {
                     page = Integer.parseInt(request.getParameter("page"));
                 }
 
@@ -95,6 +96,13 @@ public class SearchServlet extends HttpServlet {
                 break;
             }
 
+            case "logout": {
+                HttpSession session = request.getSession();
+                session.removeAttribute("dto");
+
+                response.sendRedirect("../user/login.jsp");
+                break;
+            }
         }
     }
 

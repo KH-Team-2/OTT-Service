@@ -1,9 +1,9 @@
 package com.dao.searchhistory;
 
+import com.dto.FBWDto;
+
 import java.sql.Connection;
 import java.util.List;
-
-import com.dto.FBWDto;
 
 public interface SearchHistoryDao {
 	String SearchHistoryViewSQL = "SELECT FROM FBWORDS WHERE FBWORDNUM=?";
