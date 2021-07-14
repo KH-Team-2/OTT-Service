@@ -1,4 +1,7 @@
 <%@ page import="com.dto.UserDto" %>
+<%@ page import="com.dto.WishListDto" %>
+<%@ page import="com.biz.wish.WishBiz" %>
+<%@ page import="com.biz.wish.WishBizImpl" %>
 <jsp:useBean id="dto" scope="request" type="com.dto.ContentsDto"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -370,7 +373,6 @@
     <div id="contentDetail">
         <div id="imgdiv">
             <img id="contentimage" src="${dto.movieImg}" alt="${dto.title}">
-            <button id="wishaddbtn"><img src="img/wish.png" id="wishimg"></button>
         </div>
         <div id="titlediv">
             <span id="title" class="content">${dto.title}(${dto.openYear})</span><a class="movieaddr"
