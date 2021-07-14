@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.dto.FBWDto;
 
-public class SearchHistoryDaoImpl implements SearchHistoryDao {
+public abstract class SearchHistoryDaoImpl implements SearchHistoryDao {
 
 	@Override
 	public List<FBWDto> SearchHistoryView(Connection con, String FBWords, String Reason) {
