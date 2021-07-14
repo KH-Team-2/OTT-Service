@@ -1,6 +1,5 @@
 
 package com.biz.alarm;
-import com.biz.alarm.AlarmBiz;
 import com.dao.alarm.AlarmDao;
 import com.dto.UserDto;
 
@@ -15,22 +14,21 @@ public class AlarmBizImpl implements AlarmBiz {
 	private AlarmDao dao;
 
 	@Override
-	public void AlarmSwitch(int num) {
+	public boolean AlarmSwitch(int num) {
 		Connection con = getConnection();
+		boolean res = dao.AlarmSwitch(con, num);
 		
+		close(con);
+		return res;
 		
 	}
 
 	@Override
-	public List<UserDto> AlarmLoading(int alarmnum) {
+	public List<UserDto> AlarmLoading() {
 		Connection con = getConnection();
 
-			List<UserDto> list = dao.AlarmLoading(con, alarmnum);
-			
-		
-
-		
-		
+	
+	List<UserDto> list = dao.AlarmLoading(con);	
 		close(con);
 		return list;
 	}

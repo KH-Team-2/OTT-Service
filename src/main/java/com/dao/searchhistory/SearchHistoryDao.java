@@ -10,4 +10,6 @@ public interface SearchHistoryDao {
 	String SearchHistroyDeleteSQL= " DELETE FROM FBWORDS WHERE FBWORDNUM=?";
 	List<FBWDto> SearchHistoryView(Connection con, String FBWords, String Reason, int FBWordsNum);
 	boolean SearchHistroyDelete(Connection con, String FBWords, String Reason, int FBWordsNum);
+	void SearchHistroyDelete(Connection con);
+	List<FBWDto> SearchHistoryView(Connection con);
 }

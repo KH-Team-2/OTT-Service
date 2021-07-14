@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.biz.user.UserBiz;
+import com.biz.user.UserBizImpl;
+import com.dto.UserDto;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -123,32 +127,38 @@ public class KakaoServlet extends HttpServlet {
   	        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
   	        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
   	        
+  	        String pw = element.getAsJsonObject().get("id").getAsString();
   	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
   	        String email = kakao_account.getAsJsonObject().get("email").getAsString();
   	        
-  	        userInfo.put("nickname", nickname);
-  	        userInfo.put("email", email);
+  	        System.out.println("이메일/비밀번호/닉네임: "+email+"/" + pw +"/"+nickname);
+
+  	        UserBiz biz = new UserBizImpl(); 
+  	        UserDto dto = biz.Login(email, pw);
+  	        
+  	        if(dto.getID() != null) {
+  	        	session.setAttribute("dto", dto);
+  	        	session.setMaxInactiveInterval(60*60);
+  	        	
+  	        	response.sendRedirect("search.do?command=main");
+  	        	
+  	        	return;
+  	        }
+  	        
+	  	      session.setAttribute("kakaopw", pw);
+	  	      session.setAttribute("kakaoid", email);
+	  	      session.setAttribute("kakaoemail", email);
+	  	      session.setAttribute("kakaonickname", nickname);
+	  	        
+	  	      PrintWriter pagemove = response.getWriter();
+	  	      pagemove.println( "<script>" + "location.href='user/KakaoRegi.jsp';" + "</script>" );
+  	        
+  	        
+  	        
   	    } catch (IOException e) {
   	        e.printStackTrace();
   	    }
-  	    
-  	    System.out.println("userInfo: "+userInfo);
         
-	    if (userInfo.get("email") != null) {
-	        session.setAttribute("userId", userInfo.get("email"));
-	        session.setAttribute("accessToken", accessToken);
-	    }
-        dispatch("user/socialregi.jsp", request, response);
-        
-        
-        
-	}
-
-	
-	private void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatch = request.getRequestDispatcher(url);
-		dispatch.forward(request, response);
-		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
