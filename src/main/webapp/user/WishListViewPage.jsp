@@ -103,7 +103,9 @@
 	  		font-size: 15px;
 	  		cursor: pointer;
 	    }
-	
+		#paging{
+			position: relative;
+		}
 	</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -145,6 +147,9 @@
 </script>
 </head>
 <body>
+<%
+    String usernum = request.getParameter("usernum");
+%>
     <div class="area">
         
         <table>
@@ -180,14 +185,17 @@
             
                 <tr>
                     <td colspan="3">
-                        <img src="img/delete.png" id="delbtn" class="delete">
+                        <img src="http://www.khproject.kr/OTT_Service/img/delete.png" id="delbtn" class="delete">
                         <button id="delshow">선택</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        
+        <br>
+        <br>
+        <br>
         <jsp:include page="../user/WishList_paging.jsp">
+        	<jsp:param name="usernum" value="<%=usernum%>"/>
 			<jsp:param value="${paging.page }" name="page"/>
 			<jsp:param value="${paging.beginPage }" name="beginPage"/>
 			<jsp:param value="${paging.endPage }" name="endPage"/>

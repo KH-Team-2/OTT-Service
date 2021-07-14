@@ -8,11 +8,12 @@
     <title>Insert title here</title>
     <style type="text/css">
         body{
-            text-align: center;
+            /*text-align: center;*/
         }
         #paging{
             font-size : 20pt;
             color : white;
+            text-align: center;
         }
         a:visited {
             text-decoration: none;

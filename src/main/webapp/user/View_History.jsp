@@ -27,7 +27,7 @@
             background-color: black;
         }
 
-        div {
+        .area {
             background-color: black;
             color: white;
             position: absolute;
@@ -245,14 +245,14 @@
                     <tr>
                         <td colspan="3">
 
-                            <input type="image" src="../img/delete.png" id="delbtn">
+                            <input type="image" src="http://www.khproject.kr/OTT_Service/img/delete.png" id="delbtn">
                             <input type="button" id="delshow" value="선택" onclick="">
                         </td>
                     </tr>
                 </c:otherwise>
             </c:choose>
             <tr style="height: 38px">
-                <td colspan="3">
+                <td colspan="3" style="text-align: center">
                     <jsp:include page="../user/ViewHistoryPaging.jsp">
                         <jsp:param name="usernum" value="<%=usernum%>"/>
                         <jsp:param value="${paging.page }" name="page"/>

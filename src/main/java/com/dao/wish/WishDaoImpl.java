@@ -67,14 +67,13 @@ public class WishDaoImpl implements WishDao{
 			System.out.println("04. query 실행 및 리턴");
 			
 			while(rs.next()) {
-				System.out.println(rs.getDate(5));
 				WishDto dto = new WishDto();
-				dto.setWishnum(rs.getInt(1));
-				dto.setUsernum(rs.getInt(2));
-				dto.setTitle(rs.getString(3));
-				dto.setMovieaddr(rs.getString(4));
-				dto.setWishdate(rs.getDate(5));
-				dto.setAlarm(rs.getString(6));
+				dto.setWishnum(rs.getInt(2));
+				dto.setUsernum(rs.getInt(3));
+				dto.setTitle(rs.getString(4));
+				dto.setMovieaddr(rs.getString(5));
+				dto.setWishdate(rs.getDate(6));
+				dto.setAlarm(rs.getString(7));
 				list.add(dto);
 			}
 			

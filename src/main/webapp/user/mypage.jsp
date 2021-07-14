@@ -198,7 +198,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $('#iframe_in').attr('src', 'user.do?command=wishlist&usernum=<%=usernum%>');
+        $('#iframe_in').attr('src', 'user.do?command=wishlist&page=1&usernum=<%=usernum%>');
     });
 </script>
 <%

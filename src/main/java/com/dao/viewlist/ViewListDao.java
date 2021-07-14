@@ -28,11 +28,14 @@ public interface ViewListDao {
             "         FROM (\n" +
             "                  SELECT ROWNUM as rnum, WatchHistory.*\n" +
             "                  FROM WatchHistory\n" +
-            "                  WHERE ROWNUM >= 1 AND UserNum = ? AND Status = 'F'\n" +
+            "                  WHERE ROWNUM >= 1\n" +
+            "                    AND UserNum = ?\n" +
+            "                    AND Status = 'F'\n" +
             "              )\n" +
             "     ) A\n" +
-            "JOIN CONTENTS b on a.MovieNum = b.MovieNum\n" +
-            "WHERE rnum >= ? AND rnum <= ? ORDER BY A.HistoryNum DESC ";
+            "         JOIN CONTENTS b on a.MovieNum = b.MovieNum\n" +
+            "WHERE  rnum >= ? AND rnum <= ?\n" +
+            "ORDER BY A.HistoryNum DESC ";
 
 
     public List<WHDto> ViewListLoading(int usernum, Connection con);
@@ -41,7 +44,7 @@ public interface ViewListDao {
 
     public boolean ViewListAdd(int movienum, int usernum, Connection con);
 
-    int ViewListCount(int usernum, Connection con);
+    public int ViewListCount(int usernum, Connection con);
 
-    List<WHDto> ViewListPaging(int usernum, int page, Connection con);
+    public List<WHDto> ViewListPaging(int usernum, int page, Connection con);
 }

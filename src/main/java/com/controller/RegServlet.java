@@ -110,8 +110,8 @@ public class RegServlet extends HttpServlet {
      			
      			boolean res = biz.CreateAccount(dto);
      			
-     			if(res) { jsResponse("회원가입 성공", "index/index.jsp", response); }
-				else { jsResponse("회원가입 실패", "index/index.jsp", response); }
+     			if(res) { jsResponse("회원가입 성공", "user/login.jsp", response); }
+				else { jsResponse("회원가입 실패", "user/login.jsp", response); }
      			
             } catch ( Exception e ) { e.printStackTrace(); }
         }

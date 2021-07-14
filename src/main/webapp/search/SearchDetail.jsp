@@ -16,7 +16,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#header").load("../header.jsp");
+            $("#header").load("header.jsp");
 
             let num;
 
@@ -147,9 +147,8 @@
                 }
 
             });
-
-
-        });
+  		  });
+		 	
 
         function addviewlist() {
             var movienum = ${dto.movieNum};
@@ -170,6 +169,7 @@
                 }
             })
         }
+       
 
     </script>
     <style type="text/css">
@@ -203,7 +203,7 @@
             margin-left: 80px;
             margin-top: 50px;
             float: left;
-
+			position: relative;
         }
 
         #contentimage {
@@ -248,7 +248,7 @@
         }
 
         #title {
-            font-size: 48px;
+            font-size: 40px;
             margin-left: 60px;
             margin-top: 50px;
         }
@@ -351,6 +351,17 @@
             font-family: 'NEXON Lv1 Gothic OTF';
             font-weight: bold;
         }
+        #wishaddbtn{
+        	position: absolute;
+        	left: 180px;
+        	background: none;
+        	border: none;
+        }
+       	#wishimg{
+       		width: 70px;
+       		height: 70px;
+       	
+       	}
     </style>
 </head>
 <body>
@@ -359,6 +370,7 @@
     <div id="contentDetail">
         <div id="imgdiv">
             <img id="contentimage" src="${dto.movieImg}" alt="${dto.title}">
+            <button id="wishaddbtn"><img src="img/wish.png" id="wishimg"></button>
         </div>
         <div id="titlediv">
             <span id="title" class="content">${dto.title}(${dto.openYear})</span><a class="movieaddr"
