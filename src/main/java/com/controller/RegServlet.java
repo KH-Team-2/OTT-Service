@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.File;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
@@ -131,6 +133,31 @@ public class RegServlet extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.println(obj.toJSONString());
 			}
+			else if(command.contentEquals("googlereg")) {
+				
+				UserDto dto = new UserDto();
+				HttpSession session = request.getSession();
+
+				dto.setID((String)session.getAttribute("googleid"));
+     			dto.setPW((String)session.getAttribute("googlepw"));
+     			dto.setEmail((String)session.getAttribute("googleid"));
+     			dto.setPhone(request.getParameter("Phone"));
+     			dto.setName(request.getParameter("Name"));
+     			dto.setNickName(request.getParameter("NickName"));
+     			dto.setImgURL((String)session.getAttribute("googleimg"));
+     			
+     			String gender = request.getParameter("Gender");
+            	if(gender.contentEquals("남")) { gender="M"; } else { gender="W"; }
+     			dto.setGender(gender);
+     			
+     			java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("Birth"));
+     			dto.setBirth(userbirth);
+
+     			boolean res = biz.CreateAccount(dto);
+     			
+     			if(res) { session.setAttribute("dto", dto); jsResponse("회원가입 성공", "search.do?command=main", response); }
+				else { jsResponse("회원가입 실패", "search.do?command=main", response); }
+			}
 		}
 	}        
 
@@ -157,17 +184,3 @@ public class RegServlet extends HttpServlet {
 					
 	}
 }
-
-
-
-/*
-	String id = request.getParameter("UserID");
-	String pw = request.getParameter("PW");
-	String email = request.getParameter("Email");
-	String phone = request.getParameter("Phone");
-	String name = request.getParameter("Name");
-	String birth = request.getParameter("Birth");
-	String gender = request.getParameter("Gender");
-	String nick = request.getParameter("NickName");
-	String imgname = request.getParameter("ImgName");
-*/

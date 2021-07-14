@@ -11,6 +11,7 @@ import java.util.List;
 import com.dao.wish.WishDao;
 import com.dao.wish.WishDaoImpl;
 import com.dto.WishDto;
+import com.dto.WishListDto;
 
 public class WishBizImpl implements WishBiz{
 	private WishDao dao = new WishDaoImpl();
@@ -69,6 +70,14 @@ public class WishBizImpl implements WishBiz{
 
 		return res;
 		
+	}
+
+	@Override
+	public WishListDto wishfound(int usernum, int movinum) {
+		Connection con = getConnection();
+		WishListDto dto = dao.wishfound(usernum, movinum, con);
+		close(con);
+		return dto;
 	}
 
 }

@@ -17,4 +17,5 @@ public interface WishDao {
 	public List<WishDto> WishList(Connection con, int usernum,int page);
 	public boolean WishDelete(Connection con, int usernum, int movienum);
 	public int WishCount(Connection con, int usernum);
+	public WishListDto wishfound(int usernum,int movinum,Connection con);
 }
