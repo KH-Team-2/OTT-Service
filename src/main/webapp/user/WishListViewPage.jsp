@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page import="com.dto.UserDto" %>
+<%@ page import="com.dto.WishListDto" %>
+<%@ page import="com.biz.wish.WishBiz" %>
+<%@ page import="com.biz.wish.WishBizImpl" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 
@@ -151,7 +157,19 @@
 <body>
 <%
     String usernum = request.getParameter("usernum");
-%>
+
+	UserDto udto = (UserDto) session.getAttribute("dto");
+	
+	WishBiz biz = new WishBizImpl();
+	WishListDto wishdto = biz.wishfound(udto.getUserNum(),dto.getWishnum());
+	
+	if(wishdto==null) { %>
+		<button id="wishaddbtn"><img src="img/wish2.png" id="wishimg"></button>
+	<%
+	} else { %>
+		<button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>
+	<% } %>
+	
     <div class="area">
         
         <table>
@@ -183,8 +201,6 @@
 					</c:otherwise>               
                 </c:choose>
                 
-               
-            
                 <tr>
                     <td colspan="3">
                         <img src="http://www.khproject.kr/OTT_Service/img/delete.png" id="delbtn" class="delete">
