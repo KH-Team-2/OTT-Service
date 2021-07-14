@@ -265,7 +265,7 @@
             border: none;
             /*border-right: 4px solid #A3A3A3;*/
             background: black;
-            color: rgb(248, 211, 28);
+            color: white;
         }
 
         #searchBar:focus {
