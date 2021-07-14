@@ -109,6 +109,9 @@
 		a{
 			text-decoration: none;
 		}
+		.delimgbtn{
+			background: none;
+		}
 	</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -144,6 +147,7 @@
                     }
                 })
             });
+		   
 		});
 	
 </script>
@@ -177,7 +181,7 @@
 							<td class="select"><input type="checkbox" class="chk"></td>
 							<td><a target="_parent" href="search.do?command=detail&title=${dto.title }&page=1">${dto.title }</a></td>
 							<td class="alarm"><img src="http://www.khproject.kr/OTT_Service/img/alarm.png" alt="알림"></td>
-							<td class="delete"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></td>
+							<td class="delete"><button class="delimgbtn" onclick="location.href='user.do?command=wishnumdel&wishnum=${dto.wishnum}&usernum=<%=usernum%>'"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></button></td>
 						</tr>
 						</c:forEach>
 					</c:otherwise>               
