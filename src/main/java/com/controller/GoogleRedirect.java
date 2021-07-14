@@ -65,7 +65,7 @@ public class GoogleRedirect extends HttpServlet {
 			info[i] = info[i].replaceAll("(\r\n|\r|\n|\n\r)", "");	
 		}
 		
-		info[7] = info[7] + info[8];
+		info[7] = info[7] + ":" + info[8];
 		
 		UserBiz biz = new UserBizImpl();	
 		UserDto dto = biz.Login(info[3], info[1]);
@@ -86,7 +86,7 @@ public class GoogleRedirect extends HttpServlet {
 		session.setAttribute("googleemail", info[3]);
 		
 		PrintWriter pagemove = response.getWriter();
-		pagemove.println( "<script>" + "location.href='index/start.jsp';" + "</script>" );
+		pagemove.println( "<script>" + "location.href='user/SocialRegi.jsp';" + "</script>" );
 	}
 	
 	private String getHttpConnection(String uri) throws ServletException, IOException {
