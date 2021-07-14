@@ -36,8 +36,14 @@
                     $.ajax({
                         type: "post",
                         url: "review.do?" + params,
+                        dataType: "text",
                         success: function (data) {
-                            location.reload();
+                            var check = data.toUpperCase().trim().toString().replace(/\s/g, ' ');
+                            if (check == "FALSE") {
+                                alert("금지어가 입력되었습니다. 새로 입력해주세요.");
+                            } else {
+                                location.reload();
+                            }
                         },
                         error: function () {
                             alert("실패");

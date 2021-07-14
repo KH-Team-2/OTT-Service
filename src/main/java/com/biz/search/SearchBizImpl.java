@@ -3,6 +3,7 @@ package com.biz.search;
 import com.dao.search.SearchDao;
 import com.dao.search.SearchDaoImpl;
 import com.dto.ContentsDto;
+import com.dto.FBWDto;
 
 import java.sql.Connection;
 import java.util.List;
@@ -48,6 +49,14 @@ public class SearchBizImpl implements SearchBiz {
 		ContentsDto dto = dao.SearchDetail(con, title);
 		close(con);
 		return dto;
+	}
+
+	@Override
+	public List<FBWDto> SearchFBW(String title) {
+		Connection con = getConnection();
+		List<FBWDto> list = dao.SearchFBW(con, title);
+		close(con);
+		return list;
 	}
 
 }
