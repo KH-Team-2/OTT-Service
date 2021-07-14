@@ -12,4 +12,5 @@ public interface WishBiz{
 	public boolean WishDelete(int usernum, int movienum);
 	public int WishCount(int usernum);
 	public WishListDto wishfound(int usernum,int movinum);
+	public boolean WishNumDel(int wishnum);
 }
