@@ -80,4 +80,17 @@ public class WishBizImpl implements WishBiz{
 		return dto;
 	}
 
+	@Override
+	public boolean WishNumDel(int wishnum) {
+		Connection con = getConnection();
+		boolean res = dao.WishNumDel(wishnum, con);
+		if(res) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		close(con);
+		return res;
+	}
+
 }
