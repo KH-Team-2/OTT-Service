@@ -1,17 +1,13 @@
 package com.biz.searchhistroy;
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.rollback;
+import com.dao.searchhistory.SearchHistoryDao;
+import com.dao.searchhistory.SearchHistoryDaoImpl;
+import com.dto.FBWDto;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.biz.searchhistroy.SearchHistoryBiz;
-import com.dao.searchhistory.SearchHistoryDao;
-import com.dao.searchhistory.SearchHistoryDaoImpl;
-import com.dto.FBWDto;
+import static common.JDBCTemplate.*;
 
 public class SearchHistoryBizImpl implements SearchHistoryBiz {
 	private SearchHistoryDao dao = new SearchHistoryDaoImpl();
@@ -20,7 +16,7 @@ public class SearchHistoryBizImpl implements SearchHistoryBiz {
 	@Override
 	public List<FBWDto> SearchHistoryView(String FBWords, String Reason, int FBWordsNum) {
 		Connection con = getConnection();
-		List<FBWDto> list = dao.SearchHistoryView(con, FBWords, Reason, FBWordsNum)
+		List<FBWDto> list = dao.SearchHistoryView(con, FBWords, Reason, FBWordsNum);
 				
 		close(con);
 		return list;

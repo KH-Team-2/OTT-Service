@@ -1,6 +1,6 @@
 package com.dao.searchhistory;
 
-import static common.JDBCTemplate.close;
+import com.dto.FBWDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dto.FBWDto;
+import static common.JDBCTemplate.close;
 
 public class SearchHistoryDaoImpl implements SearchHistoryDao {
 
-	@Override
+//	@Override
 	public List<FBWDto> SearchHistoryView(Connection con, String FBWords, String Reason) {
 		
 		PreparedStatement pstm = null;
@@ -35,6 +35,11 @@ public class SearchHistoryDaoImpl implements SearchHistoryDao {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public List<FBWDto> SearchHistoryView(Connection con, String FBWords, String Reason, int FBWordsNum) {
+		return null;
 	}
 
 	@Override
