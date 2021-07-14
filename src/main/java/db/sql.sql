@@ -2,6 +2,7 @@ SELECT * FROM SP_CONTENTS;
 SELECT * FROM SP_PLATFORM;
 SELECT * FROM REVIEW;
 SELECT * FROM USERTB;
+SELECT * FROM WISHLIST;
 
 select * from user_sequences;
                   

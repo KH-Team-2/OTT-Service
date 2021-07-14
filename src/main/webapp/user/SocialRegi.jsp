@@ -7,7 +7,7 @@
 
 <head>
 	<title>소셜 회원가입</title>
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 	<style type="text/css">
 	
@@ -127,14 +127,8 @@
 
 	<script>
 	
-		var idcheck = false;
-	
 		window.onload = function(){
 		  
-			  $("#input-file").change(function(e){
-					$("#imgurl").html($('input[type=file]')[0].files[0].name);
-			  });
-			  
 			  $("#reg_form").submit( function() {
 					
 					var count = 0;
@@ -147,35 +141,11 @@
 							return;
 						}
 					});
-					
-					if(idcheck==false) {
-						alert("아이디 중복체크를 해주세요.");
-						return false;
-					}	
-					
+									
 					if(count>0) { return false; } 
 			  });
 		}
 		
-		function overlapcheck() {
-			
-			$.ajax({ 
-				url:"../reg.do?command=idcheck&id=" + $("#UserID").val(), // session.getval(UserID);
-				dataType:"json",
-				success:function(msg) {
-					if(msg.check == true) { 
-						alert("이미 사용중인 아이디입니다.");
-						idcheck = false;
-					}
-					else { 
-						alert("사용가능한 아이디입니다.");
-						idcheck = true;
-					}
-				},
-				error:function() { alert("Error : Ajax Part"); }
-			});
-		}
-
 	</script>
 
 </head>
@@ -186,9 +156,9 @@
     <br><br>
     <h2>추가 정보 입력이 필요합니다.</h2>
     
-    <form id="reg_form" method="post" action="../reg.do" enctype="multipart/form-data">
+    <form id="reg_form" method="post" action="../reg.do">
     
-    	<input type="hidden" value="reg" name="command">
+    	<input type="hidden" value="googlereg" name="command">
     
         <table>
  
@@ -222,7 +192,7 @@
  
        		<tr>
        			<td colspan="2">
-		        	<input type="submit" value="가입" class="btn">
+		        	<input type="submit" value="완료" class="btn">
 		        	<input type="button" value="취소" class="btn" onclick="location.href='../index/index.jsp'">
        			</td>
        		</tr>

@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-
+import java.io.PrintWriter;
 import java.net.URL;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.biz.user.UserBiz;
+import com.biz.user.UserBizImpl;
 import com.dto.GoogleToken;
+import com.dto.UserDto;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -30,6 +33,9 @@ public class GoogleRedirect extends HttpServlet {
 	public GoogleRedirect() { super(); }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		String code = request.getParameter("code");
 		String query = "code=" + code;
@@ -56,21 +62,31 @@ public class GoogleRedirect extends HttpServlet {
 			info[i] = info[i].replace(",","");
 			info[i] = info[i].replace("{","");
 			info[i] = info[i].replace("}","");
-			info[i] = info[i].replaceAll("(\r\n|\r|\n|\n\r)", "");
-			
-			System.out.println(i + " : " + info[i]);	
+			info[i] = info[i].replaceAll("(\r\n|\r|\n|\n\r)", "");	
 		}
 		
 		info[7] = info[7] + info[8];
 		
+		UserBiz biz = new UserBizImpl();	
+		UserDto dto = biz.Login(info[3], info[1]);
+		
 		HttpSession session = request.getSession();
+		
+		if(dto.getID() != null){
+			session.setAttribute("dto", dto);
+			session.setMaxInactiveInterval(60*60);
+			
+			response.sendRedirect("search.do?command=main");
+			return;
+		}
 
 		session.setAttribute("googlepw", info[1]);
 		session.setAttribute("googleid", info[3]);
 		session.setAttribute("googleimg", info[7]);
+		session.setAttribute("googleemail", info[3]);
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("user/socialregi.jsp");
-		dispatch.forward(request, response);
+		PrintWriter pagemove = response.getWriter();
+		pagemove.println( "<script>" + "location.href='index/start.jsp';" + "</script>" );
 	}
 	
 	private String getHttpConnection(String uri) throws ServletException, IOException {
