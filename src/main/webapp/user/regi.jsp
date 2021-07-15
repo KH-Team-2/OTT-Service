@@ -10,48 +10,48 @@
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 	<style type="text/css">
-	
+
 		@font-face {
-			
+
 		    font-family: 'NEXON Lv1 Gothic OTF';
 		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
 		    font-weight: normal;
 		    font-style: normal;
 		}
-			
+
 	    #wrap{
-	    
+
 	        width:550px;
-	        margin-left:auto; 
+	        margin-left:auto;
 	        margin-right:auto;
 	        text-align:center;
 	    }
-	    
-	    body{ 
-	    
-	   		font-family:'NEXON Lv1 Gothic OTF'; 
-	    	font-size: 20px; 
+
+	    body{
+
+	   		font-family:'NEXON Lv1 Gothic OTF';
+	    	font-size: 20px;
 	    	background-color:black;
 	    	color: rgb(248, 211, 28);
 	    }
-	    
+
 	    table { position: absolute; left: center; }
-	    
+
 	    td{
-	    
+
 	        height:50px;
 	        width:500px;
 	        font-size: 15px;
 	        background-color : black;
 	        color : white;
 	    }
-	
-	    
+
+
 	    #title{  color : white; }
-	    input[type=file] { display: none; }   
-	        
+	    input[type=file] { display: none; }
+
 		.filebtn {
-		
+
 	       padding: 3px 10px;
 	        background-color: #F8D31C;
 	        border: none;
@@ -61,9 +61,9 @@
 	        font-size: 15px;
 	        cursor: pointer;
 	   	}
-	   
+
 		.btn{
-		
+
 		    padding: 3px 10px;
 	        background-color: #F8D31C;
 	        border: none;
@@ -72,11 +72,11 @@
 	        font-family:'NEXON Lv1 Gothic OTF';
 	        font-size: 15px;
 	        cursor: pointer;
-	
+
 		}
-		
+
 		.emailbtn{
-		
+
 		    padding: 4px 3px;
 		    background-color: black;
 		    border: none;
@@ -86,9 +86,9 @@
 		    font-size: 16px;
 		    cursor: pointer;
 		}
-	
+
 		input[type=date]{
-	         
+
 	        height:20px;
 	        width:180px;
 	        border-radius: 5px;
@@ -97,9 +97,9 @@
 	        background-color : black;
 	        color : #A3A3A3;
 	    }
-	    
+
 	    input[type=text]{
-	         
+
 	        height:20px;
 	        width:180px;
 	        border-radius: 5px;
@@ -108,9 +108,9 @@
 	        background-color : black;
 	        color : white;
 	    }
-	    
+
 	    input[type=password]{
-	         
+
 	        height:20px;
 	        width:180px;
 	        border-radius: 5px;
@@ -119,8 +119,8 @@
 	        background-color : black;
 	        color : white;
 	    }
-	    
-	    tr > td:nth-child(1) { width: 200px; } 
+
+	    tr > td:nth-child(1) { width: 200px; }
 	    tr > td:nth-child(2) { text-align:left; padding-left:30px; }
 	    #imgurl { color:white; }
 	</style>

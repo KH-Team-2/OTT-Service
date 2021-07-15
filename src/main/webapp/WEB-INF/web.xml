@@ -149,6 +149,15 @@
 	  	<url-pattern>/kakao.do</url-pattern>
   	</servlet-mapping>
 
+    <servlet>
+        <servlet-name>NaverLogin</servlet-name>
+        <servlet-class>com.controller.NaverServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NaverLogin</servlet-name>
+        <url-pattern>/naver.do</url-pattern>
+    </servlet-mapping>
 
   	
 	<!--    ///////////////////////////////////////////////     -->

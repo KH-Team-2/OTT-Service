@@ -14,7 +14,8 @@
 
 <script>
     $(function () {
-        window.open('', '_self').close();
+        var customWindow = window.open('', '_blank', '');
+        customWindow.close();
         window.open("login.jsp");
     });
 </script>
