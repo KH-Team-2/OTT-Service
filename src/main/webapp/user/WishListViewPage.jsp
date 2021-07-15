@@ -147,7 +147,23 @@
                     }
                 })
             });
-		   
+		   $(".delimgbtn").click(function(){
+			   console.log($(this).val());
+			   var usernum = <%=request.getParameter("usernum")%>;
+			   var wishnum = $(this).val();
+			   var params = "?command=wishnumdel&wishnum="+wishnum+"&usernum="+usernum;
+			   $.ajax({
+				   url : "user.do"+params,
+				   type : "post",
+				   success : function(){
+					   alert("삭제 완료");
+                       location.reload();
+				   },
+				   error : function(){
+					   alert("실패");
+				   }
+			   });
+		   });
 		});
 	
 </script>
@@ -181,7 +197,7 @@
 							<td class="select"><input type="checkbox" class="chk"></td>
 							<td><a target="_parent" href="search.do?command=detail&title=${dto.title }&page=1">${dto.title }</a></td>
 							<td class="alarm"><img src="http://www.khproject.kr/OTT_Service/img/alarm.png" alt="알림"></td>
-							<td class="delete"><button class="delimgbtn" onclick="location.href='user.do?command=wishnumdel&wishnum=${dto.wishnum}&usernum=<%=usernum%>'"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></button></td>
+							<td class="delete"><button class="delimgbtn" onclick="location.href='user.do?command=wishnumdel&wishnum=${dto.wishnum}&usernum=<%=usernum%>'" value="${dto.wishnum }"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></button></td>
 						</tr>
 						</c:forEach>
 					</c:otherwise>               
