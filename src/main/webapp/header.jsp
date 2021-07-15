@@ -230,7 +230,7 @@
             background: black;
             padding-top: 50px;
             padding-bottom: 100px;
-            /*border: 1px white solid;*/
+            /* border: 1px white solid; */
         }
 
         #logo {
@@ -239,7 +239,7 @@
             width: 200px;
             height: 60px;
             top: 30px;
-            left: 30px;
+            left: 0px;
             cursor: pointer;
         }
         
@@ -255,7 +255,7 @@
             position: relative;
             width: 570px;
             top: 30px;
-            left: 200px;
+            left: 140px;
             height: 50px;
             border: rgb(248, 211, 28) solid 4px;
             display: inline-block;
@@ -304,7 +304,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 200px;
+            left: 140px;
             color: rgb(248, 211, 28);
             font-size: 20pt;
         }
@@ -319,7 +319,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 340px;
+            left: 270px;
             color: rgb(248, 211, 28);
         }
 
@@ -335,7 +335,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 350px;
+            left: 280px;
             color: rgb(248, 211, 28);
         }
 

@@ -255,8 +255,8 @@
         }
 
         #imgdiv {
-            width: 250px;
-            height: 350px;
+            width: 220px;
+            height: 140px;
             margin-left: 80px;
             margin-top: 50px;
             float: left;
@@ -264,8 +264,8 @@
         }
 
         #contentimage {
-            width: 250px;
-            height: 350px;
+            width: 220px;
+            height: 140px;
             border: 0px;
 
         }
@@ -410,7 +410,7 @@
         }
         #wishaddbtn{
         	position: absolute;
-        	top : 300px;
+        	top : 102px;
         	right : 5px;
         	background: none;
         	border: none;
@@ -418,15 +418,15 @@
         }
         #wishdelbtn{
         	position: absolute;
-        	top : 300px;
+        	top : 102px;
         	right : 5px;
         	background: none;
         	border: none;
         	cursor: pointer;
         }
        	#wishimg{
-       		width: 40px;
-       		height: 40px;
+       		width: 30px;
+       		height: 30px;
        		
        	
        	}
