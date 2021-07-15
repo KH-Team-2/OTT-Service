@@ -7,7 +7,7 @@
     <!--    ///////////////////////////////////////////////     -->
 
     <welcome-file-list>
-        <welcome-file>index/start.jsp</welcome-file>
+        <welcome-file>user/login.jsp</welcome-file>
     </welcome-file-list>
     
     <!--    ///////////////////////////////////////////////     -->
@@ -149,10 +149,7 @@
 	  	<url-pattern>/kakao.do</url-pattern>
   	</servlet-mapping>
 
-    <!--<error-page>
-        <error-code>500</error-code>
-        <location>/loginerror.jsp</location>
-    </error-page>-->
+
   	
 	<!--    ///////////////////////////////////////////////     -->
 	

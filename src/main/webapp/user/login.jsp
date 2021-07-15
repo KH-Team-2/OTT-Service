@@ -103,10 +103,10 @@
 
 
         $(function () {
-            window.history.forward();
+            /*window.history.forward();
             window.onunload=function(){
                 window.location.replace(self.location);
-            }
+            }*/
 
 
                 $("#loginbtn").click(function () {

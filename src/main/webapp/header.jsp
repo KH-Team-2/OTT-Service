@@ -87,6 +87,8 @@
     <script type="text/javascript">
         // window.history.forward(1);
 
+
+
         var alarmBtn_Count = 0;
         var userBtn_Count = 0;
         var menues_count = 0;
@@ -221,6 +223,16 @@
 
         .menues {
             display: none;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active  {
+            -webkit-box-shadow: 0 0 0 30px black inset !important;
+        }
+        input:-webkit-autofill {
+            -webkit-text-fill-color: yellow !important;
         }
 
         #headpart {
