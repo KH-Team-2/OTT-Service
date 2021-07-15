@@ -157,7 +157,7 @@
 				   type : "post",
 				   success : function(){
 					   alert("삭제 완료");
-                       location.reload();
+                       window.parent.location.reload();
 				   },
 				   error : function(){
 					   alert("실패");
