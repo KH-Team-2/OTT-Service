@@ -140,12 +140,12 @@
 	<!--    ///////////////////////////////////////////////     -->
 	
 	<servlet>
-	  	<servlet-name>KakaoLogin</servlet-name>
+	  	<servlet-name>KakaoServlet</servlet-name>
 	  	<servlet-class>com.controller.KakaoServlet</servlet-class>
   	</servlet>
   
   	<servlet-mapping>
-	  	<servlet-name>KakaoLogin</servlet-name>
+	  	<servlet-name>KakaoServlet</servlet-name>
 	  	<url-pattern>/kakao.do</url-pattern>
   	</servlet-mapping>
 
