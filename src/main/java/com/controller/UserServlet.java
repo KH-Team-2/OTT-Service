@@ -171,14 +171,9 @@ public class UserServlet extends HttpServlet {
 			case "wishnumdel":{
 				int wishnum = Integer.parseInt(request.getParameter("wishnum"));
 				int usernum = Integer.parseInt(request.getParameter("usernum"));
-				boolean result = wishbiz.WishNumDel(wishnum);
-				if(result) {
-					PrintWriter writer = response.getWriter();
-					writer.println("<script>alert('찜삭제성공'); location.href='user.do?command=wishlist&page=1&usernum='"+usernum+"</script>");
-				}else {
-					PrintWriter writer = response.getWriter();
-					writer.println("<script>alert('다시 시도해주세요'); location.href='user.do?command=wishlist&page=1&usernum='"+usernum+"</script>");
-				}
+				System.out.println(wishnum);
+				wishbiz.WishNumDel(wishnum);
+				
 				break;
 			}
 			

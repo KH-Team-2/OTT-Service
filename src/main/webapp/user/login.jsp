@@ -134,7 +134,7 @@
 </head>
 
 <body>
-<div id="logo"><h2>로고</h2></div>
+<div id="logo"><h2><img src="http://www.khproject.kr/OTT_Service/img/logo.png"></h2></div>
 <br>
 <br>
 <div id="login">
