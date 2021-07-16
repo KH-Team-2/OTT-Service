@@ -10,6 +10,10 @@
 <script>
     $(function () {
         $("#headers").load("../header.jsp");
+
+        $('#insertbtn').click(function () {
+            location.href = 'notice.do?command=write';
+        });
     });
 </script>
 <style>
@@ -30,6 +34,15 @@
     }
     #insertbtn{
         margin-left: 1150px;
+    }
+    a:link{
+        color: white;
+    }
+    a:visited{
+        color: white;
+    }
+    a:hover{
+        color: #a3a3a3;
     }
 </style>
 <body>
@@ -66,7 +79,7 @@
                     <tr>
                         <td>${dto.num}</td>
                         <td>${dto.nickname}</td>
-                        <td>${dto.title}</td>
+                        <td><a href="notice.do?command=watch&noticenum=${dto.num}&usernum=<%=num%>">${dto.title}</a></td>
                         <td>${dto.date}</td>
                         <td>${dto.reference}</td>
                     </tr>
@@ -74,6 +87,7 @@
             </c:otherwise>
         </c:choose>
     </table>
+    <button id="deletetbtn">삭제</button>
     <button id="insertbtn">작성</button>
     <jsp:include page="../admin/NoticePaging.jsp">
         <jsp:param name="usernum" value="<%=num%>"/>
