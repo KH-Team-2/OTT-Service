@@ -153,7 +153,7 @@
 <br>
 <br>
 <div id="login">
-    <form action="user.do?command=login" method="post">
+    <form action="../user.do?command=login" method="post">
         <table id="logintb">
             <tr>
                 <td>

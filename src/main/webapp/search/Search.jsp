@@ -43,10 +43,10 @@
 
         .imgdiv {
             /* border: 1px solid rgb(248, 211, 28); */
-            width: 220px;
-            height: 140px;
+            width: 360px;
+            height: 240px;
             float: left;
-            margin-left: 50px;
+            margin-left: 0px;
             margin-top: 50px;
         }
 
@@ -61,8 +61,8 @@
         }
 
         .image {
-            width: 220px;
-            height: 140px;
+            width: 100%;
+            height: 100%;
         }
 
         .title {

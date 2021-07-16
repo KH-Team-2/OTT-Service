@@ -248,7 +248,7 @@
             margin-bottom : 60px;
             background: black;
             padding-top: 50px;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
             /* border: 1px white solid; */
         }
 
