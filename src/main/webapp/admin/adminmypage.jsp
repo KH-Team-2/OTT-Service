@@ -14,6 +14,9 @@
     <script>
         $(function () {
             $("#headers").load("header.jsp");
+            $('#logout').click(function () {
+                location.href = 'search.do?command=logout';
+            });
         });
     </script>
 

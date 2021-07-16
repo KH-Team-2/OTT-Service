@@ -110,6 +110,9 @@
             font-weight:bold;
             padding: 1px 12px;
         }
+        a{
+        	text-decoration: none;
+        }
 	</style>
 </head>
 
