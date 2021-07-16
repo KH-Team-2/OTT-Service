@@ -11,8 +11,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
+import static common.JDBCTemplate.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class WavveCrawling extends JDBCTemplate {
         
         //////////////////////////////////////////////////////////////////
 
-    	Connection connection = getConnection();
+    	Connection con = getConnection();
         List<ContentsDto> list = new ArrayList<>();
         Actions actions = new Actions(driver);
         JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -54,25 +57,31 @@ public class WavveCrawling extends JDBCTemplate {
         driver.findElement(By.xpath("//*[@id=\"notice-popup-container\"]/div[2]/a/img")).click();
         
         wait(1500);
+        
+        //////////////////////////////////////////////////////////////////
+        
+        int countt = 0;
            
         for(int j=1; j<11; j++) {
         	
-        	url = "https://www.wavve.com/list/VN4?api=apis.wavve.com%252Fcf%252Fvod%252Fpopularcontents%253Forderby%253Dviewtime%2526contenttype%253Dvod%2526genre%253D01%2526WeekDay%253Dall%2526uitype%253DVN4%2526uiparent%253DGN56-VN4%2526uirank%253D2%2526broadcastid%253D126147%2526offset%253D0%2526limit%253D20%2526uicode%253DVN4&came=BandViewGnbCode&page=" + j;
+        	//url = "https://www.wavve.com/list/VN4?api=apis.wavve.com%252Fcf%252Fvod%252Fpopularcontents%253Forderby%253Dviewtime%2526contenttype%253Dvod%2526genre%253D01%2526WeekDay%253Dall%2526uitype%253DVN4%2526uiparent%253DGN56-VN4%2526uirank%253D2%2526broadcastid%253D126147%2526offset%253D0%2526limit%253D20%2526uicode%253DVN4&came=BandViewGnbCode&page=" + j;
+            //url = "https://www.wavve.com/list/VN3?api=apis.wavve.com%252Fcf%252Fvod%252Fpopularcontents%253Forderby%253Dviewtime%2526contenttype%253Dvod%2526genre%253D02%2526WeekDay%253Dall%2526uitype%253DVN3%2526uiparent%253DGN57-VN3%2526uirank%253D2%2526broadcastid%253D164058%2526offset%253D0%2526limit%253D20%2526uicode%253DVN3&came=BandViewGnbCode&page=" + j;
+        	url = "https://www.wavve.com/list/MN85?api=apis.wavve.com%252Fcf%252Fmovie%252Fcontents%253Fsptheme%253Dsvod%2526price%253Dall%2526orderby%253Dviewtime%2526contenttype%253Dmovie%2526genre%253Dall%2526WeekDay%253Dall%2526uitype%253DMN85%2526uiparent%253DGN59-MN85%2526uirank%253D4%2526broadcastid%253D176159%2526offset%253D0%2526limit%253D20%2526uicode%253DMN85%2526mtype%253Dsvod&came=BandViewGnbCode&page=" + j;
             driver.get(url);
             
-            wait(1500);
-            
-            System.out.println();
+            wait(1500);  System.out.println();
 
         	for(int i=1; i<21; i++) {
         		   
             	java.sql.Date temp_day=  java.sql.Date .valueOf("2020-02-2");
-            	ContentsDto dto = new ContentsDto(0, "미제공", "미제공", "미제공", "미제공", 5.0, "미제공", "미제공", "미제공", temp_day, "미제공", "미제공" );
+            	ContentsDto dto = new ContentsDto(0, "미제공", "미제공", "미제공", "미제공", 5.0, "#드라마", "미제공", "미제공", temp_day, "미제공", "WV" );
         		
             	String imgurl = driver.findElement(By.xpath("//*[@id=\"g-contents\"]/div[2]/div[" + i + "]/a/div[1]/img")).getAttribute("src");
             	driver.findElement(By.xpath("//*[@id=\"g-contents\"]/div[2]/div[" + i + "]/a/div[2]")).click();
             	
             	wait(1500);
+            	
+            	//////////////////////////////////////////////////////////////////
             	
             	try {
             		if( driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[2]/div/button[2]")).getText().length() >= 1 ) {
@@ -82,256 +91,133 @@ public class WavveCrawling extends JDBCTemplate {
             	
             	wait(1500);
             	
+            	//////////////////////////////////////////////////////////////////
+            	
             	driver.findElement(By.xpath("//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/button ")).click();
             	
             	wait(500);
-            	
+            	         	        	
             	dto.setTitle( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/h2/span")  );
-
-            	System.out.println(dto.getTitle());
+            	dto.setMovieImg(imgurl);
+            	dto.setMovieAddr(driver.getCurrentUrl());
+            	dto.setRate( rannum() );
+            	dto = setDto( driver, dto );
             	
-            	WebElement detail_p = driver.findElement(By.xpath("//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p"));
-            	
-            	for ( int z=1; z < detail_p.length(); z++ ) {
-            		
-            	}
-            		
-            	System.out.println( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/p") );
-            	System.out.println( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div") );
-            	System.out.println(imgurl);
-            	System.out.println(driver.getCurrentUrl());
-            	System.out.println("= = = = = = = = = = = = = = = = = =");
-            	System.out.println();
+            	WavveCrawling selfclass = new WavveCrawling();
+            	selfclass.insert(con, dto);
             	
             	wait(1000);
             	
             	driver.navigate().back();
-            	wait(1500);
-            }
-        	
+            	
+            	wait(1500); countt++; System.out.println(countt);
+            } 	
         }
-
-      //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[1]
-      //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[1]/span[1]
-      //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[1]/span[2]
-        
-      //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[2]
-      //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[2]/span[1]
-      //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[2]/span[2]
-
-        
-        //try { Thread.sleep(1000); } catch (InterruptedException e) {}
-        
-        
-        //actions.moveToElement(driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div/div[2]/div/ul[1]/li[2]/div[1]/div/ul/li[1]/a/div/span")));
-        //driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div/div[2]/div/ul[1]/li[2]/div[1]/div/ul/li[1]/a/div/span")).click();
+      
+        try { if (driver != null) { driver.close(); driver.quit(); } }
+        catch (Exception e) { throw new RuntimeException(e.getMessage()); }    
+    }
+    
+    private boolean insert(Connection con, ContentsDto dto) {
        
-        //List<WebElement> a_loc = driver.findElements(By.tagName("a"));
-      //*[@id="app"]/div[1]/div[2]/div/div[2]/div/ul[1]/li[2]/div[1]/div/ul/li[2]/a/div/span
-     
-        /*
-//        영상 i개를 가져온다.
+    	PreparedStatement pstm = null;
+		int rs = 0;
 
-        for (int i = 0; i < 10; i++) {
-            try {
-//                시간 딜레이(3초)
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
+		try {
+		
+			String SQL = " INSERT INTO CONTENTS VALUES (MOVIE_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? ) ";	
+			pstm = con.prepareStatement(SQL);
 
-            WebElement titleimg = null;
-
-//            마우스 hover처리
-            actions.moveToElement(mouseImg.get(i)).build().perform();
-
-
-            count++;
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-            }
-            try {
-//                마우스를 올리면 아래 화살표 버튼을 눌러야 영상에 대한 내용이 나온다. 그걸 클릭하기 위함이다.
-                WebElement mouseClick = driver.findElement(By.className("css-g373u1-StyledEmbedButton"));
-                mouseClick.click();
-            } catch (Exception e) {
-//
-            }
-            try {
-                Thread.sleep(4000);
-            } catch (InterruptedException e) {
-//
-            }
-//            img주소를 가져오기 위한 div태그이다.
-            WebElement imgel = driver.findElement(By.className("e1q5rx9q0"));
-//            img주소를 가지고있는 span태그이다.
-            WebElement imgurlel = mouseImg.get(i).findElement(By.className("e1q5rx9q1"));
-//            영상에 대한 정보를 가지고있는 div 태그이다.
-            WebElement movieContents = driver.findElement(By.className("e1la0pie8"));
-
-//            제목을 가지고 있는 엘리먼트이다.
-            WebElement title = movieContents.findElement(By.className("e1la0pie12"));
-            try {
-//                제목을 가지는게 h1태그가 있고 이미지파일이 있다. 이미지 파일일 경우 다르게 불러와야 하기 때문에 추가한다.
-//                그러나 둘 중 하나가 없을 경우도 있기 때문에 try로 처리한다.
-                titleimg = movieContents.findElement(By.className("e1la0pie13"));
-            } catch (Exception e) {
-//
-            }
-//            영상의 줄거리를 가져온다.
-            WebElement summary = movieContents.findElement(By.className("css-1yoak30"));
-//            영상의 장르, 연도, 감독, 배우를 가져온다.
-            List<WebElement> contents = movieContents.findElements(By.className("css-1yaqkod"));
-//            영상의 평점을 가져온다.
-            WebElement rate = movieContents.findElement(By.className("css-le4yy9"));
-//            영상 이미지의 주소를 가져온다.
-//            sytle에 영상이 있기 때문에 그 영상의 sytle값을 가져온다.
-            String imgurl = imgurlel.getAttribute("style");
-
-//            style값에서 필요없는 부분을 잘라서 영상의 주소 부분만 가져온다.
-            imgurl = imgurl.substring(23, imgurl.length() - 3);
-
-            String gener = null;
-            String year = null;
-            String director = null;
-            String actor = null;
-
-//            감독이 있을때
-            if (contents.size() == 3) {
-//                감독을 가져온다.
-                director = contents.get(0).getText().replace(" ", "").replace("|", " ");
-//                배우를 가져온다.
-                actor = contents.get(1).getText().replace(" ", "").replace("|", " ");
-//                개요를 가져온다.
-                outline = contents.get(2).getText().replace(" ", "").replace("|", " ");
-                array = outline.split(" ");
-
-                if (array.length == 4) {
-                    gener = array[0] + array[1];
-                    year = array[3];
-                } else {
-                    gener = array[0];
-                    year = array[2];
-                }
-
-//                타이틀이 이미지가 아닐때
-                if (titleimg == null) {
-                    dto = new WatchaDto(1, title.getText(), year, director, actor, Double.parseDouble(rate.getText()), gener,
-                            summary.getText(), imgurl);
-                    list.add(dto);
-//                    타이틀이 이미지일때
-                } else {
-                    dto = new WatchaDto(1, titleimg.getAttribute("alt"), year, director, actor, Double.parseDouble(rate.getText()), gener,
-                            summary.getText(), imgurl);
-                    list.add(dto);
-                }
-//                감독 없을 때
-            } else {
-                director = "  ";
-                actor = contents.get(0).getText().replace(" ", "").replace("|", " ");
-                outline = contents.get(1).getText().replace(" ", "").replace("|", " ");
-                array = outline.split(" ");
-                if (array.length == 4) {
-                    gener = array[0] + array[1];
-                    year = array[3];
-                } else {
-                    gener = array[0];
-                    year = array[2];
-                }
-                if (titleimg == null) {
-                    dto = new WatchaDto(1, title.getText(), year, "없음", actor, Double.parseDouble(rate.getText()), gener,
-                            summary.getText(), imgurl);
-                    list.add(dto);
-
-                } else {
-                    dto = new WatchaDto(1, titleimg.getAttribute("alt"), year, "없음", actor, Double.parseDouble(rate.getText()), gener,
-                            summary.getText(), imgurl);
-                    list.add(dto);
-                    /*System.out.println("제목 : " + titleimg.getAttribute("alt"));
-                    System.out.println("줄거리 : " + summary.getText());
-                    System.out.println("감독 : " + director);
-                    System.out.println("배우 : " + actor);
-                    System.out.println("별점 : " + rate.getText());
-                    System.out.println("장르 : " + gener);
-                    System.out.println("연도 : " + year);
-                    System.out.println("이미지주소 : " + imgurl);
-                }
-            }
-            System.out.println(list.get(i).getTitle());
-
-            //1초 대기
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
-        }
-
-//        영화 정보를 집어 넣는다.
-        int result = insertMovie(connection, list);
-        if (result > 0) {
-            commit(connection);
-            System.out.println("Contents에 저장");
-//            영화 정보가 정상적으로 저장 됐을 때 플랫폼 테이블에도 저장한다.
-            boolean res = insertPlatform(connection);
-            System.out.println(res);
-            if (res) {
-                System.out.println("Platform 저장");
-                commit(connection);
-            } else {
-                rollback(connection);
-            }
-        } else {
-            rollback(connection);
-        }
-//        크롤링을 해서 가져오기 때문에 중북되는 값이 있을 수 있다.
-//        그 중복되는 값들을 모두 삭제한다.
-        boolean delres = overlap(connection);
-        System.out.println(delres);
-        if (delres) {
-            System.out.println("중복 제거 완료");
-            commit(connection);
-        } else {
-            rollback(connection);
-        }
-        close(connection);
-        System.out.println(count);
-        */
-
-        //////////////////////////////////////////////////////////////////////
-        
-        //try { if (driver != null) { driver.close(); driver.quit(); } }
-        //catch (Exception e) { throw new RuntimeException(e.getMessage()); }    
+			pstm.setString(1, dto.getTitle());
+			pstm.setString(2, dto.getOpenYear());
+			pstm.setString(3, dto.getDirector());
+			pstm.setString(4, dto.getActor());
+			pstm.setDouble(5, dto.getRate());
+			pstm.setString(6, dto.getGenre());
+			pstm.setString(7, dto.getSummary());
+			pstm.setString(8, dto.getMovieAddr());
+			pstm.setString(9, dto.getMovieImg());
+	
+			rs = pstm.executeUpdate();
+			
+			if(rs>=1) { con.commit(); }		
+	
+		} catch (SQLException e) { e.printStackTrace(); }
+		finally { close(pstm); }
+		
+		return rs>=1?true:false;
     }
     
     static public void wait(int count) { try { Thread.sleep(count); } catch (InterruptedException e) {} }
     
     static public String getText(WebDriver driver, String url) { 
     	
-    	String text = "";
-    	
-    	try { text = driver.findElement(By.xpath(url)).getText(); } catch ( Exception e ) {}
-    	
+    	String text = "";  	
+    	try { text = driver.findElement(By.xpath(url)).getText(); } catch ( Exception e ) {}	
     	return text;
     }
     
-    static public ContentsDto setDto(WebDriver driver, ContentsDto Dto) {
+    static public ContentsDto setDto(WebDriver driver, ContentsDto dto) {
     	
-    	try {
+    	for(int i=1; i<=4; i++) {
     		
-    	} catch ( Exception e ) {}
-    	
-    	return Dto;
+    		try { if( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").length() < 1) { continue; } } catch ( Exception e ) {}
+        		
+    		if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("장르") ) {
+    			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
+    			text = text.replaceAll("장르", "");
+    			text = text.replaceAll(", ,", "");
+    			dto.setGenre("#드라마, " + text);
+    			continue;
+    		}
+    		else if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("출연") ) {
+    			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
+    			text = text.replaceAll("출연", "");
+    			text = text.replaceAll("#", "");
+    			text = text.replaceAll(", ,", "");
+    			dto.setActor(text);
+    			continue;
+    		}
+    		else if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("줄거리") ) {
+    			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
+    			dto.setSummary(text.replaceAll("줄거리", ""));
+    			continue;
+    		}
+    		else if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("개요") ) {
+    			
+    			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
+    			String text2 = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
+    			
+    			text = text.replaceAll("년", "");
+    			text = text.replaceAll("[0-9]", "");
+    			text = text.replaceAll("개요", "");
+    			text = text.replaceAll(", ,", "");
+    			dto.setDirector(text);
+    			
+    			text2 = text2.replaceAll("1TV|2TV", "");
+    			text2 = text2.replaceAll("[^0-9]", "");
+    			dto.setOpenYear(text2+"년");
+    			continue;
+    		}
+    		else if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("감독") ) {
+    			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
+    			dto.setDirector(text.replaceAll("감독", ""));
+    			continue;
+    		}
+    		else if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("개봉") ) {
+    			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
+    			dto.setDirector(text.replaceAll("개봉", ""));
+    			continue;
+    		}
+    	}
+
+    	return dto;
     }
     
-    //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[1]
-    //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[1]/span[1]
-    //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[1]/span[2]
-      
-    //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[2]
-    //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[2]/span[1]
-    //*[@id="g-contents"]/div[1]/div/div[2]/div[3]/div/p[2]/span[2]
+    static public double rannum() {
+    	double num = (Math.random() * 10);
+        num = Math.round(num*100);
+        num = num / 100.0;
+        return num;
+    }
 }
