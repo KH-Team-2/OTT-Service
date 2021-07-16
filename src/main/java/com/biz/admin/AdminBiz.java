@@ -22,4 +22,8 @@ public interface AdminBiz {
 
 	public List<NoticeDto> NoticeSelect();
 	public boolean DeleteNotice(int noticenum);
+
+	public int CountNotice();
+
+	public List<NoticeDto> NoticePagingList(int page);
 }

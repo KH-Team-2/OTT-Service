@@ -1,9 +1,6 @@
 package com.dao.admin;
 
-import com.dto.DecrationDto;
-import com.dto.FBWDto;
-import com.dto.NoticeDto;
-import com.dto.UserDto;
+import com.dto.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -423,7 +420,75 @@ public class AdminDaoImpl implements AdminDao {
             close(preparedStatement);
         }
 
-        return res>0;
+        return res > 0;
+    }
+
+    @Override
+    public int CountNotice(Connection connection) {
+        int res = 0;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String sql = " SELECT COUNT(*) as count FROM NOTICE ";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                res = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+        }
+
+        return res;
+    }
+
+    @Override
+    public List<NoticeDto> NoticePagingList(Connection con, int page) {
+        int startNum = (page - 1) * 10 + 1;
+        int endNum = page * 10;
+        String sql = " SELECT A.*, u.Nickname\n" +
+                "FROM (SELECT *\n" +
+                "FROM (\n" +
+                "    SELECT ROWNUM as rnum, NOTICE.*\n" +
+                "    FROM NOTICE ORDER BY NoticeNum DESC )\n" +
+                "WHERE rnum >= ?\n" +
+                "    ) A\n" +
+                "    JOIN USERTB u\n" +
+                "on A.UserNum = u.USERNUM\n" +
+                "WHERE rnum <= ? ORDER BY A.NoticeNum DESC ";
+
+        PreparedStatement pstm = null;
+        ResultSet resultSet = null;
+        List<NoticeDto> res = new ArrayList<>();
+
+        try {
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1, startNum);
+            pstm.setInt(2, endNum);
+            resultSet = pstm.executeQuery();
+
+            while (resultSet.next()) {
+                NoticeDto temp = new NoticeDto(resultSet.getInt(2), resultSet.getInt(3),
+                        resultSet.getString(4), resultSet.getString(5),
+                        resultSet.getDate(6), resultSet.getInt(7),
+                        resultSet.getString(8));
+
+                res.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(resultSet);
+            close(pstm);
+        }
+
+        return res;
     }
 
     public int FBWCount(Connection con) {

@@ -93,6 +93,12 @@
         var userBtn_Count = 0;
         var menues_count = 0;
         $(function () {
+
+            $('.alarmBtn').click(function () {
+                location.href = 'notice.do?command=list&page=1&usernum=<%=dto.getUserNum()%>'
+            });
+
+
             var startdate = "<%=startdate%>";
             var startyyyy = startdate.substr(0, 4);
             var startmm = startdate.substr(5, 2);

@@ -154,6 +154,24 @@ public class AdminBizImpl implements AdminBiz{
 		return res;
 	}
 
+	@Override
+	public int CountNotice() {
+		int res = 0;
+		Connection connection = getConnection();
+		res = dao.CountNotice(connection);
+		close(connection);
+		return res;
+	}
+
+	@Override
+	public List<NoticeDto> NoticePagingList(int page) {
+		Connection connection = getConnection();
+		List<NoticeDto> list = dao.NoticePagingList(connection, page);
+		close(connection);
+
+		return list;
+	}
+
 	public int FBWCount() {
 		Connection con= getConnection();
 		int res = dao.FBWCount(con);

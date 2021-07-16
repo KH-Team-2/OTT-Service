@@ -23,5 +23,9 @@ public interface AdminDao {
 
     public List<NoticeDto> NoticeSelect(Connection connection);
 
-	boolean DeleteNotice(Connection connection, int noticenum);
+	public boolean DeleteNotice(Connection connection, int noticenum);
+
+    public int CountNotice(Connection connection);
+
+	List<NoticeDto> NoticePagingList(Connection connection, int page);
 }
