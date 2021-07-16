@@ -144,4 +144,13 @@ public class ContentsDto {
 	public void setMovieImg(String movieImg) {
 		MovieImg = movieImg;
 	}
+
+	@Override
+	public String toString() {
+		return "ContentsDto [MovieNum=" + MovieNum + ", Title=" + Title + ", OpenYear=" + OpenYear + ", Director="
+				+ Director + ", Actor=" + Actor + ", Rate=" + Rate + ", Genre=" + Genre + ", Summary=" + Summary
+				+ ", MovieAddr=" + MovieAddr + ", UpdateYear=" + UpdateYear + ", MovieImg=" + MovieImg + ", pfimgurl="
+				+ pfimgurl + "]";
+	}
+	
 }
