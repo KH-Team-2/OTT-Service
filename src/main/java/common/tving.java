@@ -11,7 +11,7 @@ import java.util.List;
 public class tving {
 
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    public static final String WEB_DRIVER_PATH = "/opt/chromedriver"; //드라이버 경로
+    public static final String WEB_DRIVER_PATH = "C:\\Users\\Moon\\Desktop\\opt\\chromedriver.exe"; //드라이버 경로
 
     public static void main(String[] args) {
         //드라이버 설정
@@ -47,6 +47,7 @@ public class tving {
 
         //class="nav" 인 모든 태그를 가진 WebElement리스트를 받아온다.
         //WebElement는 html의 태그를 가지는 클래스이다.
+        
 //        List<WebElement> el1 = driver.findElements(By.className("movie-detail__info"));
 
 //        for (int i = 0; i < el1.size(); i++) {
