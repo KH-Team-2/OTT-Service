@@ -127,7 +127,12 @@ public class NaverServlet extends HttpServlet {
         dto.setPW(pw);
         UserBiz biz = new UserBizImpl();
         boolean res = biz.CreateAccount(dto);
-
+        System.out.println("id : " + id);
+        System.out.println("pw : " + pw);
+        System.out.println("gender : " + gender);
+        System.out.println("pfimg : " + pfimg);
+        System.out.println("name : " + name);
+        System.out.println("phone : " + phone);
         if (res) {
             HttpSession session = request.getSession();
             session.setAttribute("dto", dto);
