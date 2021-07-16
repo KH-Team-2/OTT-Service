@@ -254,12 +254,12 @@
             left: 0px;
             cursor: pointer;
         }
-        
+
         #logoImg{
         	width: 100%;
         	height: 100%;
         	object-fit: cover;
-        	
+
         }
 
         #search {
@@ -467,6 +467,7 @@
 
         #adminmenutb {
         }
+
 
         .Logout {
             padding: 2px;
