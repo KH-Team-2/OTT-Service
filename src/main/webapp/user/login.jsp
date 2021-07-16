@@ -153,7 +153,7 @@
 <br>
 <br>
 <div id="login">
-    <form action="../user.do?command=login" method="post">
+    <form action="user.do?command=login" method="post">
         <table id="logintb">
             <tr>
                 <td>
@@ -178,7 +178,7 @@
 
     <%
         String clientId = "VVxEIrwhlmXUmc7eYn3S";//애플리케이션 클라이언트 아이디값";
-        String redirectURI = URLEncoder.encode("http://localhost:8100/naver.do", "UTF-8");
+        String redirectURI = URLEncoder.encode("http://localhost:8100/OTT-Service/naver.do", "UTF-8");
         SecureRandom random = new SecureRandom();
         String state = new BigInteger(130, random).toString();
         String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
