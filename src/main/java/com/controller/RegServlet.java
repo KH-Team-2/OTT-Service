@@ -70,6 +70,15 @@ public class RegServlet extends HttpServlet {
                     fileName = fileName.replaceAll(" ", "");
                     fileName = fileName.replaceAll("-", "");
                     fileName = fileName.replaceAll(":", "");
+                    fileName = fileName.replaceAll("\\\\", "");
+
+                    System.out.println(ATTACHES_DIR);
+                    System.out.println(File.separator);
+                    System.out.println(fileName);
+                    
+                    String tempimg = ATTACHES_DIR + File.separator + fileName;
+                    tempimg = fileName.replaceAll("\\\\", "");
+                    System.out.println(tempimg);
 
                     if (part.getSize() > 0) {
                         part.write(ATTACHES_DIR + File.separator + fileName );
