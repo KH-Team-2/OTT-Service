@@ -245,6 +245,7 @@
             width: 1200px;
             height: 60px;
             margin: 0 auto;
+            margin-bottom : 60px;
             background: black;
             padding-top: 50px;
             padding-bottom: 100px;
