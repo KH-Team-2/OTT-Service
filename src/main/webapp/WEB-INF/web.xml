@@ -7,7 +7,7 @@
     <!--    ///////////////////////////////////////////////     -->
 
     <welcome-file-list>
-        <welcome-file>index/start.jsp</welcome-file>
+        <welcome-file>user/login.jsp</welcome-file>
     </welcome-file-list>
     
     <!--    ///////////////////////////////////////////////     -->
@@ -140,19 +140,25 @@
 	<!--    ///////////////////////////////////////////////     -->
 	
 	<servlet>
-	  	<servlet-name>KakaoLogin</servlet-name>
+	  	<servlet-name>KakaoServlet</servlet-name>
 	  	<servlet-class>com.controller.KakaoServlet</servlet-class>
   	</servlet>
   
   	<servlet-mapping>
-	  	<servlet-name>KakaoLogin</servlet-name>
+	  	<servlet-name>KakaoServlet</servlet-name>
 	  	<url-pattern>/kakao.do</url-pattern>
   	</servlet-mapping>
 
-    <!--<error-page>
-        <error-code>500</error-code>
-        <location>/loginerror.jsp</location>
-    </error-page>-->
+    <servlet>
+        <servlet-name>NaverLogin</servlet-name>
+        <servlet-class>com.controller.NaverServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NaverLogin</servlet-name>
+        <url-pattern>/naver.do</url-pattern>
+    </servlet-mapping>
+
   	
 	<!--    ///////////////////////////////////////////////     -->
 	

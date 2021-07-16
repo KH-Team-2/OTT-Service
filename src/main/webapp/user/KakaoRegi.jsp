@@ -172,7 +172,7 @@
 
             <tr>
                 <td>생일</td>
-                <td><input type="date" name="Birth" placeholder="YYYY-MM-DD" class="updateval"></td>
+                <td><input type="date" name="Birth" placeholder="YYYY-MM-DD" class="updateval" max="9999-12-31"></td>
             </tr>
                 
             <tr>

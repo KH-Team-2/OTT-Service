@@ -87,6 +87,8 @@
     <script type="text/javascript">
         // window.history.forward(1);
 
+
+
         var alarmBtn_Count = 0;
         var userBtn_Count = 0;
         var menues_count = 0;
@@ -223,6 +225,16 @@
             display: none;
         }
 
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active  {
+            -webkit-box-shadow: 0 0 0 30px black inset !important;
+        }
+        input:-webkit-autofill {
+            -webkit-text-fill-color: yellow !important;
+        }
+
         #headpart {
             width: 1200px;
             height: 60px;
@@ -230,17 +242,24 @@
             background: black;
             padding-top: 50px;
             padding-bottom: 100px;
-            /*border: 1px white solid;*/
+            /* border: 1px white solid; */
         }
 
         #logo {
             position: relative;
             display: inline-block;
-            top: 15px;
-            left: 30px;
-            color: rgb(248, 211, 28);
-            font-size: 20pt;
+            width: 200px;
+            height: 60px;
+            top: 30px;
+            left: 0px;
             cursor: pointer;
+        }
+        
+        #logoImg{
+        	width: 100%;
+        	height: 100%;
+        	object-fit: cover;
+        	
         }
 
         #search {
@@ -248,7 +267,7 @@
             position: relative;
             width: 570px;
             top: 30px;
-            left: 200px;
+            left: 140px;
             height: 50px;
             border: rgb(248, 211, 28) solid 4px;
             display: inline-block;
@@ -297,7 +316,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 200px;
+            left: 140px;
             color: rgb(248, 211, 28);
             font-size: 20pt;
         }
@@ -312,7 +331,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 340px;
+            left: 270px;
             color: rgb(248, 211, 28);
         }
 
@@ -328,7 +347,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 350px;
+            left: 280px;
             color: rgb(248, 211, 28);
         }
 
@@ -472,7 +491,7 @@
 <body>
 <form action="search.do?command=search" method="post">
     <div id="headpart">
-        <div id="logo" class="logoBtn">로고이미지</div>
+        <div id="logo" class="logoBtn"><img src="http://www.khproject.kr/OTT_Service/img/logo.png" id="logoImg"></div>
         <div id="search">
             <input type="text" name="searchBar" class="input_searching" id="searchBar" placeholder="검색하는곳"
                    value="<%=searchBar1%>">

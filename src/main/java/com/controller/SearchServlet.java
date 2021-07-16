@@ -108,7 +108,7 @@ public class SearchServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.removeAttribute("dto");
 
-                response.sendRedirect("../user/login.jsp");
+                response.sendRedirect("user/logout.jsp");
                 break;
             }
         }

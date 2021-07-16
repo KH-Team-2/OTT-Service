@@ -1,3 +1,4 @@
+/*
 package com.dao.searchhistory;
 
 import com.dto.FBWDto;
@@ -67,3 +68,4 @@ public abstract class SearchHistoryDaoImpl implements SearchHistoryDao {
 	}
 
 }
+*/

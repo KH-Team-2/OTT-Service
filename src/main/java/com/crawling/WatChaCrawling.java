@@ -77,7 +77,7 @@ public class WatChaCrawling extends JDBCTemplate {
             }
         }
 //        스크롤을 내린 후에 맨 위로 다시 올린다.
-        jse.executeScript("window.scrollBy(0, 2000)", "");
+        jse.executeScript("window.scrollBy(0, 0)", "");
 
 
         try {
@@ -102,7 +102,7 @@ public class WatChaCrawling extends JDBCTemplate {
 
 //        영상 i개를 가져온다.
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             try {
 //                시간 딜레이(3초)
                 Thread.sleep(1000);
@@ -133,7 +133,7 @@ public class WatChaCrawling extends JDBCTemplate {
 //
             }
 //            img주소를 가져오기 위한 div태그이다.
-            WebElement imgel = driver.findElement(By.className("e1q5rx9q0"));
+//            WebElement imgel = driver.findElement(By.className("e1q5rx9q0"));
 //            img주소를 가지고있는 span태그이다.
             WebElement imgurlel = mouseImg.get(i).findElement(By.className("e1q5rx9q1"));
 //            영상에 대한 정보를 가지고있는 div 태그이다.
@@ -217,14 +217,14 @@ public class WatChaCrawling extends JDBCTemplate {
                     dto = new WatchaDto(1, titleimg.getAttribute("alt"), year, "없음", actor, Double.parseDouble(rate.getText()), gener,
                             summary.getText(), imgurl);
                     list.add(dto);
-                    /*System.out.println("제목 : " + titleimg.getAttribute("alt"));
+                    System.out.println("제목 : " + titleimg.getAttribute("alt"));
                     System.out.println("줄거리 : " + summary.getText());
                     System.out.println("감독 : " + director);
                     System.out.println("배우 : " + actor);
                     System.out.println("별점 : " + rate.getText());
                     System.out.println("장르 : " + gener);
                     System.out.println("연도 : " + year);
-                    System.out.println("이미지주소 : " + imgurl);*/
+                    System.out.println("이미지주소 : " + imgurl);
                 }
             }
             System.out.println(list.get(i).getTitle());

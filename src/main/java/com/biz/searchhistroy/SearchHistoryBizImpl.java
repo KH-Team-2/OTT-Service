@@ -1,3 +1,4 @@
+/*
 package com.biz.searchhistroy;
 
 import com.dao.searchhistory.SearchHistoryDao;
@@ -40,3 +41,4 @@ public class SearchHistoryBizImpl implements SearchHistoryBiz {
 	}
 }
 
+*/

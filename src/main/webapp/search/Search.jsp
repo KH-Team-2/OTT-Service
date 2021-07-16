@@ -42,16 +42,16 @@
         }
 
         .imgdiv {
-            border: 1px solid rgb(248, 211, 28);
-            width: 250px;
-            height: 300px;
+            /* border: 1px solid rgb(248, 211, 28); */
+            width: 220px;
+            height: 140px;
             float: left;
             margin-left: 50px;
             margin-top: 50px;
         }
 
         .contentdiv {
-            border: 1px solid rgb(248, 211, 28);
+            /* border: 1px solid rgb(248, 211, 28); */
             float: left;
             margin-left: 40px;
             margin-top: 50px;
@@ -61,8 +61,8 @@
         }
 
         .image {
-            width: 250px;
-            height: 300px;
+            width: 220px;
+            height: 140px;
         }
 
         .title {
