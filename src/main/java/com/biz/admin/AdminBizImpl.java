@@ -192,4 +192,38 @@ public class AdminBizImpl implements AdminBiz{
 		
 		return res;
 	}
+
+	@Override
+	public boolean NoticeWrite(NoticeDto dto) {
+
+		Connection con = getConnection();
+
+		boolean res = dao.NoticeWrite(dto, con);
+
+		if(res) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return res;
+	}
+
+	@Override
+	public boolean NoticeUpdate(NoticeDto dto) {
+		Connection con = getConnection();
+
+		boolean res = dao.NoticeUpdate(dto, con);
+
+		if(res) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return res;
+	}
 }

@@ -26,4 +26,7 @@ public interface AdminBiz {
 	public int CountNotice();
 
 	public List<NoticeDto> NoticePagingList(int page);
+
+	public boolean NoticeWrite(NoticeDto dto);
+	public boolean NoticeUpdate(NoticeDto dto);
 }
