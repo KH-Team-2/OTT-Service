@@ -10,7 +10,7 @@
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%
     UserDto udto = (UserDto) session.getAttribute("dto");
-	
+
 %>
 
 <!DOCTYPE html>
@@ -20,7 +20,9 @@
     <title>Insert title here</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+
         $(function () {
+
             $("#header").load("header.jsp");
 
             let num;
@@ -165,7 +167,7 @@
             	wishadd()
             });
   		  });
-		 	
+
 
         function addviewlist() {
             var movienum = ${dto.movieNum};
@@ -186,14 +188,14 @@
                 }
             })
         }
-        
+
         function wishadd(){
         	 var movienum = ${dto.movieNum};
              var usernum = <%=udto.getUserNum()%>;
 
              var params = "?command=wishadd"+"&movienum=" + ${dto.movieNum} +
              "&usernum=" + <%=udto.getUserNum()%>;
-             
+
              $.ajax({
             	 type : "post",
             	 url : "user.do"+params,
@@ -203,7 +205,7 @@
             		 location.reload();
             	 },
             	 error : function(){
-            		 
+
             	 }
              })
         }
@@ -213,7 +215,7 @@
 
             var params = "?command=wishdel"+"&movienum=" + ${dto.movieNum} +
             "&usernum=" + <%=udto.getUserNum()%>;
-            
+
             $.ajax({
            	 type : "post",
            	 url : "user.do"+params,
@@ -223,7 +225,7 @@
            		location.reload();
            	 },
            	 error : function(){
-           		 
+
            	 }
             })
        }
@@ -255,17 +257,17 @@
         }
 
         #imgdiv {
-            width: 220px;
-            height: 140px;
-            margin-left: 80px;
+            width: 450px;
+            height: 300px;
+            margin-left: 0px;
             margin-top: 50px;
             float: left;
 			position: relative;
         }
 
         #contentimage {
-            width: 220px;
-            height: 140px;
+            width: 100%;
+            height: 100%;
             border: 0px;
 
         }
@@ -274,34 +276,36 @@
             width: 750px;
             height: 350px;
             float: left;
-            margin-left: 40px;
+            margin-left: 0px;
             margin-top: 50px;
 
         }
 
         #detaildiv {
             border-bottom: 1px solid #A3A3A3;
-            width: 1040px;
+            width: 100%;
             height: 180px;
             float: left;
-            margin-left: 80px;
+            margin-left: 0px;
             margin-top: 30px
         }
 
         #reviewdiv {
-            width: 1040px;
+            width: 100%;
             height: auto;
             float: left;
-            margin-left: 80px;
+            margin-left: 0px;
             margin-top: 30px;
         }
 
         #writediv {
-            width: 1040px;
+            width: 100%;
             height: 95px;
             float: left;
-            margin-left: 80px;
+            margin-left: 0px;
             margin-top: 20px;
+            margin-bottom: 10px;
+            
         }
 
         #title {
@@ -358,7 +362,7 @@
 
         #reviewinfo {
             height: 100px;
-            width: 940px;
+            width: 91%;
             border-radius: 10px;
             font-size: 20px;
             border: 3px solid #A3A3A3;
@@ -375,6 +379,8 @@
 
         #reviewsubmit {
             float: right;
+            position: relative;
+            top: 35px;
         }
 
         #reviewtb {
@@ -410,7 +416,7 @@
         }
         #wishaddbtn{
         	position: absolute;
-        	top : 102px;
+        	top : 260px;
         	right : 5px;
         	background: none;
         	border: none;
@@ -418,7 +424,7 @@
         }
         #wishdelbtn{
         	position: absolute;
-        	top : 102px;
+        	top : 260px;
         	right : 5px;
         	background: none;
         	border: none;
@@ -427,8 +433,6 @@
        	#wishimg{
        		width: 30px;
        		height: 30px;
-       		
-       	
        	}
     </style>
 </head>
@@ -474,7 +478,7 @@
                         <input type="hidden" id="movienum" name="movienum" value="${dto.movieNum}">
                         <input type="hidden" id="usernum" name="usernum" value="<%=udto.getUserNum()%>">
                         <input type="hidden" id="movietitle" name="movietitle" value="<%=dto.getTitle()%></>">
-						<input type="button" value="작성" class="btn" id="reviewsubmit">
+						<input type="button" value="작성" class="btn" id="reviewsubmit" >
 				</span>
         </div>
         <div id="reviewdiv">

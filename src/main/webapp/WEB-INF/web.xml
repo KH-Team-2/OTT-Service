@@ -149,6 +149,8 @@
 	  	<url-pattern>/kakao.do</url-pattern>
   	</servlet-mapping>
 
+    <!--    ///////////////////////////////////////////////     -->
+
     <servlet>
         <servlet-name>NaverLogin</servlet-name>
         <servlet-class>com.controller.NaverServlet</servlet-class>
@@ -161,6 +163,16 @@
 
   	
 	<!--    ///////////////////////////////////////////////     -->
+
+    <servlet>
+        <servlet-name>NoticeServlet</servlet-name>
+        <servlet-class>com.controller.NoticeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NoticeServlet</servlet-name>
+        <url-pattern>/notice.do</url-pattern>
+    </servlet-mapping>
 	
 	<servlet>
 	  	<servlet-name>AlarmServlet</servlet-name>

@@ -93,6 +93,12 @@
         var userBtn_Count = 0;
         var menues_count = 0;
         $(function () {
+
+            $('.alarmBtn').click(function () {
+                location.href = 'notice.do?command=list&page=1&usernum=<%=dto.getUserNum()%>'
+            });
+
+
             var startdate = "<%=startdate%>";
             var startyyyy = startdate.substr(0, 4);
             var startmm = startdate.substr(5, 2);
@@ -239,27 +245,28 @@
             width: 1200px;
             height: 60px;
             margin: 0 auto;
+            margin-bottom : 60px;
             background: black;
             padding-top: 50px;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
             /* border: 1px white solid; */
         }
 
         #logo {
             position: relative;
             display: inline-block;
-            width: 200px;
-            height: 60px;
-            top: 30px;
+            width: 250px;
+            height: 125px;
+            top: 60px;
             left: 0px;
             cursor: pointer;
         }
-        
+
         #logoImg{
         	width: 100%;
         	height: 100%;
         	object-fit: cover;
-        	
+
         }
 
         #search {
@@ -267,7 +274,7 @@
             position: relative;
             width: 570px;
             top: 30px;
-            left: 140px;
+            left: 90px;
             height: 50px;
             border: rgb(248, 211, 28) solid 4px;
             display: inline-block;
@@ -316,7 +323,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 140px;
+            left: 100px;
             color: rgb(248, 211, 28);
             font-size: 20pt;
         }
@@ -331,11 +338,12 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 270px;
+            left: 220px;
             color: rgb(248, 211, 28);
         }
 
         #alarmBtn {
+            display: none;
             background: no-repeat;
             border: none;
             cursor: pointer;
@@ -347,7 +355,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 280px;
+            left: 230px;
             color: rgb(248, 211, 28);
         }
 
@@ -467,6 +475,7 @@
 
         #adminmenutb {
         }
+
 
         .Logout {
             padding: 2px;

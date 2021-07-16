@@ -127,21 +127,6 @@ public class NaverServlet extends HttpServlet {
         dto.setPhone(phone);
         dto.setPW(pw);
         UserBiz biz = new UserBizImpl();
-        boolean res = biz.CreateAccount(dto);
-        System.out.println("id : " + id);
-        System.out.println("pw : " + pw);
-        System.out.println("gender : " + gender);
-        System.out.println("pfimg : " + pfimg);
-        System.out.println("name : " + name);
-        System.out.println("phone : " + phone);
-        if (res) {
-            HttpSession session = request.getSession();
-            session.setAttribute("dto", dto);
-            jsResponse("회원가입 성공", "user/login.jsp", response);
-        } else {
-            jsResponse("회원가입 실패", "user/login.jsp", response);
-        }
-
         dto = biz.Login(id, pw);
 
         HttpSession session = request.getSession();
@@ -153,6 +138,15 @@ public class NaverServlet extends HttpServlet {
             response.sendRedirect("search.do?command=main");
             return;
         }
+        boolean res = biz.CreateAccount(dto);
+        if (res) {
+            session.setAttribute("dto", dto);
+            jsResponse("회원가입 성공", "user/login.jsp", response);
+        } else {
+            jsResponse("회원가입 실패", "user/login.jsp", response);
+        }
+
+
     }
 
     private void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {

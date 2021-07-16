@@ -23,7 +23,6 @@
             margin: 50px auto;
             width: 500px;
             height: 500px;
-            border: rgb(248, 211, 28) solid 1px;
             color: rgb(248, 211, 28);
             font-family: 'NEXON Lv1 Gothic OTF';
             font-size: 20px;
@@ -44,6 +43,13 @@
 
         #logo {
             text-align: center;
+            width : 250px;
+            height: 125px;
+            margin : 0 auto;
+        }
+        #logoimg{
+        	width: 100%;
+        	height: 100%;
         }
 
         #logintb {
@@ -136,14 +142,14 @@
 
         function KakaoLogin() {
             location.href =
-                "https://kauth.kakao.com/oauth/authorize?client_id=528930d4a41bf7c7d8a4a5c8306eabec&redirect_uri=http://localhost:8100/OTTService/kakao.do&response_type=code";
+                "https://kauth.kakao.com/oauth/authorize?client_id=528930d4a41bf7c7d8a4a5c8306eabec&redirect_uri=http://localhost:8100/OTT-Service/kakao.do&response_type=code";
         }
     </script>
 
 </head>
 
 <body>
-<div id="logo"><h2><img src="http://www.khproject.kr/OTT_Service/img/logo.png"></h2></div>
+<div id="logo"><h2><img src="http://www.khproject.kr/OTT_Service/img/logo.png" id="logoimg"></h2></div>
 <br>
 <br>
 <div id="login">
@@ -172,7 +178,7 @@
 
     <%
         String clientId = "VVxEIrwhlmXUmc7eYn3S";//애플리케이션 클라이언트 아이디값";
-        String redirectURI = URLEncoder.encode("http://localhost:8100/naver.do", "UTF-8");
+        String redirectURI = URLEncoder.encode("http://localhost:8100/OTT-Service/naver.do", "UTF-8");
         SecureRandom random = new SecureRandom();
         String state = new BigInteger(130, random).toString();
         String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";

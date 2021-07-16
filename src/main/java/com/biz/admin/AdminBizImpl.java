@@ -1,17 +1,15 @@
 package com.biz.admin;
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.rollback;
+import com.dao.admin.AdminDaoImpl;
+import com.dto.DecrationDto;
+import com.dto.FBWDto;
+import com.dto.NoticeDto;
+import com.dto.UserDto;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.dao.admin.AdminDaoImpl;
-import com.dto.DecrationDto;
-import com.dto.FBWDto;
-import com.dto.UserDto;
+import static common.JDBCTemplate.*;
 
 public class AdminBizImpl implements AdminBiz{
 	
@@ -25,9 +23,9 @@ public class AdminBizImpl implements AdminBiz{
 	}
 
 	@Override
-	public List<UserDto> AdminUserView() {
+	public List<UserDto> AdminUserView(int page) {
 		Connection con = getConnection();
-		List<UserDto> list = dao.AdminUserView(con);
+		List<UserDto> list = dao.AdminUserView(con,page);
 		close(con);
 		return list;
 	}
@@ -133,6 +131,47 @@ public class AdminBizImpl implements AdminBiz{
 		close(con);
 		return result;
 	}
+
+	@Override
+	public List<NoticeDto> NoticeSelect() {
+		Connection connection = getConnection();
+		List<NoticeDto> list = dao.NoticeSelect(connection);
+		close(connection);
+
+		return list;
+	}
+
+	@Override
+	public boolean DeleteNotice(int noticenum) {
+		Connection connection = getConnection();
+		boolean res = dao.DeleteNotice(connection, noticenum);
+		if (res) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+
+		return res;
+	}
+
+	@Override
+	public int CountNotice() {
+		int res = 0;
+		Connection connection = getConnection();
+		res = dao.CountNotice(connection);
+		close(connection);
+		return res;
+	}
+
+	@Override
+	public List<NoticeDto> NoticePagingList(int page) {
+		Connection connection = getConnection();
+		List<NoticeDto> list = dao.NoticePagingList(connection, page);
+		close(connection);
+
+		return list;
+	}
+
 	public int FBWCount() {
 		Connection con= getConnection();
 		int res = dao.FBWCount(con);
@@ -152,5 +191,50 @@ public class AdminBizImpl implements AdminBiz{
 		close(con);
 		
 		return res;
+	}
+
+	@Override
+	public boolean NoticeWrite(NoticeDto dto) {
+
+		Connection con = getConnection();
+
+		boolean res = dao.NoticeWrite(dto, con);
+
+		if(res) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+		return res;
+	}
+
+	@Override
+	public boolean NoticeUpdate(NoticeDto dto) {
+		Connection con = getConnection();
+
+		boolean res = dao.NoticeUpdate(dto, con);
+
+		if(res) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return res;
+	}
+
+	@Override
+	public NoticeDto NoticeSelectOne(int noticenum) {
+		Connection connection = getConnection();
+
+		NoticeDto dto = dao.NoticeSelectOne(connection, noticenum);
+
+		close(connection);
+
+		return dto;
 	}
 }

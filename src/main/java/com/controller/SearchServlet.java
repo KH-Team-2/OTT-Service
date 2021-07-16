@@ -53,7 +53,9 @@ public class SearchServlet extends HttpServlet {
             case "search": {
                 String searchBar = request.getParameter("searchBar");
                 if (searchBar.equals("") || searchBar == null) {
-                    searchBar = "asd";
+                    PrintWriter writer = response.getWriter();
+                    writer.println("<script>alert('검색어를 입력해주세요.'); location.href='" + "search.do?command=main" + "';</script>");
+                    writer.close();
                 }
                 String startdate = request.getParameter("startdate");
                 searchBar = searchBar.trim();

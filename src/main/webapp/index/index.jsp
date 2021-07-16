@@ -76,9 +76,13 @@
             width: 1200px;
         }
         .pfurl {
-            width: 120px;
+            width: 200px;
             height: 120px;
-            margin-left: 150px;
+            margin-right: 125px;
+        }
+        .pfurl2 {
+            width: 200px;
+            height: 120px;
         }
 
 
@@ -93,10 +97,10 @@
 <br>
 <br>
 <div class="pfimg">
-    <a href="https://www.watcha.com" target="_blank"><img class="pfurl" src="http://www.khproject.kr/OTT_Service/img/watcha.png" alt="왓챠"></a>
-    <a href="https://www.watcha.com" target="_blank"><img class="pfurl" src="http://www.khproject.kr/OTT_Service/img/watcha.png" alt="왓챠"></a>
-    <a href="https://www.watcha.com" target="_blank"><img class="pfurl" src="http://www.khproject.kr/OTT_Service/img/watcha.png" alt="왓챠"></a>
-    <a href="https://www.watcha.com" target="_blank"><img class="pfurl" src="http://www.khproject.kr/OTT_Service/img/watcha.png" alt="왓챠"></a>
+    <a href="https://www.netflix.com/kr" target="_blank"><img class="pfurl" src="http://www.khproject.kr/OTT_Service/img/netflixlogo.png" alt="넷플릭스"></a>
+    <a href="https://www.watcha.com" target="_blank"><img class="pfurl" src="http://www.khproject.kr/OTT_Service/img/watchalogo.png" alt="왓챠"></a>
+    <a href="https://www.tving.com/main.do?retRef=Y&source=https://www.google.com/" target="_blank"><img class="pfurl" src="http://www.khproject.kr/OTT_Service/img/tvinglogo.jpg" alt="티빙"></a>
+    <a href="https://www.wavve.com/" target="_blank"><img class="pfurl2" src="http://www.khproject.kr/OTT_Service/img/wavvelogo.png" alt="웨이브"></a>
 </div>
 <br>
 <br>
