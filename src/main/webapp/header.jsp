@@ -254,9 +254,9 @@
         #logo {
             position: relative;
             display: inline-block;
-            width: 200px;
-            height: 60px;
-            top: 30px;
+            width: 250px;
+            height: 125px;
+            top: 60px;
             left: 0px;
             cursor: pointer;
         }
@@ -273,7 +273,7 @@
             position: relative;
             width: 570px;
             top: 30px;
-            left: 140px;
+            left: 90px;
             height: 50px;
             border: rgb(248, 211, 28) solid 4px;
             display: inline-block;
@@ -322,7 +322,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 140px;
+            left: 100px;
             color: rgb(248, 211, 28);
             font-size: 20pt;
         }
@@ -337,7 +337,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 270px;
+            left: 220px;
             color: rgb(248, 211, 28);
         }
 
@@ -353,7 +353,7 @@
             display: inline-block;
             position: relative;
             top: 25px;
-            left: 280px;
+            left: 230px;
             color: rgb(248, 211, 28);
         }
 
