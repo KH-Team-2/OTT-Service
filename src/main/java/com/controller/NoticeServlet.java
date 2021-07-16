@@ -3,6 +3,7 @@ package com.controller;
 import com.biz.admin.AdminBizImpl;
 import com.dto.NoticeDto;
 import com.dto.Paging;
+import com.dto.UserDto;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,12 +44,17 @@ public class NoticeServlet extends HttpServlet {
                 paging.setTotalCount(count);
 
 
+
                 int usernum = Integer.parseInt(request.getParameter("usernum"));
+
+                UserDto dto = biz.UserSelect(usernum);
+
 
                 List<NoticeDto> list = biz.NoticePagingList(page);
 
                 request.setAttribute("list", list);
                 request.setAttribute("usernum", usernum);
+                request.setAttribute("dto", dto);
                 request.setAttribute("paging", paging);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("admin/Notice.jsp");
                 dispatcher.forward(request, response);
