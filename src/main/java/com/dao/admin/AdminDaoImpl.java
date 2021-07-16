@@ -555,7 +555,7 @@ public class AdminDaoImpl implements AdminDao {
             pstm.setInt(1, dto.getUsernum());
             pstm.setString(2, dto.getTitle());
             pstm.setString(3, dto.getContent());
-            System.out.println("03. query 준비: "+NoticeWriteSQL);
+            System.out.println("03. query 준비: " + NoticeWriteSQL);
 
             res = pstm.executeUpdate();
             System.out.println("04. query 실행 및 리턴");
@@ -594,6 +594,47 @@ public class AdminDaoImpl implements AdminDao {
         }
 
         return res > 0;
+    }
+
+    @Override
+    public NoticeDto NoticeSelectOne(Connection connection, int noticenum) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        NoticeDto dto = null;
+        String countSql = " UPDATE NOTICE SET COUNT = COUNT+1 WHERE NOTICENUM = ? ";
+        String sql = " SELECT N.*, U.NICKNAME\n" +
+                "FROM NOTICE N\n" +
+                "         JOIN USERTB U on N.UserNum = U.USERNUM\n" +
+                "WHERE NoticeNum = ? ";
+
+        try {
+            preparedStatement = connection.prepareStatement(countSql);
+            preparedStatement.setInt(1, noticenum);
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, noticenum);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                dto = new NoticeDto(resultSet.getInt(1), resultSet.getInt(2),
+                        resultSet.getString(3), resultSet.getString(4),
+                        resultSet.getDate(5), resultSet.getInt(6),
+                        resultSet.getString(7));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+        }
+
+
+        return dto;
     }
 
 

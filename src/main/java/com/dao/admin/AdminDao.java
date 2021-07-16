@@ -36,4 +36,5 @@ public interface AdminDao {
 	public boolean NoticeUpdate(NoticeDto dto, Connection con);
 
 
+	public NoticeDto NoticeSelectOne(Connection connection, int noticenum);
 }

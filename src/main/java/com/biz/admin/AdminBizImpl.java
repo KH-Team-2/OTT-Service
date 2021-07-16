@@ -226,4 +226,15 @@ public class AdminBizImpl implements AdminBiz{
 
 		return res;
 	}
+
+	@Override
+	public NoticeDto NoticeSelectOne(int noticenum) {
+		Connection connection = getConnection();
+
+		NoticeDto dto = dao.NoticeSelectOne(connection, noticenum);
+
+		close(connection);
+
+		return dto;
+	}
 }

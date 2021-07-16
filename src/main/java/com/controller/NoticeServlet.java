@@ -44,7 +44,6 @@ public class NoticeServlet extends HttpServlet {
                 paging.setTotalCount(count);
 
 
-
                 int usernum = Integer.parseInt(request.getParameter("usernum"));
 
                 UserDto dto = biz.UserSelect(usernum);
@@ -60,7 +59,32 @@ public class NoticeServlet extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             }
-//            case
+            case "watch": {
+                int noticenum = Integer.parseInt(request.getParameter("noticenum"));
+                int usernum = Integer.parseInt(request.getParameter("usernum"));
+
+                NoticeDto dto = biz.NoticeSelectOne(noticenum);
+
+                UserDto userDto = biz.UserSelect(usernum);
+
+                request.setAttribute("noticedto", dto);
+                request.setAttribute("userdto", userDto);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/NoticeSelect.jsp");
+                dispatcher.forward(request, response);
+
+                break;
+            }
+            case "update": {
+                int noticenum = Integer.parseInt(request.getParameter("noticenum"));
+
+                NoticeDto dto = biz.NoticeSelectOne(noticenum);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/NoticeUpdate.jsp");
+                dispatcher.forward(request, response);
+
+                break;
+            }
         }
     }
 
