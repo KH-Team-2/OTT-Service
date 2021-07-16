@@ -42,7 +42,7 @@ public class NoticeWriteBizImpl implements NoticeWriteBiz {
 		
 		close(con);
 		
-		return false;
+		return res;
 	}
 
 }

@@ -58,7 +58,7 @@ public class NoticeWriteDaoImpl implements NoticeWriteDao {
 			System.out.println("5. db 종료\n");
 		}
 		
-		return false;
+		return (res>0)?true:false;
 	}
 
 }
