@@ -106,6 +106,7 @@ public class NaverServlet extends HttpServlet {
         String pw = (String) object.get("id");
         String id = (String) object.get("email");
         String gender = (String) object.get("gender");
+        if(gender.equals("F")) {gender = "W";}
         String phone = (String) object.get("mobile");
         String name = (String) object.get("name");
         String birth = (String) object.get("birthday");

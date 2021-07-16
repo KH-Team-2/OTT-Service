@@ -205,9 +205,9 @@ public class RegServlet extends HttpServlet {
 
                 if (res) {
                     session.setAttribute("dto", dto);
-                    jsResponse("회원가입 성공", "search.do?command=main", response);
+                    jsResponse("회원가입 성공", "user/login.jsp", response);
                 } else {
-                    jsResponse("회원가입 실패", "search.do?command=main", response);
+                    jsResponse("회원가입 실패", "user/login.jsp", response);
                 }
 
 
