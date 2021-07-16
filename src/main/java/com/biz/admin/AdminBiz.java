@@ -21,4 +21,5 @@ public interface AdminBiz {
 	public boolean UserImgUdate(UserDto dto);
 
 	public List<NoticeDto> NoticeSelect();
+	public boolean DeleteNotice();
 }

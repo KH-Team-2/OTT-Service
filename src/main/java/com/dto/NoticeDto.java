@@ -5,6 +5,7 @@ import java.util.Date;
 public class NoticeDto {
     private int num;
     private int usernum;
+    private String title;
     private String content;
     private Date date;
     private int reference;
@@ -13,9 +14,10 @@ public class NoticeDto {
     public NoticeDto() {
     }
 
-    public NoticeDto(int num, int usernum, String content, Date date, int reference, String nickname) {
+    public NoticeDto(int num, int usernum, String title, String content, Date date, int reference, String nickname) {
         this.num = num;
         this.usernum = usernum;
+        this.title = title;
         this.content = content;
         this.date = date;
         this.reference = reference;
@@ -36,6 +38,14 @@ public class NoticeDto {
 
     public void setUsernum(int usernum) {
         this.usernum = usernum;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
