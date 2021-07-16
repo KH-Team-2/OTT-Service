@@ -10,7 +10,7 @@
 <% response.setContentType("text/html; charset=UTF-8"); %>
 <%
     UserDto udto = (UserDto) session.getAttribute("dto");
-	
+
 %>
 
 <!DOCTYPE html>
@@ -20,7 +20,9 @@
     <title>Insert title here</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
+
         $(function () {
+
             $("#header").load("header.jsp");
 
             let num;
@@ -165,7 +167,7 @@
             	wishadd()
             });
   		  });
-		 	
+
 
         function addviewlist() {
             var movienum = ${dto.movieNum};
@@ -186,14 +188,14 @@
                 }
             })
         }
-        
+
         function wishadd(){
         	 var movienum = ${dto.movieNum};
              var usernum = <%=udto.getUserNum()%>;
 
              var params = "?command=wishadd"+"&movienum=" + ${dto.movieNum} +
              "&usernum=" + <%=udto.getUserNum()%>;
-             
+
              $.ajax({
             	 type : "post",
             	 url : "user.do"+params,
@@ -203,7 +205,7 @@
             		 location.reload();
             	 },
             	 error : function(){
-            		 
+
             	 }
              })
         }
@@ -213,7 +215,7 @@
 
             var params = "?command=wishdel"+"&movienum=" + ${dto.movieNum} +
             "&usernum=" + <%=udto.getUserNum()%>;
-            
+
             $.ajax({
            	 type : "post",
            	 url : "user.do"+params,
@@ -223,7 +225,7 @@
            		location.reload();
            	 },
            	 error : function(){
-           		 
+
            	 }
             })
        }
@@ -427,8 +429,8 @@
        	#wishimg{
        		width: 30px;
        		height: 30px;
-       		
-       	
+
+
        	}
     </style>
 </head>
