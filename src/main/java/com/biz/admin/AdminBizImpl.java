@@ -141,6 +141,19 @@ public class AdminBizImpl implements AdminBiz{
 		return list;
 	}
 
+	@Override
+	public boolean DeleteNotice(int noticenum) {
+		Connection connection = getConnection();
+		boolean res = dao.DeleteNotice(connection, noticenum);
+		if (res) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+
+		return res;
+	}
+
 	public int FBWCount() {
 		Connection con= getConnection();
 		int res = dao.FBWCount(con);

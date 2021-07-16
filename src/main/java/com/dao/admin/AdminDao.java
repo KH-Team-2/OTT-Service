@@ -22,4 +22,6 @@ public interface AdminDao {
 	public boolean UserImgUdate(UserDto dto,Connection con);
 
     public List<NoticeDto> NoticeSelect(Connection connection);
+
+	boolean DeleteNotice(Connection connection, int noticenum);
 }

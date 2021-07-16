@@ -407,6 +407,25 @@ public class AdminDaoImpl implements AdminDao {
         return list;
     }
 
+    @Override
+    public boolean DeleteNotice(Connection connection, int noticenum) {
+        int res = 0;
+        PreparedStatement preparedStatement = null;
+        String sql = " DELETE FROM NOTICE WHERE NOTICENUM = ? ";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, noticenum);
+
+            res = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(preparedStatement);
+        }
+
+        return res>0;
+    }
+
     public int FBWCount(Connection con) {
         PreparedStatement pstm = null;
         ResultSet rs = null;
