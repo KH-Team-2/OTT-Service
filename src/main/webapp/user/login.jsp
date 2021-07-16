@@ -23,7 +23,6 @@
             margin: 50px auto;
             width: 500px;
             height: 500px;
-            border: rgb(248, 211, 28) solid 1px;
             color: rgb(248, 211, 28);
             font-family: 'NEXON Lv1 Gothic OTF';
             font-size: 20px;
@@ -44,6 +43,13 @@
 
         #logo {
             text-align: center;
+            width : 250px;
+            height: 125px;
+            margin : 0 auto;
+        }
+        #logoimg{
+        	width: 100%;
+        	height: 100%;
         }
 
         #logintb {
@@ -143,7 +149,7 @@
 </head>
 
 <body>
-<div id="logo"><h2><img src="http://www.khproject.kr/OTT_Service/img/logo.png"></h2></div>
+<div id="logo"><h2><img src="http://www.khproject.kr/OTT_Service/img/logo.png" id="logoimg"></h2></div>
 <br>
 <br>
 <div id="login">
