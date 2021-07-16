@@ -1,17 +1,15 @@
 package com.biz.admin;
 
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.rollback;
+import com.dao.admin.AdminDaoImpl;
+import com.dto.DecrationDto;
+import com.dto.FBWDto;
+import com.dto.NoticeDto;
+import com.dto.UserDto;
 
 import java.sql.Connection;
 import java.util.List;
 
-import com.dao.admin.AdminDaoImpl;
-import com.dto.DecrationDto;
-import com.dto.FBWDto;
-import com.dto.UserDto;
+import static common.JDBCTemplate.*;
 
 public class AdminBizImpl implements AdminBiz{
 	
@@ -133,6 +131,16 @@ public class AdminBizImpl implements AdminBiz{
 		close(con);
 		return result;
 	}
+
+	@Override
+	public List<NoticeDto> NoticeSelect() {
+		Connection connection = getConnection();
+		List<NoticeDto> list = dao.NoticeSelect(connection);
+		close(connection);
+
+		return list;
+	}
+
 	public int FBWCount() {
 		Connection con= getConnection();
 		int res = dao.FBWCount(con);

@@ -2,6 +2,7 @@ package com.dao.admin;
 
 import com.dto.DecrationDto;
 import com.dto.FBWDto;
+import com.dto.NoticeDto;
 import com.dto.UserDto;
 
 import java.sql.Connection;
@@ -20,4 +21,5 @@ public interface AdminDao {
 	public boolean DeleteDeclaration(int reviewNum,Connection con);
 	public boolean UserImgUdate(UserDto dto,Connection con);
 
+    public List<NoticeDto> NoticeSelect(Connection connection);
 }

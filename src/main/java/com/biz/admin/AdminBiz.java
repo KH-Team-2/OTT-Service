@@ -1,10 +1,11 @@
 package com.biz.admin;
 
-import java.util.List;
-
 import com.dto.DecrationDto;
 import com.dto.FBWDto;
+import com.dto.NoticeDto;
 import com.dto.UserDto;
+
+import java.util.List;
 
 public interface AdminBiz {
 	public List<DecrationDto> AdminDeclarationView();
@@ -18,4 +19,6 @@ public interface AdminBiz {
 	public boolean UserSecession(int UserNum);
 	public boolean DeleteDeclaration(int reviewNum);
 	public boolean UserImgUdate(UserDto dto);
+
+	public List<NoticeDto> NoticeSelect();
 }
