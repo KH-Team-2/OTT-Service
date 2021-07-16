@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface AdminDao {
 	public List<DecrationDto> AdminDeclarationView(Connection con);
-	public List<UserDto> AdminUserView(Connection con);
+	public List<UserDto> AdminUserView(Connection con,int page);
 	public List<UserDto> AdminUserSearch(String info, Connection con);
 	public boolean AdminUpdateInfo(UserDto dto, Connection con);
 	public List<FBWDto> AdminFBWView(Connection con,int page);

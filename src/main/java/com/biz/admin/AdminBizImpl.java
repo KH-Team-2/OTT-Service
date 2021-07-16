@@ -23,9 +23,9 @@ public class AdminBizImpl implements AdminBiz{
 	}
 
 	@Override
-	public List<UserDto> AdminUserView() {
+	public List<UserDto> AdminUserView(int page) {
 		Connection con = getConnection();
-		List<UserDto> list = dao.AdminUserView(con);
+		List<UserDto> list = dao.AdminUserView(con,page);
 		close(con);
 		return list;
 	}

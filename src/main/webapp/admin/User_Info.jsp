@@ -99,7 +99,7 @@
         	color:white;
         }
         th { background-color:#A3A3A3; color:black;  padding:5px; }
-        td { background-color:white; color:white;  background-color:black; padding:15px; }
+        td { background-color:white; color:white;  background-color:black; padding:8px; }
         #updatebtn{
         	color:black;
             background-color:white;

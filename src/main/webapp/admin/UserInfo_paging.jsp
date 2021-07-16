@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div id="paging">
-	<c:url var="action" value="admin.do?command=FBWList"/>
+	<c:url var="action" value="admin.do?command=User_Info"/>
 	<c:if test="${param.prev }">
 		<a href="${action }&page=${param.beginPage-1}">&lt;&lt;</a>
 	</c:if>

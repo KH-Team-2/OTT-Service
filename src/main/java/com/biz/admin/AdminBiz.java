@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AdminBiz {
 	public List<DecrationDto> AdminDeclarationView();
-	public List<UserDto> AdminUserView();
+	public List<UserDto> AdminUserView(int page);
 	public List<UserDto> AdminUserSearch(String info);
 	public boolean AdminUpdateInfo(UserDto dto);
 	public List<FBWDto> AdminFBWView(int page);

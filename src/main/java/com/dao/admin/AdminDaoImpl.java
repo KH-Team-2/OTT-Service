@@ -3,6 +3,7 @@ package com.dao.admin;
 import com.dto.*;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,32 +45,36 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public List<UserDto> AdminUserView(Connection con) {
+    public List<UserDto> AdminUserView(Connection con,int page) {
+    	int startNum = (page - 1) * 10 + 1;
+        int endNum = page * 10;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         List<UserDto> list = new ArrayList<UserDto>();
-        String sql = "SELECT * FROM USERTB WHERE STATUS='Y'";
+        String sql = "SELECT * FROM(SELECT* FROM(SELECT ROWNUM as rnum,USERTB.* FROM USERTB WHERE STATUS='Y')WHERE rnum>=?)WHERE rnum<=?";
 
         try {
             pstm = con.prepareStatement(sql);
+            pstm.setInt(1, startNum);
+            pstm.setInt(2, endNum);
             System.out.println("query 준비" + sql);
             rs = pstm.executeQuery();
             System.out.println("query 실행 및 리턴");
             while (rs.next()) {
                 UserDto dto = new UserDto();
-                dto.setUserNum(rs.getInt(1));
-                dto.setID(rs.getString(2));
-                dto.setPW(rs.getString(3));
-                dto.setEmail(rs.getString(4));
-                dto.setPhone(rs.getString(5));
-                dto.setName(rs.getString(6));
-                dto.setBirth(rs.getDate(7));
-                dto.setGender(rs.getString(8));
-                dto.setNickName(rs.getString(9));
-                dto.setImgURL(rs.getString(10));
-                dto.setStatus(rs.getString(11));
-                dto.setGrade(rs.getString(12));
-                dto.setUserDate(rs.getDate(13));
+                dto.setUserNum(rs.getInt(2));
+                dto.setID(rs.getString(3));
+                dto.setPW(rs.getString(4));
+                dto.setEmail(rs.getString(5));
+                dto.setPhone(rs.getString(6));
+                dto.setName(rs.getString(7));
+                dto.setBirth(rs.getDate(8));
+                dto.setGender(rs.getString(9));
+                dto.setNickName(rs.getString(10));
+                dto.setImgURL(rs.getString(11));
+                dto.setStatus(rs.getString(12));
+                dto.setGrade(rs.getString(13));
+                dto.setUserDate(rs.getDate(14));
 
                 list.add(dto);
             }

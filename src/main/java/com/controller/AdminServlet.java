@@ -47,7 +47,7 @@ public class AdminServlet extends HttpServlet {
 				Paging paging = new Paging();
 				paging.setPage(page);
 				paging.setTotalCount(biz.UserCount());
-				List<UserDto> list = biz.AdminUserView();
+				List<UserDto> list = biz.AdminUserView(page);
 				request.setAttribute("list", list);
 				request.setAttribute("paging", paging);
 				RequestDispatcher dispatch = request.getRequestDispatcher("admin/User_Info.jsp");
