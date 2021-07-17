@@ -18,7 +18,7 @@ import java.util.List;
 public class WatChaCrawling extends JDBCTemplate {
 
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    public static final String WEB_DRIVER_PATH = "/opt/chromedriver"; //드라이버 경로
+    public static final String WEB_DRIVER_PATH = "C:\\Users\\Moon\\Desktop\\chromedriver.exe"; //드라이버 경로
 
     public void Crawling() {
         Connection connection = getConnection();

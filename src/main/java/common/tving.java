@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public class tving {
 
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    public static final String WEB_DRIVER_PATH = "C:\\Users\\Moon\\Desktop\\opt\\chromedriver.exe"; //드라이버 경로
+    public static final String WEB_DRIVER_PATH = "C:\\Users\\Moon\\Desktop\\chromedriver.exe"; //드라이버 경로
 
     public static void main(String[] args) {
         //드라이버 설정
@@ -33,7 +34,7 @@ public class tving {
         WebDriver driver = new ChromeDriver(options);
 
         //이동을 원하는 url
-        String url = "https://www.tving.com/vod/popular";
+        String url = "https://www.tving.com/vod/home";
 
         //WebDriver을 해당 url로 이동한다.
         driver.get(url);
@@ -63,7 +64,7 @@ public class tving {
         } catch (InterruptedException e) {
         }
         WebElement el2 = driver.findElement(By.id("programList"));
-
+        
 
 
 
@@ -90,6 +91,7 @@ public class tving {
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+        
     }
 }
 
