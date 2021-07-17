@@ -1,9 +1,9 @@
 package com.controller;
 
-import com.biz.admin.AdminBizImpl;
-import com.dto.NoticeDto;
-import com.dto.Paging;
-import com.dto.UserDto;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
+
+import com.biz.admin.AdminBizImpl;
+import com.dto.NoticeDto;
+import com.dto.Paging;
+import com.dto.UserDto;
 
 @WebServlet("/NoticeServlet")
 public class NoticeServlet extends HttpServlet {
@@ -60,7 +63,18 @@ public class NoticeServlet extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             }
-//            case
+            
+            case "delete": {
+            	String[] noticenum = request.getParameterValues("checkArr");
+            	
+            	boolean res = biz.NoticeDelete(noticenum);
+            	
+            	
+            	
+            	
+            	break;
+            }
+            
         }
     }
 

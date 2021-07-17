@@ -29,4 +29,5 @@ public interface AdminBiz {
 
 	public boolean NoticeWrite(NoticeDto dto);
 	public boolean NoticeUpdate(NoticeDto dto);
+	public boolean NoticeDelete(String[] noticenum);
 }
