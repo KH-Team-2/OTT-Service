@@ -19,7 +19,14 @@
 	a:active {
 	text-decoration: none;
 	color: white;
-}
+	}
+	a:link{
+	text-decoration: none;
+	color: white;
+	}
+	a:hover{
+	text-decoration: underline;
+	}
 </style>
 </head>
 <body>

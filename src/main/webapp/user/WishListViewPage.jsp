@@ -171,7 +171,14 @@
 <body>
 <%
     String usernum = request.getParameter("usernum");
+<<<<<<< HEAD
 %>
+=======
+
+	UserDto udto = (UserDto) session.getAttribute("dto");
+	
+%>	
+>>>>>>> 6b183bda4476c9568e2b44412b4239a546d384a9
     <div class="area">
         
         <table>
@@ -180,7 +187,6 @@
                 <tr>
                     <th class="select"><input type="checkbox" id="allchk"></th>
                     <th class="title"><span class="blind"></span></th>
-                    <th class="alarm"><span class="blind"></span></th>
                     <th class="delete"><span class="blind"></span></th>
                 </tr>
             </thead>
@@ -196,7 +202,6 @@
 						<tr>
 							<td class="select"><input type="checkbox" class="chk"></td>
 							<td><a target="_parent" href="search.do?command=detail&title=${dto.title }&page=1">${dto.title }</a></td>
-							<td class="alarm"><img src="http://www.khproject.kr/OTT_Service/img/alarm.png" alt="알림"></td>
 							<td class="delete"><button class="delimgbtn" onclick="location.href='user.do?command=wishnumdel&wishnum=${dto.wishnum}&usernum=<%=usernum%>'" value="${dto.wishnum }"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></button></td>
 						</tr>
 						</c:forEach>

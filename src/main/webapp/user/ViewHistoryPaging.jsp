@@ -16,15 +16,21 @@
             color: white;
         }
 
-        a:visited {
-            text-decoration: none;
-            color: white;
-        }
-
-        a:active {
-            text-decoration: none;
-            color: white;
-        }
+	a:visited {
+	text-decoration: none;
+	color: white;
+	}
+	a:active {
+	text-decoration: none;
+	color: white;
+	}
+	a:link{
+	text-decoration: none;
+	color: white;
+	}
+	a:hover{
+	text-decoration: underline;
+	}
     </style>
 </head>
 <body>
