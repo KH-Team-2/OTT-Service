@@ -434,6 +434,10 @@
        		width: 30px;
        		height: 30px;
        	}
+        .imgurl {
+            width: 64px;
+            height: 64px;
+        }
     </style>
 </head>
 <body>
@@ -485,9 +489,11 @@
             <table id="reviewtb">
                 <col width="100">
                 <col width="100">
+                <col width="100">
                 <col width="600">
                 <thead style="background:#A3A3A3; color:black;">
                 <tr>
+                    <th>프로필 사진</th>
                     <th>닉네임</th>
                     <th>작성일</th>
                     <th colspan="2">리뷰내용</th>
@@ -497,12 +503,13 @@
                 <c:choose>
                     <c:when test="${empty list }">
                         <tr>
-                            <td colspan="5">리뷰가 없습니다.</td>
+                            <td colspan="6">리뷰가 없습니다.</td>
                         </tr>
                     </c:when>
                     <c:otherwise>
                         <c:forEach items="${list }" var="dto">
                             <tr class="${dto.reviewNum}">
+                                <td><img class="imgurl" src="${dto.imgurl}"></td>
                                 <td>${dto.nickName }</td>
                                 <td class="reviewdate">${dto.date }</td>
                                 <td class="onereviewinfo">${dto.reviewInfo }</td>

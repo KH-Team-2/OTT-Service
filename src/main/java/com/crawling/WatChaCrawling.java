@@ -18,7 +18,7 @@ import java.util.List;
 public class WatChaCrawling extends JDBCTemplate {
 
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    public static final String WEB_DRIVER_PATH = "C:\\Users\\Moon\\Desktop\\chromedriver.exe"; //드라이버 경로
+    public static final String WEB_DRIVER_PATH = "/opt/chromedriver"; //드라이버 경로
 
     public void Crawling() {
         Connection connection = getConnection();
@@ -39,7 +39,7 @@ public class WatChaCrawling extends JDBCTemplate {
         ChromeOptions options = new ChromeOptions();
         //브라우저가 눈에 보이지 않고 내부적으로 돈다.
         //설정하지 않을 시 실제 크롬 창이 생성되고, 어떤 순서로 진행되는지 확인할 수 있다.
-//        options.addArguments("headless");
+        options.addArguments("headless");
 
         //위에서 설정한 옵션은 담은 드라이버 객체 생성
         //옵션을 설정하지 않았을 때에는 생략 가능하다.
@@ -100,7 +100,7 @@ public class WatChaCrawling extends JDBCTemplate {
 
 //        영상 i개를 가져온다.
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 100; i++) {
             try {
 //                시간 딜레이(3초)
                 Thread.sleep(1000);
@@ -221,6 +221,7 @@ public class WatChaCrawling extends JDBCTemplate {
                     System.out.println("이미지주소 : " + imgurl);
                 }
             }
+            System.out.println(count);
             System.out.println(dto.getTitle());
             int result = insertMovie(connection, dto);
             if (result > 0) {
@@ -264,7 +265,6 @@ public class WatChaCrawling extends JDBCTemplate {
             rollback(connection);
         }*/
         close(connection);
-        System.out.println(count);
 
 
         try {
@@ -297,7 +297,7 @@ public class WatChaCrawling extends JDBCTemplate {
             preparedStatement.setString(2, dto.getYear());
             preparedStatement.setString(3, dto.getDirector());
             preparedStatement.setString(4, dto.getActor());
-            preparedStatement.setDouble(5, dto.getRate());
+            preparedStatement.setDouble(5, dto.getRate()*2);
             preparedStatement.setString(6, dto.getGenre());
             preparedStatement.setString(7, dto.getSummary());
             preparedStatement.setString(8, "https://watcha.com/search?q=" + dto.getTitle());

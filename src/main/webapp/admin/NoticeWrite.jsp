@@ -21,6 +21,10 @@
             }
         });
 
+        $('#writecancelbtn').click(function () {
+            window.history.back();
+        });
+
 
     });
 </script>
@@ -55,6 +59,15 @@
         width: 100%;
         height: 500px;
     }
+    button {
+		height:25px;
+	    width:50px;
+	    border-radius: 5px;
+	    font-size: 15px;
+	    border:2px solid #f8d31c;
+	    background-color : #f8d31c;
+	    color : black;
+    }
 </style>
 <body>
 <%
@@ -63,7 +76,7 @@
 <div id="headers"></div>
 <br>
 <br>
-<a href="notice.do?command=list&page=1&usernum=<%=dto.getUserNum()%>"><h2>공지사항</h2></a>
+<a href="../notice.do?command=list&page=1&usernum=<%=dto.getUserNum()%>"><h2>공지사항</h2></a>
 <br>
 <br>
 <br>
@@ -74,7 +87,7 @@
     <div id="noticeone">
         <div class="updatebutton" style="float: right">
             <button id="writesubmitbtn">작성</button>
-            <button id="writecancelbtn">취소</button>
+            <button id="writecancelbtn" type="button">취소</button>
         </div>
         <br><br>
         <span style="font-size: 25px">제목</span><input type="text" id="inputnoticetitle" name="title"

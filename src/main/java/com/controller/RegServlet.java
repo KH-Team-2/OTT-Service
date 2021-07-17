@@ -196,7 +196,7 @@ public class RegServlet extends HttpServlet {
                 dto.setPhone(request.getParameter("Phone"));
                 dto.setName(request.getParameter("Name"));
                 dto.setNickName((String) session.getAttribute("kakaonickname"));
-                dto.setImgURL(request.getParameter("profile"));
+                dto.setImgURL("http://www.khproject.kr/OTT_Service/img/default_profile.png");
 
                 String gender = request.getParameter("Gender");
                 if (gender.contentEquals("남")) {

@@ -45,8 +45,6 @@
         }
 
         %>
-
-
     });
 </script>
 <style>
@@ -89,6 +87,15 @@
     #noticeupdate {
         width: 1000px;
         margin: 0 auto;
+    }
+    button {
+		height:25px;
+	    width:50px;
+	    border-radius: 5px;
+	    font-size: 15px;
+	    border:2px solid #f8d31c;
+	    background-color : #f8d31c;
+	    color : black;
     }
 </style>
 <body>

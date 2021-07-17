@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ page import="com.dto.UserDto" %>
-<%@ page import="com.dto.WishListDto" %>
-<%@ page import="com.biz.wish.WishBiz" %>
-<%@ page import="com.biz.wish.WishBizImpl" %>
-
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
 
@@ -178,17 +172,8 @@
 <%
     String usernum = request.getParameter("usernum");
 
-	UserDto udto = (UserDto) session.getAttribute("dto");
-	
-	WishBiz biz = new WishBizImpl();
-	WishListDto wishdto = biz.wishfound(udto.getUserNum(),dto.getWishnum());
-	
-	if(wishdto==null) { %>
-		<button id="wishaddbtn"><img src="img/wish2.png" id="wishimg"></button>
-	<%
-	} else { %>
-		<button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>
-	<% } %>
+%>
+
 	
     <div class="area">
         
@@ -198,7 +183,6 @@
                 <tr>
                     <th class="select"><input type="checkbox" id="allchk"></th>
                     <th class="title"><span class="blind"></span></th>
-                    <th class="alarm"><span class="blind"></span></th>
                     <th class="delete"><span class="blind"></span></th>
                 </tr>
             </thead>
@@ -214,13 +198,14 @@
 						<tr>
 							<td class="select"><input type="checkbox" class="chk"></td>
 							<td><a target="_parent" href="search.do?command=detail&title=${dto.title }&page=1">${dto.title }</a></td>
-							<td class="alarm"><img src="http://www.khproject.kr/OTT_Service/img/alarm.png" alt="알림"></td>
 							<td class="delete"><button class="delimgbtn" onclick="location.href='user.do?command=wishnumdel&wishnum=${dto.wishnum}&usernum=<%=usernum%>'" value="${dto.wishnum }"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></button></td>
 						</tr>
 						</c:forEach>
 					</c:otherwise>               
                 </c:choose>
                 
+               
+            
                 <tr>
                     <td colspan="3">
                         <img src="http://www.khproject.kr/OTT_Service/img/delete.png" id="delbtn" class="delete">

@@ -12,7 +12,28 @@ public class ReviewDto {
 	private Date Date;
 	private int Count;
 	private String NickName;
-	
+	private String imgurl;
+
+	public ReviewDto(int rnum, int reviewNum, int userNum, int movieNum, String reviewInfo, java.util.Date date, int count, String nickName, String imgurl) {
+		this.rnum = rnum;
+		ReviewNum = reviewNum;
+		UserNum = userNum;
+		MovieNum = movieNum;
+		ReviewInfo = reviewInfo;
+		Date = date;
+		Count = count;
+		NickName = nickName;
+		this.imgurl = imgurl;
+	}
+
+	public String getImgurl() {
+		return imgurl;
+	}
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
+
 	public ReviewDto() { super(); }
 
 	public ReviewDto(int rnum, int reviewNum, int userNum, int movieNum, String reviewInfo, java.util.Date date, int count, String nickName) {

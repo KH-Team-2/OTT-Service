@@ -116,7 +116,7 @@
 <br>
 <br>
 <div id="allvideoview">
-	<a href="search.do?command=contentallview&page=1" id = "allvideobtn">모든 영상 목록조회</a>
+	<a href="search.do?command=contentallview&page=1" id = "allvideobtn">&lt;&lt;모든 영상 조회&gt;&gt;</a>
 </div>
 <div id="videoselect">
     <div class="videooption">최 신 순</div>
