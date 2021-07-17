@@ -127,12 +127,12 @@ public class NaverServlet extends HttpServlet {
         dto.setPhone(phone);
         dto.setPW(pw);
         UserBiz biz = new UserBizImpl();
-        dto = biz.Login(id, pw);
+        UserDto dto2 = biz.Login(id, pw);
 
         HttpSession session = request.getSession();
 
-        if(dto.getID() != null){
-            session.setAttribute("dto", dto);
+        if(dto2.getID() != null){
+            session.setAttribute("dto", dto2);
             session.setMaxInactiveInterval(60*60);
 
             response.sendRedirect("search.do?command=main");

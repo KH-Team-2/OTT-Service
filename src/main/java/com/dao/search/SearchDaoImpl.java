@@ -113,7 +113,7 @@ public class SearchDaoImpl implements SearchDao {
         List<ContentsDto> list = new ArrayList<>();
         String sql = " SELECT *\n" +
                 "FROM CONTENTS\n" +
-                "WHERE ROWNUM <= 10\n" +
+                "WHERE ROWNUM <= 20\n" +
                 "ORDER BY MovieNum DESC  ";
 
         try {
@@ -149,7 +149,7 @@ public class SearchDaoImpl implements SearchDao {
         List<ContentsDto> list = new ArrayList<>();
         String sql = " SELECT *\n" +
                 "FROM CONTENTS\n" +
-                "WHERE ROWNUM <= 10\n" +
+                "WHERE ROWNUM <= 20\n" +
                 "ORDER BY Rate DESC ";
 
         try {
