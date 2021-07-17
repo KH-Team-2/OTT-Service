@@ -297,7 +297,7 @@ public class WatChaCrawling extends JDBCTemplate {
             preparedStatement.setString(2, dto.getYear());
             preparedStatement.setString(3, dto.getDirector());
             preparedStatement.setString(4, dto.getActor());
-            preparedStatement.setDouble(5, dto.getRate());
+            preparedStatement.setDouble(5, dto.getRate()*2);
             preparedStatement.setString(6, dto.getGenre());
             preparedStatement.setString(7, dto.getSummary());
             preparedStatement.setString(8, "https://watcha.com/search?q=" + dto.getTitle());
