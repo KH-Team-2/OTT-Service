@@ -30,12 +30,8 @@ public interface AdminDao {
 	List<NoticeDto> NoticePagingList(Connection connection, int page);
 
 	String NoticeWriteSQL = "INSERT INTO NOTICE VALUES (NOTICE_SQ.nextval, ?, ?, ? , SYSDATE, 0)";
-<<<<<<< HEAD
 	String NoticeUpdateSQL = " UPDATE NOTICE SET TITLE=?, CONTENT=? WHERE NOTICENUM=? ";
-=======
-	String NoticeUpdateSQL = " UPDATE NOTICE SET TITLE=? CONTENT=? WHERE USERNUM=? ";
 	String NoticeDeleteSQL = " DELETE FROM NOTICE WHERE NOTICENUM=? ";
->>>>>>> feature/관리자_게시판
 
 	public boolean NoticeWrite(NoticeDto dto, Connection con);
 	public boolean NoticeUpdate(NoticeDto dto, Connection con);

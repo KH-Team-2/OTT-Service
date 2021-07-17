@@ -228,7 +228,6 @@ public class AdminBizImpl implements AdminBiz{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public NoticeDto NoticeSelectOne(int noticenum) {
 		Connection connection = getConnection();
 
@@ -237,7 +236,9 @@ public class AdminBizImpl implements AdminBiz{
 		close(connection);
 
 		return dto;
-=======
+	}
+
+	@Override
 	public boolean NoticeDelete(String[] noticenum) {
 		Connection con = getConnection();
 		
@@ -250,6 +251,5 @@ public class AdminBizImpl implements AdminBiz{
 		close(con);
 		
 		return res;
->>>>>>> feature/관리자_게시판
 	}
 }

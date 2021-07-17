@@ -1,9 +1,9 @@
 package com.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.List;
+import com.biz.admin.AdminBizImpl;
+import com.dto.NoticeDto;
+import com.dto.Paging;
+import com.dto.UserDto;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,18 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-=======
-
-import com.biz.admin.AdminBizImpl;
-import com.dto.NoticeDto;
-import com.dto.Paging;
-import com.dto.UserDto;
->>>>>>> feature/관리자_게시판
 
 @WebServlet("/NoticeServlet")
 public class NoticeServlet extends HttpServlet {
@@ -69,7 +61,6 @@ public class NoticeServlet extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             }
-<<<<<<< HEAD
             case "watch": {
                 int noticenum = Integer.parseInt(request.getParameter("noticenum"));
                 int usernum = Integer.parseInt(request.getParameter("usernum"));
@@ -128,20 +119,14 @@ public class NoticeServlet extends HttpServlet {
 
                 break;
             }
-=======
-            
             case "delete": {
             	String[] noticenum = request.getParameterValues("checkArr");
             	
             	boolean res = biz.NoticeDelete(noticenum);
             	
-            	
-            	
-            	
             	break;
             }
             
->>>>>>> feature/관리자_게시판
         }
     }
 

@@ -603,7 +603,6 @@ public class AdminDaoImpl implements AdminDao {
         return res > 0;
     }
 
-<<<<<<< HEAD
     @Override
     public NoticeDto NoticeSelectOne(Connection connection, int noticenum) {
         PreparedStatement preparedStatement = null;
@@ -644,7 +643,6 @@ public class AdminDaoImpl implements AdminDao {
 
         return dto;
     }
-=======
 	@Override
 	public boolean NoticeDelete(String[] noticenum, Connection con) {
 		PreparedStatement pstm = null;
@@ -684,7 +682,6 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return noticenum.length == res;
 	}
->>>>>>> feature/관리자_게시판
 
 
 }
