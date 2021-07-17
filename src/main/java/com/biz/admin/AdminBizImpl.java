@@ -237,4 +237,19 @@ public class AdminBizImpl implements AdminBiz{
 
 		return dto;
 	}
+
+	@Override
+	public boolean NoticeDelete(String[] noticenum) {
+		Connection con = getConnection();
+		
+		boolean res = dao.NoticeDelete(noticenum, con);
+		if(res) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		return res;
+	}
 }

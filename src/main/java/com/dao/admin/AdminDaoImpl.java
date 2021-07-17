@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.*;
 
 public class AdminDaoImpl implements AdminDao {
 
@@ -643,6 +643,45 @@ public class AdminDaoImpl implements AdminDao {
 
         return dto;
     }
+	@Override
+	public boolean NoticeDelete(String[] noticenum, Connection con) {
+		PreparedStatement pstm = null;
+		int res = 0;
+		int[] cnt = null;
+		
+		try {
+			pstm = con.prepareStatement(NoticeDeleteSQL);
+			
+			for(int i=0; i<noticenum.length; i++) {
+				pstm.setString(1, noticenum[i]);
+				
+				pstm.addBatch();
+				System.out.println("03. query 준비: "+NoticeDeleteSQL+" (삭제번호: "+noticenum[i]+")");
+				
+			}
+			cnt = pstm.executeBatch();
+			System.out.println("04. query 실행 및 리턴");
+			
+			for(int i=0; i<cnt.length; i++) {
+				if(cnt[i]==-2) {
+					res++;		
+				}
+			}
+			if(noticenum.length == res) {
+				commit(con);
+			}else {
+				rollback(con);
+			}
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return noticenum.length == res;
+	}
 
 
 }

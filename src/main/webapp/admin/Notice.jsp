@@ -11,10 +11,53 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(function () {
+<<<<<<< HEAD
         $("#headers").load("header.jsp");
+=======
+    	 $("#headers").load("header.jsp");
+>>>>>>> feature/관리자_게시판
 
         $('#insertbtn').click(function () {
             location.href = 'admin/NoticeWrite.jsp';
+        });
+        $("#deletetbtn").click(function () {
+        	var checkArr = [];
+        	var params ="?command=delete";
+        	
+        	$("input[name=check]:checked").each(function(){
+        		checkArr.push($(this).val());
+        		console.log(checkArr);
+        	});
+        	
+        	$.ajax({
+        		type: "POST",
+        		url: "notice.do"+params,
+        		traditional: true,
+        		data: {
+        			checkArr : checkArr
+        		},
+        		success: function(data){
+        			alert("공지사항 삭제 성공");
+        			location.reload();
+        		},
+        		error: function(){
+        			alert("error");
+        		}
+        	});
+        	
+        });
+        $("#allchk").change(function () {
+            if ($("#allchk").is(":checked")) {
+                $(".chk").prop("checked", true);
+            } else {
+                $(".chk").prop("checked", false);
+            }
+        });
+
+        $(".chk").change(function () {
+            if (!$(this).is(":checked")) {
+                $("#allchk").prop("checked", false);
+            }
         });
     });
 </script>
@@ -57,12 +100,14 @@
 <br>
 <div class="notice">
     <table class="noticetable" border="1px solid blue">
+    	<col width="30px" class="admin"/>
         <col width="135px"/>
         <col width="175px"/>
         <col width="570px"/>
         <col width="175px"/>
         <col width="135px"/>
         <tr>
+        	<td><input type="checkbox" id="allchk"></td>
             <td>번호</td>
             <td>닉네임</td>
             <td>제목</td>
@@ -79,6 +124,7 @@
                 <jsp:useBean id="list" scope="request" type="java.util.List"/>
                 <c:forEach items="${list }" var="dto">
                     <tr>
+                    	<td><input type="checkbox" class="chk" name="check" value="${dto.num }"></td>
                         <td>${dto.num}</td>
                         <td>${dto.nickname}</td>
                         <td><a href="notice.do?command=watch&noticenum=${dto.num}&usernum=<%=num%>">${dto.title}</a></td>

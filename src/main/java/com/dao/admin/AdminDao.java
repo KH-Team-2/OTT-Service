@@ -31,9 +31,11 @@ public interface AdminDao {
 
 	String NoticeWriteSQL = "INSERT INTO NOTICE VALUES (NOTICE_SQ.nextval, ?, ?, ? , SYSDATE, 0)";
 	String NoticeUpdateSQL = " UPDATE NOTICE SET TITLE=?, CONTENT=? WHERE NOTICENUM=? ";
+	String NoticeDeleteSQL = " DELETE FROM NOTICE WHERE NOTICENUM=? ";
 
 	public boolean NoticeWrite(NoticeDto dto, Connection con);
 	public boolean NoticeUpdate(NoticeDto dto, Connection con);
+	public boolean NoticeDelete(String[] noticenum, Connection con);
 
 
 	public NoticeDto NoticeSelectOne(Connection connection, int noticenum);

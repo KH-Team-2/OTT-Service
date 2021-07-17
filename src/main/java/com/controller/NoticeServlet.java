@@ -119,6 +119,14 @@ public class NoticeServlet extends HttpServlet {
 
                 break;
             }
+            case "delete": {
+            	String[] noticenum = request.getParameterValues("checkArr");
+            	
+            	boolean res = biz.NoticeDelete(noticenum);
+            	
+            	break;
+            }
+            
         }
     }
 

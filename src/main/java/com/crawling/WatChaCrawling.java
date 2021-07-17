@@ -13,18 +13,16 @@ import org.openqa.selenium.interactions.Actions;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WatChaCrawling extends JDBCTemplate {
 
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    public static final String WEB_DRIVER_PATH = "/opt/chromedriver"; //드라이버 경로
+    public static final String WEB_DRIVER_PATH = "C:\\Users\\Moon\\Desktop\\chromedriver.exe"; //드라이버 경로
 
     public void Crawling() {
         Connection connection = getConnection();
         int count = 0;
-        List<WatchaDto> list = new ArrayList<>();
         WatchaDto dto = null;
         String outline = null;
         String[] array = null;
@@ -68,7 +66,7 @@ public class WatChaCrawling extends JDBCTemplate {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 //        영상을 여러 개 불러오기 위해 스크롤을 미리 i번 내린다.
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             jse.executeScript("window.scrollBy(0,2000)", "");
             try {
 //                시간 딜레이(3초)
@@ -102,7 +100,7 @@ public class WatChaCrawling extends JDBCTemplate {
 
 //        영상 i개를 가져온다.
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
 //                시간 딜레이(3초)
                 Thread.sleep(1000);
@@ -117,7 +115,7 @@ public class WatChaCrawling extends JDBCTemplate {
 
             count++;
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
             }
             try {
@@ -128,7 +126,7 @@ public class WatChaCrawling extends JDBCTemplate {
 //
             }
             try {
-                Thread.sleep(4000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
 //
             }
@@ -188,12 +186,10 @@ public class WatChaCrawling extends JDBCTemplate {
                 if (titleimg == null) {
                     dto = new WatchaDto(1, title.getText(), year, director, actor, Double.parseDouble(rate.getText()), gener,
                             summary.getText(), imgurl);
-                    list.add(dto);
 //                    타이틀이 이미지일때
                 } else {
                     dto = new WatchaDto(1, titleimg.getAttribute("alt"), year, director, actor, Double.parseDouble(rate.getText()), gener,
                             summary.getText(), imgurl);
-                    list.add(dto);
                 }
 //                감독 없을 때
             } else {
@@ -211,12 +207,10 @@ public class WatChaCrawling extends JDBCTemplate {
                 if (titleimg == null) {
                     dto = new WatchaDto(1, title.getText(), year, "없음", actor, Double.parseDouble(rate.getText()), gener,
                             summary.getText(), imgurl);
-                    list.add(dto);
 
                 } else {
                     dto = new WatchaDto(1, titleimg.getAttribute("alt"), year, "없음", actor, Double.parseDouble(rate.getText()), gener,
                             summary.getText(), imgurl);
-                    list.add(dto);
                     System.out.println("제목 : " + titleimg.getAttribute("alt"));
                     System.out.println("줄거리 : " + summary.getText());
                     System.out.println("감독 : " + director);
@@ -227,7 +221,13 @@ public class WatChaCrawling extends JDBCTemplate {
                     System.out.println("이미지주소 : " + imgurl);
                 }
             }
-            System.out.println(list.get(i).getTitle());
+            System.out.println(dto.getTitle());
+            int result = insertMovie(connection, dto);
+            if (result > 0) {
+                commit(connection);
+            } else {
+                rollback(connection);
+            }
 
             //1초 대기
             try {
@@ -241,9 +241,7 @@ public class WatChaCrawling extends JDBCTemplate {
         }
 
 //        영화 정보를 집어 넣는다.
-        int result = insertMovie(connection, list);
-        if (result > 0) {
-            commit(connection);
+
             /*System.out.println("Contents에 저장");
 //            영화 정보가 정상적으로 저장 됐을 때 플랫폼 테이블에도 저장한다.
             boolean res = insertPlatform(connection);
@@ -254,22 +252,20 @@ public class WatChaCrawling extends JDBCTemplate {
             } else {
                 rollback(connection);
             }*/
-        } else {
-            rollback(connection);
-        }
+
 //        크롤링을 해서 가져오기 때문에 중북되는 값이 있을 수 있다.
 //        그 중복되는 값들을 모두 삭제한다.
-        boolean delres = overlap(connection);
+        /*boolean delres = overlap(connection);
         System.out.println(delres);
         if (delres) {
             System.out.println("중복 제거 완료");
             commit(connection);
         } else {
             rollback(connection);
-        }
+        }*/
         close(connection);
         System.out.println(count);
-        
+
 
         try {
             //드라이버가 null이 아니라면
@@ -285,7 +281,7 @@ public class WatChaCrawling extends JDBCTemplate {
         }
     }
 
-    private int insertMovie(Connection connection, List<WatchaDto> list) {
+    private int insertMovie(Connection connection, WatchaDto dto) {
         PreparedStatement preparedStatement = null;
         String insertSql = " INSERT INTO CONTENTS VALUES " +
                 " (MOVIE_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, ? ) ";
@@ -296,44 +292,26 @@ public class WatChaCrawling extends JDBCTemplate {
         try {
             preparedStatement = connection.prepareStatement(insertSql);
 
-            int cnt = 0;
-            for (int i = 0; i < list.size(); i++) {
-                WatchaDto dto = list.get(i);
-                preparedStatement.setString(1, dto.getTitle());
-                preparedStatement.setString(2, dto.getYear());
-                preparedStatement.setString(3, dto.getDirector());
-                preparedStatement.setString(4, dto.getActor());
-                preparedStatement.setDouble(5, dto.getRate());
-                preparedStatement.setString(6, dto.getGenre());
-                preparedStatement.setString(7, dto.getSummary());
-                preparedStatement.setString(8, "https://watcha.com/search?q=" + dto.getTitle());
-                preparedStatement.setString(9, dto.getMovieImg());
 
-                preparedStatement.addBatch();
+            preparedStatement.setString(1, dto.getTitle());
+            preparedStatement.setString(2, dto.getYear());
+            preparedStatement.setString(3, dto.getDirector());
+            preparedStatement.setString(4, dto.getActor());
+            preparedStatement.setDouble(5, dto.getRate());
+            preparedStatement.setString(6, dto.getGenre());
+            preparedStatement.setString(7, dto.getSummary());
+            preparedStatement.setString(8, "https://watcha.com/search?q=" + dto.getTitle());
+            preparedStatement.setString(9, dto.getMovieImg());
 
-                cnt++;
-            }
+            res = preparedStatement.executeUpdate();
 
-            int[] result = preparedStatement.executeBatch();
-
-            for (int i :
-                    result) {
-                if (i == -2) {
-                    res++;
-                }
-            }
-
-        } catch (SQLException e) {
+        } catch (
+                SQLException e) {
             e.printStackTrace();
         } finally {
             close(preparedStatement);
         }
-        if (res == list.size()) {
-            return res;
-        } else {
-            return 0;
-        }
-
+        return res;
     }
 
     private boolean insertPlatform(Connection connection) {
@@ -356,7 +334,6 @@ public class WatChaCrawling extends JDBCTemplate {
                 "end; ";
 
 
-
         try {
             preparedStatement = connection.prepareStatement(platformsql);
 
@@ -366,7 +343,7 @@ public class WatChaCrawling extends JDBCTemplate {
         } finally {
             close(preparedStatement);
         }
-        return res>0;
+        return res > 0;
     }
 
     private boolean overlap(Connection connection) {
@@ -404,5 +381,5 @@ public class WatChaCrawling extends JDBCTemplate {
         return result > 0;
     }
 
-    
+
 }
