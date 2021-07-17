@@ -67,12 +67,11 @@ public class RegServlet extends HttpServlet {
                     System.out.println(File.separator);
                     System.out.println(fileName);
                     
-                    String tempimg = ATTACHES_DIR + File.separator + fileName;
-                    tempimg = fileName.replaceAll("\\\\", "");
+                    String tempimg = ATTACHES_DIR + fileName;
                     System.out.println(tempimg);
 
                     if (part.getSize() > 0) {
-                        part.write(ATTACHES_DIR + File.separator + fileName);
+                        part.write(ATTACHES_DIR + fileName);
                         part.delete();
                     }
 
