@@ -434,6 +434,10 @@
        		width: 30px;
        		height: 30px;
        	}
+        .imgurl {
+            width: 64px;
+            height: 64px;
+        }
     </style>
 </head>
 <body>
@@ -505,7 +509,7 @@
                     <c:otherwise>
                         <c:forEach items="${list }" var="dto">
                             <tr class="${dto.reviewNum}">
-                                <td><img src="${dto.imgurl}"></td>
+                                <td><img class="imgurl" src="${dto.imgurl}"></td>
                                 <td>${dto.nickName }</td>
                                 <td class="reviewdate">${dto.date }</td>
                                 <td class="onereviewinfo">${dto.reviewInfo }</td>

@@ -184,7 +184,7 @@
 
 <div id="wrap">
     <br><br>
-    <h2>로그인</h2>
+    <h2>회원가입</h2>
     
     <form id="reg_form" method="post" action="../reg.do" enctype="multipart/form-data">
     
@@ -264,7 +264,7 @@
         		<tr>
         			<td colspan="2">
 			        	<input type="submit" value="가입" class="btn">
-			        	<input type="button" value="취소" class="btn" onclick="location.href='../index/index.jsp'">
+			        	<input type="button" value="취소" class="btn" onclick="location.href='login.jsp'">
         			</td>
         		</tr>
         </table>
