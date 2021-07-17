@@ -343,7 +343,7 @@
         }
 
         #alarmBtn {
-            display: none;
+            /*display: none;*/
             background: no-repeat;
             border: none;
             cursor: pointer;

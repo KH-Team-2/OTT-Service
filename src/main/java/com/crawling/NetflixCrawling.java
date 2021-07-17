@@ -40,7 +40,7 @@ public class NetflixCrawling extends JDBCTemplate{
     	WebDriver driver = new ChromeDriver(options);
     	Actions actions = new Actions(driver);
     	//url
-    		String url = "https://www.netflix.com/kr/browse/genre/1365";
+    		String url = "https://www.netflix.com/kr/browse/genre/5763";
     		//i 번째 url 로 이동
     		driver.get(url);
     		
@@ -120,41 +120,49 @@ public class NetflixCrawling extends JDBCTemplate{
             	dto.setSummary(summary);
             	dto.setContenturl(conurl);
             	dto.setMovieImg(MovieImg);
-            	list.add(dto);
             	try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                 }
             	
+            	int result = insertMovie(con, dto);
+            	if(result>0) {
+            		commit(con);
+            	}else {
+            		rollback(con);
+            	}
             }
+            	close(con);
             
-           int result = insertMovie(con,list);
-           if(result > 0) {
-        	   commit(con);
-        	   System.out.println("contents에 저장했음");
-        	   
-        	   boolean res = insertPlatform(con);
-        	   System.out.println(res);
-        	   if(res) {
-        		   System.out.println("platform에 저장");
-        		   commit(con);
-        	   }else {
-        		   rollback(con);
-        	   }
-           }else {
-        	   rollback(con);
-           }
+            
+            
+//           int result = insertMovie(con,list);
+//           if(result > 0) {
+//        	   commit(con);
+//        	   System.out.println("contents에 저장했음");
+//        	   
+//        	   boolean res = insertPlatform(con);
+//        	   System.out.println(res);
+//        	   if(res) {
+//        		   System.out.println("platform에 저장");
+//        		   commit(con);
+//        	   }else {
+//        		   rollback(con);
+//        	   }
+//           }else {
+//        	   rollback(con);
+//           }
            
-           boolean delres = overlap(con);
+//           boolean delres = overlap(con);
+//           
+//           if(delres) {
+//        	   System.out.println("중복제거완료");
+//        	   commit(con);
+//           }else {
+//        	   rollback(con);
+//           }
            
-           if(delres) {
-        	   System.out.println("중복제거완료");
-        	   commit(con);
-           }else {
-        	   rollback(con);
-           }
            
-           close(con);
            
            try {
                //드라이버가 null이 아니라면
@@ -175,47 +183,32 @@ public class NetflixCrawling extends JDBCTemplate{
     	
     	
     }
-    private int insertMovie(Connection con, List<NetflixDto> list) {
+    private int insertMovie(Connection con, NetflixDto dto) {
     	PreparedStatement pstm = null;
     	String sql = "INSERT INTO CONTENTS VALUES"+
     					"(MOVIE_SQ.NEXTVAL,?,?,?,?,?,?,?,?,SYSDATE,?)";
     	int res = 0;
     	try {
-			pstm = con.prepareStatement(sql);
-			for(int i=0; i<list.size();i++) {
-				NetflixDto dto = list.get(i);
-				pstm.setString(1, dto.getTitle());
-				pstm.setString(2, dto.getYear());
-				pstm.setString(3, dto.getDirector());
-				pstm.setString(4, dto.getActor());
-				pstm.setDouble(5, dto.getRate());
-				pstm.setString(6, dto.getGenre());
-				pstm.setString(7, dto.getSummary());
-				pstm.setString(8, dto.getContenturl());
-				pstm.setString(9, dto.getMovieImg());
-				
-				pstm.addBatch();
-			}
-			System.out.println("list꺼 다 준비완료");
-			int[] result = pstm.executeBatch();
-			System.out.println(result);
-			for(int i : result) {
-				if(i == -2) {
-					res++;
-				}
-			}
-			System.out.println("res : " + res + "listsize : " + list.size());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstm);
-		}
-    	if(res==list.size()) {
-    		return res;
-    	}else {
-    		return 0;
+    		pstm = con.prepareStatement(sql);
+    		pstm.setString(1, dto.getTitle());
+			pstm.setString(2, dto.getYear());
+			pstm.setString(3, dto.getDirector());
+			pstm.setString(4, dto.getActor());
+			pstm.setDouble(5, dto.getRate());
+			pstm.setString(6, dto.getGenre());
+			pstm.setString(7, dto.getSummary());
+			pstm.setString(8, dto.getContenturl());
+			pstm.setString(9, dto.getMovieImg());
+			
+			res = pstm.executeUpdate();
+			
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}finally {
+    		close(pstm);
     	}
     	
+    	return res;
     }
     
     private boolean insertPlatform(Connection connection) {

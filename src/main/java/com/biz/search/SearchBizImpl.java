@@ -59,4 +59,21 @@ public class SearchBizImpl implements SearchBiz {
 		return list;
 	}
 
+	@Override
+	public List<ContentsDto> SearchAllList(int page) {
+		Connection con = getConnection();
+		List<ContentsDto> list = dao.SearchAllList(con, page);
+		close(con);
+		return list;
+	}
+
+	@Override
+	public int ContentsListCount() {
+		Connection con = getConnection();
+		int res = dao.ContentsListCount(con);
+		close(con);
+		return res;
+	}
+	
+
 }

@@ -45,7 +45,9 @@ public class TvingCrwaling2 extends JDBCTemplate{
         
 	    for (int i = 0; i < 5; i++) { jse.executeScript("window.scrollBy(0,5000)", ""); wait(2000); }
 	    
-	    System.out.println(driver.findElement(By.xpath("//*[@id=\"movieList\"]/div[4]/a/div[2]")).getText());
+	    System.out.println(driver.findElement(By.xpath("//*[@id=\"movieList\"]/div[119]")).getText());
+	    System.out.println("=========================================");
+	    System.out.println(driver.findElement(By.xpath("//*[@id=\"movieList\"]/div[119]")).getText());
 	  
 	    
 	    /*

@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset=UTF-8"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +11,56 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(function () {
-        $("#headers").load("../header.jsp");
+        $("#headers").load("header.jsp");
 
         $('#insertbtn').click(function () {
-            location.href = 'notice.do?command=write';
+            location.href = 'admin/NoticeWrite.jsp';
         });
+        $("#deletebtn").click(function () {
+            var checkArr = [];
+            var params = "?command=delete";
+
+            $("input[name=check]:checked").each(function () {
+                checkArr.push($(this).val());
+                console.log(checkArr);
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "notice.do" + params,
+                traditional: true,
+                data: {
+                    checkArr: checkArr
+                },
+                success: function (data) {
+                    alert("공지사항 삭제 성공");
+                    location.reload();
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+
+        });
+        $("#allchk").change(function () {
+            if ($("#allchk").is(":checked")) {
+                $(".chk").prop("checked", true);
+            } else {
+                $(".chk").prop("checked", false);
+            }
+        });
+
+        $(".chk").change(function () {
+            if (!$(this).is(":checked")) {
+                $("#allchk").prop("checked", false);
+            }
+        });
+        
+        if("${dto.grade}"!="ADMIN"){
+        	$(".admin, #deletebtn, #insertbtn").hide();
+        	$("input[type=checkbox]").parent().hide();
+        }
+        
     });
 </script>
 <style>
@@ -26,22 +73,28 @@
     .notice {
         border: 1px solid yellow;
     }
-    tr{
+
+    tr {
         text-align: center;
     }
-    td{
+
+    td {
         height: 50px;
     }
-    #insertbtn{
+
+    #insertbtn {
         margin-left: 1150px;
     }
-    a:link{
+
+    a:link {
         color: white;
     }
-    a:visited{
+
+    a:visited {
         color: white;
     }
-    a:hover{
+
+    a:hover {
         color: #a3a3a3;
     }
 </style>
@@ -55,12 +108,14 @@
 <br>
 <div class="notice">
     <table class="noticetable" border="1px solid blue">
+        <col width="30px" class="admin"/>
         <col width="135px"/>
         <col width="175px"/>
         <col width="570px"/>
         <col width="175px"/>
         <col width="135px"/>
         <tr>
+            <td><input type="checkbox" id="allchk"></td>
             <td>번호</td>
             <td>닉네임</td>
             <td>제목</td>
@@ -77,9 +132,11 @@
                 <jsp:useBean id="list" scope="request" type="java.util.List"/>
                 <c:forEach items="${list }" var="dto">
                     <tr>
+                        <td><input type="checkbox" class="chk" name="check" value="${dto.num }"></td>
                         <td>${dto.num}</td>
                         <td>${dto.nickname}</td>
-                        <td><a href="notice.do?command=watch&noticenum=${dto.num}&usernum=<%=num%>">${dto.title}</a></td>
+                        <td><a href="notice.do?command=watch&noticenum=${dto.num}&usernum=<%=num%>">${dto.title}</a>
+                        </td>
                         <td>${dto.date}</td>
                         <td>${dto.reference}</td>
                     </tr>
@@ -87,7 +144,7 @@
             </c:otherwise>
         </c:choose>
     </table>
-    <button id="deletetbtn">삭제</button>
+    <button id="deletebtn">삭제</button>
     <button id="insertbtn">작성</button>
     <jsp:include page="../admin/NoticePaging.jsp">
         <jsp:param name="usernum" value="<%=num%>"/>
