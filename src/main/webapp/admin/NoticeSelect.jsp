@@ -107,7 +107,7 @@
 <div id="noticeone">
     <span id="noticetitle" style="font-size: 30px">${noticedto.title}</span><br><br>
     <span id="noticedate" style="font-size: 20px">${noticedto.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        ${noticedto.nickname}</span>
+        ${noticedto.nickname}</span><span style="float: right; font-size: 20px">조회 ${noticedto.reference}</span>
     <hr>
     <br><br><br>
     <textarea disabled="disabled" style="background: black; resize: none; border: none;
@@ -116,6 +116,8 @@ color: white; font-size: 20px">${noticedto.content}</textarea>
         <button id="updatebtn">수정</button>
     </div>
 </div>
+
+
 <form id="formsubmit" action="notice.do?command=update" method="post">
     <input type="hidden" value="${noticedto.num}" name="noticenum">
     <div id="noticeupdate" style="display: none">

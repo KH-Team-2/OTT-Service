@@ -12,7 +12,7 @@
         $("#headers").load("header.jsp");
 
         $('#insertbtn').click(function () {
-            location.href = 'notice.do?command=write';
+            location.href = 'admin/NoticeWrite.jsp';
         });
     });
 </script>
