@@ -84,7 +84,16 @@
             width: 200px;
             height: 120px;
         }
-
+		#allvideoview{
+			margin : 0 auto;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+		#allvideobtn{
+			text-decoration: none;
+			color : rgb(248, 211, 28);
+			font-size: 30px;
+		}
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
@@ -106,10 +115,9 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-
+<div id="allvideoview">
+	<a href="search.do?command=contentallview&page=1" id = "allvideobtn">모든 영상 목록조회</a>
+</div>
 <div id="videoselect">
     <div class="videooption">최 신 순</div>
     <br>

@@ -13,4 +13,7 @@ public interface SearchDao {
     public ContentsDto SearchDetail(Connection con, String title);
 
     List<FBWDto> SearchFBW(Connection con, String title);
+    
+    public List<ContentsDto> SearchAllList(Connection con, int page);
+    public int ContentsListCount(Connection con);
 }

@@ -15,4 +15,7 @@ public interface SearchBiz {
     ContentsDto SearchDetail(String title);
 
     List<FBWDto> SearchFBW(String title);
+    
+    List<ContentsDto> SearchAllList(int page);
+    public int ContentsListCount();
 }

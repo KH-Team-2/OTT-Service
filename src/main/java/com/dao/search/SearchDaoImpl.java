@@ -250,4 +250,64 @@ public class SearchDaoImpl implements SearchDao {
         return list;
     }
 
+	@Override
+	public List<ContentsDto> SearchAllList(Connection con, int page) {
+		int startNum = (page - 1) * 20 + 1;
+        int endNum = page * 20;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String sql = "SELECT B.* FROM(SELECT ROWNUM as rnum,A.* FROM(SELECT * FROM CONTENTS ORDER BY MOVIENUM ASC) A) B WHERE rnum>=? and rnum<=?";
+		List<ContentsDto> list = new ArrayList<ContentsDto>();
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, startNum);
+			pstm.setInt(2, endNum);
+			
+			rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				ContentsDto dto = new ContentsDto();
+				dto.setMovieNum(rs.getInt(2));
+				dto.setTitle(rs.getString(3));
+				dto.setOpenYear(rs.getString(4));
+				dto.setDirector(rs.getString(5));
+				dto.setActor(rs.getString(6));
+				dto.setRate(rs.getDouble(7));
+				dto.setGenre(rs.getString(8));
+				dto.setSummary(rs.getString(9));
+				dto.setMovieAddr(rs.getString(10));
+				dto.setUpdateYear(rs.getDate(11));
+				dto.setMovieImg(rs.getString(12));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstm);
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int ContentsListCount(Connection con) {
+		PreparedStatement pstm = null;
+        ResultSet rs = null;
+        int count = 0;
+        String sql = "SELECT COUNT(*) as count FROM CONTENTS";
+        try {
+            pstm = con.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return count;
+	}
+
 }

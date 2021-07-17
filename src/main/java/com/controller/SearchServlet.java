@@ -81,12 +81,14 @@ public class SearchServlet extends HttpServlet {
                 break;
             }
             case "detail": {
+            	request.setCharacterEncoding("UTF-8");
+                response.setContentType("text/html; charset=UTF-8");
                 int page = 1;
                 if (request.getParameter("page") != null) {
                     page = Integer.parseInt(request.getParameter("page"));
                 }
-
                 String title = request.getParameter("title");
+                System.out.println(title);
 
                 ContentsDto dto = biz.SearchDetail(title);
                 int movienum = dto.getMovieNum();
@@ -112,6 +114,22 @@ public class SearchServlet extends HttpServlet {
 
                 response.sendRedirect("user/logout.jsp");
                 break;
+            }
+            case "contentallview" :{
+            	int page = 1;
+            	if (request.getParameter("page") != null) {
+                    page = Integer.parseInt(request.getParameter("page"));
+                }
+            	Paging paging = new Paging();
+            	paging.setPage(page);
+            	paging.setDisplayRow(20);
+            	paging.setTotalCount(biz.ContentsListCount());
+            	List<ContentsDto> list = biz.SearchAllList(page);
+            	request.setAttribute("list", list);
+            	request.setAttribute("paging", paging);
+            	RequestDispatcher dispatch = request.getRequestDispatcher("search/AllListView.jsp");
+                dispatch.forward(request, response);
+            	break;
             }
         }
     }
