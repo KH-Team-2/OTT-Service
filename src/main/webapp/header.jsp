@@ -129,7 +129,7 @@
                 location.href = 'search.do?command=logout';
             });
 
-            $('.alarmBtn').hover(function () {
+            /*$('.alarmBtn').hover(function () {
                 if (alarmBtn_Count == 0) {
                     $('.userAlarm').show('fast');
                     setTimeout(function () {
@@ -143,7 +143,7 @@
                         alarmBtn_Count = 0;
                     }, 300);
                 }
-            });
+            });*/
 
             $('.userAlarmTable').find('tr td:last-child').css('border', 'none');
             $('.alarmContentsArea').hover(function () {

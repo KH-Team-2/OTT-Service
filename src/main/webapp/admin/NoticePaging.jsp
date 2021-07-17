@@ -8,7 +8,7 @@
     <meta charset="EUC-KR">
     <title>Insert title here</title>
     <style type="text/css">
-        body{
+        #paging{
             text-align: center;
         }
         #paging{
