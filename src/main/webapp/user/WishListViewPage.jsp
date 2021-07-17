@@ -113,6 +113,10 @@
 			background: none;
 		}
 	</style>
+<%
+    String usernum = request.getParameter("usernum");
+
+%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	
@@ -164,15 +168,37 @@
 				   }
 			   });
 		   });
+		   $("#delbtn").click(function () {
+	            var checkArr = [];
+	            var params = "?command=wishmuldel&usernum="+<%=usernum%>;
+
+	            $("input[name=check]:checked").each(function () {
+	                checkArr.push($(this).val());
+	                console.log(checkArr);
+	            });
+
+	            $.ajax({
+	                type: "POST",
+	                url: "user.do" + params,
+	                traditional: true,
+	                data: {
+	                    checkArr: checkArr
+	                },
+	                success: function (data) {
+	                    alert("찜 삭제 성공");
+	                    location.reload();
+	                },
+	                error: function () {
+	                    alert("error");
+	                }
+	            });
+
+	        });
 		});
 	
 </script>
 </head>
 <body>
-<%
-    String usernum = request.getParameter("usernum");
-
-%>
 
 	
     <div class="area">
@@ -196,7 +222,7 @@
 					<c:otherwise>
 						<c:forEach items="${list }" var="dto">
 						<tr>
-							<td class="select"><input type="checkbox" class="chk"></td>
+							<td class="select"><input type="checkbox" class="chk" name="check" value="${dto.wishnum}"></td>
 							<td><a target="_parent" href="search.do?command=detail&title=${dto.title }&page=1">${dto.title }</a></td>
 							<td class="delete"><button class="delimgbtn" onclick="location.href='user.do?command=wishnumdel&wishnum=${dto.wishnum}&usernum=<%=usernum%>'" value="${dto.wishnum }"><img src="http://www.khproject.kr/OTT_Service/img/delete.png" alt="삭제"></button></td>
 						</tr>

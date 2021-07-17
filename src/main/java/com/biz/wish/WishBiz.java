@@ -13,4 +13,5 @@ public interface WishBiz{
 	public int WishCount(int usernum);
 	public WishListDto wishfound(int usernum,int movinum);
 	public boolean WishNumDel(int wishnum);
+	public boolean WishMulDel(String usernum, String[] wishnum);
 }

@@ -1,6 +1,6 @@
 package com.dao.wish;
 
-import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -189,6 +189,49 @@ public class WishDaoImpl implements WishDao{
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+
+
+	@Override
+	public boolean WishMulDel(String usernum, String[] wishnum, Connection con) {
+		PreparedStatement pstm = null;
+		int res = 0;
+		int[] cnt = null;
+		
+		try {
+			pstm = con.prepareStatement(WishMulDelSQL);
+			
+			for(int i=0; i<wishnum.length; i++) {
+				pstm.setString(1, wishnum[i]);
+				pstm.setString(2, usernum);
+				
+				pstm.addBatch();
+				System.out.println("03. query 준비: "+WishMulDelSQL+" (삭제번호: "+wishnum[i]+")");
+				
+			}
+			cnt = pstm.executeBatch();
+			System.out.println("04. query 실행 및 리턴");
+			
+			for(int i=0; i<cnt.length; i++) {
+				if(cnt[i]==-2) {
+					res++;		
+				}
+			}
+			if(wishnum.length == res) {
+				commit(con);
+			}else {
+				rollback(con);
+			}
+		} catch (SQLException e) {
+			System.out.println("3/4단계 에러");
+			e.printStackTrace();
+		} finally {
+			close(pstm);
+			System.out.println("05. db 종료\n");
+		}
+		
+		return wishnum.length == res;
 	}
 	
 
