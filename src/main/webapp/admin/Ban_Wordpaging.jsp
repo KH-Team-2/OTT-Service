@@ -15,8 +15,21 @@
 		font-size : 20pt;
 		color : white;
 	}
-	a {
+	a:visited {
 	text-decoration: none;
+	color: white;
+	}
+	a:active {
+	text-decoration: none;
+	color: white;
+	}
+	a:link{
+	text-decoration: none;
+	color: white;
+	}
+	a:hover{
+	text-decoration: underline;
+	}	text-decoration: none;
 }
 </style>
 </head>
