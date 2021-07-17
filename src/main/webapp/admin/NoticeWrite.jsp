@@ -1,11 +1,7 @@
-<%@ page import="com.dto.UserDto" %><%--
-  Created by IntelliJ IDEA.
-  User: wj
-  Date: 2021/07/17
-  Time: 10:06 오후
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.dto.UserDto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset=UTF-8"); %>
 <html>
 <head>
     <title>Title</title>
