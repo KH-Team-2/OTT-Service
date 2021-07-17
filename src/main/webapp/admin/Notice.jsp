@@ -71,8 +71,8 @@
     }
 
     .notice {
-        border: 1px solid yellow;
-    }
+/*         border: 1px solid yellow;
+ */    }
 
     tr {
         text-align: center;
@@ -97,6 +97,27 @@
     a:hover {
         color: #a3a3a3;
     }
+    
+    #deletebtn{
+		position: absolute;
+		right: 225px;
+	    height:25px;
+	    width:50px;
+	    border-radius: 5px;
+	    font-size: 15px;
+	    border:2px solid #f8d31c;
+	    background-color : #f8d31c;
+	    color : black;
+	}
+	#insertbtn{
+		height:25px;
+	    width:50px;
+	    border-radius: 5px;
+	    font-size: 15px;
+	    border:2px solid #f8d31c;
+	    background-color : #f8d31c;
+	    color : black;
+	}
 </style>
 <body>
 <%
