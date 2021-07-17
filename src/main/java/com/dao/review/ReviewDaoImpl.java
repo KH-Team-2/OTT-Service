@@ -175,7 +175,7 @@ public class ReviewDaoImpl implements ReviewDao {
     public List<ReviewDto> ReviewPagingList(Connection con, int movienum, int page) {
         int startNum = (page - 1) * 10 + 1;
         int endNum = page * 10;
-        String sql = " SELECT A.*, u.Nickname\n" +
+        String sql = " SELECT A.*, u.Nickname, u.ImgUrl\n" +
                 "FROM (\n" +
                 "         SELECT *\n" +
                 "         FROM (\n" +
@@ -201,7 +201,7 @@ public class ReviewDaoImpl implements ReviewDao {
             while (rs.next()) {
                 ReviewDto temp = new ReviewDto(rs.getInt(1), rs.getInt(2), rs.getInt(3),
                         rs.getInt(4), rs.getString(5),
-                        rs.getDate(6), rs.getInt(7), rs.getString(8));
+                        rs.getDate(6), rs.getInt(7), rs.getString(8), rs.getString(9));
 
                 res.add(temp);
             }

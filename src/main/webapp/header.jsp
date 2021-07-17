@@ -88,7 +88,6 @@
         // window.history.forward(1);
 
 
-
         var alarmBtn_Count = 0;
         var userBtn_Count = 0;
         var menues_count = 0;
@@ -160,30 +159,19 @@
                 $("#modal").hide('fast');
             });
 
-            /*$("#modalalarm").click(function(){
-            	if($("#modalalarm").css("border")=="0px none rgb(248, 211, 28)"){
-	            	$("#modalalarm").css("border","1px solid rgb(248, 211, 28)");
-            	}else{
-            		$("#modalalarm").css("border","none");
-            	}
-            });
-            $("#modalalarm2").click(function(){
-            	if($("#modalalarm2").css("border")=="0px none rgb(248, 211, 28)"){
-	            	$("#modalalarm2").css("border","1px solid rgb(248, 211, 28)");
-            	}else{
-            		$("#modalalarm2").css("border","none");
-            	}
-            });*/
-            $("#userBtnImg").click(function () {
-                if (confirm("임시 확인창 입니다. \n확인 : 로그인 창 / 취소 : 개별 페이지 창")) {
-                    location.href = "user/login.jsp";
-                } else {
-                    if (confirm("임시 확인창 입니다. \n확인 : 회원 페이지 / 취소 : 어드민 페이지")) {
-                        location.href = "../user/mypage.jsp";
-                    } else {
-                        location.href = "../admin/adminmypage.jsp";
-                    }
+            $('#userBtnImg').click(function () {
+                <%
+                if (dto.getGrade().equals("USER")){
+                    %>
+                location.href = 'viewlist.do?command=viewlist&pages=2&usernum=<%=dto.getUserNum()%>';
+                <%
+                } else{
+                    %>
+                location.href = 'admin.do?command=adminlist&pages=1';
+                <%
                 }
+
+                %>
             });
 
             $("#logo").click(function () {
@@ -208,10 +196,11 @@
                 $("#adminmenues").hide('fast');
             });
             <%
-}
+    }
 
-%>
-        });
+    %>
+        })
+        ;
     </script>
 
     <style type="text/css">
@@ -234,9 +223,10 @@
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus,
-        input:-webkit-autofill:active  {
+        input:-webkit-autofill:active {
             -webkit-box-shadow: 0 0 0 30px black inset !important;
         }
+
         input:-webkit-autofill {
             -webkit-text-fill-color: yellow !important;
         }
@@ -245,7 +235,7 @@
             width: 1200px;
             height: 60px;
             margin: 0 auto;
-            margin-bottom : 60px;
+            margin-bottom: 60px;
             background: black;
             padding-top: 50px;
             padding-bottom: 120px;
@@ -262,10 +252,10 @@
             cursor: pointer;
         }
 
-        #logoImg{
-        	width: 100%;
-        	height: 100%;
-        	object-fit: cover;
+        #logoImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
 
         }
 
