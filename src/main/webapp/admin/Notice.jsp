@@ -16,7 +16,7 @@
         $('#insertbtn').click(function () {
             location.href = 'admin/NoticeWrite.jsp';
         });
-        $("#deletetbtn").click(function () {
+        $("#deletebtn").click(function () {
             var checkArr = [];
             var params = "?command=delete";
 
@@ -55,6 +55,12 @@
                 $("#allchk").prop("checked", false);
             }
         });
+        
+        if("${dto.grade}"!="ADMIN"){
+        	$(".admin, #deletebtn, #insertbtn").hide();
+        	$("input[type=checkbox]").parent().hide();
+        }
+        
     });
 </script>
 <style>
@@ -138,7 +144,7 @@
             </c:otherwise>
         </c:choose>
     </table>
-    <button id="deletetbtn">삭제</button>
+    <button id="deletebtn">삭제</button>
     <button id="insertbtn">작성</button>
     <jsp:include page="../admin/NoticePaging.jsp">
         <jsp:param name="usernum" value="<%=num%>"/>
