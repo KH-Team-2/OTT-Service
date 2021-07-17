@@ -182,7 +182,7 @@
                     <input type="radio" name="Gender" value="여">여자
                 </td>
             </tr>
-         
+         <!-- 
             <tr>
                 <td>프로필 사진</td>
                     <td>
@@ -190,7 +190,7 @@
                     <span id="imgurl" name="ImgName"></span>
                     <input type="file" id="input-file" name="profile" accept="image/*">
                     </td>
-            </tr>
+            </tr> -->
  
        		<tr>
        			<td colspan="2">
