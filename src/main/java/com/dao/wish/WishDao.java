@@ -12,6 +12,7 @@ public interface WishDao {
 	String WishListSQL = "SELECT WISHNUM,USERNUM,TITLE,MOVIEADDR,WISHDATE,ALARM FROM WISHLIST JOIN CONTENTS USING(MOVIENUM) WHERE USERNUM=? ORDER BY WISHNUM DESC";
 	String WishDeleteSQL = " DELETE FROM WISHLIST WHERE USERNUM=? AND MOVIENUM=? ";
 	String WishCountSQL = " SELECT COUNT(*) as count FROM WISHLIST WHERE USERNUM = ? ";
+	String WishMulDelSQL = " DELETE FROM WISHLIST WHERE WISHNUM=? AND USERNUM=?";
 	
 	public boolean WishAdd(Connection con, int usernum, int movienum);
 	public List<WishDto> WishList(Connection con, int usernum,int page);
@@ -19,4 +20,5 @@ public interface WishDao {
 	public int WishCount(Connection con, int usernum);
 	public WishListDto wishfound(int usernum,int movinum,Connection con);
 	public boolean WishNumDel(int wishnum,Connection con);
+	public boolean WishMulDel(String usernum, String[] wishnum, Connection con);
 }
