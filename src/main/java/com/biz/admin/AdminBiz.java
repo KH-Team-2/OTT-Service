@@ -29,5 +29,9 @@ public interface AdminBiz {
 
 	public boolean NoticeWrite(NoticeDto dto);
 	public boolean NoticeUpdate(NoticeDto dto);
+<<<<<<< HEAD
 	public NoticeDto NoticeSelectOne(int noticenum);
+=======
+	public boolean NoticeDelete(String[] noticenum);
+>>>>>>> feature/관리자_게시판
 }
