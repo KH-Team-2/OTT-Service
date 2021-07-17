@@ -174,5 +174,17 @@
         <url-pattern>/notice.do</url-pattern>
     </servlet-mapping>
 	
+	<servlet>
+	  	<servlet-name>AlarmServlet</servlet-name>
+	  	<servlet-class>com.controller.AlarmServlet</servlet-class>
+  	</servlet>
+  
+  	<servlet-mapping>
+	  	<servlet-name>AlarmServlet</servlet-name>
+	  	<url-pattern>/alarm.do</url-pattern>
+  	</servlet-mapping>
+  	
+	<!--    ///////////////////////////////////////////////     -->
+	
 	
 </web-app>

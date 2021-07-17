@@ -3,6 +3,7 @@ package com.dto;
 import java.sql.Date;
 
 public class WishDto {
+	
 	private int wishnum;
 	private int usernum;
 	private String title;

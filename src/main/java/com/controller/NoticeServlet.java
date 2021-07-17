@@ -11,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/NoticeServlet")
@@ -77,11 +79,43 @@ public class NoticeServlet extends HttpServlet {
             }
             case "update": {
                 int noticenum = Integer.parseInt(request.getParameter("noticenum"));
+                String title = request.getParameter("title");
+                String content = request.getParameter("content");
+                NoticeDto dto = new NoticeDto();
+                dto.setTitle(title);
+                dto.setContent(content);
+                dto.setNum(noticenum);
 
-                NoticeDto dto = biz.NoticeSelectOne(noticenum);
+                HttpSession session = request.getSession();
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("admin/NoticeUpdate.jsp");
-                dispatcher.forward(request, response);
+                UserDto userDto = (UserDto) session.getAttribute("dto");
+
+                boolean res = biz.NoticeUpdate(dto);
+
+                response.sendRedirect("notice.do?command=watch&noticenum=" + noticenum + "&usernum=" + userDto.getUserNum());
+
+                break;
+            }
+
+            case "write": {
+                int usernum = Integer.parseInt(request.getParameter("usernum"));
+                String title = request.getParameter("title");
+                String content = request.getParameter("content");
+                String nickname = request.getParameter("nickname");
+                NoticeDto dto = new NoticeDto();
+                dto.setUsernum(usernum);
+                dto.setNickname(nickname);
+                dto.setTitle(title);
+                dto.setContent(content);
+
+                boolean res = biz.NoticeWrite(dto);
+
+                if (res) {
+                    jsResponse("작성 완료", "notice.do?command=list&page=1&usernum=" + usernum, response);
+                } else {
+                    jsResponse("작성 실패", "notice.do?command=list&page=1&usernum=" + usernum, response);
+                }
+
 
                 break;
             }
@@ -92,4 +126,10 @@ public class NoticeServlet extends HttpServlet {
         doGet(request, response);
     }
 
+    private void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
+        String s = "<script> alert('" + msg + "'); location.href='" + url + "'; </script>";
+
+        PrintWriter out = response.getWriter();
+        out.print(s);
+    }
 }

@@ -244,7 +244,7 @@ public class WatChaCrawling extends JDBCTemplate {
         int result = insertMovie(connection, list);
         if (result > 0) {
             commit(connection);
-            System.out.println("Contents에 저장");
+            /*System.out.println("Contents에 저장");
 //            영화 정보가 정상적으로 저장 됐을 때 플랫폼 테이블에도 저장한다.
             boolean res = insertPlatform(connection);
             System.out.println(res);
@@ -253,7 +253,7 @@ public class WatChaCrawling extends JDBCTemplate {
                 commit(connection);
             } else {
                 rollback(connection);
-            }
+            }*/
         } else {
             rollback(connection);
         }

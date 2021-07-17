@@ -1,11 +1,11 @@
-		package com.biz.alarm;
+package com.biz.alarm;
 
+import java.util.List;
 
-		import java.util.List;
+import com.dto.AlarmDto;
 
-import com.dto.UserDto;
-
-		public interface AlarmBiz {
-			public boolean AlarmSwitch(int num);
-			 public List<UserDto> AlarmLoading();
-		}
+public interface AlarmBiz {
+	
+	public boolean AlarmSwitch( int usernum, int movienum );
+	public List<AlarmDto> AlarmLoading(int usernum);
+}

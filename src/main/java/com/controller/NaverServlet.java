@@ -154,7 +154,6 @@ public class NaverServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         out.print(s);
-
     }
 
 

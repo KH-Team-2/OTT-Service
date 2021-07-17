@@ -214,7 +214,7 @@ public class SearchPWServlet extends HttpServlet {
 			
 			if(lastres == true) {
 				PrintWriter writer = response.getWriter();
-				writer.println("<script>location.href='index/index.jsp'</script>");				
+				writer.println("<script>location.href='index/start.jsp'</script>");				
 			} else { 
 				PrintWriter writer = response.getWriter();
 				writer.println("<script>alert('알 수 없는 오류가 발생했습니다.');</script>");		

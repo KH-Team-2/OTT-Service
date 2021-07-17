@@ -14,6 +14,35 @@ import com.dto.WishListDto;
 
 public class AlarmDaoImpl {
 	
+	public boolean AlarmSwitch(Connection con, int usernum, int movienum ) {
+		
+		PreparedStatement pstm = null;
+
+		String sql = "UPDATE WISHLIST\r\n" + 
+				"SET ALARM = \r\n" + 
+				"	( CASE\r\n" + 
+				"		WHEN ALARM='Y' THEN 'N'\r\n" + 
+				"		WHEN ALARM='N' THEN 'Y'\r\n" + 
+				"	END )\r\n" + 
+				"WHERE USERNUM=? AND MOVIENUM=?";
+
+		int res = 0;
+
+		try {	
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, usernum);
+			pstm.setInt(2, movienum);
+			
+			res = pstm.executeUpdate();
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstm);
+		}
+		return res>=1?true:false;
+	}
+	
 	
 	public List<UserDto> AlarmLoading(Connection con) {
 		PreparedStatement pstm = null;
@@ -51,27 +80,4 @@ public class AlarmDaoImpl {
 		
 		return list;
 	}
-
-	
-public void AlarmSwitch(Connection con, WishListDto dto) {
-	PreparedStatement pstm = null;
-
-	String sql = "UPDATE SP_WISHLIST SET ALARM = CASE WHEN ALARM='Y' THEN 'N' WHEN ALARM='Y' THEM 'N' WHERE USERNUM=? AND MOVIENUM=?;";
-
-	int res = 0;
-
-	try {	
-		pstm = con.prepareStatement(sql);
-		pstm.setString(1, dto.getAlarm());
-		
-		res = pstm.executeUpdate();
-		
-	}catch (SQLException e) {
-		e.printStackTrace();
-	}finally {
-		close(pstm);
-	}
-	return;
-}
-
 }
