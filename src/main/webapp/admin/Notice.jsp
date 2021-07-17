@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(function () {
-        $("#headers").load("../header.jsp");
+        $("#headers").load("header.jsp");
 
         $('#insertbtn').click(function () {
             location.href = 'notice.do?command=write';

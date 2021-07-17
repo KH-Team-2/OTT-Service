@@ -11,16 +11,46 @@
     <title>Title</title>
 </head>
 <%
-    UserDto dto = (UserDto) request.getSession();
+    UserDto dto = (UserDto) session.getAttribute("dto");
 %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(function () {
-        $("#headers").load("../header.jsp");
+        $("#headers").load("header.jsp");
 
         $('#updatebtn').click(function () {
-            location.href = 'notice.do?command=update&usernum=<%=dto.getUserNum()%>&noticenum=${noticedto.num}'
+            $('#noticeupdate').show();
+            $('#noticeone').hide();
         });
+        $('#updatecancel').click(function () {
+            $('#noticeone').show();
+            $('#noticeupdate').hide();
+        });
+
+        $('#updatesubmit').click(function () {
+            if ($('#noticearea').val().trim() == "" || $('#inputnoticetitle').val().trim() == "") {
+                alert('빈 칸을 채워주세요');
+                return false;
+            } else {
+                $('#formsubmit').submit();
+            }
+        });
+        <%
+        if (dto.getGrade().equals("USER")){
+            %>
+        $('#updatebtn').css('display', 'none');
+        <%
+
+        }else{
+            %>
+        $('#updatebtn').show();
+        <%
+
+        }
+
+        %>
+
+
     });
 </script>
 <style>
@@ -29,36 +59,81 @@
         margin: 0 auto;
         color: white;
     }
-    td{
+
+    td {
         height: 80px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:link {
+        color: white;
+    }
+
+    a:visited {
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    #noticeone {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    textarea {
+        width: 100%;
+        height: 500px;
+    }
+
+    #noticeupdate {
+        width: 1000px;
+        margin: 0 auto;
     }
 </style>
 <body>
 <div id="headers"></div>
 <br>
 <br>
+<a href="notice.do?command=list&page=1&usernum=<%=dto.getUserNum()%>"><h2>공지사항</h2></a>
 <br>
 <br>
 <br>
 <br>
-<table border="1" style="text-align: center; margin: 0 auto">
-    <tr>
-        <td width="100px">TITLE</td>
-        <td width="600px" style="text-align: left">${noticedto.title}</td>
-        <td width="100px">작성 날짜</td>
-        <td style="text-align: left">${noticedto.date}</td>
-    </tr>
-    <tr><td></td></tr>
-    <tr>
-        <td style="text-align: left">
-            ${noticedto.content}
-        </td>
-        <td>작성자</td>
-        <td style="text-align: left">${noticedto.nickname}</td>
-        <td>조회수</td>
-        <td>${noticedto.reference}</td>
-    </tr>
-</table>
-<button id="updatebtn">수정</button>
+<div id="noticeone">
+    <span id="noticetitle" style="font-size: 30px">${noticedto.title}</span><br><br>
+    <span id="noticedate" style="font-size: 20px">${noticedto.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ${noticedto.nickname}</span>
+    <hr>
+    <br><br><br>
+    <textarea disabled="disabled" style="background: black; resize: none; border: none;
+color: white; font-size: 20px">${noticedto.content}</textarea>
+    <div class="updatebutton" style="float: right">
+        <button id="updatebtn">수정</button>
+    </div>
+</div>
+<form id="formsubmit" action="notice.do?command=update" method="post">
+    <input type="hidden" value="${noticedto.num}" name="noticenum">
+    <div id="noticeupdate" style="display: none">
+    <span id="noticetitleupdate" style="font-size: 30px">
+        <input type="text" id="inputnoticetitle" name="title" value="${noticedto.title}"
+               style="background: black; width: 100%; color: white; font-size: 30px">
+    </span><br><br>
+        <span id="noticedateupdate" style="font-size: 20px">${noticedto.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            ${noticedto.nickname}</span>
+        <hr>
+        <br><br><br>
+        <textarea name="content" id="noticearea" style="background: black; resize: none; border: 1px solid yellow;
+color: white; font-size: 20px">${noticedto.content}</textarea>
+        <div class="updatebutton" style="float: right">
+            <button id="updatesubmit">완료</button>
+            <button id="updatecancel">취소</button>
+        </div>
+    </div>
+</form>
 </body>
 </html>

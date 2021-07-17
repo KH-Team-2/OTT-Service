@@ -1,9 +1,11 @@
 package com.dao.admin;
 
-import com.dto.*;
+import com.dto.DecrationDto;
+import com.dto.FBWDto;
+import com.dto.NoticeDto;
+import com.dto.UserDto;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -585,7 +587,7 @@ public class AdminDaoImpl implements AdminDao {
             pstm = con.prepareStatement(NoticeUpdateSQL);
             pstm.setString(1, dto.getTitle());
             pstm.setString(2, dto.getContent());
-            pstm.setInt(3, dto.getUsernum());
+            pstm.setInt(3, dto.getNum());
             System.out.println("03. query 준비");
 
             res = pstm.executeUpdate();
