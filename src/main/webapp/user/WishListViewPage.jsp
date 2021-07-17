@@ -171,14 +171,10 @@
 <body>
 <%
     String usernum = request.getParameter("usernum");
-<<<<<<< HEAD
-%>
-=======
 
-	UserDto udto = (UserDto) session.getAttribute("dto");
+%>
+
 	
-%>	
->>>>>>> 6b183bda4476c9568e2b44412b4239a546d384a9
     <div class="area">
         
         <table>
