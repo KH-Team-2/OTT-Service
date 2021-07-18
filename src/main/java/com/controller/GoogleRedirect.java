@@ -37,12 +37,14 @@ public class GoogleRedirect extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		System.out.println("1");
+		
 		String code = request.getParameter("code");
 		String query = "code=" + code;
 		
 		query += "&client_id=" + "348827184821-njga1dt2kpens8d8kvj6u5kcn3h5omi2.apps.googleusercontent.com";
 		query += "&client_secret=" + "hYAvQ_rof2v3Mpk19ZTl_9E9";
-		query += "&redirect_uri=" + "http://localhost:8100/OTT-Service/GoogleRedirect.do";
+		query += "&redirect_uri=" + "http://khproject.kr/OTT_Service/GoogleRedirect.do";
 		query += "&grant_type=authorization_code";
 		
 		String tokenJson = getHttpConnection("https://accounts.google.com/o/oauth2/token", query);
