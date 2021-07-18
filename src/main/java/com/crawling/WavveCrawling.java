@@ -28,6 +28,8 @@ public class WavveCrawling extends JDBCTemplate {
 
     public static final String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static final String WEB_DRIVER_PATH = "C:/Users/LazRuby/Desktop/Files/chromedriver.exe";
+    
+    public static void main(String[] args) { WavveCrawling crawling = new WavveCrawling(); crawling.Crawling(); }
 
     public void Crawling() {
     	
@@ -67,11 +69,11 @@ public class WavveCrawling extends JDBCTemplate {
         for(int j=1; j<11; j++) {
         	
         	//url = "https://www.wavve.com/list/VN4?api=apis.wavve.com%252Fcf%252Fvod%252Fpopularcontents%253Forderby%253Dviewtime%2526contenttype%253Dvod%2526genre%253D01%2526WeekDay%253Dall%2526uitype%253DVN4%2526uiparent%253DGN56-VN4%2526uirank%253D2%2526broadcastid%253D126147%2526offset%253D0%2526limit%253D20%2526uicode%253DVN4&came=BandViewGnbCode&page=" + j;
-        	url = "https://www.wavve.com/list/VN3?api=apis.wavve.com%252Fcf%252Fvod%252Fpopularcontents%253Forderby%253Dviewtime%2526contenttype%253Dvod%2526genre%253D02%2526WeekDay%253Dall%2526uitype%253DVN3%2526uiparent%253DGN57-VN3%2526uirank%253D2%2526broadcastid%253D164058%2526offset%253D0%2526limit%253D20%2526uicode%253DVN3&came=BandViewGnbCode&page="+j;
-        	//url = "https://www.wavve.com/list/MN85?api=apis.wavve.com%252Fcf%252Fmovie%252Fcontents%253Fsptheme%253Dsvod%2526price%253Dall%2526orderby%253Dviewtime%2526contenttype%253Dmovie%2526genre%253Dall%2526WeekDay%253Dall%2526uitype%253DMN85%2526uiparent%253DGN59-MN85%2526uirank%253D4%2526broadcastid%253D176159%2526offset%253D0%2526limit%253D20%2526uicode%253DMN85%2526mtype%253Dsvod&came=BandViewGnbCode&page=" + j;
+        	//url = "https://www.wavve.com/list/VN3?api=apis.wavve.com%252Fcf%252Fvod%252Fpopularcontents%253Forderby%253Dviewtime%2526contenttype%253Dvod%2526genre%253D02%2526WeekDay%253Dall%2526uitype%253DVN3%2526uiparent%253DGN57-VN3%2526uirank%253D2%2526broadcastid%253D164058%2526offset%253D0%2526limit%253D20%2526uicode%253DVN3&came=BandViewGnbCode&page="+j;
+        	url = "https://www.wavve.com/list/MN85?api=apis.wavve.com%252Fcf%252Fmovie%252Fcontents%253Fsptheme%253Dsvod%2526price%253Dall%2526orderby%253Dviewtime%2526contenttype%253Dmovie%2526genre%253Dall%2526WeekDay%253Dall%2526uitype%253DMN85%2526uiparent%253DGN59-MN85%2526uirank%253D4%2526broadcastid%253D176159%2526offset%253D0%2526limit%253D20%2526uicode%253DMN85%2526mtype%253Dsvod&came=BandViewGnbCode&page=" + j;
             driver.get(url);
             
-            wait(1500);  System.out.println();
+            wait(3000);  System.out.println();
 
         	for(int i=1; i<21; i++) {
         		   
@@ -116,7 +118,13 @@ public class WavveCrawling extends JDBCTemplate {
             	
             	driver.navigate().back();
             	
-            	wait(4000); countt++; System.out.println(countt);
+            	wait(2000);    
+            	
+            	if(i>=10) { jse.executeScript("window.scrollBy(0, 1000)", ""); }
+            	
+            	wait(1000);
+            	
+            	countt++; System.out.println(countt);
             } 	
         }
       
@@ -165,7 +173,7 @@ public class WavveCrawling extends JDBCTemplate {
     
     static public ContentsDto setDto(WebDriver driver, ContentsDto dto) {
     	
-    	for(int i=1; i<=4; i++) {
+    	for(int i=1; i<=6; i++) {
 	
     		try { if( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").length() < 1) { continue; } }
     		catch ( Exception e ) { System.out.println("없는 항목 체크"); continue; }
@@ -174,7 +182,7 @@ public class WavveCrawling extends JDBCTemplate {
     			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
     			text = text.replaceAll("장르", "");
     			text = text.replaceAll(", ,", "");
-    			dto.setGenre("#예능, " + text);
+    			dto.setGenre("#영화" + text);
     			continue;
     		} 
     		else if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("출연") ) {
@@ -214,7 +222,7 @@ public class WavveCrawling extends JDBCTemplate {
     		}
     		else if ( getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]").contains("개봉") ) {
     			String text = getText(driver, "//*[@id=\"g-contents\"]/div[1]/div/div[2]/div[3]/div/p[" + i + "]");
-    			dto.setDirector(text.replaceAll("개봉", ""));
+    			dto.setOpenYear(text.replaceAll("개봉", ""));
     			continue;
     		}
     	}

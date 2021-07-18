@@ -93,4 +93,20 @@ public class WishBizImpl implements WishBiz{
 		return res;
 	}
 
+	@Override
+	public boolean WishMulDel(String usernum, String[] wishnum) {
+		Connection con = getConnection();
+
+		boolean res = dao.WishMulDel(usernum, wishnum, con);
+		
+		if(res) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		return res;
+	}
+
 }

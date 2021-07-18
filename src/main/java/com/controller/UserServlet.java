@@ -175,6 +175,14 @@ public class UserServlet extends HttpServlet {
 				
 				break;
 			}
+			case "wishmuldel": {
+				String usernum = request.getParameter("usernum");
+            	String[] wishnum = request.getParameterValues("checkArr");
+
+            	boolean res = wishbiz.WishMulDel(usernum, wishnum);
+            	
+            	break;
+            }
 			
 		}
     }
