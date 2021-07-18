@@ -195,7 +195,7 @@
        		<tr>
        			<td colspan="2">
 		        	<input type="submit" value="완료" class="btn">
-		        	<input type="button" value="취소" class="btn" onclick="location.href='../index/index.jsp'">
+		        	<input type="button" value="취소" class="btn" onclick="location.href='../user/login.jsp'">
        			</td>
        		</tr>
         </table>
