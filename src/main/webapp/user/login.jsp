@@ -56,7 +56,7 @@
             margin: 0 auto;
         }
 
-        input[type=text] {
+        input[type=text],input[type=password] {
             height: 40px;
             width: 200px;
             border-radius: 10px;
@@ -161,7 +161,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="pw" placeholder=" PW" id="PW">
+                    <input type="password" name="pw" placeholder=" PW" id="PW">
                 </td>
             </tr>
             <tr>
