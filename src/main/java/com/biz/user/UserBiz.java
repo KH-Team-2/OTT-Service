@@ -1,9 +1,11 @@
 package com.biz.user;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.dto.UserDto;
 
 public interface UserBiz {
-	public boolean CreateAccount(UserDto dto);
+	public boolean CreateAccount(HttpServletResponse response, UserDto dto);
 	public UserDto Login(String id, String pw);
 	public boolean UpdateInfo(UserDto dto);
 	public String SearchID(String name, String email, String phone);

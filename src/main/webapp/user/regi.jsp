@@ -230,6 +230,11 @@
                         return;
                     }
                 });
+                
+                if( $("#PW").val() != $("#PW2").val() ) {
+                	alert("비밀번호와 비밀번호 재확인이 일치하여야합니다 !");
+                	return false;
+                }
 
                 if (idcheck == false) {
                     alert("아이디 중복체크를 해주세요.");
@@ -261,7 +266,6 @@
                 }
             });
         }
-
     </script>
 
 </head>
@@ -288,26 +292,25 @@
             <tr>
                 <td>비밀번호</td>
                 <td>
-                    <input type="password" name="PW" maxlength="15" class="updateval">
+                    <input type="password" id="PW" name="PW" maxlength="15" class="updateval">
                 </td>
             </tr>
 
             <tr>
                 <td>비밀번호 확인</td>
                 <td>
-                    <input type="password" name="PW2" maxlength="15" class="updateval">
+                    <input type="password" id="PW2" name="PW2" maxlength="15" class="updateval">
                 </td>
             </tr>
 
             <tr>
                 <td>이메일</td>
                 <td>
+                
                     <input type="text" name="Email_1" maxlength="30" class="updateval">
                     <span>@</span>
-                    <input type="text" name="Email_2" id="str_email02" style="width:100px;" disabled
-                           value="naver.com">
-                    <select style="margin-right:10px" name="selectEmail"
-                            id="selectEmail">
+                    <input type="text" name="Email_2" id="str_email02" style="width:100px;" readonly value="naver.com">
+                    <select style="margin-right:10px" name="selectEmail" id="selectEmail">
                         <option value="1">직접입력</option>
                         <option value="naver.com" selected>naver.com</option>
                         <option value="hanmail.net">hanmail.net</option>

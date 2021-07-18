@@ -138,7 +138,7 @@ public class NaverServlet extends HttpServlet {
             response.sendRedirect("search.do?command=main");
             return;
         }
-        boolean res = biz.CreateAccount(dto);
+        boolean res = biz.CreateAccount(response, dto);
         if (res) {
             session.setAttribute("dto", dto);
             jsResponse("회원가입 성공", "user/login.jsp", response);

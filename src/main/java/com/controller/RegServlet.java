@@ -91,19 +91,17 @@ public class RegServlet extends HttpServlet {
                     }
                     if (part.getName().contentEquals("Email_1")) {
                         email_1 = request.getParameter(part.getName());
-                    }if (part.getName().contentEquals("Email_2")) {
+                    }
+                    if (part.getName().contentEquals("Email_2")) {
                         email_2 = request.getParameter(part.getName());
-                        if (email_2 == null) {
-                            if (part.getName().contentEquals("selectEmail")) {
-                                email_2 = request.getParameter(part.getName());
-                            }
-                        }
                     }
                     if (part.getName().contentEquals("Phone_1")) {
                         phone_1 = request.getParameter(part.getName());
-                    }if (part.getName().contentEquals("Phone_2")) {
+                    }
+                    if (part.getName().contentEquals("Phone_2")) {
                         phone_2 = request.getParameter(part.getName());
-                    }if (part.getName().contentEquals("Phone_3")) {
+                    }
+                    if (part.getName().contentEquals("Phone_3")) {
                         phone_3 = request.getParameter(part.getName());
                     }
                     if (part.getName().contentEquals("Name")) {
@@ -136,13 +134,17 @@ public class RegServlet extends HttpServlet {
                 System.out.println(phone);
                 dto.setID(id);
                 dto.setPW(pw);
-                dto.setEmail(email);
+                dto.setEmail(email_1 + "@" + email_2);
                 dto.setPhone(phone);
                 dto.setName(name);
                 dto.setGender(gender);
                 dto.setNickName(nick);
                 dto.setImgURL(fileName);
                 dto.setBirth(d);
+                
+                String ss = "<script> alert('" + dto.toString() + "'); </script>";
+                PrintWriter outt = response.getWriter();
+                outt.print(ss);
                 
                 boolean res = biz.CreateAccount(response, dto);
 
