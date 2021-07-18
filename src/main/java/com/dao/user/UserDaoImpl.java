@@ -1,31 +1,20 @@
 package com.dao.user;
 
-import static common.JDBCTemplate.close;
+import com.dto.UserDto;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpServletResponse;
-
-import com.dto.UserDto;
+import static common.JDBCTemplate.close;
 
 public class UserDaoImpl implements UserDao{
 
 	@Override
-	public boolean CreateAccount(HttpServletResponse response, UserDto dto, Connection con) {
+	public boolean CreateAccount(UserDto dto, Connection con) {
 		
-		try {
-			String s = "<script> console.log('1111');";
-			PrintWriter out = response.getWriter();
-			out.print(s);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+
         
 		PreparedStatement pstm = null;
 		int res = 0;

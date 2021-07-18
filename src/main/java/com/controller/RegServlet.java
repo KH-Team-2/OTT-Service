@@ -144,7 +144,7 @@ public class RegServlet extends HttpServlet {
                 dto.setImgURL(fileName);
                 dto.setBirth(d);
                 
-                boolean res = biz.CreateAccount(response, dto);
+                boolean res = biz.CreateAccount(dto);
 
                 if (res) {
                     jsResponse("회원가입 성공", "user/login.jsp", response);

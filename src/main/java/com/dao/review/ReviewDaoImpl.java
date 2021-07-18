@@ -180,9 +180,9 @@ public class ReviewDaoImpl implements ReviewDao {
                 "         SELECT *\n" +
                 "         FROM (\n" +
                 "                  SELECT ROWNUM as rnum, REVIEW.*\n" +
-                "                  FROM REVIEW\n" +
-                "              )\n" +
-                "         WHERE rnum >= ? AND MOVIENUM = ?  \n" +
+                "                  FROM REVIEW\n WHERE MOVIENUM = ?\n" +
+                "                          ORDER BY REVIEWDATE DESC\n )\n" +
+                "         WHERE rnum >= ? " +
                 "     ) A\n" +
                 "JOIN USERTB u on A.UserNum = u.USERNUM\n" +
                 "WHERE rnum <= ? ";
@@ -193,8 +193,8 @@ public class ReviewDaoImpl implements ReviewDao {
 
         try {
             pstm = con.prepareStatement(sql);
-            pstm.setInt(1, startNum);
-            pstm.setInt(2, movienum);
+            pstm.setInt(1, movienum);
+            pstm.setInt(2, startNum);
             pstm.setInt(3, endNum);
             rs = pstm.executeQuery();
 
