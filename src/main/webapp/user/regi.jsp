@@ -171,16 +171,6 @@
             color: white;
         }
 
-        input[name=Email] {
-            height: 20px;
-            width: 100px;
-            border-radius: 5px;
-            font-size: 15px;
-            border: 2px solid #f8d31c;
-            background-color: black;
-            color: white;
-        }
-
 
         tr > td:nth-child(1) {
             width: 200px;

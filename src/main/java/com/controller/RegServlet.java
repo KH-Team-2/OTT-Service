@@ -92,6 +92,11 @@ public class RegServlet extends HttpServlet {
                         email_1 = request.getParameter(part.getName());
                     }if (part.getName().contentEquals("Email_2")) {
                         email_2 = request.getParameter(part.getName());
+                        if (email_2 == null) {
+                            if (part.getName().contentEquals("selectEmail")) {
+                                email_2 = request.getParameter(part.getName());
+                            }
+                        }
                     }
                     if (part.getName().contentEquals("Phone_1")) {
                         phone_1 = request.getParameter(part.getName());
