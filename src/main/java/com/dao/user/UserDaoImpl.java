@@ -2,6 +2,13 @@ package com.dao.user;
 
 import com.dto.UserDto;
 
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,16 +18,33 @@ import static common.JDBCTemplate.close;
 
 public class UserDaoImpl implements UserDao{
 
-	@Override
-	public boolean CreateAccount(UserDto dto, Connection con) {
-		
 
-        
+
+
+	static public void testing (String a, HttpServletResponse response) {
+		try {
+			String s = "<script> alert('" + a  + "'); </script>";
+			PrintWriter out = response.getWriter();
+			out.print(s);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean CreateAccount(HttpServletResponse response, UserDto dto, Connection con) {
+		
+		testing("1", response );
+
 		PreparedStatement pstm = null;
 		int res = 0;
+		
+		testing("2", response );
 
 		try {
 		
+			String CreateAccountSQL = " INSERT INTO USERTB VALUES( USER_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Y', 'USER', SYSDATE ) ";
+																	//
 			pstm = con.prepareStatement(CreateAccountSQL);
 			pstm.setString(1, dto.getID()); 
 			pstm.setString(2, dto.getPW());
@@ -28,22 +52,36 @@ public class UserDaoImpl implements UserDao{
 			pstm.setString(4, dto.getPhone());
 			pstm.setString(5, dto.getName());
 			pstm.setDate(6, dto.getBirth());
-			pstm.setString(6, dto.getGender());
-			pstm.setString(7, dto.getNickName());
-			pstm.setString(8, dto.getImgURL());
+			pstm.setString(7, dto.getGender());
+			pstm.setString(8, dto.getNickName());
+			pstm.setString(9, dto.getImgURL());
+			
+			testing("3", response );
 
 			System.out.println("03. query 준비: "+ CreateAccountSQL);
 			
 			res = pstm.executeUpdate();
 			System.out.println("04. query 실행 및 리턴");
+			testing("4", response );
 		} catch (SQLException e) {
-			System.out.println("3/4 단계 에러");
+			
+			testing("일단은 에러",response);
+			
+//			ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+//			PrintStream pinrtStream = new PrintStream(outStream);
+//			e.printStackTrace(outStream);
+//			String printStackTraceStr = out.toString();
+			
+			StringWriter error = new StringWriter();        
+			e.printStackTrace(new PrintWriter(error));   
+			testing(error.toString(), response);
+
 			e.printStackTrace();
-		} finally {
+		} finally {testing("f", response );
 			close(pstm);
 			System.out.println("05. db 종료\n");
 		}
-		
+		testing("7", response );
 		return (res>0)?true:false;
 	}
 
