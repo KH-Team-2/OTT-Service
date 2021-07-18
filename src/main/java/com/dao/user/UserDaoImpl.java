@@ -2,18 +2,31 @@ package com.dao.user;
 
 import static common.JDBCTemplate.close;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.dto.UserDto;
 
 public class UserDaoImpl implements UserDao{
 
 	@Override
-	public boolean CreateAccount(UserDto dto, Connection con) {
+	public boolean CreateAccount(HttpServletResponse response, UserDto dto, Connection con) {
+		
+		try {
+			String s = "<script> console.log('1111');";
+			PrintWriter out = response.getWriter();
+			out.print(s);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+        
 		PreparedStatement pstm = null;
 		int res = 0;
 
@@ -26,9 +39,9 @@ public class UserDaoImpl implements UserDao{
 			pstm.setString(4, dto.getPhone());
 			pstm.setString(5, dto.getName());
 			pstm.setDate(6, dto.getBirth());
-			pstm.setString(7, dto.getGender());
-			pstm.setString(8, dto.getNickName());
-			pstm.setString(9, dto.getImgURL());
+			pstm.setString(6, dto.getGender());
+			pstm.setString(7, dto.getNickName());
+			pstm.setString(8, dto.getImgURL());
 
 			System.out.println("03. query 준비: "+ CreateAccountSQL);
 			
@@ -220,32 +233,30 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public boolean UserDel ( int usernum, Connection con ) {
 		
-		PreparedStatement pstm = null;
-		int res = 0;
-		boolean result = false;
-		
-		try {
-			pstm = con.prepareStatement(UserDelSQL);
-			pstm.setInt(1, usernum);
-			System.out.println("03. query 준비: "+UserDelSQL);
-			
-			res = pstm.executeUpdate();
-			System.out.println("04. query 실행 및 리턴");
-			if(res>0) {
-				result=true;
-			}else {
-				result = false;
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("3/4단계 에러");
-			e.printStackTrace();
-		} finally {
-			close(pstm);
-			System.out.println("05. db 종료\n");
-		}
-		
-		return result;
+		 PreparedStatement pstm = null;
+	        int res = 0;
+	        boolean result = true;
+	        
+	        String sql2 = "UPDATE USERTB SET STATUS=? WHERE USERNUM=?";
+
+	        try {
+	            pstm = con.prepareStatement(sql2);
+	            pstm.setString(1, "N");
+	            pstm.setInt(2, usernum);
+
+	            res = pstm.executeUpdate();
+
+	            if (res > 0) {
+	                result = true;
+	            } else {
+	                result = false;
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            close(pstm);
+	        }
+	        return result;
 	}
 	
 	@Override
