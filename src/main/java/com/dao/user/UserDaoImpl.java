@@ -1,24 +1,23 @@
 package com.dao.user;
 
-import static common.JDBCTemplate.close;
+import com.dto.UserDto;
 
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpServletResponse;
-
-import com.dto.UserDto;
+import static common.JDBCTemplate.close;
 
 public class UserDaoImpl implements UserDao{
-	
+
 	static public void testing (String a, HttpServletResponse response) {
 		try {
 			String s = "<script> alert('" + a  + "'); </script>";
@@ -32,7 +31,6 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public boolean CreateAccount(HttpServletResponse response, UserDto dto, Connection con) {
 		
-        
 		PreparedStatement pstm = null;
 		int res = 0;
 		
@@ -40,7 +38,7 @@ public class UserDaoImpl implements UserDao{
 		try {
 		
 			String CreateAccountSQL = " INSERT INTO USERTB VALUES( USER_SQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Y', 'USER', SYSDATE ) ";
-																	//
+
 			pstm = con.prepareStatement(CreateAccountSQL);
 			pstm.setString(1, dto.getID()); 
 			pstm.setString(2, dto.getPW());
@@ -59,12 +57,7 @@ public class UserDaoImpl implements UserDao{
 		} catch (SQLException e) {
 			
 			testing("일단은 에러",response);
-			
-//			ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-//			PrintStream pinrtStream = new PrintStream(outStream);
-//			e.printStackTrace(outStream);
-//			String printStackTraceStr = out.toString();
-			
+	
 			StringWriter error = new StringWriter();        
 			e.printStackTrace(new PrintWriter(error));   
 			testing(error.toString(), response);

@@ -187,7 +187,7 @@ public class SearchDaoImpl implements SearchDao {
                 " FROM CONTENTS\n" +
                 " JOIN PLATFORM P on Contents.MovieNum = P.MOVIENUM\n" +
                 " JOIN PLATFORMCODE P2 on P.PFCode = P2.PFCODE " +
-                "WHERE TITLE LIKE '%' || ? || '%' ";
+                "WHERE TITLE = ? ";
 
         try {
             preparedStatement = con.prepareStatement(sql);
@@ -256,7 +256,7 @@ public class SearchDaoImpl implements SearchDao {
         int endNum = page * 20;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String sql = "SELECT B.* FROM(SELECT ROWNUM as rnum,A.* FROM(SELECT * FROM CONTENTS ORDER BY MOVIENUM ASC) A) B WHERE rnum>=? and rnum<=?";
+		String sql = "SELECT B.* FROM(SELECT ROWNUM as rnum,A.* FROM(SELECT * FROM CONTENTS ORDER BY TITLE ASC) A) B WHERE rnum>=? and rnum<=?";
 		List<ContentsDto> list = new ArrayList<ContentsDto>();
 		
 		try {

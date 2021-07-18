@@ -2,9 +2,8 @@ package com.dao.user;
 
 import com.dto.UserDto;
 
-import java.sql.Connection;
-
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Connection;
 
 public interface UserDao {
 	
