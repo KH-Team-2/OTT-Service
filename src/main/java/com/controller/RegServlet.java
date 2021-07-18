@@ -45,7 +45,12 @@ public class RegServlet extends HttpServlet {
             String id = null;
             String pw = null;
             String email = null;
+            String email_1 = null;
+            String email_2 = null;
             String phone = null;
+            String phone_1 = null;
+            String phone_2 = null;
+            String phone_3= null;
             String name = null;
             String birth = null;
             String gender = null;
@@ -83,11 +88,17 @@ public class RegServlet extends HttpServlet {
                     if (part.getName().contentEquals("PW")) {
                         pw = request.getParameter(part.getName());
                     }
-                    if (part.getName().contentEquals("Email")) {
-                        email = request.getParameter(part.getName());
+                    if (part.getName().contentEquals("Email_1")) {
+                        email_1 = request.getParameter(part.getName());
+                    }if (part.getName().contentEquals("Email_2")) {
+                        email_2 = request.getParameter(part.getName());
                     }
-                    if (part.getName().contentEquals("Phone")) {
-                        phone = request.getParameter(part.getName());
+                    if (part.getName().contentEquals("Phone_1")) {
+                        phone_1 = request.getParameter(part.getName());
+                    }if (part.getName().contentEquals("Phone_2")) {
+                        phone_2 = request.getParameter(part.getName());
+                    }if (part.getName().contentEquals("Phone_3")) {
+                        phone_3 = request.getParameter(part.getName());
                     }
                     if (part.getName().contentEquals("Name")) {
                         name = request.getParameter(part.getName());
@@ -114,7 +125,9 @@ public class RegServlet extends HttpServlet {
                 }
 
                 UserDto dto = new UserDto();
-
+                phone = phone_1 + "-" + phone_2 + "-" + phone_3;
+                email = email_1 + "@" + email_2;
+                System.out.println(phone);
                 dto.setID(id);
                 dto.setPW(pw);
                 dto.setEmail(email);
