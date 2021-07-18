@@ -70,13 +70,28 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
 			String name = request.getParameter("name");
-			String phone = request.getParameter("phone");
-			String email = request.getParameter("email");
 			String gender = request.getParameter("gender");
 			String nickname = request.getParameter("nickname");
 			String grade = request.getParameter("grade");
 			Date birth = java.sql.Date.valueOf(request.getParameter("birth"));
-			
+
+			String email_1 = request.getParameter("Email_1");
+			String email_2 = request.getParameter("Email_5");
+			if (email_2 == null) {
+				email_2 = request.getParameter("selectEmail");
+			}
+			String phone_1 = request.getParameter("Phone_1");
+			String phone_2 = request.getParameter("Phone_2");
+			String phone_3 = request.getParameter("Phone_3");
+
+			System.out.println(email_2);
+
+
+			String email = null;
+			String phone = null;
+
+			phone = phone_1 + "-" + phone_2 + "-" + phone_3;
+			email = email_1 + "@" + email_2;
 			UserDto dto = new UserDto();
 			dto.setUserNum(usernum);
 			dto.setID(id);

@@ -73,9 +73,26 @@ public class UserServlet extends HttpServlet {
 			
 			case "searchID": {
 				String name = request.getParameter("Name");
-				String email = request.getParameter("Email");
-				String phone = request.getParameter("Phone");
-				
+				String email_1 = request.getParameter("Email_1");
+				String email_2 = request.getParameter("Email_5");
+				if (email_2 == null) {
+					email_2 = request.getParameter("selectEmail");
+				}
+				String phone_1 = request.getParameter("Phone_1");
+				String phone_2 = request.getParameter("Phone_2");
+				String phone_3 = request.getParameter("Phone_3");
+
+				System.out.println(email_2);
+
+
+				String email = null;
+				String phone = null;
+
+				phone = phone_1 + "-" + phone_2 + "-" + phone_3;
+				email = email_1 + "@" + email_2;
+
+				System.out.println(phone);
+				System.out.println(email);
 				String ID = biz.SearchID(name, email, phone);
 
 				System.out.println(ID);

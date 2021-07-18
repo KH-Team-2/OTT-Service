@@ -12,6 +12,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <style type="text/css">
+    input[name=Phone_1] {
+        text-align: center;
+        height: 30px;
+        width: 50px;
+        border-radius: 5px;
+        font-size: 15px;
+        border: 2px solid #f8d31c;
+        background-color: black;
+        color: white;
+    }
+
+    input[name=Phone_2] {
+        text-align: center;
+        height: 30px;
+        width: 80px;
+        border-radius: 5px;
+        font-size: 15px;
+        border: 2px solid #f8d31c;
+        background-color: black;
+        color: white;
+    }
+
+    input[name=Phone_3] {
+        text-align: center;
+        height: 30px;
+        width: 80px;
+        border-radius: 5px;
+        font-size: 15px;
+        border: 2px solid #f8d31c;
+        background-color: black;
+        color: white;
+    }
+
+    input[name=Email_1], input[name=Email_2], input[name=Email_5] {
+        height: 30px;
+        width: 100px;
+        border-radius: 5px;
+        font-size: 15px;
+        border: 2px solid #f8d31c;
+        background-color: black;
+        color: white;
+    }
+    #selectEmail{
+        text-align: center;
+        height: 45px;
+        width: 120px;
+        border-radius: 5px;
+        font-size: 15px;
+        border: 2px solid #f8d31c;
+        background-color: black;
+        color: white;
+    }
 	@font-face {
 	    font-family: 'NEXON Lv1 Gothic OTF';
 	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
@@ -115,6 +167,18 @@
 </script>
 </head>
 <body>
+<%
+    UserDto dto = (UserDto) request.getAttribute("dto");
+    String phone1 = dto.getPhone().substring(0, 3);
+    String phone2 = dto.getPhone().substring(4, 8);
+    String phone3 = dto.getPhone().substring(9, 13);
+    int email = dto.getEmail().indexOf("@");
+    int emailindex = dto.getEmail().length();
+    String email1 = dto.getEmail().substring(0, email);
+    String email2 = dto.getEmail().substring(email + 1, emailindex);
+
+
+%>
 <div>
 	<form action="adminUpdate.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="usernum" value="${dto.userNum }">
@@ -158,11 +222,57 @@
         </tr>
         <tr>
             <td>휴대전화</td>
-            <td><input type="text" name="phone" value="${dto.phone }" class="updateval"></td>
+<%--            <td><input type="text" name="phone" value="${dto.phone }" class="updateval"></td>--%>
+            <td>
+            <input type="tel" name="Phone_1" onkeypress="return checkNumber(event)" class="updateval"
+                   minlength="3" maxlength="3" value="<%=phone1%>"> -
+            <input type="tel" name="Phone_2" onkeypress="return checkNumber(event)" class="updateval"
+                   minlength="3" maxlength="4" value="<%=phone2%>"> -
+            <input type="tel" name="Phone_3" onkeypress="return checkNumber(event)" class="updateval"
+                   minlength="4" maxlength="4" value="<%=phone3%>">
+            </td>
         </tr>
         <tr>
             <td>EMAIL</td>
-            <td><input type="text" name="email" value="${dto.email }" class="updateval"></td>
+            <td>
+                <input type="text" name="Email_1" maxlength="30" class="updateval" value="<%=email1%>">
+                <span>@</span>
+                <input type="text" name="Email_5" id="str_email02" style="width:100px;"
+                       value="<%=email2%>">
+                <select style="margin-right:10px" name="selectEmail"
+                        id="selectEmail">
+                    <option value="1" selected>직접입력</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="hotmail.com">hotmail.com</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="yahoo.co.kr">yahoo.co.kr</option>
+                    <option value="empas.com">empas.com</option>
+                    <option value="dreamwiz.com">dreamwiz.com</option>
+                    <option value="freechal.com">freechal.com</option>
+                    <option value="lycos.co.kr">lycos.co.kr</option>
+                    <option value="korea.com">korea.com</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="hanmir.com">hanmir.com</option>
+                    <option value="paran.com">paran.com</option>
+                </select>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+                <script type="text/javascript">
+                    $('#selectEmail').change(function () {
+                        $("#selectEmail option:selected").each(function () {
+                            if ($(this).val() == '1') {
+                                $("#str_email02").val('');
+                                $("#str_email02").attr("disabled", false);
+                            } else {
+                                $("#str_email02").val($(this).text());
+                                $("#str_email02").attr("disabled", true);
+                                console.log($('#str_email02').val());
+                            }
+                        });
+                    });
+
+                </script>
+            </td>
         </tr>
         <tr>
             <td>성별</td>

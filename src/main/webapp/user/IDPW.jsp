@@ -9,7 +9,59 @@
 	<title>ID/PW 찾기</title>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
-	<style> 
+	<style>
+		input[name=Phone_1] {
+			text-align: center;
+			height: 30px;
+			width: 50px;
+			border-radius: 5px;
+			font-size: 15px;
+			border: 2px solid #f8d31c;
+			background-color: black;
+			color: white;
+		}
+
+		input[name=Phone_2] {
+			text-align: center;
+			height: 30px;
+			width: 80px;
+			border-radius: 5px;
+			font-size: 15px;
+			border: 2px solid #f8d31c;
+			background-color: black;
+			color: white;
+		}
+
+		input[name=Phone_3] {
+			text-align: center;
+			height: 30px;
+			width: 80px;
+			border-radius: 5px;
+			font-size: 15px;
+			border: 2px solid #f8d31c;
+			background-color: black;
+			color: white;
+		}
+
+		input[name=Email_1], input[name=Email_2], input[name=Email_5] {
+			height: 30px;
+			width: 100px;
+			border-radius: 5px;
+			font-size: 15px;
+			border: 2px solid #f8d31c;
+			background-color: black;
+			color: white;
+		}
+		#selectEmail, #selectEmail2 {
+			text-align: center;
+			height: 28px;
+			width: 120px;
+			border-radius: 5px;
+			font-size: 15px;
+			border: 2px solid #f8d31c;
+			background-color: black;
+			color: white;
+		}
 	
 		@font-face {
 		    font-family: 'NEXON Lv1 Gothic OTF';
@@ -117,7 +169,16 @@
 	</style>
 	
 	<script>
-	
+
+		function checkNumber(event) {
+			if (
+					event.key >= 0 && event.key <= 9) {
+				return true;
+			}
+
+			return false;
+		}
+
 		var codechk = false;
 		
 		window.onload = function(){
@@ -131,15 +192,16 @@
 		}
 	
 		function sendcode() {
-			$.ajax({ 
-				url:"../searchpw.do?command=SendCode&id=" + $("#UserID2").val() + "&name=" + $("#Name").val() + "&email=" + $("#Email").val(),
+			var Email = $('#str_email01').val() + "@" + $('#str_email03').val();
+			$.ajax({
+				url:"../searchpw.do?command=SendCode&id=" + $("#UserID2").val() + "&name=" + $("#Name").val() + "&email=" + Email,
 				async: false,
 				success:function(msg) {
 					if(msg == false) { alert("입력된 정보가 올바르지 않습니다."); }
 					else { alert("코드를 전송하였습니다.") }
 				},
 				error:function() { alert("[ AJAX Error ]") }
-			});		
+			});
 		}
 
 		function codecheck() {
@@ -154,6 +216,13 @@
 				error:function() { alert("[ AJAX Error ]") }
 			});		
 		}
+		
+		$(function(){
+			$("#cancel1, #cancel2").click(function(){
+				location.href="login.jsp"
+			});
+			
+		});
 	</script>
 	
 </head>
@@ -164,7 +233,7 @@
 	
 	    <br> <h2>ID 찾기</h2> <br>
 	    
-	    <form action="../user.do" method="post">
+	    <form action="../user.do" method="get">
 	    
 	    	<input type="hidden" name="command" value="searchID">
 	    	
@@ -176,20 +245,66 @@
 	            </tr>
 	            
 	            <tr>
-	                <td class="title">Email</td>
-	                <td> <input type="text" name="Email" maxlength="30" class="textbox"> </td>
+	                <td class="title"><br>Email</td>
+					<td>
+						<br><input type="text" name="Email_1" maxlength="30" class="updateval">
+						<span>@</span>
+						<input type="text" name="Email_5" id="str_email02" style="width:100px;" disabled
+							   value="naver.com"><br>
+						<select style="margin-right:10px" name="selectEmail"
+								id="selectEmail">
+							<option value="1">직접입력</option>
+							<option value="naver.com" selected>naver.com</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="empas.com">empas.com</option>
+							<option value="dreamwiz.com">dreamwiz.com</option>
+							<option value="freechal.com">freechal.com</option>
+							<option value="lycos.co.kr">lycos.co.kr</option>
+							<option value="korea.com">korea.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="hanmir.com">hanmir.com</option>
+							<option value="paran.com">paran.com</option>
+						</select>
+						<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+						<script type="text/javascript">
+							$('#selectEmail').change(function () {
+								$("#selectEmail option:selected").each(function () {
+									if ($(this).val() == '1') {
+										$("#str_email02").val('');
+										$("#str_email02").attr("disabled", false);
+									} else {
+										$("#str_email02").val($(this).text());
+										$("#str_email02").attr("disabled", true);
+										console.log($('#str_email02').val());
+									}
+								});
+							});
+
+						</script>
+
+					</td>
 	            </tr>
-	
+
 	            <tr>
-	                <td class="title">휴대전화</td>
-	                <td> <input type="text" name="Phone" class="textbox"></td>
+	                <td class="title"><br>휴대전화</td>
+					<td>
+						<br><input type="tel" name="Phone_1" onkeypress="return checkNumber(event)" class="updateval"
+							   minlength="3" maxlength="3"> -
+						<input type="tel" name="Phone_2" onkeypress="return checkNumber(event)" class="updateval"
+							   minlength="3" maxlength="4"> -
+						<input type="tel" name="Phone_3" onkeypress="return checkNumber(event)" class="updateval"
+							   minlength="4" maxlength="4">
+					</td>
 	            </tr>
 	            
 	            <tr>
 	                <td colspan="3">
 	                	<br>
 	                    <input type="submit" value="확인" class="Btn">
-	                    <input type="button" value="취소" class="Btn">
+	                    <input type="button" value="취소" class="Btn" id="cancel1">
 	                    <br>
 	            	</td>
 	            </tr>
@@ -218,7 +333,43 @@
 	           
 	           <tr>
 	               <td class="title">Email</td>
-	               <td> <input type="text" id="Email" name="Email" maxlength="30" class="textbox2"></td>
+<%--	               <td> <input type="text" id="Email" name="Email" maxlength="30" class="textbox2"></td>--%>
+				   <td><input type="text" name="Email_1" id="str_email01" maxlength="30" class="updateval">
+					   <span>@</span>
+					   <input type="text" name="Email_2" id="str_email03" style="width:100px;" disabled
+							  value="naver.com"><br>
+					   <select style="margin-right:10px" name="selectEmail"
+							   id="selectEmail2">
+						   <option value="1">직접입력</option>
+						   <option value="naver.com" selected>naver.com</option>
+						   <option value="hanmail.net">hanmail.net</option>
+						   <option value="hotmail.com">hotmail.com</option>
+						   <option value="nate.com">nate.com</option>
+						   <option value="yahoo.co.kr">yahoo.co.kr</option>
+						   <option value="empas.com">empas.com</option>
+						   <option value="dreamwiz.com">dreamwiz.com</option>
+						   <option value="freechal.com">freechal.com</option>
+						   <option value="lycos.co.kr">lycos.co.kr</option>
+						   <option value="korea.com">korea.com</option>
+						   <option value="gmail.com">gmail.com</option>
+						   <option value="hanmir.com">hanmir.com</option>
+						   <option value="paran.com">paran.com</option>
+					   </select>
+					   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+					   <script type="text/javascript">
+						   $('#selectEmail2').change(function () {
+							   $("#selectEmail2 option:selected").each(function () {
+								   if ($(this).val() == '1') {
+									   $("#str_email03").val('');
+									   $("#str_email03").attr("disabled", false);
+								   } else {
+									   $("#str_email03").val($(this).text());
+									   $("#str_email03").attr("disabled", true);
+								   }
+							   });
+						   });
+
+					   </script></td>
 	               <td><input type="button" name="CodeSend" class="btn2" value="코드 전송" onclick="sendcode()"></td>
 	           </tr>
 	           
@@ -231,7 +382,7 @@
 	           <tr>
 	               <td colspan="3" ><br>
 	                   <input type="submit" value="확인" class="Btn">
-	                   <input type="button" value="취소" class="Btn">
+	                   <input type="button" value="취소" class="Btn" id="cancel2">
 	               </td>
 	           </tr>
 	    	</table>
