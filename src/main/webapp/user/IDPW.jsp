@@ -154,6 +154,13 @@
 				error:function() { alert("[ AJAX Error ]") }
 			});		
 		}
+		
+		$(function(){
+			$("#cancel1, #cancel2").click(function(){
+				location.href="login.jsp"
+			});
+			
+		});
 	</script>
 	
 </head>
@@ -189,7 +196,7 @@
 	                <td colspan="3">
 	                	<br>
 	                    <input type="submit" value="확인" class="Btn">
-	                    <input type="button" value="취소" class="Btn">
+	                    <input type="button" value="취소" class="Btn" id="cancel1">
 	                    <br>
 	            	</td>
 	            </tr>
@@ -231,7 +238,7 @@
 	           <tr>
 	               <td colspan="3" ><br>
 	                   <input type="submit" value="확인" class="Btn">
-	                   <input type="button" value="취소" class="Btn">
+	                   <input type="button" value="취소" class="Btn" id="cancel2">
 	               </td>
 	           </tr>
 	    	</table>
