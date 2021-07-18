@@ -443,6 +443,23 @@
             width: 64px;
             height: 64px;
         }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: rgb(248, 211, 28);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: rgb(248, 211, 28);
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -462,12 +479,17 @@
             <%} %>
         </div>
         <div id="titlediv">
-            <span id="title" class="content">${dto.title}(${dto.openYear})</span><a class="movieaddr"
-                                                                                    onclick="addviewlist();"
-                                                                                    href="${dto.movieAddr}"><img
-                class="pfimg" src="${dto.pfimgurl}"
-                alt="${dto.title}"
-                style="margin-bottom:-5px;"></a>
+            <a class="movieaddr"
+               onclick="addviewlist();"
+               href="${dto.movieAddr}" target="_blank"><span id="title" class="content">${dto.title}</span></a>
+            <span id="title" class="content" style="margin-left: 0px">(${dto.openYear})</span>
+
+            <a class="movieaddr"
+               onclick="addviewlist();"
+               href="${dto.movieAddr}" target="_blank"><img
+                    class="pfimg" src="${dto.pfimgurl}"
+                    alt="${dto.title}"
+                    style="margin-bottom:-5px;"></a>
             <br><br>
             <span id="genre" class="content">¿Â∏£ ${dto.genre}</span>
             <br><br>
