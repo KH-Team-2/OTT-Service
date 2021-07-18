@@ -161,10 +161,17 @@
     	<input type="hidden" value="googlereg" name="command">
     
         <table>
- 
+          
             <tr>
                 <td>휴대전화</td>
-                <td> <input type="text" name="Phone" class="updateval"> </td>
+                <td>
+                    <input type="tel" name="Phone_1" onkeypress="return checkNumber(event)" class="updateval"
+                           minlength="3" maxlength="3"> -
+                    <input type="tel" name="Phone_2" onkeypress="return checkNumber(event)" class="updateval"
+                           minlength="3" maxlength="4"> -
+                    <input type="tel" name="Phone_3" onkeypress="return checkNumber(event)" class="updateval"
+                           minlength="4" maxlength="4">
+                </td>
             </tr>
                 
             <tr>

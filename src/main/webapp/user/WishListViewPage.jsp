@@ -55,6 +55,7 @@
 	    #delbtn {
 	        position: relative;
 	        top: 3px;
+	        cursor: pointer;
 	    }
 	
 	    #allchk {
@@ -111,6 +112,7 @@
 		}
 		.delimgbtn{
 			background: none;
+			cursor: pointer;
 		}
 	</style>
 <%

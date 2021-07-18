@@ -178,14 +178,18 @@ public class RegServlet extends HttpServlet {
 
                 UserDto dto = new UserDto();
                 HttpSession session = request.getSession();
+                
+               
 
                 dto.setID((String) session.getAttribute("googleid"));
                 dto.setPW((String) session.getAttribute("googlepw"));
                 dto.setEmail((String) session.getAttribute("googleid"));
-                dto.setPhone(request.getParameter("Phone"));
                 dto.setName(request.getParameter("Name"));
                 dto.setNickName(request.getParameter("NickName"));
                 dto.setImgURL((String) session.getAttribute("googleimg"));
+                
+                String Phone = request.getParameter("Phone_1") + "-" + request.getParameter("Phone_2") + "-" + request.getParameter("Phone_3");
+                dto.setPhone(request.getParameter("Phone"));
 
                 String gender = request.getParameter("Gender");
                 if (gender.contentEquals("남")) {
@@ -198,14 +202,14 @@ public class RegServlet extends HttpServlet {
                 java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("Birth"));
                 dto.setBirth(userbirth);
 
-//                boolean res = biz.CreateAccount(dto);
+                boolean res = biz.CreateAccount(response, dto);
 
-//                if (res) {
-//                    session.setAttribute("dto", dto);
-//                    jsResponse("회원가입 성공", "search.do?command=main", response);
-//                } else {
-//                    jsResponse("회원가입 실패", "search.do?command=main", response);
-//                }
+                if (res) {
+                    session.setAttribute("dto", dto);
+                    jsResponse("회원가입 성공", "search.do?command=main", response);
+                } else {
+                   jsResponse("회원가입 실패", "search.do?command=main", response);
+               }
             } else if (command.contentEquals("kakaoreg")) {
 
                 UserDto dto = new UserDto();
@@ -214,10 +218,12 @@ public class RegServlet extends HttpServlet {
                 dto.setID((String) session.getAttribute("kakaoid"));
                 dto.setPW((String) session.getAttribute("kakaopw"));
                 dto.setEmail((String) session.getAttribute("kakaoid"));
-                dto.setPhone(request.getParameter("Phone"));
                 dto.setName(request.getParameter("Name"));
                 dto.setNickName((String) session.getAttribute("kakaonickname"));
                 dto.setImgURL("http://www.khproject.kr/OTT_Service/img/default_profile.png");
+                
+                String Phone = request.getParameter("Phone_1") + "-" + request.getParameter("Phone_2") + "-" + request.getParameter("Phone_3");
+                dto.setPhone(request.getParameter("Phone"));
 
                 String gender = request.getParameter("Gender");
                 if (gender.contentEquals("남")) {
@@ -230,14 +236,14 @@ public class RegServlet extends HttpServlet {
                 java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("Birth"));
                 dto.setBirth(userbirth);
 
-//                boolean res = biz.CreateAccount(dto);
-//
-//                if (res) {
-//                    session.setAttribute("dto", dto);
-//                    jsResponse("회원가입 성공", "user/login.jsp", response);
-//                } else {
-//                    jsResponse("회원가입 실패", "user/login.jsp", response);
-//                }
+                boolean res = biz.CreateAccount(response,dto);
+
+                if (res) {
+                    session.setAttribute("dto", dto);
+                    jsResponse("회원가입 성공", "user/login.jsp", response);
+                } else {
+                    jsResponse("회원가입 실패", "user/login.jsp", response);
+                }
 
 
             } else if (command.equals("naverreg")) {
@@ -254,13 +260,13 @@ public class RegServlet extends HttpServlet {
                 System.out.println(request.getParameter("name"));
                 java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("birthday"));
                 dto.setBirth(userbirth);
-//                boolean res = biz.CreateAccount(dto);
-//
-//                if (res) {
-//                    jsResponse("회원가입 성공", "user/login.jsp", response);
-//                } else {
-//                    jsResponse("회원가입 실패", "user/login.jsp", response);
-//                }
+                boolean res = biz.CreateAccount(response,dto);
+
+                if (res) {
+                    jsResponse("회원가입 성공", "user/login.jsp", response);
+               } else {
+                    jsResponse("회원가입 실패", "user/login.jsp", response);
+                }
             }
         }
     }
