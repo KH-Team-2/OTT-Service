@@ -249,7 +249,7 @@
 					<td>
 						<br><input type="text" name="Email_1" maxlength="30" class="updateval">
 						<span>@</span>
-						<input type="text" name="Email_5" id="str_email02" style="width:100px;" disabled
+						<input type="text" name="Email_5" id="str_email02" style="width:100px;" readonly
 							   value="naver.com"><br>
 						<select style="margin-right:10px" name="selectEmail"
 								id="selectEmail">
@@ -336,7 +336,7 @@
 <%--	               <td> <input type="text" id="Email" name="Email" maxlength="30" class="textbox2"></td>--%>
 				   <td><input type="text" name="Email_1" id="str_email01" maxlength="30" class="updateval">
 					   <span>@</span>
-					   <input type="text" name="Email_2" id="str_email03" style="width:100px;" disabled
+					   <input type="text" name="Email_2" id="str_email03" style="width:100px;" readonly
 							  value="naver.com"><br>
 					   <select style="margin-right:10px" name="selectEmail"
 							   id="selectEmail2">

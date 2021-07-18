@@ -131,7 +131,7 @@ public class RegServlet extends HttpServlet {
                 UserDto dto = new UserDto();
                 phone = phone_1 + "-" + phone_2 + "-" + phone_3;
                 email = email_1 + "@" + email_2;
-                System.out.println(phone);
+ 
                 dto.setID(id);
                 dto.setPW(pw);
                 dto.setEmail(email_1 + "@" + email_2);
@@ -141,10 +141,6 @@ public class RegServlet extends HttpServlet {
                 dto.setNickName(nick);
                 dto.setImgURL(fileName);
                 dto.setBirth(d);
-                
-                String ss = "<script> alert('" + dto.toString() + "'); </script>";
-                PrintWriter outt = response.getWriter();
-                outt.print(ss);
                 
                 boolean res = biz.CreateAccount(response, dto);
 

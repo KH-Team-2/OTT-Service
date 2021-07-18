@@ -20,12 +20,17 @@ import java.util.Enumeration;
 @WebServlet("/AdminUpdateServlet")
 public class AdminUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String ATTACHES_DIR = "";
+
     public AdminUpdateServlet() {
         super();
     }
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		String s = "<script> alert('1');</script>";
+	    PrintWriter out = response.getWriter();
+	    out.print(s);
+	
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		AdminBiz biz = new AdminBizImpl();
@@ -33,13 +38,27 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		java.util.Date time = new java.util.Date();
 		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
 		
+		s = "<script> alert('2');</script>";
+	    out.print(s);
+		
 		if (contentType != null &&  contentType.toLowerCase().startsWith("multipart/")) {
-			String path = "";
+			
+			s = "<script> alert('3');</script>";
+		    out.print(s);
+			
+			String path = "http://khproject.kr/OTT_Service/pfimg";
 			int size = 1024*1024*10;
 			String fileName = "";
 			String originalFileName="";
+			
+			s = "<script> alert('4');</script>";
+		    out.print(s);
+		    
 			try {
 				MultipartRequest multi = new MultipartRequest(request, path,size,"utf-8",new DefaultFileRenamePolicy());
+				
+				s = "<script> alert('5');</script>";
+			    out.print(s);
 				
 				//전송한 전체 파일 이름들을 가져온다.
 				Enumeration files = multi.getFileNames();
@@ -48,14 +67,23 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		        // 이때 생성된 이름을 FilesystemName이라고 하여 그 이름 정보를 가져온다. (중복 처리)
 				fileName = multi.getFilesystemName(str);
 				
+				s = "<script> alert('6');</script>";
+			    out.print(s);
+				
 				//실제 파일이름 가져옴
 				originalFileName = multi.getOriginalFileName(str);
+				
+				s = "<script> alert('7');</script>";
+			    out.print(s);
 				
 				int usernum = Integer.parseInt(multi.getParameter("usernum"));
 				UserDto dto = new UserDto();
 				dto.setUserNum(usernum);
 				dto.setImgURL(path+originalFileName);
 				boolean res = biz.UserImgUdate(dto);
+				
+				s = "<script> alert('8');</script>";
+			    out.print(s);
 				
 				if(res) {
 					jsResponse("이미지 변경성공", "admin.do?command=User_Info", response);

@@ -164,6 +164,15 @@
 			});
 		});
 	});
+	
+	function checkNumber(event) {
+        if (
+            event.key >= 0 && event.key <= 9) {
+            return true;
+        }
+
+        return false;
+    }
 </script>
 </head>
 <body>
@@ -186,7 +195,7 @@
 		    <tr>
 	            <td>프로필 사진</td>
 	            <td>
-	    	        <img src="${dto.imgURL }" alt="" id="profileimg">
+	    	        <img src="${dto.imgURL }" alt="" id="profileimg" onerror="this.src='https://ssl.pstatic.net/static/pwe/address/img_profile.png'">
 	            </td>
 	        	<td style="vertical-align: bottom">
 		            <label for="input-file" class="filebtn">업로드</label><input type="file" id="input-file" name="profile" accept="image/*">

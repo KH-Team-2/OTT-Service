@@ -145,7 +145,8 @@ public class SearchPWServlet extends HttpServlet {
 			UserBiz biz = new UserBizImpl();
 				
 			String id = request.getParameter("UserID3");
-			String email = request.getParameter("Email");
+			String email = request.getParameter("Email_1") + "@" + request.getParameter("Email_2");
+					
 			String name = request.getParameter("Name");
 			String code = request.getParameter("Code");
 		
@@ -214,7 +215,7 @@ public class SearchPWServlet extends HttpServlet {
 			
 			if(lastres == true) {
 				PrintWriter writer = response.getWriter();
-				writer.println("<script>location.href='index/start.jsp'</script>");				
+				writer.println("<script>location.href='user/login.jsp'</script>");				
 			} else { 
 				PrintWriter writer = response.getWriter();
 				writer.println("<script>alert('알 수 없는 오류가 발생했습니다.');</script>");		
