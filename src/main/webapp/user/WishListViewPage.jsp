@@ -163,7 +163,7 @@
 				   type : "post",
 				   success : function(){
 					   alert("삭제 완료");
-                       window.parent.location.reload();
+                       location.reload();
 				   },
 				   error : function(){
 					   alert("실패");

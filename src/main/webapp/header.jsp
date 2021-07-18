@@ -163,7 +163,7 @@
                 <%
                 if (dto.getGrade().equals("USER")){
                     %>
-                location.href = 'viewlist.do?command=viewlist&pages=2&usernum=<%=dto.getUserNum()%>';
+                location.href = 'viewlist.do?command=viewlist&pages=1&usernum=<%=dto.getUserNum()%>';
                 <%
                 } else{
                     %>
