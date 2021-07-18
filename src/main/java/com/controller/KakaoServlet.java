@@ -53,7 +53,7 @@ public class 	KakaoServlet extends HttpServlet {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=528930d4a41bf7c7d8a4a5c8306eabec");
-            sb.append("&redirect_uri=http://localhost:8100/OTT-Service/kakao.do");
+            sb.append("&redirect_uri=http://khproject.kr/OTT_Service/kakao.do");
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
