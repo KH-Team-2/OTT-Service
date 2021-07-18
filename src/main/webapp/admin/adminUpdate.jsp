@@ -63,9 +63,8 @@
   		font-size: 15px;
   		cursor: pointer;
 	}
-	
-	input[type=text], input[type=date], input[type=password]{
-         
+    input[type=text], input[type=date], input[type=password]{
+
         height:40px;
         width:200px;
         border-radius: 10px;
@@ -74,11 +73,21 @@
         background-color : black;
         color : white;
     }
+
 	#profileimg{
 		border : 1px solid white;
 		width : 150px;
 		height : 150px;
 	}
+    select {
+        height:40px;
+        width:200px;
+        border-radius: 10px;
+        font-size: 15px;
+        border:3px solid #f8d31c;
+        background-color : black;
+        color : white;
+    }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -164,6 +173,13 @@
             <td><input type="text" name="nickname" value="${dto.nickName }" class="updateval"></td>
         </tr>
         <tr>
+            <td>회원 등급</td>
+            <td><select name="grade" class="updateval">
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER" selected="selected">USER</option>
+            </select></td>
+        </tr>
+        <tr>
             <td>
                 <input type="button" value="회원추방" onclick="UserSecession();">
             </td>
@@ -171,6 +187,7 @@
                 <input type="submit" value="완료"> <input type="button" value="취소" onclick="location.href='admin.do?command=User_Info&page=1'">
             </td>
         </tr>
+
     </table>
     </form>
 </div>

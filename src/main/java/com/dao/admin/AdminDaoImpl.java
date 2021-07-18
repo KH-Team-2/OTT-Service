@@ -142,7 +142,7 @@ public class AdminDaoImpl implements AdminDao {
         PreparedStatement pstm = null;
         int res = 0;
         boolean result = false;
-        String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=? WHERE USERNUM=?";
+        String sql = "UPDATE USERTB SET ID=?,PW=?,EMAIL=?,PHONE=?,NAME=?,BIRTH=?,GENDER=?,NICKNAME=?, GRADE=? WHERE USERNUM=?";
         try {
             pstm = con.prepareStatement(sql);
             pstm.setString(1, dto.getID());
@@ -153,7 +153,8 @@ public class AdminDaoImpl implements AdminDao {
             pstm.setDate(6, dto.getBirth());
             pstm.setString(7, dto.getGender());
             pstm.setString(8, dto.getNickName());
-            pstm.setInt(9, dto.getUserNum());
+            pstm.setString(9, dto.getGrade());
+            pstm.setInt(10, dto.getUserNum());
 
             res = pstm.executeUpdate();
 

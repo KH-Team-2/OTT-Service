@@ -1,27 +1,21 @@
 package com.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.sql.Date;
+import com.biz.admin.AdminBiz;
+import com.biz.admin.AdminBizImpl;
+import com.dto.UserDto;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-
-import org.json.simple.JSONObject;
-
-import com.biz.admin.AdminBiz;
-import com.biz.admin.AdminBizImpl;
-import com.dto.UserDto;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Enumeration;
 
 @WebServlet("/AdminUpdateServlet")
 public class AdminUpdateServlet extends HttpServlet {
@@ -80,6 +74,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			String email = request.getParameter("email");
 			String gender = request.getParameter("gender");
 			String nickname = request.getParameter("nickname");
+			String grade = request.getParameter("grade");
 			Date birth = java.sql.Date.valueOf(request.getParameter("birth"));
 			
 			UserDto dto = new UserDto();
@@ -92,7 +87,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			dto.setBirth(birth);
 			dto.setGender(gender);
 			dto.setNickName(nickname);
-			
+			dto.setGrade(grade);
+
 			boolean res = biz.AdminUpdateInfo(dto);
 			
 			if(res) {
