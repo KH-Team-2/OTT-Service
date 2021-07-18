@@ -19,7 +19,7 @@ import java.util.Date;
 public class RegServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String ATTACHES_DIR = "http://www.khproject.kr/OTT_Service/pfimg/";
+    private static final String ATTACHES_DIR = "";
 
     public RegServlet() {
         super();
@@ -29,15 +29,15 @@ public class RegServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-
+        
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
         Date time = new Date();
         String contentType = request.getContentType();
         UserBiz biz = new UserBizImpl();
-
+        
         String fileName = null;
-
+        
         if (contentType != null && contentType.toLowerCase().startsWith("multipart/")) {
 
             Collection<Part> parts = request.getParts();
@@ -51,7 +51,7 @@ public class RegServlet extends HttpServlet {
             String gender = null;
             String nick = null;
             String imgname = null;
-
+            
             for (Part part : parts) {
 
                 if (part.getHeader("Content-Disposition").contains("filename=")) {
@@ -76,6 +76,7 @@ public class RegServlet extends HttpServlet {
                     }
 
                     fileName = fileName + File.separator;
+                    
                 } else {
                     if (part.getName().contentEquals("UserID")) {
                         id = request.getParameter(part.getName());
@@ -105,7 +106,7 @@ public class RegServlet extends HttpServlet {
             }
 
             try {
-
+            	
                 java.sql.Date d = java.sql.Date.valueOf(birth);
                 if (gender.contentEquals("남")) {
                     gender = "M";
@@ -124,8 +125,8 @@ public class RegServlet extends HttpServlet {
                 dto.setNickName(nick);
                 dto.setImgURL(fileName);
                 dto.setBirth(d);
-
-                boolean res = biz.CreateAccount(dto);
+                
+                boolean res = biz.CreateAccount(response, dto);
 
                 if (res) {
                     jsResponse("회원가입 성공", "user/login.jsp", response);
@@ -177,14 +178,14 @@ public class RegServlet extends HttpServlet {
                 java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("Birth"));
                 dto.setBirth(userbirth);
 
-                boolean res = biz.CreateAccount(dto);
+//                boolean res = biz.CreateAccount(dto);
 
-                if (res) {
-                    session.setAttribute("dto", dto);
-                    jsResponse("회원가입 성공", "search.do?command=main", response);
-                } else {
-                    jsResponse("회원가입 실패", "search.do?command=main", response);
-                }
+//                if (res) {
+//                    session.setAttribute("dto", dto);
+//                    jsResponse("회원가입 성공", "search.do?command=main", response);
+//                } else {
+//                    jsResponse("회원가입 실패", "search.do?command=main", response);
+//                }
             } else if (command.contentEquals("kakaoreg")) {
 
                 UserDto dto = new UserDto();
@@ -209,14 +210,14 @@ public class RegServlet extends HttpServlet {
                 java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("Birth"));
                 dto.setBirth(userbirth);
 
-                boolean res = biz.CreateAccount(dto);
-
-                if (res) {
-                    session.setAttribute("dto", dto);
-                    jsResponse("회원가입 성공", "user/login.jsp", response);
-                } else {
-                    jsResponse("회원가입 실패", "user/login.jsp", response);
-                }
+//                boolean res = biz.CreateAccount(dto);
+//
+//                if (res) {
+//                    session.setAttribute("dto", dto);
+//                    jsResponse("회원가입 성공", "user/login.jsp", response);
+//                } else {
+//                    jsResponse("회원가입 실패", "user/login.jsp", response);
+//                }
 
 
             } else if (command.equals("naverreg")) {
@@ -233,16 +234,14 @@ public class RegServlet extends HttpServlet {
                 System.out.println(request.getParameter("name"));
                 java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("birthday"));
                 dto.setBirth(userbirth);
-                boolean res = biz.CreateAccount(dto);
-
-                if (res) {
-                    jsResponse("회원가입 성공", "user/login.jsp", response);
-                } else {
-                    jsResponse("회원가입 실패", "user/login.jsp", response);
-                }
-
+//                boolean res = biz.CreateAccount(dto);
+//
+//                if (res) {
+//                    jsResponse("회원가입 성공", "user/login.jsp", response);
+//                } else {
+//                    jsResponse("회원가입 실패", "user/login.jsp", response);
+//                }
             }
-
         }
     }
 
