@@ -19,7 +19,7 @@ import java.util.Date;
 public class RegServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String ATTACHES_DIR = "C:\\Temp";
+    private static final String ATTACHES_DIR = "http://www.khproject.kr/OTT_Service/pfimg/";
 
     public RegServlet() {
         super();
