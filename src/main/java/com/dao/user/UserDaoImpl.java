@@ -32,12 +32,10 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public boolean CreateAccount(HttpServletResponse response, UserDto dto, Connection con) {
 		
-		testing("1", response );
         
 		PreparedStatement pstm = null;
 		int res = 0;
 		
-		testing("2", response );
 
 		try {
 		
@@ -54,13 +52,10 @@ public class UserDaoImpl implements UserDao{
 			pstm.setString(8, dto.getNickName());
 			pstm.setString(9, dto.getImgURL());
 			
-			testing("3", response );
-
 			System.out.println("03. query 준비: "+ CreateAccountSQL);
 			
 			res = pstm.executeUpdate();
 			System.out.println("04. query 실행 및 리턴");
-			testing("4", response );
 		} catch (SQLException e) {
 			
 			testing("일단은 에러",response);
@@ -75,11 +70,11 @@ public class UserDaoImpl implements UserDao{
 			testing(error.toString(), response);
 
 			e.printStackTrace();
-		} finally {testing("f", response );
+		} finally {
 			close(pstm);
 			System.out.println("05. db 종료\n");
 		}
-		testing("7", response );
+		
 		return (res>0)?true:false;
 	}
 

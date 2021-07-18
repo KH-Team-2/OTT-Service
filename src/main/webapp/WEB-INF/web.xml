@@ -173,6 +173,8 @@
         <servlet-name>NoticeServlet</servlet-name>
         <url-pattern>/notice.do</url-pattern>
     </servlet-mapping>
+    
+    <!--    ///////////////////////////////////////////////     -->
 	
 	<servlet>
 	  	<servlet-name>AlarmServlet</servlet-name>

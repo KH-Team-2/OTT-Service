@@ -20,7 +20,7 @@ import java.util.Enumeration;
 @WebServlet("/AdminUpdateServlet")
 public class AdminUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String ATTACHES_DIR = "C:\\Temp";
+	private static final String ATTACHES_DIR = "";
     public AdminUpdateServlet() {
         super();
     }
@@ -34,7 +34,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
 		
 		if (contentType != null &&  contentType.toLowerCase().startsWith("multipart/")) {
-			String path = "C:\\Temp";
+			String path = "";
 			int size = 1024*1024*10;
 			String fileName = "";
 			String originalFileName="";
