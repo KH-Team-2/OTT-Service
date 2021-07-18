@@ -223,7 +223,7 @@ public class RegServlet extends HttpServlet {
                 dto.setImgURL("http://www.khproject.kr/OTT_Service/img/default_profile.png");
                 
                 String Phone = request.getParameter("Phone_1") + "-" + request.getParameter("Phone_2") + "-" + request.getParameter("Phone_3");
-                dto.setPhone(request.getParameter("Phone"));
+                dto.setPhone(Phone);
 
                 String gender = request.getParameter("Gender");
                 if (gender.contentEquals("남")) {
