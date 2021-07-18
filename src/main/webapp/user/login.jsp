@@ -141,7 +141,7 @@
 
         function KakaoLogin() {
             location.href =
-                "https://kauth.kakao.com/oauth/authorize?client_id=528930d4a41bf7c7d8a4a5c8306eabec&redirect_uri=http://khproject.kr/OTT_Service/kakao.do/kakao.do&response_type=code";
+                "https://kauth.kakao.com/oauth/authorize?client_id=528930d4a41bf7c7d8a4a5c8306eabec&redirect_uri=http://khproject.kr/OTT_Service/kakao.do&response_type=code";
         }
     </script>
 
