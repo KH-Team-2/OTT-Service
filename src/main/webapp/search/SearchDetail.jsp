@@ -160,13 +160,13 @@
                 }
 
             });
-            $("#wishdelbtn").click(function(){
-            	wishdel()
+            $("#wishdelbtn").click(function () {
+                wishdel()
             });
-            $("#wishaddbtn").click(function(){
-            	wishadd()
+            $("#wishaddbtn").click(function () {
+                wishadd()
             });
-  		  });
+        });
 
 
         function addviewlist() {
@@ -189,46 +189,47 @@
             })
         }
 
-        function wishadd(){
-        	 var movienum = ${dto.movieNum};
-             var usernum = <%=udto.getUserNum()%>;
-
-             var params = "?command=wishadd"+"&movienum=" + ${dto.movieNum} +
-             "&usernum=" + <%=udto.getUserNum()%>;
-
-             $.ajax({
-            	 type : "post",
-            	 url : "user.do"+params,
-            	 success : function(data){
-            		 $("#wishaddbtn").remove();
-            		 $("#imgdiv").append('<button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>');
-            		 location.reload();
-            	 },
-            	 error : function(){
-
-            	 }
-             })
-        }
-        function wishdel(){
-       	 var movienum = ${dto.movieNum};
+        function wishadd() {
+            var movienum = ${dto.movieNum};
             var usernum = <%=udto.getUserNum()%>;
 
-            var params = "?command=wishdel"+"&movienum=" + ${dto.movieNum} +
-            "&usernum=" + <%=udto.getUserNum()%>;
+            var params = "?command=wishadd" + "&movienum=" + ${dto.movieNum} +
+                "&usernum=" + <%=udto.getUserNum()%>;
 
             $.ajax({
-           	 type : "post",
-           	 url : "user.do"+params,
-           	 success : function(data){
-           		 $("#wishdelbtn").remove();
-           		 $("#imgdiv").append('<button id="wishaddbtn"><img src="img/wish2.png" id="wishimg"></button>');
-           		location.reload();
-           	 },
-           	 error : function(){
+                type: "post",
+                url: "user.do" + params,
+                success: function (data) {
+                    $("#wishaddbtn").remove();
+                    $("#imgdiv").append('<button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>');
+                    location.reload();
+                },
+                error: function () {
 
-           	 }
+                }
             })
-       }
+        }
+
+        function wishdel() {
+            var movienum = ${dto.movieNum};
+            var usernum = <%=udto.getUserNum()%>;
+
+            var params = "?command=wishdel" + "&movienum=" + ${dto.movieNum} +
+                "&usernum=" + <%=udto.getUserNum()%>;
+
+            $.ajax({
+                type: "post",
+                url: "user.do" + params,
+                success: function (data) {
+                    $("#wishdelbtn").remove();
+                    $("#imgdiv").append('<button id="wishaddbtn"><img src="img/wish2.png" id="wishimg"></button>');
+                    location.reload();
+                },
+                error: function () {
+
+                }
+            })
+        }
 
     </script>
     <style type="text/css">
@@ -262,7 +263,7 @@
             margin-left: 0px;
             margin-top: 50px;
             float: left;
-			position: relative;
+            position: relative;
         }
 
         #contentimage {
@@ -305,7 +306,7 @@
             margin-left: 0px;
             margin-top: 20px;
             margin-bottom: 10px;
-            
+
         }
 
         #title {
@@ -414,26 +415,30 @@
             font-family: 'NEXON Lv1 Gothic OTF';
             font-weight: bold;
         }
-        #wishaddbtn{
-        	position: absolute;
-        	top : 260px;
-        	right : 5px;
-        	background: none;
-        	border: none;
-        	cursor: pointer;
+
+        #wishaddbtn {
+            position: absolute;
+            top: 260px;
+            right: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-        #wishdelbtn{
-        	position: absolute;
-        	top : 260px;
-        	right : 5px;
-        	background: none;
-        	border: none;
-        	cursor: pointer;
+
+        #wishdelbtn {
+            position: absolute;
+            top: 260px;
+            right: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-       	#wishimg{
-       		width: 30px;
-       		height: 30px;
-       	}
+
+        #wishimg {
+            width: 30px;
+            height: 30px;
+        }
+
         .imgurl {
             width: 64px;
             height: 64px;
@@ -447,14 +452,14 @@
         <div id="imgdiv">
             <img id="contentimage" src="${dto.movieImg}" alt="${dto.title}">
             <%
-            	WishBiz biz = new WishBizImpl();
-            	WishListDto wishdto = biz.wishfound(udto.getUserNum(),dto.getMovieNum());
-            	if(wishdto==null){%>
+                WishBiz biz = new WishBizImpl();
+                WishListDto wishdto = biz.wishfound(udto.getUserNum(), dto.getMovieNum());
+                if (wishdto == null) {%>
             <button id="wishaddbtn"><img src="img/wish2.png" id="wishimg"></button>
             <%
-            	}else{%>
-             <button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>
-             <%} %>
+            } else {%>
+            <button id="wishdelbtn"><img src="img/wish1.png" id="wishimg"></button>
+            <%} %>
         </div>
         <div id="titlediv">
             <span id="title" class="content">${dto.title}(${dto.openYear})</span><a class="movieaddr"
@@ -482,7 +487,7 @@
                         <input type="hidden" id="movienum" name="movienum" value="${dto.movieNum}">
                         <input type="hidden" id="usernum" name="usernum" value="<%=udto.getUserNum()%>">
                         <input type="hidden" id="movietitle" name="movietitle" value="<%=dto.getTitle()%></>">
-						<input type="button" value="작성" class="btn" id="reviewsubmit" >
+						<input type="button" value="작성" class="btn" id="reviewsubmit">
 				</span>
         </div>
         <div id="reviewdiv">
@@ -509,7 +514,9 @@
                     <c:otherwise>
                         <c:forEach items="${list }" var="dto">
                             <tr class="${dto.reviewNum}">
-                                <td><img class="imgurl" src="${dto.imgurl}"></td>
+                                <td><img class="imgurl" src="${dto.imgurl}"
+                                         onerror="this.src='https://ssl.pstatic.net/static/pwe/address/img_profile.png'">
+                                </td>
                                 <td>${dto.nickName }</td>
                                 <td class="reviewdate">${dto.date }</td>
                                 <td class="onereviewinfo">${dto.reviewInfo }</td>
@@ -517,8 +524,20 @@
                                     <textarea style="resize: none" cols="70" rows="3" name="reviewinfo"
                                               class="reviewinfo">${dto.reviewInfo}</textarea>
                                 </td>
+                                <c:set var="grade" value="ADMIN"/>
+                                <c:set var="mygrade" value="<%=udto.getGrade()%>"/>
                                 <c:set var="usernum" value="<%=udto.getUserNum()%>"/>
                                 <c:choose>
+                                    <c:when test="${mygrade eq grade}">
+                                        <td class="btns" align="right">
+                                            <button class="reviewbtn reviewupdate">수정</button>
+                                            <button class="reviewbtn reviewdelete">삭제</button>
+                                            <button class="reviewbtn reviewupdatesubmit" style="display: none">완료
+                                            </button>
+                                            <button class="reviewbtn reviewupdatecancel" style="display: none">취소
+                                            </button>
+                                        </td>
+                                    </c:when>
                                     <c:when test="${dto.userNum eq usernum}">
                                         <td class="btns" align="right">
                                             <button class="reviewbtn reviewupdate">수정</button>
