@@ -34,8 +34,8 @@ public class UserUpdateServlet extends HttpServlet {
 		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
 		
 		if (contentType != null &&  contentType.toLowerCase().startsWith("multipart/")) {
-			String path = "C:\\Temp";
 			int size = 1024*1024*10;
+			String path = request.getRealPath("pfimg");
 			String fileName = "";
 			String originalFileName="";
 			try {
@@ -54,7 +54,7 @@ public class UserUpdateServlet extends HttpServlet {
 				int usernum = Integer.parseInt(multi.getParameter("usernum"));
 				UserDto dto = new UserDto();
 				dto.setUserNum(usernum);
-				dto.setImgURL(path+originalFileName);
+				dto.setImgURL("http://www.khproject.kr/OTT_Service/pfimg/"+originalFileName);
 				boolean res = biz.UserImgUdate(dto);
 				
 				if(res) {

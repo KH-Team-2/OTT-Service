@@ -3,6 +3,9 @@ package com.controller;
 import com.biz.user.UserBiz;
 import com.biz.user.UserBizImpl;
 import com.dto.UserDto;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
@@ -14,12 +17,13 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Enumeration;
 
 @WebServlet("/RegServlet")
 public class RegServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String ATTACHES_DIR = "";
+   // private static final String ATTACHES_DIR = request.getRealPath("pfimg");
 
     public RegServlet() {
         super();
@@ -29,7 +33,7 @@ public class RegServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-        
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
         Date time = new Date();
@@ -60,27 +64,21 @@ public class RegServlet extends HttpServlet {
             for (Part part : parts) {
 
                 if (part.getHeader("Content-Disposition").contains("filename=")) {
+                	            	
                     fileName = extractFileName(part.getHeader("Content-Disposition"));
+                    String path = request.getRealPath("pfimg");
 
                     fileName = format.format(time) + fileName;
                     fileName = fileName.replaceAll(" ", "");
                     fileName = fileName.replaceAll("-", "");
                     fileName = fileName.replaceAll(":", "");
-                    fileName = fileName.replaceAll("\\\\", "");
-
-                    System.out.println(ATTACHES_DIR);
-                    System.out.println(File.separator);
-                    System.out.println(fileName);
-                    
-                    String tempimg = ATTACHES_DIR + fileName;
-                    System.out.println(tempimg);
-
+                    fileName = fileName.replaceAll("\\\\", "");                   
+            		
                     if (part.getSize() > 0) {
-                        part.write(ATTACHES_DIR + fileName);
+                        part.write(path + "/" + fileName);
                         part.delete();
                     }
 
-                    fileName = fileName + File.separator;
                     
                 } else {
                     if (part.getName().contentEquals("UserID")) {
@@ -139,7 +137,7 @@ public class RegServlet extends HttpServlet {
                 dto.setName(name);
                 dto.setGender(gender);
                 dto.setNickName(nick);
-                dto.setImgURL(fileName);
+                dto.setImgURL("http://www.khproject.kr/OTT_Service/pfimg/" + fileName);
                 dto.setBirth(d);
                 
                 boolean res = biz.CreateAccount(response, dto);

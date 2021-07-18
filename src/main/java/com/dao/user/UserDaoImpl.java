@@ -245,31 +245,36 @@ public class UserDaoImpl implements UserDao{
 	
 	@Override
 	public boolean UserDel ( int usernum, Connection con ) {
-		
-		 PreparedStatement pstm = null;
-	        int res = 0;
-	        boolean result = true;
-	        
-	        String sql2 = "UPDATE USERTB SET STATUS=? WHERE USERNUM=?";
-
-	        try {
-	            pstm = con.prepareStatement(sql2);
-	            pstm.setString(1, "N");
-	            pstm.setInt(2, usernum);
-
-	            res = pstm.executeUpdate();
-
-	            if (res > 0) {
-	                result = true;
-	            } else {
-	                result = false;
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        } finally {
-	            close(pstm);
-	        }
-	        return result;
+		 
+	        PreparedStatement pstm = null;
+			int res = 0;
+			boolean result = false;
+			
+			String UserDelSQL2 = " DELETE FROM USERTB WHERE USERNUM = ? ";
+			
+			try {
+				pstm = con.prepareStatement(UserDelSQL2);
+				pstm.setInt(1, usernum);
+				System.out.println("03. query 준비: "+UserDelSQL2);
+				
+				res = pstm.executeUpdate();
+				System.out.println("04. query 실행 및 리턴");
+				
+				if(res>0) {
+					result=true;
+				}else {
+					result = false;
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("3/4단계 에러");
+				e.printStackTrace();
+			} finally {
+				close(pstm);
+				System.out.println("05. db 종료\n");
+			}
+			
+			return result;
 	}
 	
 	@Override

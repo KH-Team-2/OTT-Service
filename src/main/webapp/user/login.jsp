@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>head</title>
+    <title>S.O.S !</title>
     <style>
         @font-face {
             font-family: 'NEXON Lv1 Gothic OTF';
