@@ -4,6 +4,8 @@ import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.dao.user.UserDao;
 import com.dao.user.UserDaoImpl;
 import com.dto.UserDto;
@@ -13,10 +15,10 @@ public class UserBizImpl implements UserBiz{
 	private UserDao dao = new UserDaoImpl();
 
 	@Override
-	public boolean CreateAccount(UserDto dto) {
+	public boolean CreateAccount(HttpServletResponse response, UserDto dto) {
 		Connection con = getConnection();
 		
-		boolean res = dao.CreateAccount(dto, con);
+		boolean res = dao.CreateAccount(response, dto, con);
 		
 		if(res) {
 			commit(con);
