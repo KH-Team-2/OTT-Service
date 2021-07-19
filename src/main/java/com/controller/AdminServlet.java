@@ -128,15 +128,15 @@ public class AdminServlet extends HttpServlet {
 			case "addFBWord" : {
 				String FBWords = request.getParameter("FBWords");
 				String reason = request.getParameter("reason");
-//				FBWDto dto = new FBWDto(FBWords,reason);
-//				boolean result = biz.AddFBW(dto);
-//				if(result) {
-//					PrintWriter writer = response.getWriter();
-//					writer.println("<script>alert('금지어가 추가되었습니다'); location.href='"+"admin.do?command=FBWList';"+"</script>");
-//				}else {
-//					PrintWriter writer = response.getWriter();
-//					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=FBWList';"+"</script>");
-//				}
+				FBWDto dto = new FBWDto(FBWords,reason);
+				boolean result = biz.AddFBW(dto);
+				if(result) {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('금지어가 추가되었습니다'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+				}else {
+					PrintWriter writer = response.getWriter();
+					writer.println("<script>alert('다시 시도해주세요'); location.href='"+"admin.do?command=FBWList';"+"</script>");
+				}
 				break;
 			}
 			case "deleteDecration" : {

@@ -168,13 +168,13 @@ public class RegServlet extends HttpServlet {
 
                 PrintWriter out = response.getWriter();
                 out.println(obj.toJSONString());
-            } else if (command.contentEquals("googlereg")) {
+            }
+            
+            else if (command.contentEquals("googlereg")) {
 
                 UserDto dto = new UserDto();
                 HttpSession session = request.getSession();
                 
-               
-
                 dto.setID((String) session.getAttribute("googleid"));
                 dto.setPW((String) session.getAttribute("googlepw"));
                 dto.setEmail((String) session.getAttribute("googleid"));
@@ -183,28 +183,27 @@ public class RegServlet extends HttpServlet {
                 dto.setImgURL((String) session.getAttribute("googleimg"));
                 
                 String Phone = request.getParameter("Phone_1") + "-" + request.getParameter("Phone_2") + "-" + request.getParameter("Phone_3");
-                dto.setPhone(request.getParameter("Phone"));
+                dto.setPhone(Phone);
 
                 String gender = request.getParameter("Gender");
-                if (gender.contentEquals("남")) {
-                    gender = "M";
-                } else {
-                    gender = "W";
-                }
+                if (gender.contentEquals("남")) { gender = "M"; }
+                else { gender = "W"; }              
                 dto.setGender(gender);
 
                 java.sql.Date userbirth = java.sql.Date.valueOf(request.getParameter("Birth"));
                 dto.setBirth(userbirth);
-
+                
                 boolean res = biz.CreateAccount(response, dto);
 
                 if (res) {
                     session.setAttribute("dto", dto);
-                    jsResponse("회원가입 성공", "search.do?command=main", response);
+                    jsResponse("회원가입 성공", "http://www.khproject.kr/OTT_Service/user/login.jsp", response);
                 } else {
-                   jsResponse("회원가입 실패", "search.do?command=main", response);
+                   jsResponse("회원가입 실패", "http://www.khproject.kr/OTT_Service/user/login.jsp", response);
                }
-            } else if (command.contentEquals("kakaoreg")) {
+            }
+            
+            else if (command.contentEquals("kakaoreg")) {
 
                 UserDto dto = new UserDto();
                 HttpSession session = request.getSession();
@@ -257,9 +256,9 @@ public class RegServlet extends HttpServlet {
                 boolean res = biz.CreateAccount(response,dto);
 
                 if (res) {
-                    jsResponse("회원가입 성공", "user/login.jsp", response);
+                    jsResponse("회원가입 성공", "http://www.khproject.kr/OTT_Service/user/login.jsp", response);
                } else {
-                    jsResponse("회원가입 실패", "user/login.jsp", response);
+                    jsResponse("회원가입 실패", "http://www.khproject.kr/OTT_Service/user/login.jsp", response);
                 }
             }
         }

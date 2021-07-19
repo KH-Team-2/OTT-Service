@@ -213,8 +213,7 @@ public class UserServlet extends HttpServlet {
 		out.print(s);
 		
 	}
-	
-	
+
 	private void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatch = request.getRequestDispatcher(url);
 		dispatch.forward(request, response);

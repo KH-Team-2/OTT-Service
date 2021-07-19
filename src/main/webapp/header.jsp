@@ -154,9 +154,19 @@
             $('.alarmConfirm').prop('disabled', true);
 
             $("#filter").hover(function () {
-                $("#modal").show('fast');
+            	if (alarmBtn_Count == 0) {
+                    $('#modal').show('fast');
+                    setTimeout(function () {
+                        alarmBtn_Count = 1;
+                    }, 300);
+                }
             }, function () {
-                $("#modal").hide('fast');
+            	if (alarmBtn_Count == 1) {
+                    $('#modal').hide('hide');
+                    setTimeout(function () {
+                        alarmBtn_Count = 0;
+                    }, 300);
+                }
             });
 
             $('#userBtnImg').click(function () {
