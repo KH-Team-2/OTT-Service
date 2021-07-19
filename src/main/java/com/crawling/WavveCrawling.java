@@ -231,7 +231,7 @@ public class WavveCrawling extends JDBCTemplate {
     }
     
     static public double rannum() {
-    	double num = (Math.random() * 10);
+    	double num = (Math.random() * 9) + 1;
         num = Math.round(num*100);
         num = num / 100.0;
         return num;
