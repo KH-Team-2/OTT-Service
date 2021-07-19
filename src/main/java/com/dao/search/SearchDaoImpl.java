@@ -21,7 +21,7 @@ public class SearchDaoImpl implements SearchDao {
                 " JOIN PLATFORM P on Contents.MovieNum = P.MOVIENUM\n" +
                 " JOIN PLATFORMCODE P2 on P.PFCode = P2.PFCODE " +
                 " WHERE TITLE LIKE '%' || ? || '%'\n " +
-                " AND TO_NUMBER(SUBSTR(OpenYear, 1, 4)) BETWEEN ? AND ?\n " +
+                " AND SUBSTR(OpenYear, 1, 4) BETWEEN ? AND ?\n " +
                 " AND Rate BETWEEN ? AND ? AND Genre LIKE '%' || ? || '%' ";
 
         String delGenreSql = " SELECT *\n " +
@@ -29,7 +29,7 @@ public class SearchDaoImpl implements SearchDao {
                 " JOIN PLATFORM P on Contents.MovieNum = P.MOVIENUM\n" +
                 " JOIN PLATFORMCODE P2 on P.PFCode = P2.PFCODE " +
                 " WHERE TITLE LIKE '%' || ? || '%'\n " +
-                " AND TO_NUMBER(SUBSTR(OpenYear, 1, 4)) BETWEEN ? AND ?\n " +
+                " AND SUBSTR(OpenYear, 1, 4) BETWEEN ? AND ?\n " +
                 " AND Rate BETWEEN ? AND ? ";
 
         PreparedStatement pstm = null;
