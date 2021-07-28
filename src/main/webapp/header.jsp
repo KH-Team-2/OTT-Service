@@ -648,7 +648,7 @@
                                 <input type="button" value="로그아웃" class="Logout">
                             </td>
                         </tr>
-                    </table> 
+                    </table>
                 </div>
             </div>
             <div class="menues" id="adminmenues">
