@@ -48,6 +48,7 @@ public class AdminBizImpl implements AdminBiz{
 			rollback(con);
 		}
 		close(con);
+		System.out.println("하");
 		return res;
 	}
 
