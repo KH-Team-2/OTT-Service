@@ -15,3 +15,4 @@
     BackEnd : JAVA 1.8EE, JSP, Servlet, Maven
     Communication : Trello, Notion, ERD Cloud
     Crawling : Selenium
+    Hosting : Cafe24, Hothome
